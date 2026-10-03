@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0827e68647584d441a66fe370d0e2600, type: 3}
+  m_Name: ArcherData
+  m_EditorClassIdentifier: 
+  towerLevel: 1
+  defaultWeapon: {fileID: 11400000, guid: f9afa129c73ad9b47a3155f8347ac2d4, type: 2}
+  type: 0
+  damage: 14
+  criticalChance: 0.1
+  range: 15
+  attackSpeed: 1
+  cost: 250
+  gridWidth: 5
+  gridHeight: 5

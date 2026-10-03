@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &102837681568148961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_Name
+      value: ArcherTower1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598419493678936200, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5101856556605007194}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4650924401712330474}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6787666359540806634}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2884433508919369416}
+  m_SourcePrefab: {fileID: 100100000, guid: 42ae5ddd51f30c84ebde97ab2570fc24, type: 3}
+--- !u!1 &985219053862375600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 42ae5ddd51f30c84ebde97ab2570fc24,
+    type: 3}
+  m_PrefabInstance: {fileID: 102837681568148961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &5101856556605007194
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985219053862375600}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2.211852
+  m_Center: {x: 0.2649421, y: 0.11499977, z: 0}
+--- !u!114 &4650924401712330474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985219053862375600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f029af75994824b802764bafa58e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 4f78bfa69cac4e64b9f22050f74a7d75, type: 2}
+  myShopItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ArcherBulletP: {fileID: 2948252414374885547, guid: 2ed4a2314f742614b965707a73816510,
+    type: 3}
+  arcDamage: 0
+--- !u!65 &6787666359540806634
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985219053862375600}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.51097316, y: 0.52056736, z: 0.51097316}
+  m_Center: {x: 0, y: 0.26028368, z: 0}
+--- !u!114 &2884433508919369416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985219053862375600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc093cbbfbc35a4aaef4db02571bff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridWidth: 5
+  gridHeight: 5

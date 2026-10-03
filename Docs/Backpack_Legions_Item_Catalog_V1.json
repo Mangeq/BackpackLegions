@@ -1,0 +1,1106 @@
+[
+  {
+    "itemID": "v1_shortbow",
+    "Name": "Avcı Yayı",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 0,
+    "icon": 12,
+    "Type": 0,
+    "width": 2,
+    "height": 2,
+    "cost": 55,
+    "damageBonus": 0.18,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_archer_gloves",
+    "Name": "Çevik Eldivenler",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 0,
+    "icon": 31,
+    "Type": 2,
+    "width": 2,
+    "height": 1,
+    "cost": 60,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.18,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_scout_hood",
+    "Name": "İzci Başlığı",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 0,
+    "icon": 21,
+    "Type": 1,
+    "width": 1,
+    "height": 2,
+    "cost": 55,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.12,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_hawk_pendant",
+    "Name": "Şahin Tılsımı",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 0,
+    "icon": 38,
+    "Type": 4,
+    "width": 1,
+    "height": 1,
+    "cost": 75,
+    "damageBonus": 0.08,
+    "criticalChanceBonus": 0.06,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_warbow",
+    "Name": "Savaş Arbaleti",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 1,
+    "icon": 6,
+    "Type": 0,
+    "width": 2,
+    "height": 3,
+    "cost": 125,
+    "damageBonus": 0.3,
+    "criticalChanceBonus": 0.06,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 1,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_ranger_boots",
+    "Name": "Korucu Çizmeleri",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 1,
+    "icon": 34,
+    "Type": 2,
+    "width": 1,
+    "height": 2,
+    "cost": 140,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.3,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_focus_ring",
+    "Name": "Odak Yüzüğü",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 1,
+    "icon": 42,
+    "Type": 4,
+    "width": 1,
+    "height": 1,
+    "cost": 150,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.2,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_piercing_arrows",
+    "Name": "Keskin Ok Uçları",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 2,
+    "icon": 10,
+    "Type": 0,
+    "width": 1,
+    "height": 3,
+    "cost": 220,
+    "damageBonus": 0.4,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.18,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_ranger_cloak",
+    "Name": "Rüzgâr Pelerini",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 2,
+    "icon": 29,
+    "Type": 2,
+    "width": 2,
+    "height": 2,
+    "cost": 240,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.18,
+    "attackSpeedBonus": 0.28,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_moonbow",
+    "Name": "Ayışığı Yayı",
+    "itemOwners": [
+      0
+    ],
+    "Rarity": 3,
+    "icon": 13,
+    "Type": 0,
+    "width": 2,
+    "height": 3,
+    "cost": 380,
+    "damageBonus": 0.5,
+    "criticalChanceBonus": 0.2,
+    "attackSpeedBonus": 0.25,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 1,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_apprentice_staff",
+    "Name": "Çırak Asası",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 0,
+    "icon": 16,
+    "Type": 0,
+    "width": 1,
+    "height": 3,
+    "cost": 50,
+    "damageBonus": 0.22,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_quick_scroll",
+    "Name": "Akış Parşömeni",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 0,
+    "icon": 46,
+    "Type": 4,
+    "width": 2,
+    "height": 1,
+    "cost": 55,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.18,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_focus_circlet",
+    "Name": "Odak Tacı",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 0,
+    "icon": 23,
+    "Type": 1,
+    "width": 1,
+    "height": 1,
+    "cost": 70,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.12,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_mana_elixir",
+    "Name": "Mana Özü",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 0,
+    "icon": 49,
+    "Type": 3,
+    "width": 1,
+    "height": 2,
+    "cost": 65,
+    "damageBonus": 0.12,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.1,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_elder_staff",
+    "Name": "Kadim Asa",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 1,
+    "icon": 17,
+    "Type": 0,
+    "width": 1,
+    "height": 3,
+    "cost": 130,
+    "damageBonus": 0.42,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_flow_amulet",
+    "Name": "Akış Muskası",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 1,
+    "icon": 40,
+    "Type": 4,
+    "width": 1,
+    "height": 1,
+    "cost": 155,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.25,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_rune_scroll",
+    "Name": "Rün Parşömeni",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 1,
+    "icon": 47,
+    "Type": 4,
+    "width": 2,
+    "height": 2,
+    "cost": 130,
+    "damageBonus": 0.25,
+    "criticalChanceBonus": 0.12,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_archmage_robe",
+    "Name": "Başbüyücü Cübbesi",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 2,
+    "icon": 30,
+    "Type": 2,
+    "width": 2,
+    "height": 3,
+    "cost": 225,
+    "damageBonus": 0.35,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.3,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 1,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_oracle_totem",
+    "Name": "Kâhin Totemi",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 2,
+    "icon": 39,
+    "Type": 4,
+    "width": 1,
+    "height": 2,
+    "cost": 245,
+    "damageBonus": 0.2,
+    "criticalChanceBonus": 0.25,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_void_seal",
+    "Name": "Hiçlik Mührü",
+    "itemOwners": [
+      3
+    ],
+    "Rarity": 3,
+    "icon": 43,
+    "Type": 4,
+    "width": 2,
+    "height": 2,
+    "cost": 390,
+    "damageBonus": 0.55,
+    "criticalChanceBonus": 0.22,
+    "attackSpeedBonus": 0.15,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_legion_sword",
+    "Name": "Lejyoner Kılıcı",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 0,
+    "icon": 7,
+    "Type": 0,
+    "width": 1,
+    "height": 3,
+    "cost": 45,
+    "damageBonus": 0.25,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_round_shield",
+    "Name": "Nöbetçi Kalkanı",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 0,
+    "icon": 14,
+    "Type": 2,
+    "width": 2,
+    "height": 2,
+    "cost": 60,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.35,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_march_boots",
+    "Name": "Yürüyüş Çizmeleri",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 0,
+    "icon": 35,
+    "Type": 2,
+    "width": 2,
+    "height": 1,
+    "cost": 55,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.2,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_guard_belt",
+    "Name": "Muhafız Kemeri",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 0,
+    "icon": 41,
+    "Type": 2,
+    "width": 2,
+    "height": 1,
+    "cost": 65,
+    "damageBonus": 0.1,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.2,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_leather_armor",
+    "Name": "Takviyeli Zırh",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 1,
+    "icon": 25,
+    "Type": 2,
+    "width": 2,
+    "height": 3,
+    "cost": 125,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.7,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 1,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_veteran_helm",
+    "Name": "Veteran Miğferi",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 1,
+    "icon": 19,
+    "Type": 1,
+    "width": 2,
+    "height": 2,
+    "cost": 135,
+    "damageBonus": 0.15,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 0.4,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_battle_elixir",
+    "Name": "Savaş İksiri",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 1,
+    "icon": 48,
+    "Type": 3,
+    "width": 1,
+    "height": 2,
+    "cost": 145,
+    "damageBonus": 0.15,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.25,
+    "healthBonus": 0.0,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_fortress_shield",
+    "Name": "Kale Kalkanı",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 2,
+    "icon": 15,
+    "Type": 2,
+    "width": 2,
+    "height": 3,
+    "cost": 220,
+    "damageBonus": 0.0,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.0,
+    "healthBonus": 1.1,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 1,
+        "y": 2
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 1
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_captain_armor",
+    "Name": "Yüzbaşı Zırhı",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 2,
+    "icon": 26,
+    "Type": 2,
+    "width": 2,
+    "height": 2,
+    "cost": 245,
+    "damageBonus": 0.25,
+    "criticalChanceBonus": 0.0,
+    "attackSpeedBonus": 0.15,
+    "healthBonus": 0.5,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  },
+  {
+    "itemID": "v1_legion_crown",
+    "Name": "Lejyon Tacı",
+    "itemOwners": [
+      2
+    ],
+    "Rarity": 3,
+    "icon": 20,
+    "Type": 1,
+    "width": 2,
+    "height": 2,
+    "cost": 380,
+    "damageBonus": 0.35,
+    "criticalChanceBonus": 0.1,
+    "attackSpeedBonus": 0.2,
+    "healthBonus": 0.9,
+    "itemShape": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 1,
+        "y": 1
+      }
+    ],
+    "centerOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "synergyIDs": []
+  }
+]

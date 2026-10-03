@@ -1,0 +1,53 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum ItemType
+{
+    Weapon,
+    Helmet,
+    Armour,
+    Potion,
+    Parchment
+}
+
+public enum ItemRarity
+{
+    Common,
+    Rare,
+    Epic,
+    Legendary
+}
+
+[CreateAssetMenu(fileName = "New Item", menuName = "Backpack/Item")]
+public class ItemData : ScriptableObject
+{
+    [Tooltip("Item'in kapladığı hücreler, item'in kendi orijinine göre (0,0) sol-üst olacak şekilde tanımlanır. L-şekli örneği: (0,0),(0,1),(0,2),(1,2)")]
+    public List<Vector2Int> itemShape;
+
+    public string Name;
+    public ItemType Type;
+    public ItemRarity Rarity;
+    public TowerType[] itemOwners;
+    public string itemID;
+    public int cost;
+    public Sprite itemIcon;
+    public List<string> synergyIDs;
+
+    public float damageBonus;
+    public float criticalChanceBonus;
+    public float attackSpeedBonus;
+
+    [Tooltip("Sadece Birlik kulesinde işe yarar: üretilen birliklerin canına % bonus (0.2 = %20).")]
+    public float healthBonus;
+
+    [Tooltip("Sürüklerken imlecin/dokunuşun item şeklinin hangi hücresine denk geleceği. Genelde şeklin görsel ortası.")]
+    public Vector2Int centerOffset;
+
+    // Not: width/height ve RotateItem() kaldırıldı.
+    // Boyut artık ItemShapeUtility.GetBoundingSize(itemShape) ile itemShape'ten
+    // TEK bir kaynaktan türetiliyor - ayrı bir width/height tutmak, tasarımcı
+    // şekli güncelleyip boyutu güncellemeyi unuttuğunda veriyi tutarsız bırakırdı.
+    // Rotasyon da kaldırıldı çünkü Backpack Battles'da itemler dönmüyor; ayrıca
+    // eski RotateItem() bu ScriptableObject asset'ini kalıcı olarak mutasyona
+    // uğratıyordu (aynı item'i kullanan başka her yer de etkileniyordu).
+}

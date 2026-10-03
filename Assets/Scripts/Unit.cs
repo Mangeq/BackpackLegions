@@ -1,0 +1,103 @@
+using System.Collections;
+using UnityEngine;
+
+public class Unit : MonoBehaviour
+{
+    public GameObject myTower;
+    public int health = 100;
+    public float damage;
+    public float critMultiplier = 1.5f; // Kritik vurusta hasar carpani
+    public float engageRange = 0.8f; // Bu mesafedeki bos dusmani yakalar
+    internal GameObject currentEnemy = null;
+    public ElementType elementType;
+
+    internal float critChance;           // Kuleden gelir (base + item bonuslari)
+    internal float attackInterval = 1f;  // Vuruslar arasi bekleme suresi (sn), kuleden gelir
+    private int baseHealth;              // Prefab'daki ham can, item bonusu bunun uzerine uygulanir
+    private int maxHealth;
+
+    private Coroutine combatRoutine;
+
+    public bool IsIdle => currentEnemy == null;
+
+    private void Awake()
+    {
+        baseHealth = health;
+        maxHealth = health;
+    }
+
+    // Kule, backpack'i her degistiginde ve birlik dogdugunda bunu cagirir.
+    public void ApplyStats(float damage, float critChance, float attackInterval, float healthMultiplier)
+    {
+        this.damage = damage;
+        this.critChance = critChance;
+        this.attackInterval = attackInterval;
+
+        // Max can degisince mevcut can da ayni oranda olceklenir (yarim canli birlik yarim canli kalir).
+        int newMaxHealth = Mathf.RoundToInt(baseHealth * healthMultiplier);
+        health = Mathf.RoundToInt(health * (float)newMaxHealth / maxHealth);
+        maxHealth = newMaxHealth;
+    }
+
+    // Birlik yola hizalanmis konumuna dogar dogmaz buraya yerlesir
+    public void PlaceAt(Vector3 position)
+    {
+        transform.position = position;
+    }
+
+    // Kule bu birligi bos buldugunda yakinindaki bir dusmani tutmasi icin cagirir
+    public void Engage(GameObject enemy)
+    {
+        if (currentEnemy != null || enemy == null) return;
+
+        Enemy enemyComp = enemy.GetComponent<Enemy>();
+        if (enemyComp == null || enemyComp.isEngaged) return;
+
+        currentEnemy = enemy;
+        enemyComp.AttackTarget(gameObject);
+        combatRoutine = StartCoroutine(Combat());
+    }
+
+    IEnumerator Combat()
+    {
+        while(currentEnemy != null)
+        {
+            yield return new WaitForSeconds(attackInterval);
+            if (currentEnemy==null) break;
+            float finalDamage = Random.Range(0f, 1f) <= critChance ? damage * critMultiplier : damage;
+            currentEnemy.GetComponent<Enemy>().TakeDamage(finalDamage, elementType);
+            if (currentEnemy==null) break;
+        }
+        combatRoutine = null;
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die(gameObject);
+        }
+
+    }
+    public void Die(GameObject unit)
+    {
+        if(health <= 0)
+        {
+            if (currentEnemy != null)
+            {
+                Enemy enemyComp = currentEnemy.GetComponent<Enemy>();
+                if (enemyComp != null)
+                {
+                    enemyComp.ResumeMoving();
+                    enemyComp.isEngaged = false;
+                }
+            }
+            if (combatRoutine != null)
+            {
+                StopCoroutine(combatRoutine);
+            }
+            myTower.GetComponent<UnitTower>().ReleaseUnit(unit);
+            Destroy(unit);
+        }
+    }
+}
