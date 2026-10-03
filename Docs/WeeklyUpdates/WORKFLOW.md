@@ -3,7 +3,8 @@
 Kullanıcının 3 Ekim 2026 talebi: özel GitHub deposu, düzenli proje güncellemesi ve kişisel LinkedIn profilinde Türkçe haftalık ilerleme paylaşımı; her gönderiye 1–2 gerçek oyun ekran görüntüsü.
 
 - Program: Cuma 18.00, Europe/Istanbul.
-- GitHub hesabı: Mangeq. Planlanan depo adı: BackpackLegions. Uzak depo oluşturulduğunda doğrulanmış adresi buraya kaydet.
+- GitHub özel deposu: https://github.com/Mangeq/BackpackLegions ; origin: https://github.com/Mangeq/BackpackLegions.git .
+- LinkedIn kişisel profili: Emir Çalışkan, https://www.linkedin.com/in/emir-%C3%A7-061011267/ .
 - GitHub güncellemesi: haftalık çalışmada anlamlı proje değişikliklerini incele, commit et ve normal push yap. Force push yapma; başka çalışmaları ezme.
 - LinkedIn: o haftanın doğrulanmış geliştirmelerini 3–5 kısa maddeyle, doğal Türkçeyle anlat. Tarihsiz eski raporları haftalık yeni ilerleme sayma. Henüz uygulanmamış hedefleri ayrı belirt.
 - Ekran görüntüleri: güncel oyundan 1–2 görüntü al; hangi yeniliği gösterdiğini kontrol et. Yapay görseli oyun ekran görüntüsü olarak sunma. Görüntü alınamıyorsa gönderiyi taslak olarak sakla ve engeli bildir.
@@ -15,4 +16,4 @@ Kullanıcının 3 Ekim 2026 talebi: özel GitHub deposu, düzenli proje güncell
 
 ## İlk kurulum durumu
 
-GitHub bağlantısı hesap kimliğini doğruladı, ancak mevcut bağlantıda depo oluşturma aracı yok. Tarayıcı üzerinden depo oluşturmak için GitHub oturumu gerekiyor. LinkedIn bağlantısı yalnızca kişi araması sunuyor; yayımlama için tarayıcı oturumu gerekiyor. Bu belge oluşturulurken iki tarayıcı da giriş ekranındaydı. Uzak depo, ilk push ve ilk LinkedIn gönderisi henüz tamamlanmadı.
+3 Ekim 2026: GitHub özel deposu tarayıcı üzerinden oluşturuldu; GitHub ve LinkedIn tarayıcı oturumları kullanıcı girişi sonrasında doğrulandı. Yerel başlangıç commit'i: 371cb94. İlk haftalık çalışma 9 Ekim 2026 Cuma 18.00 (Europe/Istanbul). Otomasyon kimliği: backpack-legions-haftal-k-linkedin-ve-github. LinkedIn bağlantısı yalnızca kişi araması sunduğundan yayımlama için tarayıcı kullanılmalıdır. İlk LinkedIn gönderisi henüz yayımlanmadı; kullanıcı haftalık cuma düzenini seçti.
