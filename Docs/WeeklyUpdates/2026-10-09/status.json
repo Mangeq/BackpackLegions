@@ -1,1 +1,20 @@
-{"date":"2026-10-09","baseline_commit":"8ce67c4b0f34e45a9a02dee86cbbbc8efca38988","github":{"status":"pending"},"linkedin":{"status":"draft","url":null},"images":["01-canta-evrim.png","02-element.png"]}
+{
+  "date": "2026-10-09",
+  "baseline_commit": "8ce67c4b0f34e45a9a02dee86cbbbc8efca38988",
+  "github": {
+    "status": "pushed",
+    "commit": "8f93fa43da814540b80511596a420522bf16ef54",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "verified_at": "2026-10-09T21:17:17+03:00"
+  },
+  "linkedin": {
+    "status": "published",
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7514388535106392064/",
+    "verified_at": "2026-10-09T21:18:00+03:00",
+    "image_count": 2
+  },
+  "images": [
+    "01-canta-evrim.png",
+    "02-element.png"
+  ]
+}
