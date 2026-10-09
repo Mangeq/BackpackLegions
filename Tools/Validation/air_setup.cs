@@ -1,0 +1,5 @@
+var gm=UnityEngine.Object.FindObjectOfType<GameManager>();gm.enabled=false;UnityEngine.Time.timeScale=0;var wm=UnityEngine.Object.FindObjectOfType<WaveManager>();wm.StopWaves();typeof(GameManager).GetProperty("CurrentState").SetValue(gm,GameManager.GameState.Preparation,null);foreach(var old in UnityEngine.Object.FindObjectsOfType<Enemy>())UnityEngine.Object.Destroy(old.gameObject);UnityEngine.GameObject.FindGameObjectWithTag("Base").GetComponent<Base>().currentHealth=100;
+var air=UnityEngine.Object.Instantiate(wm.waves[2].enemyPrefab,wm.spawnPoint.position,UnityEngine.Quaternion.identity);air.name="AirTest";
+var ground=UnityEngine.Object.Instantiate(wm.waves[0].enemyPrefab,wm.spawnPoint.position,UnityEngine.Quaternion.identity);ground.name="GroundTest";
+var ui=UnityEngine.Object.FindObjectOfType<UİManager>();var unit=UnityEngine.Object.Instantiate(ui.UnitTowerPrefab.GetComponent<UnitTower>().UnitPrefab,wm.spawnPoint.position,UnityEngine.Quaternion.identity);unit.name="UnitTest";
+return true;

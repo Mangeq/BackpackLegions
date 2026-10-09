@@ -1,0 +1,58 @@
+[
+  {
+    "test": "Cancel modal changes no element or gold",
+    "passed": true
+  },
+  {
+    "test": "Quote states exact fee and consequences",
+    "passed": true
+  },
+  {
+    "test": "Insufficient funds disables confirm with message",
+    "passed": true
+  },
+  {
+    "test": "Direct confirm cannot bypass insufficient funds",
+    "passed": true
+  },
+  {
+    "test": "Persistent confirm pays once and closes modal",
+    "passed": true
+  },
+  {
+    "test": "Incompatible owned items visibly marked",
+    "passed": true
+  },
+  {
+    "test": "Combat invalidates open confirmation without charge",
+    "passed": true
+  },
+  {
+    "test": "Type button disabled while extra backpack items remain",
+    "passed": true
+  },
+  {
+    "test": "Fresh replacement barracks starts three units once",
+    "passed": true
+  },
+  {
+    "test": "Type quote describes reset refund and storage",
+    "passed": true
+  },
+  {
+    "test": "Type confirmation selects new tower and opens correct bag",
+    "passed": true
+  },
+  {
+    "test": "Type confirmation refreshes matching shop",
+    "passed": true
+  },
+  {
+    "test": "Closed type confirm cannot repeat transaction",
+    "passed": true
+  },
+  {
+    "test": "Dragged item restored before empty-bag check",
+    "passed": true
+  }
+]

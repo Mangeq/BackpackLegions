@@ -1,0 +1,82 @@
+[
+  {
+    "test": "any filter activates bonus",
+    "passed": true
+  },
+  {
+    "test": "type match",
+    "passed": true
+  },
+  {
+    "test": "type mismatch",
+    "passed": true
+  },
+  {
+    "test": "specific item match",
+    "passed": true
+  },
+  {
+    "test": "specific item mismatch",
+    "passed": true
+  },
+  {
+    "test": "multiple matching cells grant rule only once",
+    "passed": true
+  },
+  {
+    "test": "special cells rotate in all four orientations",
+    "passed": true
+  },
+  {
+    "test": "diagonal is not evolution adjacency",
+    "passed": true
+  },
+  {
+    "test": "no consumption at wave start",
+    "passed": true
+  },
+  {
+    "test": "successful wave consumes pair and places result",
+    "passed": true
+  },
+  {
+    "test": "duplicate completion cannot duplicate result",
+    "passed": true
+  },
+  {
+    "test": "cancelled wave preserves materials",
+    "passed": true
+  },
+  {
+    "test": "non adjacent recipe does not activate",
+    "passed": true
+  },
+  {
+    "test": "overflow result goes to own storage",
+    "passed": true
+  },
+  {
+    "test": "full storage creates delivery without waiting",
+    "passed": true
+  },
+  {
+    "test": "delivery claim is once only",
+    "passed": true
+  },
+  {
+    "test": "main item excluded from recipes",
+    "passed": true
+  },
+  {
+    "test": "same ingredient cannot feed two recipes",
+    "passed": true
+  },
+  {
+    "test": "moving partner to storage removes synergy contribution",
+    "passed": true
+  },
+  {
+    "test": "shared ItemData bonus remains unchanged",
+    "passed": true
+  }
+]

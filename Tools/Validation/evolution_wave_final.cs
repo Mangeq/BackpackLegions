@@ -1,0 +1,1 @@
+var gm=UnityEngine.Object.FindObjectOfType<GameManager>();var t=BackpackUIManager.Instance.ActiveTower;return new{test="final wave evolves before victory",passed=gm.CurrentState==GameManager.GameState.Victory&&t.Backpack.Items.Count==1&&t.Backpack.Items[0].Data==t.evolutionRecipes[0].result};

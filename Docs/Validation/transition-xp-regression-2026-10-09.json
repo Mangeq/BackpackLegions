@@ -1,0 +1,106 @@
+[
+  {
+    "test": "No XP before death",
+    "passed": true
+  },
+  {
+    "test": "Actual damage share and overkill cap",
+    "passed": true
+  },
+  {
+    "test": "Death rewarded once",
+    "passed": true
+  },
+  {
+    "test": "Element multiplier included in XP contribution",
+    "passed": true
+  },
+  {
+    "test": "Castle marks enemy resolved once",
+    "passed": true
+  },
+  {
+    "test": "Castle arrival and same-frame hit award no XP",
+    "passed": true
+  },
+  {
+    "test": "Unowned damage not reassigned",
+    "passed": true
+  },
+  {
+    "test": "Invalid damage rejected",
+    "passed": true
+  },
+  {
+    "test": "Combat leveling stops at 5 and retains excess",
+    "passed": true
+  },
+  {
+    "test": "Combat element selection blocked",
+    "passed": true
+  },
+  {
+    "test": "XP continues while awaiting choice",
+    "passed": true
+  },
+  {
+    "test": "Legacy upgrade cannot bypass element gate",
+    "passed": true
+  },
+  {
+    "test": "Pause choice blocked",
+    "passed": true
+  },
+  {
+    "test": "Invalid element blocked",
+    "passed": true
+  },
+  {
+    "test": "Selection spends banked XP",
+    "passed": true
+  },
+  {
+    "test": "Cannot reselect element",
+    "passed": true
+  },
+  {
+    "test": "Shared asset unchanged",
+    "passed": true
+  },
+  {
+    "test": "No free upgrade and early selection blocked",
+    "passed": true
+  },
+  {
+    "test": "Bullet element and owner 1",
+    "passed": true
+  },
+  {
+    "test": "Bullet element and owner 2",
+    "passed": true
+  },
+  {
+    "test": "Bullet element and owner 3",
+    "passed": true
+  },
+  {
+    "test": "Bullet element and owner 4",
+    "passed": true
+  },
+  {
+    "test": "Existing units receive element",
+    "passed": true
+  },
+  {
+    "test": "Unit combat credits owning tower",
+    "passed": true
+  },
+  {
+    "test": "Destroyed owner does not redistribute its share",
+    "passed": true
+  },
+  {
+    "test": "Result screen choice blocked",
+    "passed": true
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "test": "Paid element change succeeds",
+    "passed": true
+  },
+  {
+    "test": "Paid change charges fixed fee exactly once",
+    "passed": true
+  },
+  {
+    "test": "Paid change preserves XP level and main location rotation",
+    "passed": true
+  },
+  {
+    "test": "Old elemental gear kept but inactive; normal gear active",
+    "passed": true
+  },
+  {
+    "test": "Incompatible gear contributes no damage",
+    "passed": true
+  },
+  {
+    "test": "Storage preserved and still inactive",
+    "passed": true
+  },
+  {
+    "test": "Paid change resets freeze and all offers",
+    "passed": true
+  },
+  {
+    "test": "Same element cannot charge twice",
+    "passed": true
+  },
+  {
+    "test": "Insufficient funds preserves element and main",
+    "passed": true
+  },
+  {
+    "test": "Combat blocks both transitions",
+    "passed": true
+  },
+  {
+    "test": "Pause blocks transitions",
+    "passed": true
+  },
+  {
+    "test": "Occupied bag prevents type change without fee",
+    "passed": true
+  },
+  {
+    "test": "Invalid target rejected",
+    "passed": true
+  },
+  {
+    "test": "Type change succeeds with occupied storage and pending delivery",
+    "passed": true
+  },
+  {
+    "test": "Type change net price exact",
+    "passed": true
+  },
+  {
+    "test": "New type resets level XP and element",
+    "passed": true
+  },
+  {
+    "test": "New type has exactly one new main item",
+    "passed": true
+  },
+  {
+    "test": "Storage ownership position and rotation transferred intact",
+    "passed": true
+  },
+  {
+    "test": "Pending deliveries move exactly once",
+    "passed": true
+  },
+  {
+    "test": "Old soldiers removed immediately",
+    "passed": true
+  },
+  {
+    "test": "Slot and world placement unchanged",
+    "passed": true
+  },
+  {
+    "test": "New type store starts normal unfrozen",
+    "passed": true
+  },
+  {
+    "test": "Retired tower cannot pay twice",
+    "passed": true
+  },
+  {
+    "test": "Old type gear incompatible with new type",
+    "passed": true
+  },
+  {
+    "test": "Same type rejected",
+    "passed": true
+  },
+  {
+    "test": "Mage to Unit prepares base state",
+    "passed": true
+  },
+  {
+    "test": "Incompatible neighbor cannot activate synergy",
+    "passed": true
+  },
+  {
+    "test": "Compatible neighbor still activates synergy",
+    "passed": true
+  },
+  {
+    "test": "Incompatible ingredients cannot start evolution",
+    "passed": true
+  }
+]

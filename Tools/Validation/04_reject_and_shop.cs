@@ -1,0 +1,9 @@
+var rows=new System.Collections.Generic.List<object>();var bags=BackpackUIManager.Instance;var shop=UnityEngine.Object.FindObjectOfType<ShopUIManager>();var ui=UnityEngine.Object.FindObjectOfType<UİManager>();var click=typeof(Tower).GetMethod("OnMouseDown",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+foreach(var tower in UnityEngine.Object.FindObjectsOfType<Tower>()){
+click.Invoke(tower,null);UnityEngine.Canvas.ForceUpdateCanvases();var origin=new UnityEngine.Vector2Int(1,0);var item=tower.Backpack.GetItemAt(origin).Data;BackpackDraggable visual=null;foreach(var v in bags.gridContainer.GetComponentsInChildren<BackpackDraggable>())if(v.Item==item)visual=v;
+var ev=new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);ev.position=new UnityEngine.Vector2(-10000,-10000);int gold=EconomyManager.Gold;visual.BeginDrag();bool placed=visual.FinishDrag(ev);
+rows.Add(new{test=tower.name+" invalid move rolls back",passed=!placed&&tower.Backpack.Items.Count==2&&tower.Backpack.GetItemAt(origin).Data==item&&EconomyManager.Gold==gold});
+var before=(ItemData[])tower.myShopItems.Clone();var panel=shop.shopSlots[0].transform;while(panel.name!="İtemShopUİ")panel=panel.parent;bags.CloseBackpack();ui.TogglePanel(panel.gameObject);click.Invoke(tower,null);bool same=true;for(int i=0;i<4;i++)same&=before[i]==tower.myShopItems[i];rows.Add(new{test=tower.name+" reopen preserves offers and sold slot",passed=same&&shop.shopSlots[0].currentItem==null&&bags.backpackPanel.activeSelf&&panel.gameObject.activeSelf});
+// Isolate reroll from incidental remaining test budget; this is runtime-only.
+EconomyManager.Gold=100;shop.RefreshShop();bool filled=true;foreach(var x in tower.myShopItems)filled&=x!=null;rows.Add(new{test=tower.name+" paid reroll",passed=EconomyManager.Gold==100-shop.rerollCost&&filled});bags.CloseBackpack();}
+return rows;

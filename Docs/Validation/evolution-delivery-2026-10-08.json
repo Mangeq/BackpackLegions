@@ -1,0 +1,26 @@
+[
+  {
+    "test": "delivery outside drop preserves product and gold",
+    "passed": true
+  },
+  {
+    "test": "pause preserves pending delivery",
+    "passed": true
+  },
+  {
+    "test": "switch tower cannot transfer delivery",
+    "passed": true
+  },
+  {
+    "test": "delivery cannot sell before placement",
+    "passed": true
+  },
+  {
+    "test": "delivery enters backpack free and disappears once",
+    "passed": true
+  },
+  {
+    "test": "duplicate delivery drop does not duplicate product",
+    "passed": true
+  }
+]

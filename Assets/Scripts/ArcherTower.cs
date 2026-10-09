@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,6 @@ public class ArcherTower : Tower
     {
         
         GameObject bullet = Instantiate(ArcherBulletP, transform.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().Initialize(target.transform, currentDamage, currentCriticalChance);
+        bullet.GetComponent<Bullet>().Initialize(target.transform, currentDamage, currentCriticalChance, this);
     }
 }

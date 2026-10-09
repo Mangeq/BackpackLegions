@@ -1,0 +1,26 @@
+[
+  {
+    "test": "Real tower initialized and reaches selection",
+    "passed": true
+  },
+  {
+    "test": "XP UI and fill",
+    "passed": true
+  },
+  {
+    "test": "Element1 visible and bound",
+    "passed": true
+  },
+  {
+    "test": "Element2 visible and bound",
+    "passed": true
+  },
+  {
+    "test": "Element3 visible and bound",
+    "passed": true
+  },
+  {
+    "test": "Element4 visible and bound",
+    "passed": true
+  }
+]

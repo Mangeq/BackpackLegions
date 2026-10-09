@@ -1,0 +1,42 @@
+[
+  {
+    "test": "shop to storage: one charge, no bonus",
+    "passed": true
+  },
+  {
+    "test": "storage to backpack: free, bonus active",
+    "passed": true
+  },
+  {
+    "test": "backpack to rotated storage: bonus removed",
+    "passed": true
+  },
+  {
+    "test": "invalid rotated storage drop restores source and orientation",
+    "passed": true
+  },
+  {
+    "test": "pause restores storage item",
+    "passed": true
+  },
+  {
+    "test": "tower switch cancels to owner; no shared storage",
+    "passed": true
+  },
+  {
+    "test": "reopen preserves storage rotation",
+    "passed": true
+  },
+  {
+    "test": "eight offers create eight cards with scroll overflow",
+    "passed": true
+  },
+  {
+    "test": "return to four offers hides extra cards",
+    "passed": true
+  },
+  {
+    "test": "combat cancels transfer into owner storage",
+    "passed": true
+  }
+]

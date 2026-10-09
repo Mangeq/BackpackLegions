@@ -27,17 +27,39 @@ public class TowerSlot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // UI tıklaması arkadaki dünya slotunun seçimini değiştirmemeli.
+        if (IsPointerOverUI(Input.mousePosition)) return;
+        if (!GameManager.CanBuyTowers) return;
         if (!isOccupied)
         {
+            // Önceki yerin kilidini, referansını değiştirmeden önce kaldır.
+            if (UİManager.selectedTowerSlot != null && UİManager.selectedTowerSlot != this)
+                UİManager.selectedTowerSlot.ReleaseSelection();
+            UİManager.selectedTowerType = null;
             UİManager.selectedTowerPlace = Place; // Se�ilen kule yerini UI Manager'a g�nder
             UİManager.selectedTowerSlot = this; // Se�ilen slotu UI Manager'a g�nder (sat�n alma iptal edilirse geri a�mak i�in)
             UİManager.TowerShopUI.SetActive(true); // Kule sat�n alma UI's�n� a�
+            FindObjectOfType<UİManager>().PreparePurchasePanel();
             slotCollider.enabled = false; // Panel a��kken slot tekrar t�klanamas�n
         }
         else
         {
             Debug.Log("Bu slot zaten dolu!");
         }
+    }
+
+    internal static bool IsPointerOverUI(Vector2 screenPosition)
+    {
+        var events = UnityEngine.EventSystems.EventSystem.current;
+        if (events == null) return false;
+        // OnMouseDown, EventSystem'in pointer kaydından önce çalışabilir.
+        // Önceki kare sonucunu değil, bu tıklamanın konumunu sorgula.
+        var pointer = new UnityEngine.EventSystems.PointerEventData(events) { position = screenPosition };
+        var hits = new List<UnityEngine.EventSystems.RaycastResult>();
+        events.RaycastAll(pointer, hits);
+        foreach (var hit in hits)
+            if (hit.module is UnityEngine.UI.GraphicRaycaster) return true;
+        return false;
     }
 
     // Kule ger�ekten sat�n al�nd���nda �a�r�l�r, slot kal�c� olarak dolu say�l�r

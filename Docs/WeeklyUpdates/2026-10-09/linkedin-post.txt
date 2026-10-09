@@ -1,0 +1,14 @@
+Backpack Legions geliştirme günlüğü | 3–9 Ekim 🎒🏰
+
+Kule savunması ile çanta yerleşimini birleştirdiğim projemde bu hafta strateji katmanını genişlettim:
+
+• Dalgalar arasında hazırlık süresi, mağaza dondurma ve savaş hızı seçenekleri ekledim.
+• Eşyaları döndürme, depolama ve satma akışlarını geliştirdim. Çantadaki komşuluk artık sinerji bonusu veriyor; uygun eşya çiftleri başarılı bir dalganın sonunda evrilebiliyor.
+• Kulelere XP ve seviye sistemi ekledim. Beşinci seviyede ateş, su, toprak veya hava uzmanlığı seçiliyor; ana eşya ve mağaza havuzu bu tercihe göre değişiyor.
+• Hava düşmanları ve kara/hava hedefleme seçenekleriyle savunma kararlarını çeşitlendirdim.
+
+Görseller, bugünkü prototipten çanta/evrim ve ateş uzmanlaşması ekranları. Arayüz, geçici modeller ve denge üzerinde çalışmaya devam ediyorum; henüz bitmiş bir oyun değil.
+
+Sizce bu tür bir oyunda çanta yerleşimi mi, kulelerin element seçimi mi daha fazla stratejik derinlik katar?
+
+#GameDevelopment #Unity #IndieDev #TowerDefense #BackpackLegions

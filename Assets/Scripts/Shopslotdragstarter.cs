@@ -24,6 +24,7 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!GameManager.CanEditItems) return;
         if (shopSlot.currentItem == null || shopSlot.isPurchased)
             return;
 
@@ -40,6 +41,7 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
         activeGhost = ghost.GetComponent<BackpackDraggable>();
         activeGhost.InitializeFromShop(shopSlot.currentItem);
         activeGhost.BeginDrag();
+        activeGhost.UpdateDrag(eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -65,6 +67,7 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
             shopSlot.image.enabled = false;
             shopSlot.itemCost.text = "";
             shopSlot.currentItem = null;
+            shopSlot.RefreshCard();
         }
     }
 }

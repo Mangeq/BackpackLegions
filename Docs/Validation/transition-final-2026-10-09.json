@@ -1,0 +1,9 @@
+{
+  "playing": false,
+  "dirty": false,
+  "background": false,
+  "towers": 0,
+  "modalInstalled": true,
+  "elementFee": 100,
+  "refundRate": 0.5
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "test": "Persistent button selects Fire on active tower only",
+    "passed": true
+  },
+  {
+    "test": "Selection hides buttons and updates label",
+    "passed": true
+  },
+  {
+    "test": "Real magic Attack forwards tower owner and selected element",
+    "passed": true
+  }
+]

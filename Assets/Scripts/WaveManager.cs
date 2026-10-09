@@ -13,12 +13,14 @@ public class WaveManager : MonoBehaviour
 {
     public List<WaveRound> waves;
     private int currentWaveIndex = 0;
-    private bool hasStarted;
+    private bool waveRunning;
+    private GameManager gameManager;
+    public bool CanStartNextWave => !waveRunning && waves != null && currentWaveIndex < waves.Count;
     public Transform spawnPoint;
-    public float timeBetweenWaves = 10f;
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         // Sahne açılışında yalnız göstergeyi hazırla; düşman üretme.
         int waveCount = waves == null ? 0 : waves.Count;
         UİManager.UpdateWaveText(waveCount > 0 ? 1 : 0, waveCount);
@@ -26,24 +28,28 @@ public class WaveManager : MonoBehaviour
 
     public bool TryStartWaves()
     {
-        if (hasStarted)
+        if (!CanStartNextWave || gameManager == null || gameManager.CurrentState != GameManager.GameState.Combat || gameManager.IsPaused)
             return false;
 
-        if (waves == null || waves.Count == 0)
+        WaveRound nextWave = waves[currentWaveIndex];
+        if (nextWave == null || nextWave.enemyCount < 0 || (nextWave.enemyCount > 0 && (nextWave.enemyPrefab == null || spawnPoint == null)))
         {
-            Debug.LogError("Dalga başlatılamadı: dalga listesi boş.", this);
+            Debug.LogError("Dalga başlatılamadı: düşman, doğma noktası veya düşman sayısı geçersiz.", this);
             return false;
         }
 
-        hasStarted = true;
+        waveRunning = true;
+        foreach(var tower in FindObjectsOfType<Tower>()) tower.Evolution?.BeginWave(currentWaveIndex);
         StartCoroutine(SpawnWave());
         return true;
     }
 
     public void StopWaves()
     {
-        // Oyun bitince bekleyen spawn ve sonraki dalga coroutine'lerini de durdur.
+        // Sonuç ekranından sonra üretim veya hazırlığa dönüş gerçekleşmesin.
         StopAllCoroutines();
+        foreach(var tower in FindObjectsOfType<Tower>()) tower.Evolution?.CancelWave();
+        waveRunning = false;
     }
     IEnumerator SpawnWave()
     {
@@ -52,20 +58,23 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < currentWave.enemyCount; i++)
         {
             Instantiate(currentWave.enemyPrefab, spawnPoint.position, Quaternion.identity);
-            yield return new WaitForSeconds(currentWave.spawnInterval);
+            if (i + 1 < currentWave.enemyCount)
+                yield return new WaitForSeconds(Mathf.Max(0f, currentWave.spawnInterval));
         }
+        // Üretim tamamlanmış olsa bile sahadaki son düşman temizlenmeden dalga bitmez.
+        yield return new WaitUntil(() => !gameManager.IsPaused && GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
+        foreach(var tower in FindObjectsOfType<Tower>()) tower.Evolution?.CompleteWave(currentWaveIndex);
         currentWaveIndex++;
+        waveRunning = false;
 
         if (currentWaveIndex >= waves.Count)
         {
-            // Son dalga spawn oldu - bölüm ancak sahadaki tüm düşmanlar ölünce geçilir.
-            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
             Debug.Log("Tüm dalgalar tamamlandı!");
             GameManager.GameOver(true);
             yield break;
         }
 
-        yield return new WaitForSeconds(timeBetweenWaves);
-        StartCoroutine(SpawnWave());
+        UİManager.UpdateWaveText(currentWaveIndex + 1, waves.Count);
+        gameManager.BeginPreparation();
     }
 }

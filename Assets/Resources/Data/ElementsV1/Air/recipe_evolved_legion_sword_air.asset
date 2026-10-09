@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d24ac3c967221a4c91c2efb6b14afe3, type: 3}
+  m_Name: recipe_evolved_legion_sword_air
+  m_EditorClassIdentifier: 
+  first: {fileID: 11400000, guid: eaae24db7c839a040a5956fc7453de9e, type: 2}
+  second: {fileID: 11400000, guid: fad58f6ab10966c41a1ce46a8d6c3688, type: 2}
+  result: {fileID: 11400000, guid: 83c4368ccd811c647bbef6b9da9d9151, type: 2}

@@ -14,16 +14,44 @@ public enum TowerType
 public class TowerData : ScriptableObject
 {
     [Min(1)] public int towerLevel = 1;
+    [Header("Kule deneyimi")]
+    [Min(1f)] public float firstLevelExperience = 20f;
+    [Min(0f)] public float experienceIncreasePerLevel = 10f;
     public ItemData defaultWeapon;
+    [Header("Ana eşyanın element evrimleri — başlangıç eşyasıyla aynı şekil")]
+    public ItemData fireWeapon;
+    public ItemData waterWeapon;
+    public ItemData earthWeapon;
+    public ItemData airWeapon;
+
+    public ItemData GetMainItem(ElementType element)
+    {
+        switch (element)
+        {
+            case ElementType.Fire: return fireWeapon;
+            case ElementType.Water: return waterWeapon;
+            case ElementType.Earth: return earthWeapon;
+            case ElementType.Air: return airWeapon;
+            default: return defaultWeapon;
+        }
+    }
+
+    public bool IsMainItem(ItemData item) => item != null &&
+        (item == defaultWeapon || item == fireWeapon || item == waterWeapon || item == earthWeapon || item == airWeapon);
     public TowerType type;
     public int damage;
     [Tooltip("Temel kritik olasılığı: 0.1 = %10.")]
     [Range(0f, 1f)] public float criticalChance = 0.1f;
-    public float range;
+    [Tooltip("Saldırı menzilinin dünya birimi cinsinden yarıçapı; model ölçeğinden bağımsızdır.")]
+    [Min(0f)] public float range;
     [Tooltip("Saldırılar arası bekleme süresi (saniye). Küçük değer daha hızlı saldırı demektir.")]
     [Min(0.1f)]
     public float attackSpeed;
     public int cost;
+    [Header("Dönüşüm ücretleri")]
+    [Min(0)] public int elementChangeCost = 100;
+    [Tooltip("Kule tipi değişiminde eski kule fiyatının iade edilen oranı.")]
+    [Range(0f, 1f)] public float typeChangeRefundRate = 0.5f;
     public int gridWidth=5;
     public int gridHeight=5;
 }

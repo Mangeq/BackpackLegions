@@ -1,0 +1,158 @@
+{
+  "math": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":[{\"test\":\"L shape rotation 0\",\"passed\":true},{\"test\":\"bounds 0\",\"passed\":true},{\"test\":\"occupancy and collision 0\",\"passed\":true},{\"test\":\"remove rotated 0\",\"passed\":true},{\"test\":\"L shape rotation 1\",\"passed\":true},{\"test\":\"bounds 1\",\"passed\":true},{\"test\":\"occupancy and collision 1\",\"passed\":true},{\"test\":\"remove rotated 1\",\"passed\":true},{\"test\":\"L shape rotation 2\",\"passed\":true},{\"test\":\"bounds 2\",\"passed\":true},{\"test\":\"occupancy and collision 2\",\"passed\":true},{\"test\":\"remove rotated 2\",\"passed\":true},{\"test\":\"L shape rotation 3\",\"passed\":true},{\"test\":\"bounds 3\",\"passed\":true},{\"test\":\"occupancy and collision 3\",\"passed\":true},{\"test\":\"remove rotated 3\",\"passed\":true},{\"test\":\"four turns and reverse normalize\",\"passed\":true},{\"test\":\"shared asset and second instance unchanged\",\"passed\":true}],\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "test": "L shape rotation 0",
+            "passed": true
+          },
+          {
+            "test": "bounds 0",
+            "passed": true
+          },
+          {
+            "test": "occupancy and collision 0",
+            "passed": true
+          },
+          {
+            "test": "remove rotated 0",
+            "passed": true
+          },
+          {
+            "test": "L shape rotation 1",
+            "passed": true
+          },
+          {
+            "test": "bounds 1",
+            "passed": true
+          },
+          {
+            "test": "occupancy and collision 1",
+            "passed": true
+          },
+          {
+            "test": "remove rotated 1",
+            "passed": true
+          },
+          {
+            "test": "L shape rotation 2",
+            "passed": true
+          },
+          {
+            "test": "bounds 2",
+            "passed": true
+          },
+          {
+            "test": "occupancy and collision 2",
+            "passed": true
+          },
+          {
+            "test": "remove rotated 2",
+            "passed": true
+          },
+          {
+            "test": "L shape rotation 3",
+            "passed": true
+          },
+          {
+            "test": "bounds 3",
+            "passed": true
+          },
+          {
+            "test": "occupancy and collision 3",
+            "passed": true
+          },
+          {
+            "test": "remove rotated 3",
+            "passed": true
+          },
+          {
+            "test": "four turns and reverse normalize",
+            "passed": true
+          },
+          {
+            "test": "shared asset and second instance unchanged",
+            "passed": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "ui": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":[{\"test\":\"reverse and stationary pointer rotation\",\"passed\":true},{\"test\":\"rotated shop purchase charges once and clears offer\",\"passed\":true},{\"test\":\"rotated visual aligns to occupied rectangle\",\"passed\":true},{\"test\":\"invalid rotated drop restores origin and rotation without charge\",\"passed\":true},{\"test\":\"valid rotated move retains own orientation\",\"passed\":true},{\"test\":\"pause cancels to original rotation and blocks further input\",\"passed\":true},{\"test\":\"paused upgrade blocked\",\"passed\":true},{\"test\":\"preparation upgrade permitted\",\"passed\":true},{\"test\":\"closing panel restores original direction\",\"passed\":true},{\"test\":\"reopen retains rotation\",\"passed\":true},{\"test\":\"combat cancels drag and blocks upgrade\",\"passed\":true},{\"test\":\"result upgrade blocked\",\"passed\":true}],\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "test": "reverse and stationary pointer rotation",
+            "passed": true
+          },
+          {
+            "test": "rotated shop purchase charges once and clears offer",
+            "passed": true
+          },
+          {
+            "test": "rotated visual aligns to occupied rectangle",
+            "passed": true
+          },
+          {
+            "test": "invalid rotated drop restores origin and rotation without charge",
+            "passed": true
+          },
+          {
+            "test": "valid rotated move retains own orientation",
+            "passed": true
+          },
+          {
+            "test": "pause cancels to original rotation and blocks further input",
+            "passed": true
+          },
+          {
+            "test": "paused upgrade blocked",
+            "passed": true
+          },
+          {
+            "test": "preparation upgrade permitted",
+            "passed": true
+          },
+          {
+            "test": "closing panel restores original direction",
+            "passed": true
+          },
+          {
+            "test": "reopen retains rotation",
+            "passed": true
+          },
+          {
+            "test": "combat cancels drag and blocks upgrade",
+            "passed": true
+          },
+          {
+            "test": "result upgrade blocked",
+            "passed": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  }
+}

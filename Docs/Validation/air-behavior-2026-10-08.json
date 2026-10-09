@@ -1,0 +1,74 @@
+[
+  {
+    "test": "air has a complete multi-corner ground route",
+    "passed": true
+  },
+  {
+    "test": "visual flies one world unit above navigation root",
+    "passed": true
+  },
+  {
+    "test": "air has no ground avoidance and trigger body",
+    "passed": true
+  },
+  {
+    "test": "both combat entry points reject air",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 ground filter excludes air",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 air filter selects air",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 both-first uses entry order",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 both-last uses entry order",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 projectile hits elevated visual position",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 ground filter excludes air",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 air filter selects air",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 both-first uses entry order",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 both-last uses entry order",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 projectile hits elevated visual position",
+    "passed": true
+  },
+  {
+    "test": "barracks proximity scan excludes air",
+    "passed": true
+  },
+  {
+    "test": "ground enemy still engages unit",
+    "passed": true
+  },
+  {
+    "test": "air health bar exists",
+    "passed": true
+  },
+  {
+    "test": "air tooltip reports path and unit bypass",
+    "passed": true
+  }
+]

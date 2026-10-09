@@ -1,0 +1,129 @@
+{
+  "started": "2026-10-09T10:28:32+0300",
+  "checks": [
+    {
+      "test": "Scene has no missing scripts",
+      "passed": true
+    },
+    {
+      "test": "Initial preparation and 60-second setting",
+      "passed": true
+    },
+    {
+      "test": "Tower purchase 0",
+      "passed": true
+    },
+    {
+      "test": "Tower purchase 1",
+      "passed": true
+    },
+    {
+      "test": "Tower purchase 2",
+      "passed": true
+    },
+    {
+      "test": "MegicTower1(Clone) default weapon",
+      "passed": true
+    },
+    {
+      "test": "MegicTower1(Clone) item purchase",
+      "passed": true
+    },
+    {
+      "test": "ArcherTower1(Clone) default weapon",
+      "passed": true
+    },
+    {
+      "test": "ArcherTower1(Clone) item purchase",
+      "passed": true
+    },
+    {
+      "test": "UnitTower1(Clone) default weapon",
+      "passed": true
+    },
+    {
+      "test": "UnitTower1(Clone) item purchase",
+      "passed": true
+    },
+    {
+      "test": "MegicTower1(Clone) move item without charge",
+      "passed": true
+    },
+    {
+      "test": "ArcherTower1(Clone) move item without charge",
+      "passed": true
+    },
+    {
+      "test": "UnitTower1(Clone) move item without charge",
+      "passed": true
+    },
+    {
+      "test": "MegicTower1(Clone) invalid move rolls back",
+      "passed": true
+    },
+    {
+      "test": "MegicTower1(Clone) reopen preserves offers and sold slot",
+      "passed": true
+    },
+    {
+      "test": "MegicTower1(Clone) paid reroll",
+      "passed": true
+    },
+    {
+      "test": "ArcherTower1(Clone) invalid move rolls back",
+      "passed": true
+    },
+    {
+      "test": "ArcherTower1(Clone) reopen preserves offers and sold slot",
+      "passed": true
+    },
+    {
+      "test": "ArcherTower1(Clone) paid reroll",
+      "passed": true
+    },
+    {
+      "test": "UnitTower1(Clone) invalid move rolls back",
+      "passed": true
+    },
+    {
+      "test": "UnitTower1(Clone) reopen preserves offers and sold slot",
+      "passed": true
+    },
+    {
+      "test": "UnitTower1(Clone) paid reroll",
+      "passed": true
+    },
+    {
+      "test": "Start once and combat purchase locks",
+      "passed": true
+    },
+    {
+      "test": "Last enemy triggers victory",
+      "passed": true
+    },
+    {
+      "test": "Restart clears runtime towers and restores gold, speed, preparation",
+      "passed": true
+    },
+    {
+      "test": "Active castle death triggers defeat",
+      "passed": true
+    },
+    {
+      "test": "Terminal result cannot restart combat",
+      "passed": true
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "passed": true,
+  "final": {
+    "playing": false,
+    "dirty": false,
+    "path": "Assets/Scenes/GameScane.unity",
+    "towers": 0
+  }
+}

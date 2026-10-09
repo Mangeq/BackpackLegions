@@ -15,12 +15,78 @@ using UnityEngine.EventSystems;
 public class BackpackUIManager : MonoBehaviour
 {
     public static BackpackUIManager Instance;
+    public Font itemStatusFont;
 
     [Header("UI Referansları")]
     public GameObject backpackPanel;
     public GameObject cellPrefab;        // Image + BackpackCellView içermeli
     public GameObject itemVisualPrefab;  // Image + CanvasGroup + BackpackDraggable içermeli
     public RectTransform gridContainer;
+    public RectTransform storageGridContainer;
+    public GameObject combinedPanel;
+    public RectTransform sellArea;
+    public Text sellLabel;
+    public RectTransform deliveryContainer;
+    public Text deliveryLabel;
+    public Text evolutionStatus;
+    private int deliveryIndex;
+    private GameObject deliveryVisual;
+    public void NextDelivery()
+    {
+        if(BackpackDraggable.IsDragging)return;
+        deliveryIndex++;RefreshDeliveries();
+    }
+    private void RefreshDeliveries()
+    {
+        if(deliveryVisual!=null)Destroy(deliveryVisual);
+        if(deliveryContainer==null||ActiveTower==null||ActiveTower.Evolution==null)return;
+        var entries=ActiveTower.Evolution.Deliveries;
+        if(deliveryLabel!=null)deliveryLabel.text=entries.Count==0?"Teslim bekleyen yok":"Teslim "+(deliveryIndex%entries.Count+1)+"/"+entries.Count+" · sürükle →";
+        if(entries.Count==0)return;
+        deliveryIndex%=entries.Count;
+        deliveryVisual=Instantiate(itemVisualPrefab,deliveryContainer);
+        var rt=deliveryVisual.GetComponent<RectTransform>();rt.anchorMin=rt.anchorMax=rt.pivot=new Vector2(.5f,.5f);rt.sizeDelta=new Vector2(36,36);rt.anchoredPosition=Vector2.zero;
+        var image=deliveryVisual.GetComponent<Image>();image.sprite=entries[deliveryIndex].Item.itemIcon;image.preserveAspect=true;
+        deliveryVisual.GetComponent<BackpackDraggable>().InitializeDelivery(ActiveTower,entries[deliveryIndex]);
+    }
+    private void RefreshEvolutionStatus()
+    {
+        if(evolutionStatus==null||ActiveTower==null||ActiveTower.Evolution==null)return;
+        var pairs=GameManager.CanEditItems?ActiveTower.Evolution.FindPairs():new List<TowerItemEvolution.Pair>(ActiveTower.Evolution.Pending);
+        if(pairs.Count==0){evolutionStatus.text="EVRİM · Tarif eşyalarını yan yana yerleştir\nSinerji kareleri: eşyanın üzerine gel";return;}
+        var text=new System.Text.StringBuilder("WAVE SONUNDA EVRİM · "+pairs.Count+" tarif\n");
+        foreach(var pair in pairs)text.Append(pair.first.Data.Name+" + "+pair.second.Data.Name+" → "+pair.recipe.result.Name+"\n");
+        evolutionStatus.text=text.ToString().TrimEnd();
+    }
+
+    public bool IsOverSellArea(Vector2 position, Camera camera)
+    {
+        return sellArea != null && sellArea.gameObject.activeInHierarchy &&
+            RectTransformUtility.RectangleContainsScreenPoint(sellArea, position, camera);
+    }
+
+    public void ShowSellPreview(ItemData item, bool allowed, string blockedReason, bool hovered)
+    {
+        if (sellLabel != null)
+            sellLabel.text = allowed ? "SAT  ·  " + item.Name + "  +" + EconomyManager.GetSellValue(item) + " altın  ·  Buraya bırak" : blockedReason;
+        if (sellArea != null)
+        {
+            var image = sellArea.GetComponent<Image>();
+            if (image != null) image.color = hovered
+                ? (allowed ? new Color(.22f, .36f, .24f) : new Color(.38f, .18f, .18f))
+                : new Color(.16f, .19f, .21f);
+        }
+    }
+
+    public void ResetSellPreview()
+    {
+        if (sellLabel != null) sellLabel.text = "SAT  ·  Eşyayı buraya bırak  ·  %50 geri ödeme";
+        if (sellArea != null)
+        {
+            var image = sellArea.GetComponent<Image>();
+            if (image != null) image.color = new Color(.16f, .19f, .21f);
+        }
+    }
 
     [Header("Hücre Ayarları")]
     public float cellSize = 64f;
@@ -36,6 +102,7 @@ public class BackpackUIManager : MonoBehaviour
     public Tower ActiveTower { get; private set; }
 
     private BackpackCellView[,] cellViews;
+    private BackpackCellView[,] storageCellViews;
     private readonly Dictionary<PlacedItem, GameObject> itemVisuals = new Dictionary<PlacedItem, GameObject>();
 
     private void Awake()
@@ -50,12 +117,14 @@ public class BackpackUIManager : MonoBehaviour
     private void Start()
     {
         backpackPanel.SetActive(false);
+        if (combinedPanel != null) combinedPanel.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
             HandleClickOutside();
+        if(!BackpackDraggable.IsDragging)RefreshEvolutionStatus();
     }
 
     /// <summary>
@@ -72,7 +141,7 @@ public class BackpackUIManager : MonoBehaviour
         // Sadece backpack ve item dükkanı panellerinin içi paneli açık tutar (dükkandan
         // sürükleme bunu gerektiriyor). HUD, Start/Ayarlar gibi diğer UI'lar dahil
         // her yer "dışarı" sayılır.
-        if (IsPointerOverPanel(backpackPanel) || IsPointerOverPanel(ShopUIManager.ItemShopUI))
+        if (IsPointerOverPanel(combinedPanel) || IsPointerOverPanel(backpackPanel) || IsPointerOverPanel(ShopUIManager.ItemShopUI))
             return;
 
         if (Camera.main != null)
@@ -98,7 +167,14 @@ public class BackpackUIManager : MonoBehaviour
 
         Canvas canvas = panel.GetComponentInParent<Canvas>();
         Camera cam = (canvas == null || canvas.renderMode == RenderMode.ScreenSpaceOverlay) ? null : canvas.worldCamera;
-        return RectTransformUtility.RectangleContainsScreenPoint(panel.GetComponent<RectTransform>(), Input.mousePosition, cam);
+        if (RectTransformUtility.RectangleContainsScreenPoint(panel.GetComponent<RectTransform>(), Input.mousePosition, cam))
+            return true;
+        // Dükkanın üstüne uzanan hedefleme kontrolleri de aynı panelin parçasıdır.
+        if (EventSystem.current == null) return false;
+        var pointer = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+        var hits = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointer, hits);
+        return hits.Count > 0 && hits[0].gameObject.transform.IsChildOf(panel.transform);
     }
 
     public void OpenBackpack(Tower tower)
@@ -106,15 +182,40 @@ public class BackpackUIManager : MonoBehaviour
         if (ActiveTower == tower && backpackPanel.activeSelf)
             return;
 
+        BackpackDraggable.CancelActiveDrag();
         ActiveTower = tower;
         BuildGrid(tower.Backpack.Width, tower.Backpack.Height);
+        if (storageGridContainer != null) BuildStorageGrid(tower.Storage);
         RefreshItemVisuals();
         backpackPanel.SetActive(true);
+        if (combinedPanel != null) combinedPanel.SetActive(true);
+        if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(true);
     }
 
     public void CloseBackpack()
     {
+        BackpackDraggable.CancelActiveDrag();
         backpackPanel.SetActive(false);
+        if (combinedPanel != null) combinedPanel.SetActive(false);
+        if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(false);
+    }
+
+    private void BuildStorageGrid(Backpack bag)
+    {
+        foreach (Transform child in storageGridContainer) Destroy(child.gameObject);
+        storageCellViews = new BackpackCellView[bag.Width, bag.Height];
+        for (int y = 0; y < bag.Height; y++) for (int x = 0; x < bag.Width; x++)
+        {
+            var go = Instantiate(cellPrefab, storageGridContainer);
+            var rt = go.GetComponent<RectTransform>();
+            rt.anchorMin = rt.anchorMax = rt.pivot = new Vector2(0, 1);
+            rt.sizeDelta = new Vector2(cellSize, cellSize);
+            rt.anchoredPosition = new Vector2(x * cellSize, -y * cellSize);
+            var view = go.GetComponent<BackpackCellView>();
+            view.Setup(x, y);
+            view.SetHighlight(CellHighlightState.None);
+            storageCellViews[x, y] = view;
+        }
     }
 
     private void BuildGrid(int width, int height)
@@ -153,25 +254,47 @@ public class BackpackUIManager : MonoBehaviour
         itemVisuals.Clear();
 
         foreach (PlacedItem placed in ActiveTower.Backpack.Items)
-            SpawnItemVisual(placed);
+            SpawnItemVisual(placed, ActiveTower.Backpack, gridContainer);
+        if (storageGridContainer != null)
+            foreach (PlacedItem placed in ActiveTower.Storage.Items)
+                SpawnItemVisual(placed, ActiveTower.Storage, storageGridContainer);
+        RefreshDeliveries();
+        RefreshEvolutionStatus();
     }
 
-    private void SpawnItemVisual(PlacedItem placed)
+    private void SpawnItemVisual(PlacedItem placed, Backpack bag, RectTransform container)
     {
-        GameObject visualGO = Instantiate(itemVisualPrefab, gridContainer);
+        GameObject visualGO = Instantiate(itemVisualPrefab, container);
         RectTransform rt = visualGO.GetComponent<RectTransform>();
         rt.anchorMin = new Vector2(0f, 1f);
         rt.anchorMax = new Vector2(0f, 1f);
-        rt.pivot = new Vector2(0f, 1f);
 
         Vector2Int size = placed.BoundingSize;
-        rt.sizeDelta = new Vector2(size.x * cellSize, size.y * cellSize);
-        rt.anchoredPosition = new Vector2(placed.Origin.x * cellSize, -placed.Origin.y * cellSize);
+        ConfigureItemVisual(rt, placed.Data, placed.Rotation, false);
+        rt.anchoredPosition = new Vector2((placed.Origin.x + size.x * 0.5f) * cellSize,
+            -(placed.Origin.y + size.y * 0.5f) * cellSize);
 
         visualGO.GetComponent<Image>().sprite = placed.Data.itemIcon;
+        if (!ActiveTower.IsItemActive(placed.Data))
+        {
+            visualGO.GetComponent<Image>().color = new Color(.45f, .45f, .45f, .8f);
+            var labelGO = new GameObject("IncompatibleLabel", typeof(RectTransform), typeof(UnityEngine.UI.Text));
+            labelGO.transform.SetParent(visualGO.transform, false);
+            var labelRect = labelGO.GetComponent<RectTransform>();
+            labelRect.anchorMin = labelRect.anchorMax = labelRect.pivot = new Vector2(.5f, .5f);
+            labelRect.sizeDelta = new Vector2(Mathf.Max(80f, size.x * cellSize - 8f), 36f);
+            labelRect.localRotation = Quaternion.Euler(0, 0, 90f * placed.Rotation);
+            var label = labelGO.GetComponent<UnityEngine.UI.Text>();
+            label.font = itemStatusFont != null ? itemStatusFont : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            label.fontSize = 13;
+            label.alignment = TextAnchor.MiddleCenter;
+            label.color = new Color(1f, .8f, .6f);
+            label.text = "UYUMSUZ\nBonus yok";
+            label.raycastTarget = false;
+        }
 
         BackpackDraggable draggable = visualGO.GetComponent<BackpackDraggable>();
-        draggable.InitializeAsPlaced(placed);
+        draggable.InitializeAsPlaced(placed, bag);
 
         itemVisuals[placed] = visualGO;
     }
@@ -181,39 +304,87 @@ public class BackpackUIManager : MonoBehaviour
     {
         if (ActiveTower == null)
             return null;
+        return CellInGrid(gridContainer, ActiveTower.Backpack, screenPoint, cam);
+    }
 
-        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(gridContainer, screenPoint, cam, out Vector2 local))
+    public Vector2Int? FindDropCell(Vector2 point, Camera cam, out Backpack bag)
+    {
+        bag = null;
+        if (ActiveTower == null) return null;
+        var cell = CellInGrid(gridContainer, ActiveTower.Backpack, point, cam);
+        if (cell.HasValue) { bag = ActiveTower.Backpack; return cell; }
+        cell = CellInGrid(storageGridContainer, ActiveTower.Storage, point, cam);
+        if (cell.HasValue) bag = ActiveTower.Storage;
+        return cell;
+    }
+
+    private Vector2Int? CellInGrid(RectTransform container, Backpack bag, Vector2 screenPoint, Camera cam)
+    {
+        if (container == null || !container.gameObject.activeInHierarchy || bag == null) return null;
+
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(container, screenPoint, cam, out Vector2 local))
             return null;
 
         int x = Mathf.FloorToInt(local.x / cellSize);
         int y = Mathf.FloorToInt(-local.y / cellSize);
 
-        if (x < 0 || x >= ActiveTower.Backpack.Width || y < 0 || y >= ActiveTower.Backpack.Height)
+        if (x < 0 || x >= bag.Width || y < 0 || y >= bag.Height)
             return null;
 
         return new Vector2Int(x, y);
     }
 
     /// <summary>Verilen item'ın origin'den başlayarak kaplayacağı hücreleri geçerliyse yeşil, değilse kırmızı boyar.</summary>
-    public void ShowPlacementPreview(ItemData data, Vector2Int origin, bool isValid)
+    public void ShowPlacementPreview(ItemData data, Vector2Int origin, bool isValid, int rotation = 0, Backpack bag = null)
     {
         ClearPreview();
 
-        if (cellViews == null)
+        var views = bag != null && bag == ActiveTower.Storage ? storageCellViews : cellViews;
+        if (views == null)
             return;
 
-        foreach (Vector2Int offset in data.itemShape)
+        foreach (Vector2Int offset in ItemShapeUtility.GetRotatedShape(data, rotation))
         {
             Vector2Int cell = origin + offset;
-            if (cell.x < 0 || cell.x >= ActiveTower.Backpack.Width || cell.y < 0 || cell.y >= ActiveTower.Backpack.Height)
+            if (cell.x < 0 || cell.x >= views.GetLength(0) || cell.y < 0 || cell.y >= views.GetLength(1))
                 continue;
 
-            cellViews[cell.x, cell.y].SetHighlight(isValid ? CellHighlightState.Valid : CellHighlightState.Invalid);
+            views[cell.x, cell.y].SetHighlight(isValid ? CellHighlightState.Valid : CellHighlightState.Invalid);
         }
+        if(bag==ActiveTower.Backpack && isValid)ShowSynergyCells(data,origin,rotation,false);
+    }
+
+    public void ShowSynergyCells(ItemData data, Vector2Int origin, int rotation, bool clear=true)
+    {
+        if(clear)ClearPreview();
+        if(cellViews==null||data.synergyRules==null||!ActiveTower.IsItemActive(data))return;
+        foreach(var rule in data.synergyRules)
+        {
+            if(rule==null)continue;
+            foreach(var cell in ItemSynergyCalculator.Cells(data,rule,origin,rotation))
+            {
+                if(cell.x<0||cell.y<0||cell.x>=cellViews.GetLength(0)||cell.y>=cellViews.GetLength(1))continue;
+                var occupant=ActiveTower.Backpack.GetItemAt(cell);
+                var image=cellViews[cell.x,cell.y].GetComponent<Image>();
+                if(image!=null)image.color=occupant!=null&&ActiveTower.IsItemActive(occupant.Data)&&rule.Accepts(occupant.Data)?new Color(.3f,.8f,.4f,.8f):new Color(.9f,.65f,.2f,.8f);
+            }
+        }
+    }
+
+    public void ConfigureItemVisual(RectTransform rect, ItemData data, int rotation, bool dragging)
+    {
+        Vector2Int size = ItemShapeUtility.GetBoundingSize(data.itemShape);
+        rect.sizeDelta = new Vector2(size.x * cellSize, size.y * cellSize);
+        rect.pivot = dragging
+            ? new Vector2((data.centerOffset.x + 0.5f) / size.x, 1f - (data.centerOffset.y + 0.5f) / size.y)
+            : new Vector2(0.5f, 0.5f);
+        rect.localRotation = Quaternion.Euler(0f, 0f, -90f * ItemShapeUtility.NormalizeRotation(rotation));
     }
 
     public void ClearPreview()
     {
+        if (storageCellViews != null)
+            foreach (var view in storageCellViews) if (view != null) view.SetHighlight(CellHighlightState.None);
         if (cellViews == null)
             return;
 

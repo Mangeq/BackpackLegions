@@ -1,0 +1,2 @@
+var gm=UnityEngine.Object.FindObjectOfType<GameManager>();var t=BackpackUIManager.Instance.ActiveTower;var recipe=t.evolutionRecipes[0];bool first=gm.CurrentState==GameManager.GameState.Preparation&&t.Backpack.Items.Count==1&&t.Backpack.Items[0].Data==recipe.result;
+t.Backpack.Remove(t.Backpack.Items[0]);t.Backpack.Place(recipe.first,UnityEngine.Vector2Int.zero);t.Backpack.Place(recipe.second,new UnityEngine.Vector2Int(1,0));gm.StartGame();return new{test="real wave callback evolves before preparation",passed=first};

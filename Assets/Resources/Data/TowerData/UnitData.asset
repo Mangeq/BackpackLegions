@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   towerLevel: 1
+  firstLevelExperience: 20
+  experienceIncreasePerLevel: 10
   defaultWeapon: {fileID: 11400000, guid: 3760026e7ec10b14cadfbf2269f8faf9, type: 2}
+  fireWeapon: {fileID: 11400000, guid: c6be944e47fc67446b80053aebebb75b, type: 2}
+  waterWeapon: {fileID: 11400000, guid: 7c2a9e3950aae0d4ba94cc9b3ca4d2bf, type: 2}
+  earthWeapon: {fileID: 11400000, guid: 074a3b5bcb0b45941a0cc2bd9744c567, type: 2}
+  airWeapon: {fileID: 11400000, guid: 13aa873a0e4a8ba49b859f92cd8a7708, type: 2}
   type: 2
   damage: 4
   criticalChance: 0.1

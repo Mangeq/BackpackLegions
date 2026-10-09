@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d24ac3c967221a4c91c2efb6b14afe3, type: 3}
+  m_Name: recipe_evolved_legion_sword_water
+  m_EditorClassIdentifier: 
+  first: {fileID: 11400000, guid: df55afd6a742c824889bb7ee66de901c, type: 2}
+  second: {fileID: 11400000, guid: f457b000c4ad2344ba760119adfd9961, type: 2}
+  result: {fileID: 11400000, guid: 3b553524a78523c49b462d20bc0437b8, type: 2}

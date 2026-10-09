@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6028025439991803720}
   - component: {fileID: 2524341571858473212}
   - component: {fileID: 5018531046910605313}
+  - component: {fileID: 3906116953001705701}
   m_Layer: 0
   m_Name: UnitPrefab
   m_TagString: Unit
@@ -75,6 +76,21 @@ CapsuleCollider:
   m_Height: 5.175763
   m_Direction: 1
   m_Center: {x: 0.16538729, y: 0.6543182, z: 0.020260016}
+--- !u!114 &3906116953001705701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147910018351505527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d8788be5553df41acf7c8958502edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barPrefab: {fileID: 5934803287133429250, guid: 68ff289242ff2a94abbc0845bfa384c8,
+    type: 3}
+  heightOffset: 0.25
 --- !u!1 &5976057863774151281
 GameObject:
   m_ObjectHideFlags: 0

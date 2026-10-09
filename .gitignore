@@ -40,3 +40,10 @@ crashlytics-build.properties
 *.jks
 .DS_Store
 Thumbs.db
+
+# Generated Python and marketing intermediates
+__pycache__/
+*.pyc
+/Tools/Marketing/vendor/
+/Marketing/**/raw/
+/Marketing/**/*.zip

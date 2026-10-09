@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +14,24 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private float attackTimer;
     private bool isDead;
+    private readonly Dictionary<Tower, float> damageContributions = new Dictionary<Tower, float>();
+    private float totalDamageReceived;
+
+    // Kale teması aynı karedeki mermilerden önce ölüm/XP yolunu kapatır.
+    public bool TryReachBase()
+    {
+        if (isDead) return false;
+        isDead = true;
+        Destroy(gameObject);
+        return true;
+    }
+    [Tooltip("Uçan prefabın görsel kökü. Yol takibi ve kale teması ana objede kalır.")]
+    public Transform visualRoot;
+    public bool IsAir => enemyData != null && enemyData.movementType == EnemyData.MovementType.Air;
+    public Vector3 AimPosition => IsAir && visualRoot != null ? visualRoot.position : transform.position;
+    // UI canı okuyabilir; savaş verisini değiştiremez.
+    public float CurrentHealth => Mathf.Max(0f, currenthealth);
+    public float MaxHealth => enemyData != null ? enemyData.health : 0f;
     internal bool isEngaged = false; // Bir birlik tarafindan hedeflenip savasiliyor mu (baska birliklerin ayni dusmani secmesini onler)
     void Start()
     {
@@ -23,6 +41,12 @@ public class Enemy : MonoBehaviour
         damage = enemyData.damage;  
         speed = enemyData.speed;
         currenthealth = enemyData.health;
+        if (IsAir)
+        {
+            if (visualRoot != null) visualRoot.position += Vector3.up * enemyData.flightHeight;
+            // Yol üzerinde ilerler, fakat yerdeki asker/düşmanlardan kaçınmak için beklemez.
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        }
         agent.SetDestination(GameObject.FindWithTag("Base").transform.position);
         agent.speed = speed;
     }
@@ -67,7 +91,7 @@ public class Enemy : MonoBehaviour
 
     public void AttackTarget(GameObject unit)
     {
-        if (!isDead && unit != null && unit.CompareTag("Unit") && currentUnit != unit)
+        if (!IsAir && !isDead && unit != null && unit.CompareTag("Unit") && currentUnit != unit)
         {
             currentUnit = unit;
             isEngaged = true;
@@ -76,23 +100,19 @@ public class Enemy : MonoBehaviour
             attackTimer = Mathf.Max(0.1f, enemyData.attackInterval);
         }
     }
-    public void TakeDamage(float damageAmount, ElementType elementType)
+    public void TakeDamage(float damageAmount, ElementType elementType, Tower owner = null)
     {
-        if (isDead) return;
-        float damageMultiplier = 1f;
-        if (enemyData.weaknesses.Contains(elementType))
+        if (isDead || damageAmount <= 0f || float.IsNaN(damageAmount) || float.IsInfinity(damageAmount)) return;
+        float multiplier = enemyData.GetDamageMultiplier(elementType);
+        float actualDamage = Mathf.Min(CurrentHealth, damageAmount * multiplier);
+        totalDamageReceived += actualDamage;
+        if (owner != null)
         {
-            damageMultiplier = 1.5f; // Zay�fl�k durumunda hasar art�r�l�r
+            damageContributions.TryGetValue(owner, out float previous);
+            damageContributions[owner] = previous + actualDamage;
         }
-        else if (enemyData.resistances.Contains(elementType))
-        {
-            damageMultiplier = 0.5f; // Diren� durumunda hasar azalt�l�r
-        }
-        currenthealth -= damageAmount * damageMultiplier;
-        if (currenthealth <= 0)
-        {
-            Die();
-        }
+        currenthealth -= actualDamage;
+        if (currenthealth <= 0f) Die();
     }
 
     private void Die()
@@ -103,6 +123,10 @@ public class Enemy : MonoBehaviour
             currentUnit.GetComponent<Unit>().currentEnemy = null;
         }
         EconomyManager.AddGold(enemyData.goldReward);
+        if (totalDamageReceived > 0f)
+            foreach (var contribution in damageContributions)
+                if (contribution.Key != null)
+                    contribution.Key.AddExperience(enemyData.experienceReward * (contribution.Value / totalDamageReceived));
         Destroy(gameObject);
     }
 }

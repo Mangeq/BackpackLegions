@@ -1,0 +1,10 @@
+[
+  {
+    "test": "starting weapon stays protected in storage",
+    "passed": true
+  },
+  {
+    "test": "drop outside panel restores item without payment",
+    "passed": true
+  }
+]

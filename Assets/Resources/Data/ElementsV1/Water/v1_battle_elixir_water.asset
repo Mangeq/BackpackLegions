@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6c778c9012e174494bfd9645f2f496, type: 3}
+  m_Name: v1_battle_elixir_water
+  m_EditorClassIdentifier: 
+  itemShape:
+  - {x: 0, y: 0}
+  - {x: 0, y: 1}
+  Name: "Su \xB7 Sava\u015F \u0130ksiri"
+  Type: 3
+  Rarity: 1
+  itemOwners: 02000000
+  element: 2
+  itemID: v1_battle_elixir_water
+  cost: 160
+  itemIcon: {fileID: 21300000, guid: 208b97d4ee4cf9440babf04f85f437b9, type: 3}
+  synergyIDs: []
+  synergyRules: []
+  damageBonus: 0.2
+  criticalChanceBonus: 0
+  attackSpeedBonus: 0.25
+  healthBonus: 0
+  centerOffset: {x: 0, y: 0}

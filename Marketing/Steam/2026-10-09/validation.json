@@ -1,0 +1,32 @@
+{
+  "video": {
+    "ffmpeg_version": "7.1-essentials_build-www.gyan.dev built with gcc 14.2.0 (Rev1, Built by MSYS2 project)",
+    "codec": "h264",
+    "pix_fmt": "yuvj420p(pc, bt470bg/unknown/unknown, progressive)",
+    "audio_codec": "aac",
+    "fps": 30.0,
+    "source_size": [
+      1920,
+      1080
+    ],
+    "size": [
+      1920,
+      1080
+    ],
+    "rotate": 0,
+    "duration": 32.0
+  },
+  "screenshots": 5,
+  "all_screenshots": "1920x1080",
+  "logo": "RGBA 1536x1024; transparent pixels confirmed",
+  "full_video_decode": "passed",
+  "files": {
+    "backpack-legions-trailer.mp4": "4a0f1b2c596460504bde1904c318f19b2f37b01c98d335f59226de37f18c6256",
+    "01-savunma-hatti.jpg": "08e758c61aa76b266a819f3888ffcc5e13b178e4abb5af2657a0de4fa12c5d42",
+    "02-hava-saldirisi.jpg": "60baf03911a01c787cdbbc07c1254c12cc96073339d489220e3f4a75b7439cd2",
+    "03-canta-ve-esya-evrimi.png": "5a93e11c8a9d29ad521fa3b3418b2440b1becb04bac57b5cd0cc55a47d0226d2",
+    "04-element-uzmanligi.png": "d32dc95365bbf320d0f05708eb6ef0a1bdd772c9254c162fa596369e72af23cf",
+    "05-yakin-savas.jpg": "537f74f4aaa06c629332593b5815044e478b54e4ea0c1105fc717b1b582ea3d1",
+    "backpack-legions-logo.png": "51dab541dcbf61953dec9db6946f0ed11d0fe79b5c90a1294df1e98683db81ee"
+  }
+}

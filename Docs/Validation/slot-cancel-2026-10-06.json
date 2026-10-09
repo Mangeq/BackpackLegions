@@ -1,0 +1,61 @@
+{
+  "flow": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":[{\"test\":\"close button releases first slot\",\"passed\":true},{\"test\":\"buy at second slot leaves first available\",\"passed\":true},{\"test\":\"original slot selectable after purchase elsewhere\",\"passed\":true},{\"test\":\"purchase succeeds at original slot\",\"passed\":true},{\"test\":\"switching before close releases both slots\",\"passed\":true},{\"test\":\"external panel hide releases selection\",\"passed\":true},{\"test\":\"repeated open close retains availability\",\"passed\":true},{\"test\":\"insufficient gold then close leaves slot usable\",\"passed\":true},{\"test\":\"occupied slots remain locked\",\"passed\":true}],\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "test": "close button releases first slot",
+            "passed": true
+          },
+          {
+            "test": "buy at second slot leaves first available",
+            "passed": true
+          },
+          {
+            "test": "original slot selectable after purchase elsewhere",
+            "passed": true
+          },
+          {
+            "test": "purchase succeeds at original slot",
+            "passed": true
+          },
+          {
+            "test": "switching before close releases both slots",
+            "passed": true
+          },
+          {
+            "test": "external panel hide releases selection",
+            "passed": true
+          },
+          {
+            "test": "repeated open close retains availability",
+            "passed": true
+          },
+          {
+            "test": "insufficient gold then close leaves slot usable",
+            "passed": true
+          },
+          {
+            "test": "occupied slots remain locked",
+            "passed": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "uiGuard": {
+    "overUI": true,
+    "selectionBlocked": true
+  },
+  "notes": "Synthetic OnMouseDown and real close button onClick. EventSystem temporarily disabled for flow tests after separately validating UI guard; Play stopped afterwards."
+}

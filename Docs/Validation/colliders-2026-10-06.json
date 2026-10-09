@@ -1,0 +1,88 @@
+{
+  "bounds": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":[{\"tower\":\"ColliderTestTower0\",\"radius\":5.0,\"correctRadius\":true,\"outsideUntracked\":true,\"bodySelectable\":true,\"rangeDoesNotBlockEmptyClick\":true},{\"tower\":\"ColliderTestTower1\",\"radius\":4.0,\"correctRadius\":true,\"outsideUntracked\":true,\"bodySelectable\":true,\"rangeDoesNotBlockEmptyClick\":true}],\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "tower": "ColliderTestTower0",
+            "radius": 5,
+            "correctRadius": true,
+            "outsideUntracked": true,
+            "bodySelectable": true,
+            "rangeDoesNotBlockEmptyClick": true
+          },
+          {
+            "tower": "ColliderTestTower1",
+            "radius": 4,
+            "correctRadius": true,
+            "outsideUntracked": true,
+            "bodySelectable": true,
+            "rangeDoesNotBlockEmptyClick": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "enter": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":[{\"tower\":\"ColliderTestTower0\",\"physicalEnter\":true},{\"tower\":\"ColliderTestTower1\",\"physicalEnter\":true}],\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "tower": "ColliderTestTower0",
+            "physicalEnter": true
+          },
+          {
+            "tower": "ColliderTestTower1",
+            "physicalEnter": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "exit": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":[{\"tower\":\"ColliderTestTower0\",\"physicalExit\":true},{\"tower\":\"ColliderTestTower1\",\"physicalExit\":true}],\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "tower": "ColliderTestTower0",
+            "physicalExit": true
+          },
+          {
+            "tower": "ColliderTestTower1",
+            "physicalExit": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  }
+}

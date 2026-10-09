@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -63,6 +63,7 @@ public class UnitTower : Tower
 
     private void ApplyStatsTo(Unit unit)
     {
+        if (SelectedElement != ElementType.Normal) unit.elementType = SelectedElement;
         unit.ApplyStats(currentDamage, currentCriticalChance, currentAttackSpeed, 1f + currentHealthBonus);
     }
 
@@ -123,7 +124,7 @@ public class UnitTower : Tower
             if (!hit.CompareTag("Enemy")) continue;
 
             Enemy enemy = hit.GetComponent<Enemy>();
-            if (enemy == null || enemy.isEngaged) continue;
+            if (enemy == null || enemy.IsAir || enemy.isEngaged) continue;
 
             float dist = Vector3.Distance(origin, hit.transform.position);
             if (dist < closestDist)
@@ -147,6 +148,26 @@ public class UnitTower : Tower
             unitSlots.Remove(unit);
             StartCoroutine(RespawnAfterDelay(slot));
         }
+    }
+
+    // Kule tipi değişirken askerler eski kuleden bağımsız sahnede kalmamalı.
+    internal void RemoveUnitsForTypeChange()
+    {
+        StopAllCoroutines();
+        foreach (var obj in ActiveUnits)
+        {
+            if (obj == null) continue;
+            var unit = obj.GetComponent<Unit>();
+            if (unit != null)
+            {
+                unit.StopAllCoroutines();
+                var enemy = unit.currentEnemy != null ? unit.currentEnemy.GetComponent<Enemy>() : null;
+                if (enemy != null && enemy.currentUnit == obj) enemy.ResumeMoving();
+            }
+            obj.SetActive(false);
+            Destroy(obj);
+        }
+        ActiveUnits.Clear();
     }
 
     IEnumerator RespawnAfterDelay(int slot)

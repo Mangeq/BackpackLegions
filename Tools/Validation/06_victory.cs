@@ -1,0 +1,1 @@
+var gm=UnityEngine.Object.FindObjectOfType<GameManager>();var rows=new System.Collections.Generic.List<object>();rows.Add(new{test="Last enemy triggers victory",passed=gm.CurrentState==GameManager.GameState.Victory&&gm.GameOverPanel.activeSelf&&UnityEngine.Time.timeScale==0});gm.RestartGame();return rows;

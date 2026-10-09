@@ -1,0 +1,1 @@
+bool unlocked=true;foreach(var slot in UnityEngine.Object.FindObjectsOfType<TowerSlot>())if(!slot.isOccupied&&!slot.GetComponent<UnityEngine.Collider>().enabled)unlocked=false;return new{test="combat closes purchase and releases unbought slots",passed=!UİManager.TowerShopUI.activeSelf&&UİManager.selectedTowerSlot==null&&unlocked};

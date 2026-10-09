@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Base : MonoBehaviour
 {
@@ -22,10 +22,12 @@ public class Base : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             // Üsse ulaşan düşmanın hasarını uygula.
-            TakeDamage(other.GetComponent<Enemy>().damage);
+            var enemy = other.GetComponent<Enemy>();
+            if (enemy == null || !enemy.TryReachBase()) return;
+            TakeDamage(enemy.damage);
 
             // Üsse giren düşman objesini sahneden yok et
-            Destroy(other.gameObject);
+
         }
     }
 

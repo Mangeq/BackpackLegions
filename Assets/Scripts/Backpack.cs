@@ -30,9 +30,9 @@ public class Backpack
     }
 
     /// <summary>Verilen item, verilen origin'e yerleşebilir mi? (sınır + çakışma kontrolü, L-şekli dahil)</summary>
-    public bool CanPlace(ItemData data, Vector2Int origin)
+    public bool CanPlace(ItemData data, Vector2Int origin, int rotation = 0)
     {
-        foreach (Vector2Int offset in data.itemShape)
+        foreach (Vector2Int offset in ItemShapeUtility.GetRotatedShape(data, rotation))
         {
             int x = origin.x + offset.x;
             int y = origin.y + offset.y;
@@ -53,9 +53,9 @@ public class Backpack
     /// SONRA CanPlace kontrol etmesi gerekiyor (yoksa item kendi eski hücresine
     /// çarpar). Bu yüzden check + act adımları caller'a bırakıldı.
     /// </summary>
-    public PlacedItem Place(ItemData data, Vector2Int origin)
+    public PlacedItem Place(ItemData data, Vector2Int origin, int rotation = 0)
     {
-        PlacedItem placed = new PlacedItem(data, origin);
+        PlacedItem placed = new PlacedItem(data, origin, rotation);
 
         foreach (Vector2Int cell in placed.GetOccupiedCells())
             grid[cell.x, cell.y] = placed;
@@ -82,6 +82,23 @@ public class Backpack
             return null;
 
         return grid[cell.x, cell.y];
+    }
+
+    // Ana eşya dönüşümü: önce tüm hücreleri doğrula; başarısızlıkta eski kayıt değişmez.
+    public bool TryReplace(PlacedItem original, ItemData replacement)
+    {
+        if (original == null || !items.Contains(original) || replacement == null
+            || replacement.itemShape == null || replacement.itemShape.Count == 0) return false;
+        foreach (var offset in ItemShapeUtility.GetRotatedShape(replacement, original.Rotation))
+        {
+            var cell = original.Origin + offset;
+            if (cell.x < 0 || cell.x >= Width || cell.y < 0 || cell.y >= Height) return false;
+            var occupant = grid[cell.x, cell.y];
+            if (occupant != null && occupant != original) return false;
+        }
+        Remove(original);
+        Place(replacement, original.Origin, original.Rotation);
+        return true;
     }
 
     /// <summary>Verilen item'ın bounding box'ını grid'in tam ortasına yerleştirecek origin'i hesaplar.</summary>

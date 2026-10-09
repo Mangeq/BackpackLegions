@@ -1,0 +1,160 @@
+{
+  "slotsInitial": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"eventSystemActive\":true,\"rows\":[{\"slot\":\"Shop1\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true},{\"slot\":\"Shop6\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true},{\"slot\":\"Shop3\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true},{\"slot\":\"Shop2\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true},{\"slot\":\"Shop5\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true},{\"slot\":\"Shop8\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true},{\"slot\":\"Shop4\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true},{\"slot\":\"Shop7\",\"worldPointAllowed\":true,\"opened\":true,\"closePointBlocked\":false,\"released\":true}]},\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "eventSystemActive": true,
+          "rows": [
+            {
+              "slot": "Shop1",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            },
+            {
+              "slot": "Shop6",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            },
+            {
+              "slot": "Shop3",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            },
+            {
+              "slot": "Shop2",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            },
+            {
+              "slot": "Shop5",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            },
+            {
+              "slot": "Shop8",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            },
+            {
+              "slot": "Shop4",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            },
+            {
+              "slot": "Shop7",
+              "worldPointAllowed": true,
+              "opened": true,
+              "closePointBlocked": false,
+              "released": true
+            }
+          ]
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "flow": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":[{\"test\":\"close button releases first slot\",\"passed\":true},{\"test\":\"buy at second slot leaves first available\",\"passed\":true},{\"test\":\"original slot selectable after purchase elsewhere\",\"passed\":true},{\"test\":\"purchase succeeds at original slot\",\"passed\":true},{\"test\":\"switching before close releases both slots\",\"passed\":true},{\"test\":\"external panel hide releases selection\",\"passed\":true},{\"test\":\"repeated open close retains availability\",\"passed\":true},{\"test\":\"insufficient gold then close leaves slot usable\",\"passed\":true},{\"test\":\"occupied slots remain locked\",\"passed\":true}],\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "test": "close button releases first slot",
+            "passed": true
+          },
+          {
+            "test": "buy at second slot leaves first available",
+            "passed": true
+          },
+          {
+            "test": "original slot selectable after purchase elsewhere",
+            "passed": true
+          },
+          {
+            "test": "purchase succeeds at original slot",
+            "passed": true
+          },
+          {
+            "test": "switching before close releases both slots",
+            "passed": true
+          },
+          {
+            "test": "external panel hide releases selection",
+            "passed": true
+          },
+          {
+            "test": "repeated open close retains availability",
+            "passed": true
+          },
+          {
+            "test": "insufficient gold then close leaves slot usable",
+            "passed": true
+          },
+          {
+            "test": "occupied slots remain locked",
+            "passed": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "closeAfterRender": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"position\":\"(1235.90, 408.24)\",\"blocked\":true,\"hits\":[\"TowerShopCloseBTN:GraphicRaycaster\",\"TowerShopUI:GraphicRaycaster\",\"PlaneTestMVP:PhysicsRaycaster\"],\"eventSystemEnabled\":true},\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "position": "(1235.90, 408.24)",
+          "blocked": true,
+          "hits": [
+            "TowerShopCloseBTN:GraphicRaycaster",
+            "TowerShopUI:GraphicRaycaster",
+            "PlaneTestMVP:PhysicsRaycaster"
+          ],
+          "eventSystemEnabled": true
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "note": "Initial same-frame close probe false; after rendering GraphicRaycaster reports close button and blocks it. EventSystem kept active."
+}

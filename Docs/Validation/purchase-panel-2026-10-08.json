@@ -1,0 +1,42 @@
+[
+  {
+    "test": "empty place opens icons without detail card",
+    "passed": true
+  },
+  {
+    "test": "magic selection opens adjacent card with asset price",
+    "passed": true
+  },
+  {
+    "test": "close releases unpurchased slot",
+    "passed": true
+  },
+  {
+    "test": "switch place releases old selection and clears details",
+    "passed": true
+  },
+  {
+    "test": "fourth cannon card is upcoming and cannot charge",
+    "passed": true
+  },
+  {
+    "test": "insufficient gold disables purchase and keeps slot available",
+    "passed": true
+  },
+  {
+    "test": "pause blocks buying",
+    "passed": true
+  },
+  {
+    "test": "buy succeeds once at selected place and closes panel",
+    "passed": true
+  },
+  {
+    "test": "duplicate buy does not spend again",
+    "passed": true
+  },
+  {
+    "test": "panel on right and card beside icon rail",
+    "passed": true
+  }
+]

@@ -28,10 +28,16 @@ public class ItemData : ScriptableObject
     public ItemType Type;
     public ItemRarity Rarity;
     public TowerType[] itemOwners;
+    [Tooltip("Mağaza havuzu: Normal yalnız element seçilmeden önce sunulur. Önceden alınmış eşyalar korunur.")]
+    public ElementType element = ElementType.Normal;
+    public bool IsCompatibleWith(TowerType towerType, ElementType towerElement) =>
+        itemOwners != null && System.Array.Exists(itemOwners, owner => owner == towerType)
+        && (element == ElementType.Normal || element == towerElement);
     public string itemID;
     public int cost;
     public Sprite itemIcon;
     public List<string> synergyIDs;
+    public List<ItemSynergyRule> synergyRules = new List<ItemSynergyRule>();
 
     public float damageBonus;
     public float criticalChanceBonus;
@@ -47,7 +53,7 @@ public class ItemData : ScriptableObject
     // Boyut artık ItemShapeUtility.GetBoundingSize(itemShape) ile itemShape'ten
     // TEK bir kaynaktan türetiliyor - ayrı bir width/height tutmak, tasarımcı
     // şekli güncelleyip boyutu güncellemeyi unuttuğunda veriyi tutarsız bırakırdı.
-    // Rotasyon da kaldırıldı çünkü Backpack Battles'da itemler dönmüyor; ayrıca
-    // eski RotateItem() bu ScriptableObject asset'ini kalıcı olarak mutasyona
-    // uğratıyordu (aynı item'i kullanan başka her yer de etkileniyordu).
+    // Dönüş, PlacedItem/BackpackDraggable runtime kaydında tutulur.
+    // ItemShapeUtility bu özgün şekilden dönmüş hücreleri hesaplar;
+    // paylaşılan ScriptableObject asset'i döndürülerek değiştirilmez.
 }

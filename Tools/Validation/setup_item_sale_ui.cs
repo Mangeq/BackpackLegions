@@ -1,0 +1,18 @@
+if(UnityEditor.EditorApplication.isPlaying)throw new System.Exception("Stop Play before setup");
+var bags=UnityEngine.Object.FindObjectOfType<BackpackUIManager>(true);
+if(bags==null||bags.combinedPanel==null)throw new System.Exception("Combined panel missing");
+var root=bags.combinedPanel.transform;
+var help=root.Find("Help");
+if(help==null)throw new System.Exception("Inspect footer before changing layout");
+var existing=root.Find("SellArea");
+var go=existing!=null?existing.gameObject:new UnityEngine.GameObject("SellArea",typeof(UnityEngine.RectTransform),typeof(UnityEngine.UI.Image));
+go.transform.SetParent(root,false);
+var rect=go.GetComponent<UnityEngine.RectTransform>();rect.anchorMin=rect.anchorMax=rect.pivot=new UnityEngine.Vector2(0,1);rect.anchoredPosition=new UnityEngine.Vector2(860,-860);rect.sizeDelta=new UnityEngine.Vector2(724,34);
+go.GetComponent<UnityEngine.UI.Image>().color=new UnityEngine.Color(.16f,.19f,.21f);
+var child=go.transform.Find("Label");var labelGo=child!=null?child.gameObject:new UnityEngine.GameObject("Label",typeof(UnityEngine.RectTransform),typeof(UnityEngine.UI.Text));labelGo.transform.SetParent(go.transform,false);
+var label=labelGo.GetComponent<UnityEngine.UI.Text>();label.font=help.GetComponent<UnityEngine.UI.Text>().font;label.fontSize=18;label.color=UnityEngine.Color.white;label.alignment=UnityEngine.TextAnchor.MiddleCenter;label.raycastTarget=false;
+label.rectTransform.anchorMin=UnityEngine.Vector2.zero;label.rectTransform.anchorMax=UnityEngine.Vector2.one;label.rectTransform.offsetMin=new UnityEngine.Vector2(8,0);label.rectTransform.offsetMax=new UnityEngine.Vector2(-8,0);
+var hint=help.GetComponent<UnityEngine.UI.Text>();hint.rectTransform.sizeDelta=new UnityEngine.Vector2(820,26);hint.fontSize=16;hint.text="Sürükle ve bırak · R / Tekerlek: döndür · Çanta ↔ Depo: ücretsiz";
+bags.sellArea=rect;bags.sellLabel=label;bags.ResetSellPreview();
+UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+return UnityEditor.SceneManagement.EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene());

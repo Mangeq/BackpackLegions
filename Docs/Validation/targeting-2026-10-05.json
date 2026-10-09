@@ -1,0 +1,411 @@
+{
+  "date": "2026-10-05",
+  "selection": {
+    "content": [
+      {
+        "type": "text",
+        "text": {
+          "success": true,
+          "message": "Code executed successfully.",
+          "data": {
+            "result": [
+              {
+                "test": "MegicTower1(Clone) type=0 order=0",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) type=0 order=1",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) type=1 order=0",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) type=1 order=1",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) type=2 order=0",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) type=2 order=1",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) reentry goes to end",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) partial collider exit preserves target",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) full collider exit removes target",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) no air means no fallback shot",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) dead target skipped",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) type=0 order=0",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) type=0 order=1",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) type=1 order=0",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) type=1 order=1",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) type=2 order=0",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) type=2 order=1",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) reentry goes to end",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) partial collider exit preserves target",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) full collider exit removes target",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) no air means no fallback shot",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) dead target skipped",
+                "passed": true
+              },
+              {
+                "test": "Unit tower ignores targeting choices",
+                "passed": true
+              }
+            ],
+            "compiler": "codedom"
+          }
+        }
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "test": "MegicTower1(Clone) type=0 order=0",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) type=0 order=1",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) type=1 order=0",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) type=1 order=1",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) type=2 order=0",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) type=2 order=1",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) reentry goes to end",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) partial collider exit preserves target",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) full collider exit removes target",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) no air means no fallback shot",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) dead target skipped",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) type=0 order=0",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) type=0 order=1",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) type=1 order=0",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) type=1 order=1",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) type=2 order=0",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) type=2 order=1",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) reentry goes to end",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) partial collider exit preserves target",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) full collider exit removes target",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) no air means no fallback shot",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) dead target skipped",
+            "passed": true
+          },
+          {
+            "test": "Unit tower ignores targeting choices",
+            "passed": true
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "shotsAndInitialRaycast": {
+    "content": [
+      {
+        "type": "text",
+        "text": {
+          "success": true,
+          "message": "Code executed successfully.",
+          "data": {
+            "result": [
+              {
+                "test": "MegicTower1(Clone) actual shot uses ground filter",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) combat selection changes next shot only",
+                "passed": true
+              },
+              {
+                "test": "MegicTower1(Clone) paused coroutine does not fire",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) actual shot uses ground filter",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) combat selection changes next shot only",
+                "passed": true
+              },
+              {
+                "test": "ArcherTower1(Clone) paused coroutine does not fire",
+                "passed": true
+              },
+              {
+                "test": "Choices isolated per tower",
+                "passed": true
+              },
+              {
+                "test": "Unit tower hides targeting panel",
+                "passed": true
+              },
+              {
+                "test": "Targeting controls raycast within shop child hierarchy",
+                "passed": false
+              }
+            ],
+            "compiler": "codedom"
+          }
+        }
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": [
+          {
+            "test": "MegicTower1(Clone) actual shot uses ground filter",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) combat selection changes next shot only",
+            "passed": true
+          },
+          {
+            "test": "MegicTower1(Clone) paused coroutine does not fire",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) actual shot uses ground filter",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) combat selection changes next shot only",
+            "passed": true
+          },
+          {
+            "test": "ArcherTower1(Clone) paused coroutine does not fire",
+            "passed": true
+          },
+          {
+            "test": "Choices isolated per tower",
+            "passed": true
+          },
+          {
+            "test": "Unit tower hides targeting panel",
+            "passed": true
+          },
+          {
+            "test": "Targeting controls raycast within shop child hierarchy",
+            "passed": false
+          }
+        ],
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "correctedCenterRaycast": {
+    "content": [
+      {
+        "type": "text",
+        "text": {
+          "success": true,
+          "message": "Code executed successfully.",
+          "data": {
+            "result": {
+              "passed": true,
+              "hits": [
+                "Target0_2",
+                "TargetingPanel",
+                "PlaneTestMVP"
+              ],
+              "screen": "(1191.00, 495.65)",
+              "active": true,
+              "interactable": true
+            },
+            "compiler": "codedom"
+          }
+        }
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "passed": true,
+          "hits": [
+            "Target0_2",
+            "TargetingPanel",
+            "PlaneTestMVP"
+          ],
+          "screen": "(1191.00, 495.65)",
+          "active": true,
+          "interactable": true
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "finalState": {
+    "content": [
+      {
+        "type": "text",
+        "text": {
+          "success": true,
+          "message": "Code executed successfully.",
+          "data": {
+            "result": {
+              "playing": false,
+              "scene": "Assets/Scenes/GameScane.unity",
+              "dirty": false,
+              "runInBackground": false,
+              "towers": 0
+            },
+            "compiler": "codedom"
+          }
+        }
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "playing": false,
+          "scene": "Assets/Scenes/GameScane.unity",
+          "dirty": false,
+          "runInBackground": false,
+          "towers": 0
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "finalConsole": {
+    "content": [
+      {
+        "type": "text",
+        "text": {
+          "success": true,
+          "message": "Retrieved 0 log entries.",
+          "data": []
+        }
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Retrieved 0 log entries.",
+      "data": []
+    },
+    "isError": false
+  },
+  "uniquePassedChecks": 32,
+  "note": "Initial raycast used pivot; corrected button-center probe passed. Synthetic Play Mode tests, not physical mouse or flight navigation."
+}

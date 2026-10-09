@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d24ac3c967221a4c91c2efb6b14afe3, type: 3}
+  m_Name: recipe_evolved_legion_sword_earth
+  m_EditorClassIdentifier: 
+  first: {fileID: 11400000, guid: cc94f81636aff084289ce9fd22897d0d, type: 2}
+  second: {fileID: 11400000, guid: 8d944d83033bdd34e89363cf09da93e7, type: 2}
+  result: {fileID: 11400000, guid: c5c7e6ca7bec8934fbc755ceaefc9217, type: 2}

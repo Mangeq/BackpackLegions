@@ -1,0 +1,1 @@
+var wm=UnityEngine.Object.FindObjectOfType<WaveManager>();wm.waves=new System.Collections.Generic.List<WaveRound>{new WaveRound{enemyPrefab=wm.waves[0].enemyPrefab,enemyCount=1}};UnityEngine.Object.FindObjectOfType<GameManager>().StartGame();return true;

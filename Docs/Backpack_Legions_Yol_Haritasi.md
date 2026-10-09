@@ -1,6 +1,121 @@
-# Backpack Legions — Güncel Geliştirme Yol Haritası
+﻿# Backpack Legions — Güncel Geliştirme Yol Haritası
 
-Son güncelleme: 3 Ekim 2026. İlk inceleme: 1 Ekim 2026. Kaynaklar: GDD V4 (30 Haziran 2026), Skilltree System V1, önceki yol haritası, projedeki 30 oyun scripti, canlı Unity 2022.3.62f3 oturumu ve sınırlı Play Mode kontrolleri.
+Son güncelleme: 9 Ekim 2026. İlk inceleme: 1 Ekim 2026. Kaynaklar: GDD V4 (30 Haziran 2026), Skilltree System V1, önceki yol haritası, proje kodu, canlı Unity 2022.3.62f3 oturumu ve sınırlı Play Mode kontrolleri.
+
+## 9 Ekim 2026 — Kule ve element değiştirme (GDD 4.2–4.3 revizyonu)
+
+- [x] Emir'in önerilen kuralları ve mevcut sınıf dağılımını onaylamasıyla, ana silah satışı yerine onay ekranlı dönüşüm eklendi.
+- [x] Element değişimi 100 altın; XP/seviye korunur, uyumsuz eşyalar pasif kalır. Yeni mağaza hemen açılır ve dondurma kalkar.
+- [x] Kule tipi değişiminde ana eşya dışındaki çanta itemleri çıkarılır; depo/teslimler devredilir. Yeni kule 1. seviye, 0 XP, Normal elementle başlar.
+- [x] 51 dönüşüm kontrolü, 26 XP, 26 element ve 28 temel oyun regresyonu geçti. Console temiz; görseller kontrol edildi.
+- Ücretler TowerData Inspector'ında ayarlanabilir; başlangıçta katlanan ceza yok.
+- Kod ve kurallar: [Kule/element değiştirme](Kule_Element_Degisimi_2026-10-09.md).
+
+## 9 Ekim 2026 — Ana eşya evrimi ve element mağazası
+
+- [x] Onaylanan mevcut sınıf dağılımıyla ana eşya evrimi, kuleye özel element mağazası ve düşman element kimliği bağlandı.
+- [x] Eski eşyalar oyuncuda kalır; depo hiçbir buff vermez. Mevcut mağaza teklifleri ve dondurma sonraki yenilemeye kadar korunur.
+- [x] Üç kule × dört element ana eşya dönüşümü; seçime uygun mermi/asker saldırıları ve gerçek avantaj/direnç hasarı.
+- [x] 26 özellik, 13 canlı UI/saldırı, 26 XP regresyonu ve 28 Aşama 1 kontrolü geçti. Console temiz.
+- Sonraki element değişimi/cezası ve özel görsel üretimi bu adımda yapılmadı.
+- Açıklama: [Ana eşya evrimi ve element mağazası](Element_Evrimi_2026-10-09.md).
+
+## 8 Ekim 2026 — Kule XP ve ilk element seçimi
+
+- [x] Yeni yönetici eklenmeden EnemyData → Bullet/Unit → Enemy → Tower → mevcut UI akışı kuruldu.
+- [x] 5. seviyede ilk element seçimi; seçim beklerken kayıpsız XP birikimi, hazırlık/pause korumaları, kule başına bağımsız seviye.
+- [x] XP çubuğu, seçim düğmeleri ve hover bilgileri. Gerçek saldırılarda seçilen element kullanılır.
+- [x] 26 davranış ve 9 UI/bağlantı kontrolü ile 28/28 Aşama 1 regresyonu geçti; Console temiz. Büyük denge çalışması yapılmadı.
+- Element değiştirme, element mağazası ve düşman element kimliği henüz tamamlanmadı.
+- Kod ve sayısal ayarlar: [Kule XP ve element](Kule_XP_Element_2026-10-08.md).
+
+## 6 Ekim 2026 — Satın alma iptalinde slot kilidi
+
+- [x] Takip regresyonu düzeltildi: genel IsPointerOverGameObject dünya PhysicsRaycaster sonuçlarını da engelliyordu. Güncel konumdan yalnız GraphicRaycaster UI sonuçlarını filtreleyen kontrol kullanılıyor. EventSystem açıkken satın alma/iptal tekrar doğrulandı.
+
+- [x] Başka slota geçerken önceki boş slotun collider kilidi kaldırılıyor; UI tıklamaları arkadaki slotu seçmiyor.
+- [x] Normal kapatma ve panelin dışarıdan gizlenmesi seçim temizliğine bağlandı. Dolu slotlar kilitli kalıyor.
+- [x] A'yı iptal → B'den satın al → A'ya dönüp satın al dahil 9 akış ve 1 UI engelleme kontrolü geçti.
+- Açıklama: [Slot iptal düzeltmesi](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Slot_Iptal_2026-10-06.md).
+
+## 6 Ekim 2026 — Eşya döndürme ve yükseltme izni
+
+- [x] Onaylanan mevcut sınıf dağılımıyla, R/scroll yukarı saat yönünde; scroll aşağı ters yönde 90° döndürme. Dükkan ve çanta sürüklemesi ortak akışı kullanır.
+- [x] Yön eşya instance'ında saklanır; ItemData değişmez. İkon ve önizleme dönüşe uyar; tutma hücresi imleç altında korunur.
+- [x] Geçersiz bırakma, pause, panel kapanması ve savaş başlangıcında eski konum/yön geri gelir. Döndürme yalnız hazırlıkta açık.
+- [x] GameManager.CanUpgradeTowers ve Tower.UpgradeTower koruması: yalnız hazırlıkta ve pause kapalıyken yükseltme. Ücret/ekran/XP akışı bu adımda eklenmedi.
+- [x] 18 geometri ve 12 canlı UI/işlem kontrolü geçti. R/scroll donanım girdisi yerine ortak Rotate metoduyla sentetik kontroller yapıldı.
+- [x] Aşama 1 regresyonu 28/28 geçti; Console hata/uyarı yok, Play kapalı, sahne dirty=false.
+- Açıklama: [Rotasyon](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Rotasyon_2026-10-06.md). Denge testi Emir'in kararıyla sonraya bırakıldı.
+
+## 6 Ekim 2026 — Kule collider ayarları
+
+- [x] Devasa menzil küreleri düzeltildi: okçu 5, büyücü 4 dünya birimi yarıçap. Merkez kaymaları kaldırıldı; başlangıç ölçeği hesaba katılıyor.
+- [x] Menzil trigger'ları Ignore Raycast katmanındaki RangeTrigger alt nesnesine taşındı; kökte kinematic Rigidbody ile mevcut Tower olaylarına bağlandı. Gövde kutuları korundu. Birlik kulesinin kullanılmayan küresi kaldırıldı.
+- [x] Okçu prefab'ının kaydını engelleyen bir Missing Script kaydı temizlendi. İki kulede 12 fizik/raycast/boyut kontrolü geçti.
+- [ ] Yeni menzillerle beş dalgalık bölümün tam denge koşusu yapılacak.
+- Açıklama: [Collider düzeltmesi](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Collider_2026-10-06.md). Yedek: `Backups/2026-10-06-colliders`.
+
+## 5 Ekim 2026 — Okçu ve büyücü hedeflemesi
+
+- [x] Emir'in kararı: birlik kuleleri hariç, iki bağımsız seçim: Kara / Hava / İkisi de ve menzil collider'ına İlk giren / Son giren. Mesafe veya yol ilerlemesi kullanılmaz.
+- [x] Seçimler her kulede ayrı tutulur; başlangıç İkisi de + İlk giren. Hazırlıkta ve savaşta değiştirilebilir; pause/sonuçta değiştirilemez. Uygun tür yoksa kule bekler.
+- [x] Menzilden çıkıp geri giren düşman sona eklenir; aynı düşmanın birden fazla collider'ı tek sıra kaydı oluşturur. Ölü hedefler atlanır. Seçim değişikliği sonraki atışa uygulanır; mevcut merminin hedefi değişmez.
+- [x] Mevcut EnemyData, Tower ve UİManager görev dağılımı kullanıldı; BackpackUIManager'da panel dışına tıklama kontrolü yeni düğmeleri kapsayacak şekilde düzeltildi.
+- [x] 32 benzersiz hedefleme/atış/UI kontrolü ve 28 Aşama 1 regresyon kontrolü geçti. İlk raycast denemesi köşe/pivot noktasını kullandığı için başarısızdı; düğme merkeziyle düzeltilen kontrol geçti. Console hata/uyarı döndürmedi; sahne kaydedildi, Play kapalı ve dirty=false.
+- [ ] Gerçek uçan düşman hareketi ve bölüm içeriği ayrı iş. Mevcut bölüm düşmanları Kara; Hava seçilirse bu bölümde kule ateş etmez.
+- Kod açıklaması ve test sınırları: [Hedefleme](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Hedefleme_2026-10-05.md). Yedek: `Backups/2026-10-05-targeting`.
+
+## 4 Ekim 2026 — Aşama 1 kapanış denetimi
+
+- [x] Aşama 1’in dört teknik maddesi mevcut uygulama ve yeni doğrulamalarla tamamlandı olarak işaretlendi. Yeni oyun mimarisi veya oynanış kodu eklenmedi.
+- [x] `Tools/Validation/run_stage1.py`: 28/28 kontrol geçti; Console temiz, Play kapalı, sahne dirty=false ve test kuleleri yok.
+- [x] Eksik script 0. PlaneTest kullanıcı kararıyla korunuyor; otomatik kontroller aktif Base etiketli kaleyi kullanıyor.
+- [x] Kaynak yedeği oluşturuldu ve 2.997 dosyanın SHA-256 bütünlüğü doğrulandı: `Backups/stage1-baseline-20261004-210406.zip`. Assets/.meta, Packages, ProjectSettings, Docs, Tools dahil. Ayrı klasörde Unity import/build geri dönüş provası yapılmadı.
+- [x] Eski fiyatlar, 29 eşya/dört dalga bilgisi, dalga arası hazırlık/kalp hatası notları ve “Git yok” bilgisi güncellendi. Tarihli eski adım raporları tarihsel kayıt olarak korundu.
+- Aşama 2’de kalanlar: hedefleme, kule yükseltme izinleri; satış/döndürme eklendiğinde faz kilidine bağlama. Bunlar Aşama 1 kapanışında yapılmış sayılmadı.
+
+## 4 Ekim 2026 — Oyun hızı ve kabul edilen ilk denge
+
+- [x] Emir örnek bölümü oynadı ve mevcut aşama için dengeyi yeterli buldu; sayısal denge şimdilik korundu.
+- [x] GameManager/UİManager görev dağılımı onaylandı. Savaşta 1× / 2× / 3× düğmeleri ve seçili hız vurgusu eklendi.
+- [x] Seçim pause sonrasında ve sonraki dalgada korunur; hazırlık 60 gerçek saniyedir. Hazırlık/pause/sonuçta hız değişimi kilitli; yeni oyunda 1×.
+- [x] 13 canlı kontrol geçti; UI görüntüsü incelendi, Console temiz. Sahne kaydedildi ve Play kapatıldı.
+- Kod açıklaması: [Oyun hızı](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Oyun_Hizi_2026-10-04.md). Yedek: `Backups/2026-10-04-speed-ui`.
+
+## 4 Ekim 2026 — Beş dalgalık örnek bölüm ve kule alım kilidi
+
+- [x] Emir son kararı değiştirdi: kule satın alma da yalnız hazırlıkta; savaş/pause/sonuçta kilitli. Açık satın alma paneli üzerinden de işlem yapılamaz.
+- [x] GameScane beş dalga: 6 keşifçi, 8 akıncı, 7 muhafız, 8 elit, son dalgada 1 savaş lordu boss. İlk ve ara hazırlıklar 60 saniye.
+- [x] Bölüme özel beş EnemyData ve beş prefab varyantı oluşturuldu. Eski Goblin/Boss verileri korundu; mevcut Enemy ve WaveRound yapısı kullanıldı.
+- [x] Son dengeyle 5× zamanlı canlı koşu: Victory, aktif ana kale 64/100 can. Başlangıçta üç kule, kazanılan altınla hazırlıklarda üç ek okçu; eşya alınmadı. Console hata/uyarı döndürmedi. Tek koşu, kesin kapalı test dengesi değildir.
+- Sayılar, ekonominin gerekçesi ve deneme sonuçları: [Örnek bölüm 1](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Ornek_Bolum_1.md). Yedek: `Backups/2026-10-04-example-level`.
+
+## 4 Ekim 2026 — Dalga arası 60 saniye hazırlık ve seçili kule dondurma
+
+- [x] Emir'in kararı: ilk ve her sonraki hazırlık **60 saniye**; erken Başlat açık. İlk kararda savaşta kule satın alma serbestti; sonraki istekte yalnız hazırlıkla sınırlandı.
+- [x] WaveManager tek dalga üretir ve son düşmanı bekler; sonra GameManager hazırlığa döner. Son dalga temizlenince Victory. Eski 10 saniyelik dalga aralığı kaldırıldı.
+- [x] Savaş/pause sırasında eşya satın alma, taşıma ve ücretli yenileme kilitli. Açık sürükleme faz geçişinde kayıpsız iptal edilir. Çanta ve hover bilgileri incelenebilir.
+- [x] Dondurma **yalnız seçili kulenin dört slotunu** korur. Dondurulmamış kuleler dalga sonrası ücretsiz yenilenir; dondurulmuş kulede alınan slot boş kalır. Dondurmayı kaldırana kadar teklifler korunur.
+- [x] Canlı kısa dalga, satın alma, kilit, sürükleme iptali ve dondurma kontrolleri geçti; arayüz görüntüsü incelendi. Satış/döndürme henüz uygulanmadığı için tamamlandı sayılmadı.
+- Kodun ayrıntılı akışı: [Dalga döngüsü açıklaması](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Dalga_Dongusu_2026-10-04.md). Yedek: `Backups/2026-10-04-wave-loop`.
+
+## 4 Ekim 2026 — Hazırlık sayacı ve satın alma geri bildirimi
+
+- [x] Düşman giriş noktası ve NavMesh yolunun ilk yönünü gösteren bar/ok. Ekran dışındaki giriş ekran kenarında gösterilir; oyun sonunda gizlenir.
+- [x] Kule satın almada seçili kılıç/yay/asa için kalıcı altın çerçeve. İptal ve başarılı satın alma seçimi temizler.
+- [x] Para yetmezse kırmızı yetersiz para mesajı ve eksik altın tutarı; başarısız işlem altın/slot durumunu değiştirmez.
+- [x] İlk uygulamada 30 saniyeydi; aynı gün Emir'in isteğiyle ilk ve dalga arası hazırlık **60 saniyeye** çıkarıldı. Erken Başlat, pause ve restart korunuyor.
+- [x] Canlı Play Mode'da 16 koşul geçti; sayaç sınırları kontrollü süreyle test edildi, UI görüntüsü incelendi. Console hata/uyarı döndürmedi; Play kapalı ve sahne kaydedildi.
+- Kod akışı ve test sınırları: [Hazırlık UI açıklaması](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Hazirlik_UI_2026-10-04.md). Yedek: `Backups/2026-10-04-preparation-ui`.
+
+## 4 Ekim 2026 — Hover bilgi panelleri ve can barları
+
+- [x] Emir üç sınıflı görev dağılımını onayladı: `InfoPanelUI` içerik/görünüm; `HoverInfoController` fare hedefi; `HealthBarUI` asker/düşman can göstergesi.
+- [x] Dükkanda ve çantada eşya; sahnede kule, birlik ve düşman üzerine gelince ortak panel açılır. Güncel statlar/can okunur, 0,15 sn hover gecikmesi vardır. Sol tuş/sürüklemede, hedef terk edilince ve oyun sonunda kapanır. Pause'da menü dışındaki hedefler incelenebilir.
+- [x] UnitPrefab, Goblin ve BossEnemy prefablarında mevcut/maksimum can barı. Asker yeşil, düşman kırmızı; ölümde temizlenir, yeniden doğuşta oluşturulur.
+- [x] 30 eşya içeriği; üç kule ve iki aktör türünün hedeflenmesi; shop/backpack raycast; hasar/can bonusu; dört ekran köşesi; pause/sürükleme/ölüm/yeniden üretim/oyun sonu kontrolleri yapıldı. Sentetik ekran/girdi testleri ve 1920×1080 Game View görüntüleri kullanıldı. Console hata/uyarı döndürmedi.
+- Kod akışı, Inspector bağlantıları ve test sınırları: [Info UI açıklaması](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Info_UI_2026-10-04.md). Yedek: `Backups/2026-10-04-info-ui`.
 
 ## 3 Ekim 2026 — Bağımsız düşman saldırısı ve Denge V1
 
@@ -11,6 +126,18 @@ Son güncelleme: 3 Ekim 2026. İlk inceleme: 1 Ekim 2026. Kaynaklar: GDD V4 (30 
 - [x] Satın alma ve stat aktarımı doğrulandı; 16 eşya/dükkan koşulu geçti. Asker 0,1 ve 3 sn saldırı aralıklarında düşman yaklaşık 1,2 sn'de bir vurdu; pause'da can değişmedi.
 - [x] Üç kule, ek eşya almadan, mevcut dört dalga 10× zaman ölçeğinde çalıştırıldı: Victory, kale 64 can, düşman 0, asker 3. Bu tek yerleşim/rasgelelik koşusudur; dengeyi kesinleştiren tester sonucu değildir.
 - Ayrıntılı sayılar, kod akışı, test sınırları ve kapalı test ölçümleri: [Denge V1](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Denge_V1.md). Yedek: `Backups/2026-10-03-balance`.
+
+## 3 Ekim 2026 — İlk sürüm eşya havuzu
+
+- [x] Emir eşya ikonları, bonusları, fiyatları ve boyutlarının yeniden tasarımını asistana bıraktı. 30 satın alınabilir eşya oluşturuldu: okçu/büyücü/birlik için onar; sınıf başına 4 yaygın, 3 nadir, 2 epik, 1 efsanevi.
+- [x] Aktif dükkan havuzu yeni asset'lere bağlandı. Eski 29 örnek eşya GUID korunarak `Assets/Archive/PrototypeItems` altına taşındı. Üç başlangıç silahının referansları korundu; ad/ikon/kimlikleri düzenlendi. PlaneTest alanı korundu.
+- [x] Yeni eşyalarda benzersiz kimlikler, 1×1 ile 2×3 arasında dolu dikdörtgen şekiller ve şekil içindeki sürükleme merkezleri. Mevcut stat sistemi kullanıldı; özel yetenek veya yeni sınıf eklenmedi.
+- [x] 30 veri/yerleşim kontrolü ve 30 canlı satın alma/stat aktarımı senaryosu geçti. Satın almalar mevcut drag metotlarına sentetik pointer olaylarıyla yapıldı; fiziksel fare testi değildir.
+- [x] Dükkan seviye 1 oranları %75/%20/%5/%0; üst seviyelerde daha yüksek nadirlik. 10.000 örnek 7501/2003/496/0 verdi. Seviye aralığı dışındaki indeks ve boş havuz koruması eklendi.
+- [x] Dükkan ve çanta ikonlarında en-boy oranı korundu. İkonlar mevcut Free Fantasy Items paketinden; Joen Bille atfı `Docs/ART_CREDITS.md` dosyasında.
+- [x] Eşya adı/bonus açıklaması tooltip'i 4 Ekim'de eklendi.
+- [ ] Efsanevi havuz hazır; oyuncuya açık upgrade akışı olmadığı için normal seviye 1 koşusunda çıkmaz. Kapalı testte yığılmış can bonusları ve ekonomi ölçülecek.
+- Yeni eşya tablosu önceki Denge V1 eşya değerlerinin yerini alır: [Görsel katalog](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Item_Katalogu_V1.html), [açıklamalar](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Item_Katalogu_V1.md). Yedek: `Backups/2026-10-03-items-v1`.
 
 ## 2 Ekim 2026 — Birlikte kararlaştırılan ilk kod adımı
 
@@ -78,96 +205,106 @@ Son güncelleme: 3 Ekim 2026. İlk inceleme: 1 Ekim 2026. Kaynaklar: GDD V4 (30 
 
 ## Önceki yol haritasında düzeltilen bilgiler
 
-| Eski kayıt | 1 Ekim 2026 karşılığı |
+| Eski kayıt | Güncel karşılığı — 4 Ekim 2026 |
 |---|---|
 | `UnitTower`, `Tower` sınıfından kopuk; `Unit.damage` set edilmiyor | Güncel değil. `UnitTower : Tower`; `base.Start()` kullanılıyor; hasar/kritik/saldırı aralığı/can bonusu askerlere aktarılıyor. |
-| Barracks backpack/shop bağlantısı yapılacak | Temel bağlantı uygulandı. Skilltree, element uzmanlığı ve XP yine açık. |
+| Barracks backpack/shop bağlantısı yapılacak | Temel bağlantı uygulandı. XP ve ilk element seçimi uygulandı (8 Ekim); skilltree ve elemente özel mağaza hâlâ açık. |
 | Kritik şans düzeltmesi kullanıcı tarafından uygulanacak | Uygulanmış: `Bullet` ve `Unit` 0–1 aralığında rastgele değer kullanıyor. |
 | Kazanma/kaybetme ayrımı belirsiz | Aynı panel, farklı metin. `GameOver(bool)` bunu ayırıyor. |
-| Dalga spawn sistemi tamam | Spawn var; yalnız son dalgada düşmanların bitmesi bekleniyor. Ara dalga hazırlık döngüsü yok. |
+| Dalga spawn sistemi tamam | Her dalganın son düşmanı bekleniyor; ilk ve ara hazırlık 60 saniye. Beş dalgalık örnek bölüm ve son dalgada boss var. |
 | Dükkan slot sıfırlaması çözüldü | Korundu; ayrıca dükkan artık kule başına saklanıyor ve satın alınan slot kule listesinden de siliniyor. |
-| Kale kalpleri 100 can için bütünüyle doğru, konu kapandı | Sahnede 100 can doğrulandı. Ancak büyük tek vuruşta iki kalbin birlikte güncellenmemesi riski var; yüzdelik hesap da yok. |
-| P0 tamamen bitti; bilinen engel kalmadı | Geçmiş değerlendirme. Yeni stat, başlangıç/faz, sonuç ekranı ve sahne temizliği bulguları aşağıda açık. |
+| Kale kalpleri 100 can için bütünüyle doğru, konu kapandı | 2 Ekim’de düzeltildi: her hasarda üç kalp can oranıyla birlikte güncelleniyor; tek vuruşla ölüm doğrulandı. |
+| P0 tamamen bitti; bilinen engel kalmadı | Aşama 1 teknik kontrolleri ve yedek/geri dönüş kaydı aşağıda günceldir. Bu, tüm GDD veya build testinin tamamlandığı anlamına gelmez. |
 | Skilltree yol haritasında yok | 18 yetenek ve bağımlılıkları eklendi. |
 
 ## Mevcut temel: yapılanlar
 
 - [x] Her kule için bağımsız 5×5 backpack; `Backpack`, `PlacedItem`, şekil/hücre hesapları.
-- [x] Mağazadan sürükleyerek satın alma ve çanta içinde taşıma kodu; geçersiz taşımanın eski konuma dönmesi; yerleşim önizlemesi. Bu incelemede fareyle uçtan uca tekrar test edilmedi.
+- [x] Mağazadan sürükleyerek satın alma ve çanta içinde taşıma kodu; geçersiz taşımanın eski konuma dönmesi; yerleşim önizlemesi. Sentetik pointer olaylarıyla satın alma/taşıma ve geçersiz konumdan geri dönüş test edildi; fiziksel fare otomasyonu değildir.
 - [x] Kule oluşunca varsayılan silahın merkeze yerleştirilmesi. Üç kule tipinde canlı olarak birer başlangıç eşyası görüldü.
 - [x] Ortak gold; eşya satın alma ve ücretli reroll; düşman öldürme ödülü.
-- [x] Okçu, büyücü ve birlik kulesinin mevcut satın alma metotlarıyla kurulması. Kontrolde 1000 gold → 200 gold: birlik 100, okçu 300, büyücü 400.
-- [x] Kule tipi ve rarity filtresiyle dükkan üretimi. Aktif sahne havuzunda 29 item referansı var.
+- [x] Okçu, büyücü ve birlik kulesinin mevcut satın alma metotlarıyla kurulması. Güncel maliyetler: birlik 225, okçu 250, büyücü 325; toplam 800 altın, başlangıçtan kalan 200.
+- [x] Kule tipi ve rarity filtresiyle dükkan üretimi. Aktif sahne havuzunda 30 eşya var; üç başlangıç silahı ayrı, eski 29 örnek arşivde.
 - [x] Her kulede dört slotluk kalıcı `myShopItems`; açılışta yeniden zar atılmıyor; satın alınan slot `null` yapılıyor; ücretli reroll yeniliyor.
 - [x] Eşya hasar/kritik/hız bonuslarının `CalculateStats()` ile savaşa aktarılması; cooldown için 0.1 saniye alt sınır.
 - [x] Okçu/büyücü mermilerinin `Initialize()` ile stat alması; kritik şans ölçeği düzeltmesi.
 - [x] Düşmanda weakness ×1.5, resistance ×0.5 hesabı. Bu, element evrim sisteminin tamamlandığı anlamına gelmez.
 - [x] `UnitTower : Tower`; backpack ve dükkan ortak tabanı; askere stat aktarımı; yaşayan askerlere yeniden hesaplama.
 - [x] Birlik kulelerinin üç asker üretmesi, yakındaki boş düşmanla angajman, düşmanı durdurma, asker ölünce serbest bırakma ve boş slotu yeniden doldurma kodu.
-- [x] Birlik için beş ek eşya ve `healthBonus` alanı. Can oranını koruyarak stat aktarımı canlı doğrulandı.
-- [x] Dört test dalgası; son dalga sonrası düşman kalmayınca sonuç ekranı. Kontrolde düşman sayısı sıfır, iki kale bileşeninin canı 100 ve sonuç paneli açık görüldü.
-- [x] Pause/continue/restart/main menu kod yolları; kazanma/kaybetme metin ayrımı. Her geçiş ve kaybetme senaryosu yeniden test edilmedi.
+- [x] Birlik için on satın alınabilir eşya ve `healthBonus` alanı. Can oranını koruyarak stat aktarımı canlı doğrulandı.
+- [x] Beş dalgalık örnek bölüm; son dalga boss. Son kayıtlı hızlandırılmış koşuda Victory, aktif kale 64/100 can. Emir normal oynayışta dengeyi mevcut aşama için yeterli buldu.
+- [x] Pause/continue/restart/main menu kod yolları; kazanma/kaybetme metin ayrımı. Kazanma, kaybetme ve restart tekrar çalıştırılabilir Aşama 1 kontrolüne dahil; main menu/exit ayrı tam oynanış testi kapsamında.
 - [x] Dükkanın satıldı durumunu sıfırlama ve panellerin dışına tıklayınca kapatma düzeltmeleri kodda mevcut.
 - [x] Kule fiyatlarını prefabın `TowerData.cost` değerinden okuma; satın alınan slotu dolu sayma ve iptal edilen slotu tekrar açma kodu.
 
 ## Önce ele alınacak doğruluk ve sahne işleri
 
-Bu liste uygulama yetkisi değildir; sonraki geliştirme oturumunda sırayı ve çözümü birlikte seçeriz.
+Bu tablo önceki bulguların güncel durumudur. Emir 4 Ekim’de Aşama 1’de kalanları tamamlamayı ve bitenleri işaretlemeyi istedi; yeni mimari kararlar yine birlikte alınır.
 
 | İş | Kanıt / etki | Bitti sayılma ölçütü |
 |---|---|---|
-| Temel stat kaynağı — 2 Ekim'de çözüldü | Başlangıç değerleri `TowerData`dan kopyalanıyor; büyücü 25 hasar, okçu 2 saniye. | Üç tipte item hesabı ve aynı asset'i kullanan iki büyücüde upgrade izolasyonu canlı doğrulandı. |
-| Hazırlıkta erken spawn — 2 Ekim'de çözüldü | Üretim `Start`tan kaldırıldı; açık başlatma komutu gerekiyor. | Başlat öncesi 0 düşman, ilk Başlat sonrası 1 düşman; tekrarlı Başlat ek döngü açmadı. |
+| Temel stat kaynağı — 2 Ekim'de çözüldü | Başlangıç değerleri `TowerData`dan kopyalanıyor; güncel büyücü 30 hasar/1,8 sn, okçu 14 hasar/1 sn, birlik 4 hasar/1,2 sn. | Üç tipte item hesabı ve aynı asset'i kullanan iki büyücüde upgrade izolasyonu canlı doğrulandı. |
+| Hazırlıkta erken spawn — 2 Ekim'de çözüldü, 4 Ekim'de döngü tamamlandı | Üretim `StartGame` üzerinden; Başlat düğmesi veya her hazırlıkta 60 saniyenin dolması tetikler. Pause süreyi durdurur. | Son düşman sonrası hazırlık; manuel/otomatik başlangıç ve tekrarlı çağrı koruması kontrol edildi. |
 | Oyun sonu ve pause sınırları — 2 Ekim'de çözüldü | Durum GameManager'da tutuluyor; pause önceki hıza dönüyor; terminal sonuç korunuyor. | Hazırlık/savaş pause, kazanma/kaybetme kilidi ve restart canlı kontrolleri geçti. |
 | Eksik script bileşenleri — 2 Ekim'de temizlendi | 28 eksik bileşen kaldırıldı; nesneler ve çalışan bileşenler korundu. | Canlı tarama 0 eksik script; 388 nesne ve mevcut oyun scripti referansları aynı; başlangıç kontrolü geçti. |
 | Kale kalpleri — tamamlandı (2 Ekim) | `Base.UpdateHealthUI` üç kalbi can oranıyla güncelliyor; tek vuruşta ölüm hatası düzeltildi. | 25 canlı koşul geçti; 100→0, 100→20 ve farklı maxHealth değerleri doğrulandı. |
 | Birlik karşı saldırı ritmi — tamamlandı (3 Ekim) | Düşman kendi attackInterval sayacıyla vuruyor; birlik oyalama ve yardımcı hasar rolünde. | İki farklı asker saldırı hızıyla düşmanın aynı ritimde vurduğu canlı doğrulandı. |
 | Deneme içeriğini ayırmak — ertelendi | Emir'in 3 Ekim kararı: `PlaneTest` olduğu gibi kalacak. | Eski alanın hiçbir etkisinin olmadığı iddia edilmiyor; şu an değişiklik yapılmayacak. |
 | UI isim/olay eşleşmesi — tamamlandı | İkon/olay doğru, fiyat etiketlerinin adları tersti; iki düğme ve iki fiyat nesnesi yeniden adlandırıldı. | Üç türde görünen fiyat, seçilen tür, kesilen altın ve oluşan kule canlı doğrulandı. |
-| Veri temizliği | Dükkan itemID 5–10 çiftleri tekrarlı; dört 1×2 itemin `centerOffset=(1,1)` noktası şekil dışında. FastEnemy Normal'e hem zayıf hem dirençli. | Kimlikler ve offset davranışı net; düşman listeleri kasıtlı/çelişkisiz. |
-| Dükkan/seviye sınırı | Mevcut havuzda dört tipin tüm rarity kümeleri dolu; kodda boş havuz ve seviye>5 koruması yok. | İçerik değişiminde boş küme güvenli ele alınır; seviye sınırı davranışı belirlenir. |
+| Veri temizliği — aktif havuz tamamlandı | 30 yeni eşya ve üç başlangıç silahı benzersiz kimlik/uygun merkez kullanıyor. Eski veriler arşivde. Normal element çelişkisi Denge V1'de giderildi. | Yeni havuzun tüm şekilleri ve başlangıç silahı yanında yerleşimi doğrulandı. |
+| Dükkan/seviye sınırı — tamamlandı | 1 altı ilk, 5 üstü son olasılık satırını kullanır. Boş havuz null döndürür. Üç uygulanmış kule için dört nadirlik de mevcut. | -1/99 seviyeleri ve içeriksiz CannonTower havuzu güvenli çalıştı. |
 
 ## Önerilen ilerleme sırası ve kabul ölçütleri
 
-### Aşama 1 — Mevcut prototipi güvenilir hale getirmek
+### Aşama 1 — Mevcut prototipi güvenilir hale getirmek — teknik maddeler tamamlandı
 
-- [ ] Yukarıdaki bulguları Emir ile önceliklendirmek; ilk olarak stat kaynağı ve başlangıç/sonuç geçişleri.
-- [ ] Üç kule + eşya alımı/taşıma + dükkan aç/kapa + reroll + kazanma/kaybetme + restart kontrolünü tekrarlanabilir hale getirmek.
-- [ ] Eksik script ve eski test nesnelerinin gerekli/eski ayrımını yapmak.
-- [ ] Değişiklikler öncesi geri dönüş yöntemi belirlemek. Bu klasör şu anda Git deposu olarak algılanmıyor; alternatif yedekleme/VCS ayrıca teyit edilecek.
+- [x] Bulgular Emir ile önceliklendirildi; stat kaynağı TowerData, oyun durumu GameManager olarak kararlaştırıldı ve uygulandı. Başlangıç/sonuç/pause düzeltmeleri önceki canlı kontrollerde doğrulandı.
+- [x] Üç kule + eşya alımı/taşıma + dükkan aç/kapa + reroll + kazanma/kaybetme + restart, `Tools/Validation/run_stage1.py` ile tekrar çalıştırılabilir hale getirildi. 4 Ekim son koşusu: **28/28 geçti**, Console hata/uyarı yok. [Makine okunabilir sonuç](C:/Users/Emir/BackPackDefance/Docs/Validation/stage1-latest.json).
+- [x] Eksik script temizliği yapıldı; son sahne taraması **0 eksik script / 432 nesne**. PlaneTest eski alan olarak ayrıldı ve Emir'in isteğiyle korundu. Buradaki etiketsiz Base ile aktif Base etiketli kale ayrımı kayıtlı; testler aktif kaleyi kullanıyor. Bu madde eski alanın silindiği veya etkisizliğinin kanıtlandığı anlamına gelmez.
+- [x] Geri dönüş yöntemi belirlendi: önceki adım yedekleri korunur; `snapshot_project.py` kaynak klasörlerini ve .meta dosyalarını yeni tarih/saatli ZIP'e alıp SHA-256 ile doğrular. Geri dönüş yeni, boş proje klasörüne çıkararak yapılır. Git deposu artık mevcut (son yerel commit `8ce67c4`); eski “Git yok” kaydı güncel değildir. Mevcut commit edilmemiş değişiklikler korunur; bu tur commit/push yapılmadı. [Çalıştırma ve geri dönüş adımları](C:/Users/Emir/BackPackDefance/Tools/Validation/README.md).
 
-Çıkış ölçütü: temel akışın beklenen sayıları ve geçişleri kayıtlı; kritik açıklar giderilmiş veya açıkça kabul edilmiş; Emir mevcut akışı açıklayabiliyor.
+Teknik çıkış ölçütü karşılandı: temel akış sayıları/geçişleri kayıtlı ve tekrar çalıştırılabilir; bilinen eski test alanı kararı açıkça kabul edilmiş. Kod açıklamaları ilgili adım belgelerinde mevcut. Emir'in kod hâkimiyeti otomatik testle ölçülmüş sayılmaz; anlaşılmayan noktaları birlikte açıklayacağız. Tam build, bütün GDD ve tüm olası oyun senaryoları bu işaretle tamamlanmış sayılmaz.
 
 ### Aşama 2 — GDD hazırlık / savaş döngüsü
 
-- [ ] Dalga başlatma, savaş bitişi, hazırlığa dönüş ve oyun sonu kurallarını tanımlamak.
-- [ ] Savaşta eşya satın alma/taşıma/döndürme/satış ve shop işlemlerini kilitlemek; açık drag'in faz geçişindeki davranışını belirlemek.
-- [ ] Hedefleme kontrolünü envanter kilidinden ayrı tutmak.
-- [ ] Son düşman sonrası hazırlık ve dondurulmamış dükkanın ücretsiz yenilenmesi.
-- [ ] Global Freeze: hangi kulelerin shop'larını kapsadığına karar verip uygulamak.
-- [ ] 1×/2×/3× hız, pause ve continue sırasında önceki hızın korunması.
-- [ ] Savaşta yeni kule kurma ve kule yükseltmenin izin durumunu netleştirmek.
+- [x] Dalga başlatma, son düşmanda hazırlığa dönüş ve son dalgada zafer; her hazırlık 60 saniye.
+- [x] Savaşta mevcut eşya satın alma/taşıma/reroll işlemleri kilitli; açık drag geri alınır.
+- [x] Döndürme aynı faz kilidine bağlandı; yalnız hazırlıkta (6 Ekim).
+- [x] Satış aynı faz kilidine bağlandı: yalnız hazırlıkta, pause dışında. Savaş başlangıcı ve pause sırasında sürükleme geri alınır (8 Ekim).
+- [x] Hedefleme kontrolünü envanter kilidinden ayrı tutmak: okçu/büyücü tür ve giriş sırası seçimi savaşta açık; pause/sonuçta kilitli (5 Ekim).
+- [x] Son düşman sonrası hazırlık ve dondurulmamış dükkanların ücretsiz yenilenmesi.
+- [x] Freeze kapsamı kararlaştırıldı ve uygulandı: yalnız seçili kulenin dört slotu; global dondurma yok.
+- [x] 1×/2×/3× hız, seçili hız vurgusu; pause/continue ve sonraki dalgada hızın korunması.
+- [x] Son karar: yeni kule kurma yalnız hazırlıkta; savaşta ve pause sırasında kilitli.
+- [x] Kule yükseltme yalnız hazırlıkta ve pause kapalıyken; mevcut metoda koruma eklendi (6 Ekim).
 
-Çıkış ölçütü: Hazırlık → Savaş → Hazırlık döngüsü en az iki dalgada işler; kilitli işlem gold/grid/shop durumunu değiştirmez. Sınıf/enum/manager seçimi birlikte yapılacak.
+Hazırlık → Savaş → Hazırlık döngüsü ve gold/grid/shop kilitleri doğrulandı. Mevcut GameManager/WaveManager görev dağılımı korundu. Hız, hedefleme, rotasyon ve satış faz kilitleri tamamlandı.
 
 ### Aşama 3 — Envanter ve ekonomi derinliği
 
-- [ ] Rotasyon isteğini teyit etmek; GDD istiyor, mevcut uygulama içermiyor. Input, dönme merkezi ve taşma davranışı kararlaştırılacak.
-- [ ] Sinerjinin koşulunu tanımlamak: komşuluk, eşya eşleşmesi, element veya başka kural; sonra hesap ve görsel geri bildirim.
-- [ ] Craft/birleştirme tarifleri, tüketilen öğeler, oluşan öğenin yeri ve başarısız işlem davranışı. GDD'de var, eski roadmap'te eksikti.
-- [ ] %50–60 arası refund oranı, yuvarlama ve hangi maliyetin baz alınacağı.
-- [ ] Satışın statlara ve varsayılan/ana silaha etkisi; kuleler arası transfer yasağının uç durum testleri.
+- [x] Rotasyon: R ve scroll, 90° adımlar; centerOffset tutma hücresi imleç altında, taşmada eski konum/yöne dönüş (6 Ekim).
+- [x] Özel komşu kare sinerjisi: herhangi bir eşya / eşya türü / belirli eşya filtreleri; döndürmeyle birlikte kare dönüşü; ilgili eşyanın katkısına bonus ve sarı/yeşil gösterim (8 Ekim).
+- [x] Wave sonunda evrim: iki kenar komşusu malzeme → ürün; bir başarılı dalga, son dalga dahil. Ana item tarif dışında. Ürün çanta → kendi deposu → teslim listesine gider; evrim beklemez (8 Ekim).
+- [x] Teslim listesinde kuleye özel ürünler ve ücretsiz sürükleyerek alma; iptalde kayıp/çoğalma engeli. Üç örnek tarif ve üç filtre örneği eklendi. Yeni sistem 28/28, regresyon 28/28 kontrol geçti. [Ayrıntılı kod ve Inspector açıklaması](Sinerji_Evrim_2026-10-08.md).
+- [ ] Örnek tarifleri oyun testinde değerlendirmek; içerik havuzuna ek sinerji/tarifleri birlikte belirlemek. Sayısal denge kapalı test geri bildirimleriyle geliştirilecek.
+- [x] Satış kuralı onaylandı (8 Ekim): ItemData.cost değerinin %50'si, aşağı yuvarlama; yalnız hazırlıkta, pause dışında. Başlangıç silahı satılamaz.
+- [x] Satış birleşik panelin altına bağlandı; fiyat önizlemesi ve 11 canlı kontrol geçti (8 Ekim). Ayrıntı: [Satış kod akışı](Item_Satisi_2026-10-08.md).
+- [x] Çantadan satış stat bonusunu kaldırır; depodan satış statları değiştirmez. Başlangıç silahı iki alanda da korunur. Kule değişiminde eşya asıl sahibine döner; tekrarlanan bırakma ikinci ödeme yapmaz.
 
 Çıkış ölçütü: aynı eşya havuzunda farklı yerleşimlerin farkı ölçülür; iptal edilen işlem item/gold kaybettirmez veya çoğaltmaz.
 
 ### Aşama 4 — Hedefleme ve element/XP
 
-- [ ] Kara/hava, yakın/uzak hedef kuralları; düşmanın hareket tipi ve element kimliği.
-- [ ] XP'nin kime/nasıl yazıldığı; seviye 5 bekleme ve element seçim zamanı.
-- [ ] Element listesi: mevcut Normal/Fire/Water/Earth/Air ile belgelerdeki Ateş/Doğa/Buz ve Neutral Enemy'nin eşleştirilmesi.
-- [ ] Ana silah satışıyla element değişimi; dükkan havuzu geçişi; eski eşyaların aktif/pasif işaretlenmesi.
-- [ ] Tüm envanter boşken kule tipi değişimi.
-- [ ] Kule başına element değişim cezası; oran ve çarpım sırası.
+- [x] Kara/hava/ikisi ve ilk/son menzile giriş hedeflemesi; EnemyData hareket türü sınıflandırması (5 Ekim). Emir'in kararıyla yakın/uzak mesafe yerine collider'a giriş sırası kullanılır.
+- [x] Yolu takip eden hava düşmanı: Gök Perisi, 1 birim görsel yükseklik, birlikleri pas geçme, havadaki mermi/can barı/mouse hedefi. Emir'in seçimiyle 3. dalgaya bağlandı: 7 düşman, 1,8 sn aralık korunur (8 Ekim). [Kod açıklaması](Ucan_Dusman_2026-10-08.md).
+- [x] Düşman element kimliği ve onaylanan Su → Ateş → Hava → Toprak → Su döngüsü. Avantaj ×1,5, direnç ×0,5; diğer eşleşmeler ×1. Örnek bölümde elementler bağlandı (9 Ekim).
+- [x] XP gerçek hasar katkısına göre ölümde kulelere dağıtılır; asker katkısı sahibine yazılır. Kale teması ödülsüzdür. Seviye 5'te element seçimi beklerken XP korunur; seçim yalnız hazırlıkta yapılır (8 Ekim).
+- [x] Element listesi kararı: Emir mevcut Normal/Fire/Water/Earth/Air listesini korudu. Oyuncuya Ateş/Su/Toprak/Hava sunulur; mermi ve askerlere aktarılır. Belgelerdeki alternatif isimler bu listeyi değiştirmez. Düşman element kimliği 9 Ekim'de bağlandı.
+- [x] İlk element seçiminde ana eşya evrimi ve mağaza havuzu geçişi. Eski teklifler sonraki yenilemeye kadar korunur; dondurma bozulmaz. Eski normal eşyalar oyuncuda kalır, çantadayken çalışır; depodakiler hiçbir bonus vermez. Ana eşya ve evrimleri satılamaz/depolanamaz (9 Ekim).
+- [x] 12 ana eşya evrimi, 120 elementli mağaza eşya verisi, mevcut üç tarifin dört element karşılığı. Mevcut şekil/ikon temelli ilk içerik; yeni özel görsel seti değil. [Kod ve kurallar](Element_Evrimi_2026-10-09.md).
+- [x] İlk seçimden sonra ücretli element değişimi: hazırlıkta onay ekranı, başlangıçta 100 altın; XP/seviye korunur. Ana eşya dönüşür; yeni mağaza hemen açılır, dondurma kalkar. Uyumsuz eski element eşyası pasif olur; Normal ve türü uygun eşya çalışır. İlk ücretsiz seçim eski teklifleri koruma kuralını sürdürür.
+- [x] Kule tipi değişimi: Emir'in 9 Ekim revizyonuyla yalnız çantadaki ana eşya dışındaki itemler çıkarılır; satış zorunlu değildir. Depo/teslimler korunur. Yeni kule seviye 1 / XP 0 / Normal başlar; eski askerler kaldırılır. Başlangıç fiyatı yeni kule fiyatı − eski kule fiyatının %50'si (iade aşağı yuvarlanır, net bedel en az 0).
+- [x] İlk ceza kararı: sonraki element değişimleri sabit 100 altın; katlanan ceza yok. TowerData.elementChangeCost ve typeChangeRefundRate Inspector'dan ayarlanır. Emir testten sonra gerekirse cezayı ağırlaştıracak.
 - [ ] Havan/topçu isteniyorsa ayrı kule davranışı; enum ve placeholder item bulunması uygulama değildir.
 
 Çıkış ölçütü: bir kule XP kazanır, sınıf seçer, ilgili shop'a geçer; fiyat/stat değişimi başka kuleye sızmaz.
@@ -215,21 +352,21 @@ Hepsi **açık**. Genel kritik, item can bonusu ve spawn kodunun bulunması bu y
 | Birlik | Çifte Sancak | %15 çift üretim, geçici kapasite aşımı; mevcut sabit slot modelinin davranışı tartışılacak. |
 | Birlik | Lejyoner Sinerjisi | Aynı kule askerleri başına %5 zırh/kritik; kendini sayma, toplama/çarpma ve limit kararı. |
 
-## Karar defteri — henüz kararlaştırılmadı
+## Karar defteri — alınan ve açık kararlar
 
-1. Karar alındı: oyun durumu `GameManager`da, dalga üretimi `WaveManager`da. İlk başlangıç/pause/sonuç adımı tamamlandı; dalga arası hazırlık ve etkileşim kilitlerinin ayrıntıları henüz açık.
-2. Kule temel statlarının tek kaynağı ne olacak; `attackSpeed` adı hız mı süre mi ifade edecek?
-3. Rotasyon kesin kapsamda mı ve oyuncu nasıl döndürecek?
-4. Global Freeze tüm kuleleri mi, seçili kulenin bütün slotlarını mı dondurur?
-5. Uzak hedef: kuleye uzaklık mı, yol ilerlemesi mi? Kara/hava ifadeleri yalnız o tür mü, öncelik + fallback mi?
-6. Element cezası `1 + 0.10×n` mi, `1.10^n` mi? GDD'nin “katlanarak” ifadesi ile %10→%20→%30 örneği aynı şey değil.
+1. Karar alındı: oyun durumu `GameManager`da, dalga üretimi `WaveManager`da. 60 saniyelik dalga arası hazırlık ve mevcut eşya işlem kilitleri tamamlandı; son kararla savaşta kule satın alma da kilitli.
+2. Karar alındı (2 Ekim): temel statlar TowerData’dan gelir; attackSpeed saniye cinsinden saldırı aralığıdır. Ortak eşya hesabı Tower’da; davranış alt sınıflarda.
+3. Karar alındı (6 Ekim): sürüklerken R/scroll yukarı saat yönünde, scroll aşağı ters yönde 90°. Yalnız hazırlık; geçersiz bırakmada eski konum/yön korunur.
+4. Karar alındı (4 Ekim): dondurma yalnız seçili kulenin dört dükkan slotunu korur; uygulandı.
+5. Karar alındı (5 Ekim): yalnız okçu/büyücü için Kara / Hava / İkisi de filtresi ve collider'a İlk giren / Son giren sırası bağımsızdır. Mesafe/yol ilerlemesi değildir; uygun tür yoksa beklenir, diğer türe geçilmez.
+6. Karar alındı (9 Ekim): ilk element ücretsiz, sonraki değişimler sabit 100 altın. GDD'deki katlanan ceza bu sürümde uygulanmıyor; test sonrası yeniden değerlendirilecek.
 7. Skilltree run içi HQ harcaması mı, kalıcı ilerleme mi? Belge ikisini de seçenek olarak bırakıyor.
 8. Aynı hedefte “başarılı atış” isabet mi ateşleme mi; stun tekrarları nasıl davranır?
 9. Zırh, büyü/fiziksel hasar, kritik ve element çarpanlarının sırası ne?
 10. Karar alındı (3 Ekim): düşman kendi saldırı ritmini kullanır; birlik hız bonusu düşmanı hızlandırmaz. İlk sayısal denge asistana bırakıldı, kapalı test geri bildirimleriyle güncellenecek.
-11. XP dağıtımı, craft tarifleri ve ana silah satıldığında silahsız kulenin davranışı ne?
+11. XP gerçek hasar katkısıyla dağıtılıyor. İlk üç craft tarifinin dört element karşılığı eklendi (9 Ekim). Ana silahın bütün evrimleri satılamaz/depolanamaz. İlk ve sonraki element seçimleri uygulandı; ücretli değişimde uyumsuz eşyalar tutulur ama çalışmaz.
 
-## İnceleme sınırı ve kayıt
+## 1 Ekim ilk incelemesinin sınırı — tarihsel kayıt
 
 Canlı kontrol: sahne/prefab/data referansları, Console örneklemesi, mevcut metotlarla üç kule satın alma, çalışma zamanı statları, savaşın ilerlemesi ve sonuç paneli; geçici item ekleyip çıkararak birlik hasarı/can oranı kontrolü. Bu son kontrol fareyle shop satın alma testi değildir. Bu tur yeni oyun kodu, prefab veya sahne düzenlemesi yapılmadı.
 
@@ -237,3 +374,11 @@ Test sonunda Play kapalı, `GameScane` açık, sahne `dirty=false`, `runInBackgr
 
 Eski yol haritasının aynısı [arşivde](C:/Users/Emir/BackPackDefance/Docs/Archive/Backpack_Legions_Yol_Haritasi_2026-10-01_Oncesi.md). Ayrıntılı bulgular ve mevcut kod akışı [durum raporunda](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Durum_Raporu_2026-10-01.md).
 
+
+### 8 Ekim — Ana item kuralı güncellemesi
+- [x] Kule türünü belirleyen ana item depoya konulamaz ve satılamaz. Çanta içinde taşınabilir/döndürülebilir. Depoya bırakma eski konum/yöne geri döner; normal eşyalar depoya taşınabilir. Canlı kontroller: 3/3 geçti (Validation/main-item-storage-2026-10-08.json).
+
+### 8 Ekim — Sağdan açılan kule satın alma paneli
+- [x] Boş yer → sağda dört ikon → ikonun solunda detay kartı → satın al akışı bağlandı. Gerçek fiyat/stat verileri, seçili ikon vurgusu, yetersiz para ve faz kilidi mevcut.
+- [x] Büyü/okçu/birlik satın alınabilir; henüz uygulanmamış topçu dördüncü ikon olarak Yakında gösterilir.
+- [x] Yeni akış 11/11, mevcut oyun regresyonu 28/28 kontrolden geçti; oyun görüntüsü incelendi. Ayrıntılı açıklama: [Kule satın alma paneli](Kule_Satin_Alma_Paneli_2026-10-08.md).

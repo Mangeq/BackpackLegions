@@ -24,6 +24,19 @@ MonoBehaviour:
   cost: 50
   itemIcon: {fileID: 21300000, guid: 1f5d2f13913a40d40aeaf0bb69a57dfb, type: 3}
   synergyIDs: []
+  synergyRules:
+  - description: "\xD6zel karede uygun e\u015Fya: +%8 hasar katk\u0131s\u0131"
+    cells:
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+    filter: 1
+    acceptedType: 3
+    acceptedItem: {fileID: 11400000, guid: 7dcb6efbb7d79d046aea9b205560ec6e, type: 2}
+    bonus:
+      damage: 0.08
+      attackSpeed: 0
+      criticalChance: 0
+      health: 0
   damageBonus: 0.22
   criticalChanceBonus: 0
   attackSpeedBonus: 0

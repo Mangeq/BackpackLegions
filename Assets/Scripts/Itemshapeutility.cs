@@ -7,6 +7,31 @@ using UnityEngine;
 /// </summary>
 public static class ItemShapeUtility
 {
+    public static int NormalizeRotation(int turns) => ((turns % 4) + 4) % 4;
+
+    // Grid Y aşağı doğru artar; bu dönüş ekranda saat yönündedir.
+    public static Vector2Int RotateCell(Vector2Int cell, Vector2Int size, int turns)
+    {
+        for (int i = 0; i < NormalizeRotation(turns); i++)
+        {
+            cell = new Vector2Int(size.y - 1 - cell.y, cell.x);
+            size = new Vector2Int(size.y, size.x);
+        }
+        return cell;
+    }
+
+    public static IEnumerable<Vector2Int> GetRotatedShape(ItemData data, int turns)
+    {
+        Vector2Int size = GetBoundingSize(data.itemShape);
+        foreach (var cell in data.itemShape) yield return RotateCell(cell, size, turns);
+    }
+
+    public static Vector2Int GetRotatedSize(ItemData data, int turns)
+    {
+        Vector2Int size = GetBoundingSize(data.itemShape);
+        return NormalizeRotation(turns) % 2 == 0 ? size : new Vector2Int(size.y, size.x);
+    }
+
     /// <summary>
     /// Verilen şeklin (item'in kendi orijinine göre, (0,0) sol-üst olacak şekilde
     /// tanımlanmış hücrelerin) kapladığı dikdörtgen bounding box'ı döndürür.

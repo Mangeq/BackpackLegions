@@ -1,0 +1,38 @@
+[
+  {
+    "test": "refund shown before drop, odd cost floors",
+    "passed": true
+  },
+  {
+    "test": "backpack sale pays once and removes bonus",
+    "passed": true
+  },
+  {
+    "test": "duplicate end event cannot pay twice",
+    "passed": true
+  },
+  {
+    "test": "storage sale leaves stats unchanged",
+    "passed": true
+  },
+  {
+    "test": "starting weapon cannot be sold",
+    "passed": true
+  },
+  {
+    "test": "pause cancels sale and restores rotation",
+    "passed": true
+  },
+  {
+    "test": "tower switch restores original owner",
+    "passed": true
+  },
+  {
+    "test": "unsold shop offer cannot be sold or charged",
+    "passed": true
+  },
+  {
+    "test": "combat cancels sale without payment",
+    "passed": true
+  }
+]

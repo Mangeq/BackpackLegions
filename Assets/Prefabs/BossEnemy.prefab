@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5987613006008738739}
   - component: {fileID: 4080726077713013471}
   - component: {fileID: -8368787270030971882}
+  - component: {fileID: 5809667704397655994}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Enemy
@@ -173,3 +174,18 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5809667704397655994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852159741373694523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d8788be5553df41acf7c8958502edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barPrefab: {fileID: 5934803287133429250, guid: 68ff289242ff2a94abbc0845bfa384c8,
+    type: 3}
+  heightOffset: 0.25

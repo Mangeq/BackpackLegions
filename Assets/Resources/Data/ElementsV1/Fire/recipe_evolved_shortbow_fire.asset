@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d24ac3c967221a4c91c2efb6b14afe3, type: 3}
+  m_Name: recipe_evolved_shortbow_fire
+  m_EditorClassIdentifier: 
+  first: {fileID: 11400000, guid: 0be5a6eab649faa45ae908e98b9c9a19, type: 2}
+  second: {fileID: 11400000, guid: a45e47704234beb4ab8a6902fb294a1b, type: 2}
+  result: {fileID: 11400000, guid: d7a21505b72f60b4fa9b9b7f5f3801a3, type: 2}

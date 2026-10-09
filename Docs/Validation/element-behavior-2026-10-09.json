@@ -1,0 +1,106 @@
+[
+  {
+    "test": "MegicTower1 evolution 1",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 evolution 2",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 evolution 3",
+    "passed": true
+  },
+  {
+    "test": "MegicTower1 evolution 4",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 evolution 1",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 evolution 2",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 evolution 3",
+    "passed": true
+  },
+  {
+    "test": "ArcherTower1 evolution 4",
+    "passed": true
+  },
+  {
+    "test": "UnitTower1 evolution 1",
+    "passed": true
+  },
+  {
+    "test": "UnitTower1 evolution 2",
+    "passed": true
+  },
+  {
+    "test": "UnitTower1 evolution 3",
+    "passed": true
+  },
+  {
+    "test": "UnitTower1 evolution 4",
+    "passed": true
+  },
+  {
+    "test": "Full grid evolution retains all items",
+    "passed": true
+  },
+  {
+    "test": "Bad shape preserves exact original reference and element",
+    "passed": true
+  },
+  {
+    "test": "Missing data fails without spending XP",
+    "passed": true
+  },
+  {
+    "test": "Old normal item survives and continues buffing",
+    "passed": true
+  },
+  {
+    "test": "Storage contributes no damage speed critical or health",
+    "passed": true
+  },
+  {
+    "test": "Moving owned item to storage removes its buff",
+    "passed": true
+  },
+  {
+    "test": "Selection preserves offers sold slot freeze and gold",
+    "passed": true
+  },
+  {
+    "test": "Next generation uses only selected element",
+    "passed": true
+  },
+  {
+    "test": "All 60 tower element rarity pools obey filters",
+    "passed": true
+  },
+  {
+    "test": "Unsupported cannon pool has no cross-type fallback",
+    "passed": true
+  },
+  {
+    "test": "All 25 element pairs produce expected actual HP loss",
+    "passed": true
+  },
+  {
+    "test": "Evolved main item excluded from crafting",
+    "passed": true
+  },
+  {
+    "test": "150 shop item IDs unique",
+    "passed": true
+  },
+  {
+    "test": "Water item recipe still evolves after a successful wave",
+    "passed": true
+  }
+]

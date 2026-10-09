@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -19,6 +19,8 @@ public class Unit : MonoBehaviour
     private Coroutine combatRoutine;
 
     public bool IsIdle => currentEnemy == null;
+    public int CurrentHealth => Mathf.Max(0, health);
+    public int MaxHealth => maxHealth;
 
     private void Awake()
     {
@@ -51,7 +53,7 @@ public class Unit : MonoBehaviour
         if (currentEnemy != null || enemy == null) return;
 
         Enemy enemyComp = enemy.GetComponent<Enemy>();
-        if (enemyComp == null || enemyComp.isEngaged) return;
+        if (enemyComp == null || enemyComp.IsAir || enemyComp.isEngaged) return;
 
         currentEnemy = enemy;
         enemyComp.AttackTarget(gameObject);
@@ -65,7 +67,7 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(attackInterval);
             if (currentEnemy==null) break;
             float finalDamage = Random.Range(0f, 1f) <= critChance ? damage * critMultiplier : damage;
-            currentEnemy.GetComponent<Enemy>().TakeDamage(finalDamage, elementType);
+            currentEnemy.GetComponent<Enemy>().TakeDamage(finalDamage, elementType, myTower != null ? myTower.GetComponent<Tower>() : null);
             if (currentEnemy==null) break;
         }
         combatRoutine = null;

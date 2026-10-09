@@ -14,6 +14,15 @@ public class GameManager : MonoBehaviour
 
     public GameState CurrentState { get; private set; } = GameState.Preparation;
     public bool IsPaused { get; private set; }
+    public int SelectedSpeed { get; private set; } = 1;
+    public bool CanChangeSpeed => CurrentState == GameState.Combat && !IsPaused;
+    [Min(0f)] public float autoStartDelay = 60f;
+    private static GameManager instance;
+    public static bool CanEditItems => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
+    public static bool CanBuyTowers => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
+    public static bool CanUpgradeTowers => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
+    public float PreparationSecondsRemaining { get; private set; }
+    private bool autoStartAttempted;
 
     private WaveManager waveManager;
     private float timeScaleBeforePause;
@@ -32,9 +41,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         // Hazırlık, bütün Start çağrılarından önce başlar.
         Time.timeScale = 0f;
         waveManager = FindObjectOfType<WaveManager>();
+        PreparationSecondsRemaining = autoStartDelay;
 
         exitButton = GameOverPanel.transform.Find("BackMainMenuButton").GetComponent<Button>();
         restartButton = GameOverPanel.transform.Find("NewGameButton").GetComponent<Button>();
@@ -55,6 +66,16 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             TogglePause();
+        TickPreparation(Time.unscaledDeltaTime);
+    }
+
+    private void TickPreparation(float elapsed)
+    {
+        if (CurrentState != GameState.Preparation || IsPaused || autoStartAttempted) return;
+        PreparationSecondsRemaining = Mathf.Max(0f, PreparationSecondsRemaining - elapsed);
+        if (PreparationSecondsRemaining > 0f) return;
+        autoStartAttempted = true;
+        StartGame();
     }
 
     public void StartGame()
@@ -68,14 +89,39 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if (!waveManager.CanStartNextWave) return;
+        BackpackDraggable.CancelActiveDrag();
         CurrentState = GameState.Combat;
-        Time.timeScale = 1f;
+        Time.timeScale = SelectedSpeed;
 
         if (!waveManager.TryStartWaves())
         {
             CurrentState = GameState.Preparation;
             Time.timeScale = 0f;
         }
+    }
+
+    public void BeginPreparation()
+    {
+        if (CurrentState != GameState.Combat || IsPaused) return;
+        CurrentState = GameState.Preparation;
+        Time.timeScale = 0f;
+        PreparationSecondsRemaining = autoStartDelay;
+        autoStartAttempted = false;
+        var shop = FindObjectOfType<ShopUIManager>();
+        if (shop != null) shop.RefreshShopsForPreparation();
+    }
+
+    public void SetGameSpeed(int speed)
+    {
+        if (!CanChangeSpeed || speed < 1 || speed > 3) return;
+        SelectedSpeed = speed;
+        Time.timeScale = SelectedSpeed;
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this) instance = null;
     }
 
     public void TogglePause()
@@ -91,6 +137,7 @@ public class GameManager : MonoBehaviour
 
         // Hazırlıkta 0, savaşta mevcut hız saklanır; devam etmek fazı değiştirmez.
         timeScaleBeforePause = Time.timeScale;
+        BackpackDraggable.CancelActiveDrag();
         IsPaused = true;
         Time.timeScale = 0f;
         pausePanel.SetActive(true);
@@ -114,6 +161,7 @@ public class GameManager : MonoBehaviour
         if (gm.HasEnded)
             return;
 
+        BackpackDraggable.CancelActiveDrag();
         gm.CurrentState = isVictory ? GameState.Victory : GameState.Defeat;
         gm.IsPaused = false;
         gm.pausePanel.SetActive(false);

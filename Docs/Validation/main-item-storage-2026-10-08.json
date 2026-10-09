@@ -1,0 +1,14 @@
+[
+  {
+    "test": "main item rejected from storage and original position/rotation restored",
+    "passed": true
+  },
+  {
+    "test": "main item still movable inside backpack",
+    "passed": true
+  },
+  {
+    "test": "ordinary item can still enter storage",
+    "passed": true
+  }
+]

@@ -1,0 +1,4 @@
+{
+  "test": "combat closes purchase and releases unbought slots",
+  "passed": true
+}

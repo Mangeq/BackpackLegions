@@ -1,0 +1,34 @@
+[
+  {
+    "test": "Incompatible label has renderable font",
+    "passed": true
+  },
+  {
+    "test": "Failed main replacement preserves gold and element",
+    "passed": true
+  },
+  {
+    "test": "Failed conversion reason remains visible",
+    "passed": true
+  },
+  {
+    "test": "Insufficient type funds leaves original active",
+    "passed": true
+  },
+  {
+    "test": "Result screen rejects both conversions",
+    "passed": true
+  },
+  {
+    "test": "Transferred delivery can be claimed once without charge",
+    "passed": true
+  },
+  {
+    "test": "Transferred old-type gear remains inactive",
+    "passed": true
+  },
+  {
+    "test": "Incompatible stored gear can still be sold",
+    "passed": true
+  }
+]

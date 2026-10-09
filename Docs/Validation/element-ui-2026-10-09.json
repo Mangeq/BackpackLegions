@@ -1,0 +1,54 @@
+[
+  {
+    "test": "Select Water while dragging main cancels drag and evolves once",
+    "passed": true
+  },
+  {
+    "test": "Real UI selection preserves old offers and sold slot",
+    "passed": true
+  },
+  {
+    "test": "Pending shop pool explicitly shown",
+    "passed": true
+  },
+  {
+    "test": "Frozen old offers cannot reroll or charge",
+    "passed": true
+  },
+  {
+    "test": "Wave refresh respects frozen old offers",
+    "passed": true
+  },
+  {
+    "test": "Evolved main cannot sell or enter storage",
+    "passed": true
+  },
+  {
+    "test": "Paid reroll switches to Water and charges once",
+    "passed": true
+  },
+  {
+    "test": "Actual shop slots match Water offers",
+    "passed": true
+  },
+  {
+    "test": "Panel identifies Water mage and evolved main",
+    "passed": true
+  },
+  {
+    "test": "Live units receive Fire on main evolution",
+    "passed": true
+  },
+  {
+    "test": "Newly spawned soldier inherits element",
+    "passed": true
+  },
+  {
+    "test": "Real Water mage deals 1.5x to Fire",
+    "passed": true
+  },
+  {
+    "test": "Real Air archer deals 0.5x to Fire",
+    "passed": true
+  }
+]
