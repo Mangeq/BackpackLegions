@@ -2,14 +2,15 @@
   "date": "2026-10-16",
   "baseline_commit": "9b53bf9722240e8addb8b8617b24639b8f39df44",
   "github": {
-    "status": "pending",
-    "commit": null,
-    "repository": "https://github.com/Mangeq/BackpackLegions"
+    "status": "pushed",
+    "commit": "c1bbb309fb003b68006aa67030d9b33d5487fe54",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "verified_at": "2026-10-16T15:10:39Z"
   },
   "linkedin": {
-    "status": "draft",
-    "url": null,
-    "published_at": null,
+    "status": "published",
+    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7516878394924613632/",
+    "published_at": "2026-10-16T15:11:37.4876958Z",
     "images": [
       "Docs/WeeklyUpdates/2026-10-16/01-current-game.png"
     ]
