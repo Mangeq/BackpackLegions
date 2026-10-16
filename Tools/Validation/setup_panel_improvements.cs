@@ -1,0 +1,11 @@
+if(UnityEditor.EditorApplication.isPlaying)throw new System.Exception("Stop Play first");
+var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+if(scene.path!="Assets/Scenes/GameScane.unity"||scene.isDirty)throw new System.Exception("Expected clean GameScane");
+var b=UnityEngine.Resources.FindObjectsOfTypeAll<BackpackUIManager>().First(x=>x.gameObject.scene.IsValid());
+var ui=UnityEngine.Object.FindObjectOfType<UİManager>();
+b.combinedPanel.GetComponent<RectTransform>().sizeDelta=new Vector2(1600,930);
+b.sellArea.anchoredPosition=new Vector2(860,-864);b.sellArea.sizeDelta=new Vector2(724,60);
+var label=b.sellLabel.rectTransform;label.anchorMin=Vector2.zero;label.anchorMax=Vector2.one;label.offsetMin=new Vector2(8,4);label.offsetMax=new Vector2(-8,-4);
+ui.transitionPanel.GetComponent<RectTransform>().sizeDelta=new Vector2(1600,930);ui.transitionDetails.fontSize=17;
+UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(scene);UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene);
+return new{sale=b.sellArea.sizeDelta.ToString(),panel=b.combinedPanel.GetComponent<RectTransform>().sizeDelta.ToString(),pause=UnityEngine.Object.FindObjectOfType<GameManager>().pausePanel.GetComponent<RectTransform>().rect.ToString()};

@@ -1,0 +1,14 @@
+Backpack Legions geliştirme günlüğü | 10–16 Ekim 🎒🏰
+
+Bu hafta çanta yerleşiminin yanında bölümler arası ilerlemeyi de geliştirdim:
+
+• İlk beş bölümü ve sıradaki dalganın düşmanlarını gösteren önizlemeyi ekledim. Bölümler şimdilik aynı haritayı kullanıyor; dalga düzenleri ve zorlukları farklı.
+• Bölüm sonunda kalan kale sağlığına göre kazanılan kalıcı yetenek puanlarını ekledim. Aynı bölümü tekrar oynamak, yalnızca önceki en iyi sonucu iyileştirince ek puan veriyor.
+• Okçu kulesinin 11 yeteneğini oynanışa bağladım. Diğer kulelerin yetenek ağaçları hâlâ taslak aşamasında.
+• Eşya sinerjilerini genişlettim: destek eşyaları uygun konuma yerleştirilebiliyor veya doğrudan başka bir eşyaya takılabiliyor. Çanta, depo ve mağaza arayüzünü de yeniledim.
+
+Görsel bugünkü çalışan prototipten. Önümüzdeki süreçte denge ve arayüz üzerinde çalışmaya devam edeceğim.
+
+Siz kalıcı gelişimde daha çok seçenek sunan bir yetenek ağacını mı, az ama etkisi belirgin seçimleri mi tercih edersiniz?
+
+#GameDevelopment #Unity #IndieDev #TowerDefense #BackpackLegions

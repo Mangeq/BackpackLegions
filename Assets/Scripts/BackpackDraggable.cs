@@ -13,6 +13,9 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
 {
     private ItemData data;
     public ItemData Item => data;
+    public PlacedItem Placed => sourcePlacedItem;
+    public Backpack OwnerBag => sourceBag;
+    private PlacedItem sourceParent, draggedItem;
     private PlacedItem sourcePlacedItem; // null => mağazadan yeni satın alma, dolu => backpack içinde taşıma
     private Vector2Int originBeforeDrag;
     private int rotationBeforeDrag;
@@ -29,7 +32,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
     { deliveryOwner=owner;delivery=entry;data=entry.Item;Rotation=0; }
     public void OnPointerEnter(PointerEventData e)
     {
-        if (!IsDragging && sourcePlacedItem != null && sourceBag == BackpackUIManager.Instance.ActiveTower.Backpack)
+        if (!IsDragging && sourcePlacedItem != null && sourcePlacedItem.Parent==null && sourceBag == BackpackUIManager.Instance.ActiveTower.Backpack)
             BackpackUIManager.Instance.ShowSynergyCells(data,sourcePlacedItem.Origin,Rotation);
     }
     public void OnPointerExit(PointerEventData e) { if(!IsDragging) BackpackUIManager.Instance.ClearPreview(); }
@@ -49,7 +52,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (activeDrag == this) activeDrag = null;
         canvasGroup.blocksRaycasts = true;
         if (sourcePlacedItem != null && dragOwner != null)
-            sourceBag.Place(data, originBeforeDrag, rotationBeforeDrag);
+            RestoreSource();
         var ui = BackpackUIManager.Instance;
         if (ui != null)
         {
@@ -124,10 +127,10 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             if (sourceBag == null) sourceBag = dragOwner.Backpack;
             if (sourceBag != dragOwner.Backpack && sourceBag != dragOwner.Storage) return;
-            bool found = false;
-            foreach (var item in sourceBag.Items) if (item == sourcePlacedItem) found = true;
-            if (!found) return;
+            if (!sourceBag.Contains(sourcePlacedItem)) return;
         }
+        draggedItem=sourcePlacedItem ?? (delivery!=null?delivery.Content:new PlacedItem(data,Vector2Int.zero,Rotation));
+        sourceParent=sourcePlacedItem!=null?sourcePlacedItem.Parent:null;
         isDragging = true;
         activeDrag = this;
         canvasGroup.blocksRaycasts = false;
@@ -174,6 +177,8 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         }
 
         Vector2Int candidateOrigin = cell.Value - DragAnchor;
+        var host=AttachmentTarget(targetBag,cell.Value);
+        if(host!=null){BackpackUIManager.Instance.ShowAttachmentPreview(host,targetBag);return;}
         bool isValid = EvaluatePlacement(targetBag, candidateOrigin);
 
         BackpackUIManager.Instance.ShowPlacementPreview(data, candidateOrigin, isValid, Rotation, targetBag);
@@ -211,6 +216,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
             if (CanSell)
             {
                 // BeginDrag kaynağı zaten boşalttı. Satışta geri koymadan yalnız bir kez ödeme yap.
+                dragOwner.Evolution.ReleaseAttachments(draggedItem);
                 EconomyManager.AddGold(EconomyManager.GetSellValue(data));
                 placed = true;
             }
@@ -219,21 +225,22 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             Vector2Int candidateOrigin = cell.Value - DragAnchor;
 
-            if (EvaluatePlacement(backpack, candidateOrigin))
+            var host=AttachmentTarget(backpack,cell.Value);
+            if (host!=null || EvaluatePlacement(backpack, candidateOrigin))
             {
                 // sourcePlacedItem varsa (taşıma) ücret yok; yoksa (mağaza) altın gerekiyor.
                 bool canCommit = delivery != null ? dragOwner.Evolution.Claim(delivery) : sourcePlacedItem != null || EconomyManager.TrySpendGold(data.cost);
 
                 if (canCommit)
                 {
-                    backpack.Place(data, candidateOrigin, Rotation);
-                    placed = true;
+                    placed=host!=null?backpack.TryAttach(host,draggedItem):backpack.PlaceExisting(draggedItem,candidateOrigin,Rotation);
+                    if(!placed){if(delivery!=null)dragOwner.Evolution.RestoreDelivery(delivery);else if(sourcePlacedItem==null)EconomyManager.AddGold(data.cost);}
                 }
             }
         }
 
         if (!placed && sourcePlacedItem != null)
-            sourceBag.Place(data, originBeforeDrag, rotationBeforeDrag); // Kaynak alan, konum ve yönü birlikte geri al.
+            RestoreSource(); // Kaynak alan, konum ve yönü birlikte geri al.
 
         BackpackUIManager.Instance.RefreshItemVisuals();
 
@@ -248,6 +255,18 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         return placed;
     }
 
+    private void RestoreSource()
+    {
+        if(sourcePlacedItem==null||sourcePlacedItem.Bag!=null)return;
+        bool restored=sourceParent!=null?sourceBag.TryAttach(sourceParent,sourcePlacedItem):sourceBag.PlaceExisting(sourcePlacedItem,originBeforeDrag,rotationBeforeDrag);
+        if(!restored)dragOwner.Evolution.StoreOrDeliver(sourcePlacedItem);
+    }
+    private PlacedItem AttachmentTarget(Backpack bag,Vector2Int cell)
+    {
+        if(bag==null||draggedItem==null||dragOwner.IsMainItem(data)||(bag!=dragOwner.Backpack&&bag!=dragOwner.Storage))return null;
+        if(sourcePlacedItem==null&&delivery==null&&EconomyManager.Gold<data.cost)return null;
+        var host=bag.GetItemAt(cell);return bag.CanAttach(host,draggedItem)?host:null;
+    }
     private bool EvaluatePlacement(Backpack backpack, Vector2Int candidateOrigin)
     {
         if (backpack == null || (backpack != dragOwner.Backpack && backpack != dragOwner.Storage)) return false;

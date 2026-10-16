@@ -19,10 +19,13 @@ MonoBehaviour:
   Type: 0
   Rarity: 0
   itemOwners: 000000000100000003000000
+  element: 0
   itemID: 9
   cost: 60
   itemIcon: {fileID: 21300000, guid: d49da42da82b58545b01337f67111b0a, type: 3}
   synergyIDs: []
+  synergyRecipes: []
+  synergyRules: []
   damageBonus: 0.12
   criticalChanceBonus: 0.03
   attackSpeedBonus: 0

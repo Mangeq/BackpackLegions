@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1990e9037d8a0643a4aa23c0049ff16, type: 3}
+  m_Name: magic.draft.10
+  m_EditorClassIdentifier: 
+  id: magic.draft.10
+  towerType: 3
+  displayName: "Yo\u011Fun B\xFCy\xFC"
+  description: "Yeni uzmanl\u0131k d\xFC\u011F\xFCm\xFC \xF6nerisi. Etkisi, maliyeti
+    ve a\xE7\u0131lma ko\u015Fulu birlikte belirlenecek. \u015Eimdilik puan harcanmaz."
+  icon: {fileID: 21300000, guid: f6bca15e03d4cd64e8e15a5e8d9e9fbd, type: 3}
+  pointCost: 2
+  available: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 48da57b0e05131040a091abd698752ac, type: 2}
+  effects: []

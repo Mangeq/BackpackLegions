@@ -1,3 +1,4 @@
+if (UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/Data/Items")) throw new System.Exception("Historical setup: content already migrated. Edit existing assets; do not recreate old folders.");
 if(UnityEditor.EditorApplication.isPlaying)throw new System.Exception("Stop Play");
 if(!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/Data/Evolutions"))UnityEditor.AssetDatabase.CreateFolder("Assets/Resources/Data","Evolutions");
 System.Func<string,ItemData> item=(id)=>UnityEditor.AssetDatabase.LoadAssetAtPath<ItemData>("Assets/Resources/Data/ItemsV1/v1_"+id+".asset");

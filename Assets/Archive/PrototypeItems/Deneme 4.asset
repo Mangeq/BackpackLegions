@@ -19,10 +19,13 @@ MonoBehaviour:
   Type: 4
   Rarity: 2
   itemOwners: 00000000010000000200000003000000
+  element: 0
   itemID: 8
   cost: 220
   itemIcon: {fileID: 21300000, guid: 441067a78a2670142a4bb41517cb8911, type: 3}
   synergyIDs: []
+  synergyRecipes: []
+  synergyRules: []
   damageBonus: 0.15
   criticalChanceBonus: 0.05
   attackSpeedBonus: 0.25

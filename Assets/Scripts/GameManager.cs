@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public bool CanChangeSpeed => CurrentState == GameState.Combat && !IsPaused;
     [Min(0f)] public float autoStartDelay = 60f;
     private static GameManager instance;
+    private UİManager uiManager;
     public static bool CanEditItems => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
     public static bool CanBuyTowers => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
     public static bool CanUpgradeTowers => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
@@ -26,10 +27,15 @@ public class GameManager : MonoBehaviour
 
     private WaveManager waveManager;
     private float timeScaleBeforePause;
-    private bool HasEnded => CurrentState == GameState.Victory || CurrentState == GameState.Defeat;
+    public bool HasEnded => CurrentState == GameState.Victory || CurrentState == GameState.Defeat;
 
     public GameObject pausePanel;
+    public SettingsPanelUI settingsPanel;
     public GameObject GameOverPanel;
+    public GameObject victoryPanel;
+    public SkillTreePanelUI skillTreePanel;
+    public TMPro.TMP_Text victorySummary, defeatSummary;
+    public Button nextChapterButton;
     private TMPro.TMP_Text gameOverText;
 
     internal Button continueButton;
@@ -42,14 +48,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        uiManager = FindObjectOfType<UİManager>();
         // Hazırlık, bütün Start çağrılarından önce başlar.
         Time.timeScale = 0f;
         waveManager = FindObjectOfType<WaveManager>();
-        PreparationSecondsRemaining = autoStartDelay;
+        if (waveManager != null) waveManager.ConfigureSelectedChapter();
+        // Each entry/restart starts a fresh chapter budget; no static gold carry-over.
+        EconomyManager.Gold = waveManager != null && waveManager.ActiveChapter != null
+            ? Mathf.Max(0, waveManager.ActiveChapter.startingGold) : 700;
+        PreparationSecondsRemaining = waveManager != null ? waveManager.PreparationSeconds(autoStartDelay) : autoStartDelay;
 
-        exitButton = GameOverPanel.transform.Find("BackMainMenuButton").GetComponent<Button>();
-        restartButton = GameOverPanel.transform.Find("NewGameButton").GetComponent<Button>();
-        gameOverText = GameOverPanel.transform.Find("Text (TMP)").GetComponent<TMPro.TMP_Text>();
+        exitButton = System.Array.Find(GameOverPanel.GetComponentsInChildren<Button>(true), b => b.name == "BackMainMenuButton");
+        restartButton = System.Array.Find(GameOverPanel.GetComponentsInChildren<Button>(true), b => b.name == "NewGameButton");
+        gameOverText = System.Array.Find(GameOverPanel.GetComponentsInChildren<TMPro.TMP_Text>(true), t => t.name == "Text (TMP)");
         continueButton = pausePanel.transform.Find("CountineButton").GetComponent<Button>();
         backMainMenuButton = pausePanel.transform.Find("MainMenuButton").GetComponent<Button>();
 
@@ -60,12 +71,13 @@ public class GameManager : MonoBehaviour
 
         pausePanel.SetActive(false);
         GameOverPanel.SetActive(false);
+        if(victoryPanel!=null)victoryPanel.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            TogglePause();
+            HandleEscape();
         TickPreparation(Time.unscaledDeltaTime);
     }
 
@@ -106,7 +118,7 @@ public class GameManager : MonoBehaviour
         if (CurrentState != GameState.Combat || IsPaused) return;
         CurrentState = GameState.Preparation;
         Time.timeScale = 0f;
-        PreparationSecondsRemaining = autoStartDelay;
+        PreparationSecondsRemaining = waveManager != null ? waveManager.PreparationSeconds(autoStartDelay) : autoStartDelay;
         autoStartAttempted = false;
         var shop = FindObjectOfType<ShopUIManager>();
         if (shop != null) shop.RefreshShopsForPreparation();
@@ -141,10 +153,21 @@ public class GameManager : MonoBehaviour
         IsPaused = true;
         Time.timeScale = 0f;
         pausePanel.SetActive(true);
+        UİManager.NotifyPanelOpened();
+    }
+
+    public void HandleEscape()
+    {
+        if (SceneLoadingUI.IsLoading || SkillTreePanelUI.TryCloseOpen() || SettingsPanelUI.TryCloseOpen()) return;
+        if (HasEnded) return;
+        if (IsPaused) { ContinueGame(); return; }
+        if (uiManager != null && uiManager.CloseTopPanel()) return;
+        TogglePause();
     }
 
     public void ContinueGame()
     {
+        if (SettingsPanelUI.IsOpen || SkillTreePanelUI.IsOpen) return;
         if (!IsPaused || HasEnded)
             return;
 
@@ -153,12 +176,12 @@ public class GameManager : MonoBehaviour
         pausePanel.SetActive(false);
     }
 
-    // Kazanma ve kaybetme aynı paneli kullanır, sadece yazı değişir.
+    // Separate result panels share the same authoritative game state.
     public static void GameOver(bool isVictory)
     {
         GameManager gm = GameObject.FindObjectOfType<GameManager>();
         // Aynı karede ikinci bir sonuç gelirse ilk sonuç korunur.
-        if (gm.HasEnded)
+        if (gm == null || gm.HasEnded)
             return;
 
         BackpackDraggable.CancelActiveDrag();
@@ -168,21 +191,61 @@ public class GameManager : MonoBehaviour
         if (gm.waveManager != null)
             gm.waveManager.StopWaves();
         Time.timeScale = 0f;
-        EconomyManager.Gold = 1000;
-        gm.gameOverText.text = isVictory ? "BÖLÜM GEÇİLDİ !" : "KULE DÜŞTÜ ! OYUN BİTTİ !";
-        gm.GameOverPanel.SetActive(true);
+        SettingsPanelUI.TryCloseOpen();SkillTreePanelUI.TryCloseOpen();
+        var chapter=gm.waveManager!=null?gm.waveManager.ActiveChapter:null;
+        int total=gm.waveManager!=null?gm.waveManager.waves.Count:0;
+        int completed=isVictory?total:gm.waveManager!=null?gm.waveManager.CurrentWaveIndex:0;
+        string summary=(chapter!=null?"BÖLÜM "+chapter.chapterNumber.ToString("00")+" · "+chapter.chapterName:"SAVUNMA RAPORU")
+            + "\n\nTamamlanan dalga   "+completed+" / "+total+"\nKalan altın   "+EconomyManager.Gold;
+        var baseObject = GameObject.FindGameObjectWithTag("Base");
+        var castle = baseObject != null ? baseObject.GetComponent<Base>() : null;
+        int hp = castle != null ? castle.currentHealth : 0;
+        int maxHp = castle != null ? castle.maxHealth : 0;
+        var progress = new SkillTreeProgress();
+        int gained = chapter != null ? progress.RecordResult(chapter.chapterNumber, isVictory, hp, maxHp) : 0;
+        summary += "\nKalan can   " + hp + " / " + maxHp
+            + "\nYetenek puanı   +" + gained + "  ·  Toplam " + progress.AvailablePoints;
+        if(gm.victorySummary!=null)gm.victorySummary.text=summary;
+        if(gm.defeatSummary!=null)gm.defeatSummary.text=summary;
+        gm.gameOverText.text=isVictory&&gm.victoryPanel==null?"BÖLÜM GEÇİLDİ":"KULE DÜŞTÜ";
+        gm.GameOverPanel.SetActive(!isVictory || gm.victoryPanel==null);
+        if(gm.victoryPanel!=null)gm.victoryPanel.SetActive(isVictory);
+        if(gm.nextChapterButton!=null)
+        {
+            gm.nextChapterButton.interactable=gm.NextChapterIndex>=0;
+            gm.nextChapterButton.GetComponentInChildren<TMPro.TMP_Text>().text=gm.NextChapterIndex>=0?"SONRAKİ BÖLÜM  ›":"TÜM BÖLÜMLER TAMAMLANDI";
+        }
     }
 
     public void RestartGame()
     {
-        Time.timeScale = 1f;
-        EconomyManager.Gold = 1000;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(SceneLoadingUI.IsLoading)return;
+        SceneLoadingUI.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ExitToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneLoadingUI.LoadScene("MainMenu");
     }
+
+    private int NextChapterIndex
+    {
+        get
+        {
+            if(waveManager==null||waveManager.ActiveChapter==null)return -1;
+            int current=waveManager.chapters.IndexOf(waveManager.ActiveChapter);
+            int next=current+1;
+            return current>=0&&next<waveManager.chapters.Count&&waveManager.chapters[next]!=null?next:-1;
+        }
+    }
+    public void NextChapter()
+    {
+        if(CurrentState!=GameState.Victory||SceneLoadingUI.IsLoading)return;
+        int next=NextChapterIndex;if(next<0)return;
+        ChapterData.SelectedIndex=next;
+        SceneLoadingUI.LoadScene(waveManager.chapters[next].sceneName);
+    }
+    public void OpenSkillTree() { if((IsPaused||HasEnded)&&skillTreePanel!=null)skillTreePanel.Open(); }
+    public void OpenSettings() { if (IsPaused && settingsPanel != null) settingsPanel.Open(); }
 }

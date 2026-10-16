@@ -1,0 +1,142 @@
+[
+  {
+    "name": "BP_Pine_Tall",
+    "category": "Vegetation",
+    "triangles": 104
+  },
+  {
+    "name": "BP_Pine_Medium",
+    "category": "Vegetation",
+    "triangles": 104
+  },
+  {
+    "name": "BP_Pine_Young",
+    "category": "Vegetation",
+    "triangles": 104
+  },
+  {
+    "name": "BP_Pine_Wide",
+    "category": "Vegetation",
+    "triangles": 104
+  },
+  {
+    "name": "BP_Shrub_1",
+    "category": "Vegetation",
+    "triangles": 100
+  },
+  {
+    "name": "BP_Shrub_2",
+    "category": "Vegetation",
+    "triangles": 100
+  },
+  {
+    "name": "BP_Shrub_3",
+    "category": "Vegetation",
+    "triangles": 100
+  },
+  {
+    "name": "BP_Grass_Clump_1",
+    "category": "Vegetation",
+    "triangles": 14
+  },
+  {
+    "name": "BP_Grass_Clump_2",
+    "category": "Vegetation",
+    "triangles": 14
+  },
+  {
+    "name": "BP_Moss_Rock_1",
+    "category": "Rocks",
+    "triangles": 180
+  },
+  {
+    "name": "BP_Moss_Rock_2",
+    "category": "Rocks",
+    "triangles": 180
+  },
+  {
+    "name": "BP_Moss_Rock_3",
+    "category": "Rocks",
+    "triangles": 180
+  },
+  {
+    "name": "BP_Moss_Rock_4",
+    "category": "Rocks",
+    "triangles": 180
+  },
+  {
+    "name": "BP_Cliff_Cluster_1",
+    "category": "Rocks",
+    "triangles": 400
+  },
+  {
+    "name": "BP_Cliff_Cluster_2",
+    "category": "Rocks",
+    "triangles": 400
+  },
+  {
+    "name": "BP_Stump",
+    "category": "Props",
+    "triangles": 204
+  },
+  {
+    "name": "BP_Fallen_Log",
+    "category": "Props",
+    "triangles": 120
+  },
+  {
+    "name": "BP_Fence_Rail",
+    "category": "Structures",
+    "triangles": 120
+  },
+  {
+    "name": "BP_Fence_Palisade",
+    "category": "Structures",
+    "triangles": 424
+  },
+  {
+    "name": "BP_Wall_Straight",
+    "category": "Structures",
+    "triangles": 528
+  },
+  {
+    "name": "BP_Wall_Pillar",
+    "category": "Structures",
+    "triangles": 264
+  },
+  {
+    "name": "BP_Bridge_Stone_Arch",
+    "category": "Structures",
+    "triangles": 4152
+  },
+  {
+    "name": "BP_Banner_Gate",
+    "category": "Structures",
+    "triangles": 164
+  },
+  {
+    "name": "BP_Tile_Straight_4m",
+    "category": "Terrain",
+    "triangles": 3644
+  },
+  {
+    "name": "BP_Tile_Corner_4m",
+    "category": "Terrain",
+    "triangles": 3644
+  },
+  {
+    "name": "BP_Tile_Junction_4m",
+    "category": "Terrain",
+    "triangles": 3644
+  },
+  {
+    "name": "BP_Tile_Ground_4m",
+    "category": "Terrain",
+    "triangles": 3644
+  },
+  {
+    "name": "BP_Tile_River_4m",
+    "category": "Terrain",
+    "triangles": 3628
+  }
+]

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2175cbf1d15f82d4f96ee0aa6fcf0e33, type: 3}
+  m_Name: v1_legion_sword_0
+  m_EditorClassIdentifier: 
+  targetItem: {fileID: 11400000, guid: b58bea0f62f0acd4c988d8d96285e835, type: 2}
+  supportItem: {fileID: 11400000, guid: 7a9633fb9ade83246a499b10569f858f, type: 2}
+  filter: 0
+  supportType: 3
+  placement: 0
+  cells:
+  - {x: 1, y: 0}
+  - {x: 1, y: 1}
+  maxActivations: 1
+  description: "\xD6zel karede uygun e\u015Fya: +%8 hasar katk\u0131s\u0131"
+  bonus:
+    damage: 0.08
+    attackSpeed: 0
+    criticalChance: 0
+    health: 0
+    flatDamage: 0

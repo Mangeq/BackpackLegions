@@ -19,10 +19,13 @@ MonoBehaviour:
   Type: 2
   Rarity: 0
   itemOwners: 02000000
+  element: 0
   itemID: unit_akutun_ayakkabisi
   cost: 60
   itemIcon: {fileID: 21300000, guid: 9c510e7451d947a4da50febbf14557b4, type: 3}
   synergyIDs: []
+  synergyRecipes: []
+  synergyRules: []
   damageBonus: 0
   criticalChanceBonus: 0
   attackSpeedBonus: 0.18

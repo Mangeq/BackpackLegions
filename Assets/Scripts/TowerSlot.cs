@@ -29,6 +29,7 @@ public class TowerSlot : MonoBehaviour
     {
         // UI tıklaması arkadaki dünya slotunun seçimini değiştirmemeli.
         if (IsPointerOverUI(Input.mousePosition)) return;
+        if (UİManager.ConsumeWorldPanelClick()) return;
         if (!GameManager.CanBuyTowers) return;
         if (!isOccupied)
         {

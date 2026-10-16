@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e19424d56b32f4f9f053e937dfb22f, type: 3}
+  m_Name: Magic
+  m_EditorClassIdentifier: 
+  towerType: 3
+  title: "B\xDCY\xDCC\xDC A\u011EACI"
+  subtitle: "Element \xB7 B\xFCy\xFC e\u015Fyalar\u0131 \xB7 Uzmanl\u0131k \xB7 Ba\u011Flant\u0131lar
+    taslak"
+  accent: {r: 0.34, g: 0.27, b: 0.43, a: 1}
+  nodes:
+  - skill: {fileID: 11400000, guid: 6ce4db5931f55c240960212bdee8a0c6, type: 2}
+    position: {x: 400, y: 500}
+  - skill: {fileID: 11400000, guid: c369b3cdf5a4a3246aea6aa78edcdf1d, type: 2}
+    position: {x: 110, y: 365}
+  - skill: {fileID: 11400000, guid: cafea860f8465a74481d5aed997b56a4, type: 2}
+    position: {x: 400, y: 365}
+  - skill: {fileID: 11400000, guid: 4f4f2e4b05f900f468d11633e22561c7, type: 2}
+    position: {x: 690, y: 365}
+  - skill: {fileID: 11400000, guid: c8e7596176d55aa419381407edb1b0b3, type: 2}
+    position: {x: 110, y: 220}
+  - skill: {fileID: 11400000, guid: 23669ae0a0b8b5e4dbf011260c3ad4f5, type: 2}
+    position: {x: 400, y: 220}
+  - skill: {fileID: 11400000, guid: 48da57b0e05131040a091abd698752ac, type: 2}
+    position: {x: 690, y: 220}
+  - skill: {fileID: 11400000, guid: c2219f3627b075f4bb5e657bfb332bf0, type: 2}
+    position: {x: 80, y: 70}
+  - skill: {fileID: 11400000, guid: df925c25fbf9a4042b33d7ea63f35269, type: 2}
+    position: {x: 240, y: 70}
+  - skill: {fileID: 11400000, guid: e71389792877765409bcecf9d4d4c40b, type: 2}
+    position: {x: 400, y: 70}
+  - skill: {fileID: 11400000, guid: 5ae511a73f9f7d24b949868ea9d9c735, type: 2}
+    position: {x: 560, y: 70}
+  - skill: {fileID: 11400000, guid: 0206c243bff43294180cebee34aa0bf8, type: 2}
+    position: {x: 720, y: 70}

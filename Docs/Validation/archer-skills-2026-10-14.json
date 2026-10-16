@@ -1,0 +1,17 @@
+{
+  "economy": "Funds, parents, duplicate prevention, stale-instance reload, persistence, refund and record preservation passed",
+  "combat": {
+    "singleArrowAttacks": 6,
+    "checks": "Live/new towers, damage, speed, range collider, crit, actual hits, stack cap, target switch, stale shots, low HP and refund passed"
+  },
+  "ui": {
+    "selections": 47,
+    "balance": 0
+  },
+  "refundLive": "Refund, purchase, duplicate and pause return passed",
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  }
+}

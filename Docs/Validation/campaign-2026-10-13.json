@@ -1,0 +1,739 @@
+{
+  "checks": [
+    {
+      "test": "Menu selection loads chapter 1",
+      "passed": true
+    },
+    {
+      "test": "Menu selection loads chapter 2",
+      "passed": true
+    },
+    {
+      "test": "Menu selection loads chapter 3",
+      "passed": true
+    },
+    {
+      "test": "Menu selection loads chapter 4",
+      "passed": true
+    },
+    {
+      "test": "Menu selection loads chapter 5",
+      "passed": true
+    },
+    {
+      "test": "Three enemy types start together",
+      "passed": true
+    },
+    {
+      "test": "Pause freezes group production",
+      "passed": true
+    },
+    {
+      "test": "All groups produce their full counts",
+      "passed": true
+    },
+    {
+      "test": "Later preparation applies chapter plus wave increase",
+      "passed": true
+    },
+    {
+      "test": "Preparation preview opens with three correct types",
+      "passed": true
+    }
+  ],
+  "data": [
+    {
+      "test": "Five chapters",
+      "passed": true
+    },
+    {
+      "test": "Chapter 1 linear rounds/enemies",
+      "passed": true
+    },
+    {
+      "test": "Chapter 1 preparation progression",
+      "passed": true
+    },
+    {
+      "test": "Chapter 1 scene/theme",
+      "passed": true
+    },
+    {
+      "test": "Chapter 1 wave two mixed",
+      "passed": true
+    },
+    {
+      "test": "Chapter 1 wave three air",
+      "passed": true
+    },
+    {
+      "test": "Chapter 1 three simultaneous groups",
+      "passed": true
+    },
+    {
+      "test": "Chapter 1 single boss in final wave",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C1",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C1",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C1",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C1",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C1",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C1",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C1",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C1",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C1",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C1",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 0 Scout",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 0 Raider",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 0 Guard",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 0 Elite",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 0 SkyWisp",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 0 Warlord",
+      "passed": true
+    },
+    {
+      "test": "Chapter 2 linear rounds/enemies",
+      "passed": true
+    },
+    {
+      "test": "Chapter 2 preparation progression",
+      "passed": true
+    },
+    {
+      "test": "Chapter 2 scene/theme",
+      "passed": true
+    },
+    {
+      "test": "Chapter 2 wave two mixed",
+      "passed": true
+    },
+    {
+      "test": "Chapter 2 wave three air",
+      "passed": true
+    },
+    {
+      "test": "Chapter 2 three simultaneous groups",
+      "passed": true
+    },
+    {
+      "test": "Chapter 2 single boss in final wave",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C2",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C2",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C2",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C2",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C2",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C2",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C2",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C2",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C2",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C2",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C2",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C2",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C2",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C2",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 1 Scout",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 1 Raider",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 1 Guard",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 1 Elite",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 1 SkyWisp",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 1 Warlord",
+      "passed": true
+    },
+    {
+      "test": "Chapter 3 linear rounds/enemies",
+      "passed": true
+    },
+    {
+      "test": "Chapter 3 preparation progression",
+      "passed": true
+    },
+    {
+      "test": "Chapter 3 scene/theme",
+      "passed": true
+    },
+    {
+      "test": "Chapter 3 wave two mixed",
+      "passed": true
+    },
+    {
+      "test": "Chapter 3 wave three air",
+      "passed": true
+    },
+    {
+      "test": "Chapter 3 three simultaneous groups",
+      "passed": true
+    },
+    {
+      "test": "Chapter 3 single boss in final wave",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C3",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C3",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 2 Scout",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 2 Raider",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 2 Guard",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 2 Elite",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 2 SkyWisp",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 2 Warlord",
+      "passed": true
+    },
+    {
+      "test": "Chapter 4 linear rounds/enemies",
+      "passed": true
+    },
+    {
+      "test": "Chapter 4 preparation progression",
+      "passed": true
+    },
+    {
+      "test": "Chapter 4 scene/theme",
+      "passed": true
+    },
+    {
+      "test": "Chapter 4 wave two mixed",
+      "passed": true
+    },
+    {
+      "test": "Chapter 4 wave three air",
+      "passed": true
+    },
+    {
+      "test": "Chapter 4 three simultaneous groups",
+      "passed": true
+    },
+    {
+      "test": "Chapter 4 single boss in final wave",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C4",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C4",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 3 Scout",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 3 Raider",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 3 Guard",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 3 Elite",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 3 SkyWisp",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 3 Warlord",
+      "passed": true
+    },
+    {
+      "test": "Chapter 5 linear rounds/enemies",
+      "passed": true
+    },
+    {
+      "test": "Chapter 5 preparation progression",
+      "passed": true
+    },
+    {
+      "test": "Chapter 5 scene/theme",
+      "passed": true
+    },
+    {
+      "test": "Chapter 5 wave two mixed",
+      "passed": true
+    },
+    {
+      "test": "Chapter 5 wave three air",
+      "passed": true
+    },
+    {
+      "test": "Chapter 5 three simultaneous groups",
+      "passed": true
+    },
+    {
+      "test": "Chapter 5 single boss in final wave",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Valid groups C5",
+      "passed": true
+    },
+    {
+      "test": "Preview roster C5",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 4 Scout",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 4 Raider",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 4 Guard",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 4 Elite",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 4 SkyWisp",
+      "passed": true
+    },
+    {
+      "test": "Linear stats 4 Warlord",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Water -> Water",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Fire -> Water",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Air -> Water",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Earth -> Water",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Water -> Fire",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Fire -> Fire",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Air -> Fire",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Earth -> Fire",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Water -> Air",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Fire -> Air",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Air -> Air",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Earth -> Air",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Water -> Earth",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Fire -> Earth",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Air -> Earth",
+      "passed": true
+    },
+    {
+      "test": "Actual damage Earth -> Earth",
+      "passed": true
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  }
+}

@@ -20,10 +20,13 @@ MonoBehaviour:
   Type: 1
   Rarity: 2
   itemOwners: 02000000
+  element: 0
   itemID: unit_komutan_sancagi
   cost: 220
   itemIcon: {fileID: 21300000, guid: 99a7b848a9745084d83a7c268a8561ef, type: 3}
   synergyIDs: []
+  synergyRecipes: []
+  synergyRules: []
   damageBonus: 0.2
   criticalChanceBonus: 0
   attackSpeedBonus: 0

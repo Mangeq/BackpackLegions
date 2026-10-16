@@ -35,7 +35,10 @@ public class ShopSlotUI : MonoBehaviour
             rt.sizeDelta = Vector2.one * (unit - 2f);
             rt.anchoredPosition = new Vector2(cell.x * unit, -cell.y * unit);
             var img = go.GetComponent<UnityEngine.UI.Image>();
-            img.color = new Color(0.52f, 0.61f, 0.68f); img.raycastTarget = false;
+            if(BackpackUIManager.Instance!=null&&BackpackUIManager.Instance.GetComponent<TowerPanelLayout>()!=null)
+            {img.sprite=ReferencePanelAssets.Sprite("FootprintCell");img.color=Color.white;}
+            else img.color = new Color(0.52f, 0.61f, 0.68f);
+            img.raycastTarget = false;
         }
     }
 }

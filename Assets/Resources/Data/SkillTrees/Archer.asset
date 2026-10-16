@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e19424d56b32f4f9f053e937dfb22f, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  towerType: 0
+  title: "OK\xC7U A\u011EACI"
+  subtitle: "H\u0131z \xB7 Menzil \xB7 Kritik \xB7 Kal\u0131c\u0131 yetenekler"
+  accent: {r: 0.25, g: 0.39, b: 0.29, a: 1}
+  nodes:
+  - skill: {fileID: 11400000, guid: f9035e9c5009c6541af2efe67fa518fb, type: 2}
+    position: {x: 400, y: 510}
+  - skill: {fileID: 11400000, guid: d74348dedf6ae1543960b8da721e2fc5, type: 2}
+    position: {x: 110, y: 395}
+  - skill: {fileID: 11400000, guid: 23fe170d7a59ba94fbf8b17fc19da85f, type: 2}
+    position: {x: 400, y: 395}
+  - skill: {fileID: 11400000, guid: 5c8dd29b62f5ed149bf6d69a41c379f5, type: 2}
+    position: {x: 690, y: 395}
+  - skill: {fileID: 11400000, guid: fa98fc3daf0d9f2419c94bcc1d1ed82a, type: 2}
+    position: {x: 110, y: 270}
+  - skill: {fileID: 11400000, guid: f8f2e0bea7d11d74ebb476035af608d4, type: 2}
+    position: {x: 400, y: 270}
+  - skill: {fileID: 11400000, guid: 26514df16ff9a5f46906e759014da698, type: 2}
+    position: {x: 690, y: 270}
+  - skill: {fileID: 11400000, guid: 58f5194a0803314469a04d48e8a57f1b, type: 2}
+    position: {x: 110, y: 120}
+  - skill: {fileID: 11400000, guid: a8e6effea7817f6429b728587a2ee914, type: 2}
+    position: {x: 400, y: 120}
+  - skill: {fileID: 11400000, guid: f9bc85a49320e7e4697c043df5b7757a, type: 2}
+    position: {x: 690, y: 160}
+  - skill: {fileID: 11400000, guid: 269b7f17be58cc64996644e2e5f01578, type: 2}
+    position: {x: 690, y: 40}

@@ -13,18 +13,28 @@ MonoBehaviour:
   m_Name: MegicData
   m_EditorClassIdentifier: 
   towerLevel: 1
-  firstLevelExperience: 20
-  experienceIncreasePerLevel: 10
+  firstLevelExperience: 24
+  experienceIncreasePerLevel: 12
+  levelDamageGrowth: 0.05
+  levelAttackSpeedGrowth: 0.015
+  levelCriticalGrowth: 0.003
+  maximumCriticalChance: 0.6
   defaultWeapon: {fileID: 11400000, guid: 8e5e92eb00a30f842840dad4496f85f3, type: 2}
   fireWeapon: {fileID: 11400000, guid: 3be684c15bb81be4c87f4ee8f10439c6, type: 2}
   waterWeapon: {fileID: 11400000, guid: 7045476ef5251b541b889cc0e5f3e5db, type: 2}
   earthWeapon: {fileID: 11400000, guid: 53c287c3fa274a344b0862bed7fd1640, type: 2}
   airWeapon: {fileID: 11400000, guid: cc17a7caa03fc70499ce04ac2477bc3c, type: 2}
   type: 3
-  damage: 30
-  criticalChance: 0.1
-  range: 4
-  attackSpeed: 1.8
+  damage: 29
+  criticalChance: 0.05
+  range: 3.4
+  attackSpeed: 1.9
   cost: 325
+  explosionRadius: 1.5
+  mortarFlightTime: 0.25
+  mortarArcHeight: 0.8
+  mortarCriticalMultiplier: 2
+  elementChangeCost: 100
+  typeChangeRefundRate: 0.5
   gridWidth: 5
   gridHeight: 5

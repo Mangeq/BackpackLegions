@@ -1,0 +1,11 @@
+{
+  "inspector": {
+    "inspectorSections": 5
+  },
+  "genericEffects": "User-created data applied 7% damage, 9% speed, +4 crit points, 8% range / 13% unit health to correct types; refund reverted effects",
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  }
+}

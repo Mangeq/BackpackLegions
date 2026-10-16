@@ -1,0 +1,12 @@
+if(UnityEditor.EditorApplication.isPlaying)throw new System.Exception("Stop Play first.");
+if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty)throw new System.Exception("Unsaved scene.");
+var scene=UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Scenes/GameScane.unity");
+var preview=UnityEngine.Object.FindObjectOfType<WavePreviewUI>();
+var rect=preview.panel.GetComponent<RectTransform>();
+rect.anchorMin=rect.anchorMax=new Vector2(0,1);rect.pivot=new Vector2(0,1);rect.anchoredPosition=new Vector2(220,-100);
+preview.panel.GetComponent<UnityEngine.UI.Image>().raycastTarget=true;
+preview.panel.transform.SetAsFirstSibling();
+UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(scene);
+UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene);
+UnityEditor.AssetDatabase.Refresh();
+return "Preview beside wave indicator; blocks clicks through its background and stays behind full panels.";

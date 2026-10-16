@@ -1,0 +1,11 @@
+{
+  "verified": 261,
+  "cleaned": [
+    "Assets/Resources/Data/Items/Evolved/Fire/evolved_shortbow_fire.asset",
+    "Assets/Resources/Data/Items/Main/Earth/main_arrowtower_earth.asset",
+    "Assets/Resources/Data/Items/Shop/Earth/mortar_topcu_pelerini_earth.asset",
+    "Assets/Resources/Data/Items/Shop/Normal/v1_captain_armor.asset",
+    "Assets/Resources/Data/Items/Shop/Normal/v1_fortress_shield.asset"
+  ],
+  "failures": []
+}

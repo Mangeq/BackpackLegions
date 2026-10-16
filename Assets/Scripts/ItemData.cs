@@ -37,7 +37,8 @@ public class ItemData : ScriptableObject
     public int cost;
     public Sprite itemIcon;
     public List<string> synergyIDs;
-    public List<ItemSynergyRule> synergyRules = new List<ItemSynergyRule>();
+    public List<ItemSynergyRecipe> synergyRecipes = new List<ItemSynergyRecipe>();
+    [HideInInspector] public List<ItemSynergyRule> synergyRules = new List<ItemSynergyRule>();
 
     public float damageBonus;
     public float criticalChanceBonus;

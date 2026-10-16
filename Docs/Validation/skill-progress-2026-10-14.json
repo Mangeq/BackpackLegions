@@ -1,0 +1,23 @@
+{
+  "rewardRules": "Thresholds, replay, improvement delta, defeat, independent chapters and persisted reload passed",
+  "result_25": {
+    "points": 1,
+    "nodeSelections": 48,
+    "summary": "BÖLÜM 01 · KARAÇAM GEÇİDİ\n\nTamamlanan dalga   5 / 5\nKalan altın   850\nKalan can   25 / 100\nYetenek puanı   +1  ·  Toplam 1"
+  },
+  "result_90": {
+    "points": 3,
+    "nodeSelections": 48,
+    "summary": "BÖLÜM 01 · KARAÇAM GEÇİDİ\n\nTamamlanan dalga   5 / 5\nKalan altın   850\nKalan can   90 / 100\nYetenek puanı   +2  ·  Toplam 3"
+  },
+  "result_0": {
+    "points": 3,
+    "nodeSelections": 48,
+    "summary": "BÖLÜM 01 · KARAÇAM GEÇİDİ\n\nTamamlanan dalga   0 / 5\nKalan altın   850\nKalan can   0 / 100\nYetenek puanı   +0  ·  Toplam 3"
+  },
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-16",
+  "baseline_commit": "9b53bf9722240e8addb8b8617b24639b8f39df44",
+  "github": {
+    "status": "pending",
+    "commit": null,
+    "repository": "https://github.com/Mangeq/BackpackLegions"
+  },
+  "linkedin": {
+    "status": "draft",
+    "url": null,
+    "published_at": null,
+    "images": [
+      "Docs/WeeklyUpdates/2026-10-16/01-current-game.png"
+    ]
+  }
+}

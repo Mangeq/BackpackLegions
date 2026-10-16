@@ -1,6 +1,108 @@
-﻿# Backpack Legions — Güncel Geliştirme Yol Haritası
+# Backpack Legions — Güncel Geliştirme Yol Haritası
 
-Son güncelleme: 9 Ekim 2026. İlk inceleme: 1 Ekim 2026. Kaynaklar: GDD V4 (30 Haziran 2026), Skilltree System V1, önceki yol haritası, proje kodu, canlı Unity 2022.3.62f3 oturumu ve sınırlı Play Mode kontrolleri.
+Son güncelleme: 15 Ekim 2026. İlk inceleme: 1 Ekim 2026. Kaynaklar: GDD V4 (30 Haziran 2026), Skilltree System V1, önceki yol haritası, proje kodu, canlı Unity 2022.3.62f3 oturumu ve sınırlı Play Mode kontrolleri.
+
+## 15 Ekim 2026 — Konum sinerjisi ve takılabilir parçalar
+
+- [x] Mevcut dalga sonu evrim sistemi korundu; sürekli stat sinerjisi ayrı ItemSynergyRecipe verisine geçirildi.
+- [x] Hedef/sağlayıcı eşya, yerel kareler, takılma modu, etkinleşme sınırı ve sabit/yüzde bonusları Inspector'dan ayarlanıyor.
+- [x] 21 eski kural taşındı. Lejyoner Kılıcı + Lejyon Tacı: sağ üst komşu karede veya üzerine takılıyken +5 sabit hasar örneği eklendi.
+- [x] Takılı parçayı küçük ikonundan çıkarma; grupla taşıma/döndürme; depoda sıfır katkı; satış, evrim ve kule/element dönüşümünde parçaları depoya veya bekleyen teslimlere koruma.
+- [x] Dönüşler, gerçek drag metotları, iptal, satış, ücret, dolu depo/teslim, evrim ve kule dönüşümü kontrolleri geçti; Console temiz. Kullanıcı yetenek kaydı korundu, Boot/Play kapalı bırakıldı.
+- [ ] Kullanıcıyla oynayarak parça ergonomisini ve yeni tariflerin sayısal dengesini değerlendirmek.
+- Ayrıntılı veri oluşturma ve kod açıklaması: [Evrim ve konum sinerjisi](Evrim_ve_Konum_Sinerjisi_2026-10-15.md).
+
+## 15 Ekim 2026 — SkillData / SkillTreeData dönüşümü
+
+- [x] Onaylanan iki ScriptableObject: SkillData (kule türü, etki, ikon, açıklama, maliyet, ön koşul), SkillTreeData (ağaç ve düğüm konumları).
+- [x] 47 yetenek asseti ve dört ağaç taşındı; eski okçu kayıt kimlikleri ve etkileri korundu.
+- [x] UI Inspector'ında SkillData sürüklenebilen düğüm listeleri; datadan ikon/metin/fiyat/bağlantı/tıklama üretimi, 12 düğüm sınırının kaldırılması.
+- [x] Temel etkiler doğru kule türüne uygulanıyor; okçu koşullu etkilerinin değerleri de data üzerinden. Diğer türlerin eski taslakları etkinleştirilmedi.
+- [x] Makbuzlu puan iadesi, eski kayıt göçü, yanlış tür/döngü/kimlik korumaları; data/UI/savaş testleri geçti, Console temiz.
+- Kullanım ve ayrıntılı kod: [SkillData rehberi](SkillData_Kullanim_Rehberi_2026-10-15.md).
+- [ ] Diğer üç ağacın etkilerini kullanıcıyla belirlemek; tam bölüm denge testi.
+
+## 15 Ekim 2026 — Okçu yetenekleri etkin
+
+- [x] Ek ok yeteneği kaldırıldı; eşyalara ayrıldı. Okçu 11 etkin düğüm, diğer türler 12'şer taslak düğüm.
+- [x] Kök 1, diğerleri 2 puan; bağlı ön koşullar, kalıcı açılım, yetersiz puan/çift satın alma koruması ve ücretsiz tam puan iadesi.
+- [x] Mevcut/yeni okçulara hasar, hız, menzil, kritik; isabet serisi, dış menzil/düşük can bonusu ve aynı hedefte altıncı atışın kesin kritiği.
+- [x] Canlı ekonomi/savaş/UI kontrolleri geçti; oyuncu kaydı testten sonra geri yüklendi. Ayrıntılar: [Okçu yetenekleri](Okcu_Yetenekleri_2026-10-15.md).
+- [ ] Büyücü, havan ve birlik etkilerini birlikte belirlemek ve uygulamak; tam bölüm denge testi yapmak.
+
+## 14 Ekim 2026 — Kalıcı yetenek puanı ve 12 düğümlü ağaçlar
+
+- [x] Onaylanan can ödülü: zaferde %90+ → 3, %50–89 → 2, pozitif %50 altı → 1; yenilgi → 0. Her bölümün en iyi sonucuna yalnız pozitif fark eklenir.
+- [x] SkillTreeProgress ortak puan bakiyesi ve bölüm rekorlarını PlayerPrefs JSON ile kalıcı saklar. Açılmış yetenek kimlikleri için kayıt alanı hazır; açılım/harcama henüz yok.
+- [x] Dört türde 12'şer taslak düğüm, üç ana dal, üstte gerçek puan göstergesi.
+- [x] Zafer/yenilgi ekranından ağaca erişim; kapanınca aynı sonuca dönüş. Sonuçta can/eklenen puan/toplam gösterimi.
+- [x] Eşikler, tekrar ödül engeli, iyileştirme farkı, kayıt okuma ve üç canlı sonuç senaryosu geçti; 48 düğümün seçimi/taşma kontrolü ve Console temiz.
+- [ ] Yetenek etkileri, maliyetleri, açılma ön koşulları ve ücretsiz sıfırlamayı birlikte netleştirip uygulamak. Bu tarihli aşama yalnız puan kazanımıydı; okçu harcama/etkileri 15 Ekim güncellemesinde tamamlandı.
+- Açıklama: [Yetenek puanı ve kayıt](Skilltree_Puan_ve_Kayit_2026-10-14.md).
+
+## 14 Ekim 2026 — Sonuç panelleri ve skilltree tasarımı
+
+- [x] Skilltree merkezi kökten yukarı doğru dallanan ağaç görünümüne çevrildi. Dört türde 24 düğüm seçimi ve metin taşması yeniden kontrol edildi; bağlantılar hâlâ görsel taslaktır.
+
+- [x] Ayrı zafer/yenilgi kartları: gerçek bölüm/dalga/altın özeti, tekrar deneme ve ana menü. Zaferde sonraki ChapterData doğrudan yüklenir; son bölüm sınırı korunur.
+- [x] Emir'in kararı: yerleştirilen her kuleye ayrı ağaç değil, okçu/büyücü/havan/birlik türü başına ortak ağaç.
+- [x] Onaylanan GameManager + SkillTreePanelUI görev dağılımı. Ana menü ve pause erişimi, dört tür sekmesi, 24 seçilebilir taslak düğüm, detay kartı, ESC/dışarı tıklamayla kapatma.
+- [x] 15 akış kontrolü geçti; zafer/yenilgi ve skilltree Game View'da incelendi. Son Console kontrolü temiz.
+- [ ] Skilltree etkileri, puan harcama maliyetleri, ön koşullar ve reset birlikte belirlenecek. Puan kazanma ve kayıt yukarıdaki revizyonda uygulandı. Bu adım yalnız skilltree tasarımıdır; buff/satın alma uygulanmadı. Havan düğümleri ve bağlantılar öneridir.
+- Kod ve kullanım: [Sonuç ve skilltree panelleri](Sonuc_ve_Skilltree_Panelleri_2026-10-14.md).
+
+## 14 Ekim 2026 — Hover paneli ve ölçülü kolaylaştırma
+
+- [x] WavePreviewUI artık başlangıçta kapalıdır; yalnız dalga göstergesi üzerine gelince açılır, çıkınca hemen kapanır. Tıklayarak sabitleme ve hazırlıkta otomatik açılma kaldırıldı; disable/pause davranışı kontrol edildi.
+- [x] Başlangıç bütçeleri 850/1000/1150/1300/1450. Normal düşman canı %12, boss canı %20 azaltıldı; ödüller %10 artırılıp yukarı yuvarlandı, doğma aralıkları %10 uzatıldı. Adetler ve dalga sayıları korundu.
+- [x] Avantaj ×2; direnç ×0,4. Normal saldırı keşifçide ×0,95, diğer düşmanlarda ×0,85, bossta ×0,6. Boss kaçış cezası korunur.
+- [ ] Bu yumuşatmanın tam bölüm oynanışını kullanıcıyla değerlendirmek.
+- Kod açıklaması ve güncel sayılar: [Hover paneli ve denge](Hover_ve_Denge_2026-10-14.md). Aşağıdaki sert denge sayıları önceki sürüm geçmişidir.
+
+## 14 Ekim 2026 — Oynanış geri bildiriminden sonra zorluk revizyonu
+
+- [x] Emir beş bölümü oynadı: element seçmeden ve bütün yerleri doldurmadan kolayca kazanabildiğini bildirdi; aşağıdaki denge bu geri bildirime göre değiştirildi.
+- [x] 10.000 test altını kaldırıldı. Bölümler 700/850/1000/1150/1300 altınla başlar; yeniden başlatma ve bölüm geçişinde bütçe sıfırlanır.
+- [x] Düşman toplamları 180/260/340/420/500; her finalde tek boss ve destekler. Boss canı 3000/4800/6600/8400/10200; kaçarsa aktif 100 canlık kaleyi yıkar.
+- [x] Kampanya element çarpanları: avantaj ×2, direnç ×0,3; Normal saldırı keşifçide ×0,9, diğerlerinde ×0,75, bossta ×0,45. Paneller gerçek değerleri gösterir.
+- [x] Kule seviye büyümesi yeniden hesaplandı; toplam kritik %60 ile sınırlı. Temel atış/menzil, eşya bonusları/fiyatları ve düşman ödülleri birlikte ayarlandı. Komşuluk sinerjileri ve tarifler korundu.
+- [x] Yerleşim rolleri menzil, kara/hava ayrımı, alan hasarı ve birliklerin tutması üzerinden ayrıştırıldı. Eski PlaneTest değiştirilmedi.
+- [x] 274 veri/hasar kontrolü, 13 menü/bütçe/önizleme kontrolü ve üç kontrollü savaş ölçümü tamamlandı. Başlangıç kurulumu ilk dalgayı geçti; iki dolu nötr kule bossu geçemedi; doğru elementli beş kule izole bossu geçti. Son Console kontrolü temiz.
+- [ ] Yeni değerlerle beş bölümün baştan sona oyuncu testi; özellikle boss + destek birlikleri ve sonraki bölümlerin ekonomisi. İzole testler tam bölüm dengesi garantisi değildir.
+- Ayrıntılı kod açıklaması, tablolar ve test sınırları: [Zorluk dengesi](Zorluk_Dengesi_2026-10-13.md). Önceki 13 Ekim bölümündeki sayılar ilk kurulum geçmişidir; güncel değerler bu revizyondadır.
+
+## 13 Ekim 2026 — Beş bölüm, elementli düşmanlar ve dalga önizlemesi
+
+- [x] Onaylanan ChapterData / WaveEnemyGroup / WavePreviewUI görev dağılımı; mevcut WaveManager, GameManager ve MainMenuManager kullanıldı.
+- [x] Beş oynanabilir bölüm: 5/7/9/11/13 dalga, 40/60/80/100/120 düşman. Her bölümün son dalgasında boss ve destekler.
+- [x] 30 elementli düşman varyantı; Su → Ateş → Hava → Toprak → Su, avantaj ×1,5 ve direnç ×0,5. Bölüm başına temel can +%25, hasar +%15; kaynak düşmanlar korundu.
+- [x] İkinci dalgadan itibaren bazı dalgalarda 2–3 tür eşzamanlı üretim; üçüncü dalga uçan düşman.
+- [x] Dalga göstergesine bağlı hazırlık önizlemesi: tür, adet, can, element ve zayıflık/direnç. Hazırlık tabanı 60/75/90/105/120 sn; sonraki her dalgada +5 sn.
+- [x] Beş bölüm menüye bağlandı. Şimdilik ortak harita; ileride bölüm başına ayrı sahne ve beş bölüm başına tema için sceneName/themeIndex alanları hazır.
+- [x] 172 veri/hasar + 10 Play Mode kontrolü geçti; Console temiz. Önizleme görseli incelendi.
+- [x] İlk sürümün beş bölümü Emir tarafından oynandı; kolay bulundu ve 14 Ekim zorluk revizyonuna geçildi. Ayrı haritalar ve yeni tema görselleri henüz yapılmadı.
+- Kodun ayrıntılı açıklaması, Inspector rehberi ve test sınırları: [Bölümler ve dalga önizlemesi](Bolumler_ve_Dalga_Onizleme_2026-10-13.md).
+
+## 10 Ekim 2026 — Mevcut mekanik iyileştirmeleri
+
+- [x] Onaylanan eşya klasör düzeni: Items/Shop, Main, Evolved ve EvolutionRecipes altında element ayrımı; 261 asset GUID korunarak taşındı. Havan dosya adları düzeltildi, beş etkisiz sinerji kaydı temizlendi. Denge ve kullanıcı tarifleri korundu. 651 veri + 21 evrim + 20 panel/dönüşüm kontrolü geçti. [Güncel veri rehberi](Esya_Verileri_Rehberi_2026-10-10.md).
+
+- [x] ESC ve panel dışı tıklamayla kapatma: en üstteki pencere kapanır; panel yoksa ESC pause açar. Sürüklenen eşya kapanmadan önce geri konur.
+- [x] Kule tipi değişiminde çantayı elle boşaltma yerine satış tutarı gösteren onay ve otomatik satış. Ana eşya hariç çanta satılır; depo/teslimler korunur. Gelir dönüşüm ücretine sayılır; fazlası oyuncuda kalır. Bu karar önceki boş-çanta şartının yerini alır.
+- [x] Satış alanı 34'ten 60 piksel yüksekliğe büyütüldü; birleşik panel taşmayacak şekilde uyarlandı.
+- 23 Play Mode kontrolü geçti; onay/satış alanı Game View'da incelendi, Console temiz. [Kod ve test açıklaması](Panel_ve_Otomatik_Satis_2026-10-10.md).
+
+## 9 Ekim 2026 — Havan kulesi
+
+- [x] Oyun testi sonrası düzeltme: havan modeli yarı boyuta getirildi; uçuş 0,9 → 0,25 sn, yay 2,5 → 0,8. Hız 4 olan gerçek hareketli akıncıda isabet doğrulandı.
+- [x] Mevcut iki sınıf içinde kule başına sekiz mermi/efektin yeniden kullanımı, büyüyebilen NonAlloc patlama tamponu, düşük geometrili/gölgesiz efekt. 100 atışta nesne sayısı sabit; 12 optimizasyon + 46 çekirdek kontrolü geçti.
+
+- [x] Onaylanan MortarTower / MortarProjectile görev dağılımı uygulandı. Yalnız kara, ilk/son giriş hedeflemesi, sabit noktaya kavisli uçuş ve alan hasarı.
+- [x] 70 hasar, 3 sn atış aralığı, 6 menzil, 1,5 patlama yarıçapı, 350 altın başlangıç fiyatı; ayarlar TowerData'da.
+- [x] Dördüncü satın alma ikonu aktif. Havan çanta/depo, element, XP, sinerji, evrim ve kule tipi değişimine bağlandı.
+- [x] 50 mağaza eşyası, 5 ana eşya, 5 evrim sonucu ve 5 tarif eklendi. Toplam mağaza listesi 200 eşya.
+- [x] 59 havan kontrolü + 80 regresyon kontrolü geçti; gerçek otomatik atışta 9 × 70 hasar doğrulandı. Console temiz.
+- Kod, ayarlar ve testler: [Havan kulesi](Havan_Kulesi_2026-10-09.md).
 
 ## 9 Ekim 2026 — Kule ve element değiştirme (GDD 4.2–4.3 revizyonu)
 
@@ -63,7 +165,7 @@ Son güncelleme: 9 Ekim 2026. İlk inceleme: 1 Ekim 2026. Kaynaklar: GDD V4 (30 
 - [x] Menzilden çıkıp geri giren düşman sona eklenir; aynı düşmanın birden fazla collider'ı tek sıra kaydı oluşturur. Ölü hedefler atlanır. Seçim değişikliği sonraki atışa uygulanır; mevcut merminin hedefi değişmez.
 - [x] Mevcut EnemyData, Tower ve UİManager görev dağılımı kullanıldı; BackpackUIManager'da panel dışına tıklama kontrolü yeni düğmeleri kapsayacak şekilde düzeltildi.
 - [x] 32 benzersiz hedefleme/atış/UI kontrolü ve 28 Aşama 1 regresyon kontrolü geçti. İlk raycast denemesi köşe/pivot noktasını kullandığı için başarısızdı; düğme merkeziyle düzeltilen kontrol geçti. Console hata/uyarı döndürmedi; sahne kaydedildi, Play kapalı ve dirty=false.
-- [ ] Gerçek uçan düşman hareketi ve bölüm içeriği ayrı iş. Mevcut bölüm düşmanları Kara; Hava seçilirse bu bölümde kule ateş etmez.
+- [x] Sonraki çalışmada uçan düşman hareketi ve üçüncü dalga eklendi; 13 Ekim itibarıyla beş bölümün üçüncü dalgası uçan düşman içeriyor. Bu eski madde artık geçerli değil.
 - Kod açıklaması ve test sınırları: [Hedefleme](C:/Users/Emir/BackPackDefance/Docs/Backpack_Legions_Hedefleme_2026-10-05.md). Yedek: `Backups/2026-10-05-targeting`.
 
 ## 4 Ekim 2026 — Aşama 1 kapanış denetimi
@@ -301,11 +403,11 @@ Hazırlık → Savaş → Hazırlık döngüsü ve gold/grid/shop kilitleri doğ
 - [x] XP gerçek hasar katkısına göre ölümde kulelere dağıtılır; asker katkısı sahibine yazılır. Kale teması ödülsüzdür. Seviye 5'te element seçimi beklerken XP korunur; seçim yalnız hazırlıkta yapılır (8 Ekim).
 - [x] Element listesi kararı: Emir mevcut Normal/Fire/Water/Earth/Air listesini korudu. Oyuncuya Ateş/Su/Toprak/Hava sunulur; mermi ve askerlere aktarılır. Belgelerdeki alternatif isimler bu listeyi değiştirmez. Düşman element kimliği 9 Ekim'de bağlandı.
 - [x] İlk element seçiminde ana eşya evrimi ve mağaza havuzu geçişi. Eski teklifler sonraki yenilemeye kadar korunur; dondurma bozulmaz. Eski normal eşyalar oyuncuda kalır, çantadayken çalışır; depodakiler hiçbir bonus vermez. Ana eşya ve evrimleri satılamaz/depolanamaz (9 Ekim).
-- [x] 12 ana eşya evrimi, 120 elementli mağaza eşya verisi, mevcut üç tarifin dört element karşılığı. Mevcut şekil/ikon temelli ilk içerik; yeni özel görsel seti değil. [Kod ve kurallar](Element_Evrimi_2026-10-09.md).
+- [x] Havan dahil 16 elementli ana eşya evrimi, 160 elementli mağaza eşya verisi, dört tarifin dört element karşılığı. Ayrıca 40 Normal mağaza eşyası vardır. Mevcut şekil/ikon temelli ilk içerik; yeni özel görsel seti değil. [Element kuralları](Element_Evrimi_2026-10-09.md), [havan eklemesi](Havan_Kulesi_2026-10-09.md).
 - [x] İlk seçimden sonra ücretli element değişimi: hazırlıkta onay ekranı, başlangıçta 100 altın; XP/seviye korunur. Ana eşya dönüşür; yeni mağaza hemen açılır, dondurma kalkar. Uyumsuz eski element eşyası pasif olur; Normal ve türü uygun eşya çalışır. İlk ücretsiz seçim eski teklifleri koruma kuralını sürdürür.
-- [x] Kule tipi değişimi: Emir'in 9 Ekim revizyonuyla yalnız çantadaki ana eşya dışındaki itemler çıkarılır; satış zorunlu değildir. Depo/teslimler korunur. Yeni kule seviye 1 / XP 0 / Normal başlar; eski askerler kaldırılır. Başlangıç fiyatı yeni kule fiyatı − eski kule fiyatının %50'si (iade aşağı yuvarlanır, net bedel en az 0).
+- [x] Kule tipi değişimi: 10 Ekim kararıyla elle boşaltma şartı kalktı. Onay ekranında ana eşya dışındaki çanta eşyalarının satış toplamı gösterilir; onayda satılır ve gelir dönüşüm ücretine sayılır. Depo/teslimler korunur. Yeni kule seviye 1 / XP 0 / Normal başlar; eski askerler kaldırılır. Dönüşüm ücreti yeni kule fiyatı − eski kule fiyatının %50'si (iade aşağı yuvarlanır, ücret en az 0).
 - [x] İlk ceza kararı: sonraki element değişimleri sabit 100 altın; katlanan ceza yok. TowerData.elementChangeCost ve typeChangeRefundRate Inspector'dan ayarlanır. Emir testten sonra gerekirse cezayı ağırlaştıracak.
-- [ ] Havan/topçu isteniyorsa ayrı kule davranışı; enum ve placeholder item bulunması uygulama değildir.
+- [x] Havan/topçu uygulandı: yalnız kara, ilk/son menzile giriş, hedefin atış anındaki konumuna kavisli mermi, 1,5 yarıçapta tekil hasar, düşman başına element çarpanı ve gerçek hasar üzerinden XP. Satın alma ve tür değişimi ekranlarında kullanılabilir (9 Ekim).
 
 Çıkış ölçütü: bir kule XP kazanır, sınıf seçer, ilgili shop'a geçer; fiyat/stat değişimi başka kuleye sızmaz.
 
@@ -323,8 +425,8 @@ Hazırlık → Savaş → Hazırlık döngüsü ve gold/grid/shop kilitleri doğ
 
 - [ ] Bestiary karşılaşma kaydı, Öğren görevi, kill ilerlemesi ve türe özel ödül.
 - [ ] Kalıcı sistemler seçilirse kayıt/yükleme; yeniden başlatma ve sürüm değişiminde korunacak veriler.
-- [ ] Bölüm geçişi ve dalga ölçekleme formülü; GDD'deki doğrusal zorluk/logaritmik yoğunluk ilişkisini netleştirmek.
-- [ ] 20 bölüm ve her beş bölümde tema/harita/düşman ailesi; önce bir bölümü dengeli ve tamamlanabilir örnek haline getirmek.
+- [x] İlk beş bölümün menüden yüklenmesi ve Emir’in onayladığı doğrusal içerik/istatistik artışı uygulandı (13 Ekim). Tam oynanış dengesi ayrıca yapılacak.
+- [ ] 20 bölüme genişletmek; her bölüme ayrı harita ve her beş bölüme bir tema. İlk beş bölümün düşman/dalga içeriği tamam, haritalar şimdilik ortak.
 - [ ] 1×/2×/3× dengeleme, olasılık kontrolleri, performans ve gerçek build testi.
 
 ## Skilltree V1 — Uygulama listesi
@@ -360,7 +462,7 @@ Hepsi **açık**. Genel kritik, item can bonusu ve spawn kodunun bulunması bu y
 4. Karar alındı (4 Ekim): dondurma yalnız seçili kulenin dört dükkan slotunu korur; uygulandı.
 5. Karar alındı (5 Ekim): yalnız okçu/büyücü için Kara / Hava / İkisi de filtresi ve collider'a İlk giren / Son giren sırası bağımsızdır. Mesafe/yol ilerlemesi değildir; uygun tür yoksa beklenir, diğer türe geçilmez.
 6. Karar alındı (9 Ekim): ilk element ücretsiz, sonraki değişimler sabit 100 altın. GDD'deki katlanan ceza bu sürümde uygulanmıyor; test sonrası yeniden değerlendirilecek.
-7. Skilltree run içi HQ harcaması mı, kalıcı ilerleme mi? Belge ikisini de seçenek olarak bırakıyor.
+7. Skilltree kule türü başına ortak olacak (14 Ekim kararı); arayüz taslağı tamamlandı. Run içi HQ harcaması mı, kalıcı ilerleme mi olduğu hâlâ açık.
 8. Aynı hedefte “başarılı atış” isabet mi ateşleme mi; stun tekrarları nasıl davranır?
 9. Zırh, büyü/fiziksel hasar, kritik ve element çarpanlarının sırası ne?
 10. Karar alındı (3 Ekim): düşman kendi saldırı ritmini kullanır; birlik hız bonusu düşmanı hızlandırmaz. İlk sayısal denge asistana bırakıldı, kapalı test geri bildirimleriyle güncellenecek.
@@ -380,5 +482,5 @@ Eski yol haritasının aynısı [arşivde](C:/Users/Emir/BackPackDefance/Docs/Ar
 
 ### 8 Ekim — Sağdan açılan kule satın alma paneli
 - [x] Boş yer → sağda dört ikon → ikonun solunda detay kartı → satın al akışı bağlandı. Gerçek fiyat/stat verileri, seçili ikon vurgusu, yetersiz para ve faz kilidi mevcut.
-- [x] Büyü/okçu/birlik satın alınabilir; henüz uygulanmamış topçu dördüncü ikon olarak Yakında gösterilir.
+- [x] Büyü/okçu/birlik satın alınabilir; 9 Ekim'de dördüncü ikon Havan olarak etkinleştirildi, Yakında etiketi kaldırıldı.
 - [x] Yeni akış 11/11, mevcut oyun regresyonu 28/28 kontrolden geçti; oyun görüntüsü incelendi. Ayrıntılı açıklama: [Kule satın alma paneli](Kule_Satin_Alma_Paneli_2026-10-08.md).

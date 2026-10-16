@@ -1,0 +1,170 @@
+[
+  {
+    "test": "recipe_evolved_apprentice_staff_air",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_legion_sword_air",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_shortbow_air",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_mortar_guclendirilmis_barut_air",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_apprentice_staff_earth",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_legion_sword_earth",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_shortbow_earth",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_mortar_guclendirilmis_barut_earth",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_apprentice_staff_fire",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_legion_sword_fire",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_shortbow_fire",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_mortar_guclendirilmis_barut_fire",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_apprentice_staff",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_deneme",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_legion_sword",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_mortar_guclendirilmis_barut_normal",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_shortbow",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_apprentice_staff_water",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_legion_sword_water",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_evolved_shortbow_water",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  },
+  {
+    "test": "recipe_mortar_guclendirilmis_barut_water",
+    "passed": true,
+    "found": true,
+    "waiting": true,
+    "evolved": true,
+    "once": true
+  }
+]

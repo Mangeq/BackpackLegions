@@ -1,0 +1,13 @@
+{
+  "runtime": [
+    "Position, four rotations, removal, one-time recipe, cap, identity, detach and ownership passed",
+    "UI attach, detach, cancel/failed drop, host storage, zero storage buffs, instance tooltip and sale salvage passed",
+    "Shop attachment purchases charged once; rejected purchase charged zero",
+    "One-wave evolution preserved; full storage queues part and result; repeat completion and delivery claim passed"
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  }
+}

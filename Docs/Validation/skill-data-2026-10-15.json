@@ -1,0 +1,22 @@
+{
+  "assets": {
+    "skills": 47,
+    "trees": 4,
+    "errors": []
+  },
+  "migration": "Legacy IDs/balance, historic refund, changed-cost receipt, cycle and wrong tower passed",
+  "archer": {
+    "singleArrowAttacks": 6,
+    "checks": "Live/new towers, damage, speed, range collider, crit, actual hits, stack cap, target switch, stale shots, low HP and refund passed"
+  },
+  "ui": {
+    "nodes": 47,
+    "automaticLinks": 1008
+  },
+  "dynamicNodes": "13th node created/bound automatically; asset outside catalog rejected",
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  }
+}

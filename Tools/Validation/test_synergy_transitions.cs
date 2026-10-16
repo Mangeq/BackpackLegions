@@ -1,0 +1,18 @@
+BackpackUIManager.Instance.CloseBackpack();
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+System.Action<bool,string> check=(ok,message)=>{if(!ok)throw new System.Exception(message);};
+var go=UnityEngine.Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ArcherTower1.prefab"));
+var tower=go.GetComponent<Tower>();tower.data=UnityEngine.Object.Instantiate(tower.data);tower.data.defaultWeapon=UnityEngine.Object.Instantiate(tower.data.defaultWeapon);
+var partData=ScriptableObject.CreateInstance<ItemData>();partData.itemShape=new System.Collections.Generic.List<Vector2Int>{Vector2Int.zero};partData.itemOwners=new[]{TowerType.ArrowTower};
+var recipe=ScriptableObject.CreateInstance<ItemSynergyRecipe>();recipe.targetItem=tower.data.defaultWeapon;recipe.supportItem=partData;recipe.placement=ItemSynergyRecipe.Placement.Attached;tower.data.defaultWeapon.synergyRecipes=new System.Collections.Generic.List<ItemSynergyRecipe>{recipe};
+typeof(Tower).GetMethod("InitializeTower",flags).Invoke(tower,null);
+var main=tower.Backpack.Items.Single(i=>i.Data==tower.MainItem);var part=new PlacedItem(partData,Vector2Int.zero);check(tower.Backpack.TryAttach(main,part),"Attach main");
+tower.AddExperience(100000);check(tower.TrySelectElement(ElementType.Fire),"Select fire");check(part.Bag==tower.Storage&&part.Parent==null,"Element replacement salvages main attachment");
+var hostData=UnityEngine.Object.Instantiate(tower.data.defaultWeapon);recipe=UnityEngine.Object.Instantiate(recipe);recipe.targetItem=hostData;hostData.synergyRecipes=new System.Collections.Generic.List<ItemSynergyRecipe>{recipe};
+PlacedItem host=null;for(int y=0;y<5&&host==null;y++)for(int x=0;x<5&&host==null;x++)host=tower.Backpack.Place(hostData,new Vector2Int(x,y));check(host!=null,"Place sale host");
+var part2=new PlacedItem(partData,Vector2Int.zero);check(tower.Backpack.TryAttach(host,part2),"Attach sale host");
+for(int y=0;y<tower.Storage.Height;y++)for(int x=0;x<tower.Storage.Width;x++)tower.Storage.Place(partData,new Vector2Int(x,y));
+var target=UnityEditor.AssetDatabase.FindAssets("t:Prefab",new[]{"Assets/Prefabs"}).Select(g=>UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(UnityEditor.AssetDatabase.GUIDToAssetPath(g))).First(p=>p.GetComponent<MegicTower>()!=null);
+EconomyManager.Gold=10000;int expected=EconomyManager.Gold+tower.TypeChangeSaleValue-tower.GetTypeChangeCost(target);Tower replacement;
+check(tower.TryChangeTowerType(target,out replacement),"Type change");check(replacement.Storage.Contains(part),"Storage carried across");check(replacement.Evolution.Deliveries.Any(d=>d.Content==part2),"Full storage attachment transferred as delivery");check(EconomyManager.Gold==expected,"Only host sold, no attachment payout");
+return "Main element replacement and tower type change salvage, full storage delivery transfer, sale totals passed";

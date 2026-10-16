@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e19424d56b32f4f9f053e937dfb22f, type: 3}
+  m_Name: Mortar
+  m_EditorClassIdentifier: 
+  towerType: 1
+  title: "HAVAN A\u011EACI"
+  subtitle: "Alan hasar\u0131 \xB7 Y\xFCkleme \xB7 Ku\u015Fatma  /  \xD6NER\u0130
+    \xB7 Ba\u011Flant\u0131lar taslak"
+  accent: {r: 0.43, g: 0.29, b: 0.19, a: 1}
+  nodes:
+  - skill: {fileID: 11400000, guid: d360d763067d48a40aca6885e0339bc8, type: 2}
+    position: {x: 400, y: 500}
+  - skill: {fileID: 11400000, guid: e498ab09d4e012945a101c71a494c96b, type: 2}
+    position: {x: 110, y: 365}
+  - skill: {fileID: 11400000, guid: ab16cb3275015f14cbb2a32fba2341b3, type: 2}
+    position: {x: 400, y: 365}
+  - skill: {fileID: 11400000, guid: 2f45e464569bff446877f6e9df18057e, type: 2}
+    position: {x: 690, y: 365}
+  - skill: {fileID: 11400000, guid: acff24a051d3eea45bf9ad550d730fc9, type: 2}
+    position: {x: 110, y: 220}
+  - skill: {fileID: 11400000, guid: b8a9d571998885c429062df22464e771, type: 2}
+    position: {x: 400, y: 220}
+  - skill: {fileID: 11400000, guid: cdd35c17251d09840a6e4874c74a3165, type: 2}
+    position: {x: 690, y: 220}
+  - skill: {fileID: 11400000, guid: d148c7cf24a08454abf78263f69cd14c, type: 2}
+    position: {x: 80, y: 70}
+  - skill: {fileID: 11400000, guid: 993e2855677604640bf3ccb564c8a6e0, type: 2}
+    position: {x: 240, y: 70}
+  - skill: {fileID: 11400000, guid: 7649bae3f8e71f241bae18c09ba245ed, type: 2}
+    position: {x: 400, y: 70}
+  - skill: {fileID: 11400000, guid: f3c1ea711d74aaf4985772e34f890e18, type: 2}
+    position: {x: 560, y: 70}
+  - skill: {fileID: 11400000, guid: 36b957b00b080994c832daba52668d86, type: 2}
+    position: {x: 720, y: 70}

@@ -19,10 +19,13 @@ MonoBehaviour:
   Type: 0
   Rarity: 3
   itemOwners: 03000000
+  element: 0
   itemID: placeholder_buyucu_legendary
   cost: 360
   itemIcon: {fileID: 21300000, guid: aac17542da4f00c419f924475ecb69c9, type: 3}
   synergyIDs: []
+  synergyRecipes: []
+  synergyRules: []
   damageBonus: 0.4
   criticalChanceBonus: 0.12
   attackSpeedBonus: 0.2

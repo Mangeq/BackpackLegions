@@ -21,10 +21,13 @@ MonoBehaviour:
   Type: 2
   Rarity: 0
   itemOwners: 02000000
+  element: 0
   itemID: unit_deri_kalkan
   cost: 80
   itemIcon: {fileID: 21300000, guid: 718255a38331c384085e74f65ece70ae, type: 3}
   synergyIDs: []
+  synergyRecipes: []
+  synergyRules: []
   damageBonus: 0
   criticalChanceBonus: 0
   attackSpeedBonus: 0

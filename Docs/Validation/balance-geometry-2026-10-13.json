@@ -1,0 +1,152 @@
+{
+  "found": true,
+  "status": "PathComplete",
+  "length": 22.5,
+  "slots": [
+    {
+      "name": "Shop1",
+      "parent": "Shops",
+      "x": -0.9216422,
+      "z": 26.3167076,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    },
+    {
+      "name": "Shop6",
+      "parent": "Shops",
+      "x": 1.91609907,
+      "z": 32.4651375,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    },
+    {
+      "name": "Shop3",
+      "parent": "Shops",
+      "x": 1.89999986,
+      "z": 26.3167076,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    },
+    {
+      "name": "tile-dirt (1)",
+      "parent": "Shops",
+      "x": -1.66202235,
+      "z": 3.383,
+      "archer": 13.4000006,
+      "magic": 10.6,
+      "mortar": 13.6
+    },
+    {
+      "name": "Shop2",
+      "parent": "Shops",
+      "x": -0.9090179,
+      "z": 28.4101753,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    },
+    {
+      "name": "Shop5",
+      "parent": "Shops",
+      "x": 1.90209317,
+      "z": 30.3767529,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    },
+    {
+      "name": "tile-dirt (4)",
+      "parent": "Shops",
+      "x": -0.7019999,
+      "z": -1.22034311,
+      "archer": 7.5,
+      "magic": 4.9,
+      "mortar": 7.70000029
+    },
+    {
+      "name": "Shop8",
+      "parent": "Shops",
+      "x": -0.90554297,
+      "z": 32.4651375,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    },
+    {
+      "name": "Shop4",
+      "parent": "Shops",
+      "x": 1.91262412,
+      "z": 28.4101753,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    },
+    {
+      "name": "tile-dirt",
+      "parent": "Shops",
+      "x": -3.65606236,
+      "z": 4.408,
+      "archer": 12.3,
+      "magic": 7.8,
+      "mortar": 12.7
+    },
+    {
+      "name": "tile-dirt (3)",
+      "parent": "Shops",
+      "x": 2.30500031,
+      "z": -0.200000048,
+      "archer": 11.1,
+      "magic": 8.3,
+      "mortar": 11.3
+    },
+    {
+      "name": "tile-dirt (2)",
+      "parent": "Shops",
+      "x": 6.00754642,
+      "z": -0.214784145,
+      "archer": 6.3,
+      "magic": 4.8,
+      "mortar": 6.5
+    },
+    {
+      "name": "Shop7",
+      "parent": "Shops",
+      "x": -0.9195489,
+      "z": 30.3767529,
+      "archer": 0.0,
+      "magic": 0.0,
+      "mortar": 0.0
+    }
+  ],
+  "prefabs": [
+    {
+      "path": "Assets/Prefabs/ArcherTower1.prefab",
+      "type": 0
+    },
+    {
+      "path": "Assets/Prefabs/MegicTower1.prefab",
+      "type": 3
+    },
+    {
+      "path": "Assets/Prefabs/MortarTower.prefab",
+      "type": 1
+    },
+    {
+      "path": "Assets/Prefabs/UnitTower1.prefab",
+      "type": 2
+    }
+  ],
+  "bullets": [
+    {
+      "name": "ArcherBullet",
+      "type": 0
+    },
+    {
+      "name": "MegicBullet",
+      "type": 0
+    }
+  ]
+}

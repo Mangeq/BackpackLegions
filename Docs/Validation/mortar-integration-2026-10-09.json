@@ -1,0 +1,61 @@
+{
+  "success": true,
+  "message": "Code executed successfully.",
+  "data": {
+    "result": [
+      {
+        "test": "Mortar reaches level-five element gate",
+        "passed": true
+      },
+      {
+        "test": "First water choice evolves main freely and keeps offers frozen",
+        "passed": true
+      },
+      {
+        "test": "Refresh offers are all water mortar gear",
+        "passed": true
+      },
+      {
+        "test": "Paid element change preserves level XP and refreshes shop",
+        "passed": true
+      },
+      {
+        "test": "Successful wave crafts mortar recipe Normal",
+        "passed": true
+      },
+      {
+        "test": "Successful wave crafts mortar recipe Fire",
+        "passed": true
+      },
+      {
+        "test": "Successful wave crafts mortar recipe Water",
+        "passed": true
+      },
+      {
+        "test": "Successful wave crafts mortar recipe Earth",
+        "passed": true
+      },
+      {
+        "test": "Successful wave crafts mortar recipe Air",
+        "passed": true
+      },
+      {
+        "test": "Stored mortar equipment supplies no buff",
+        "passed": true
+      },
+      {
+        "test": "Insufficient money reports failure and keeps slot free",
+        "passed": true
+      },
+      {
+        "test": "Combat blocks mortar purchase",
+        "passed": true
+      },
+      {
+        "test": "One purchase charges exactly once and occupies slot",
+        "passed": true
+      }
+    ],
+    "compiler": "codedom"
+  }
+}

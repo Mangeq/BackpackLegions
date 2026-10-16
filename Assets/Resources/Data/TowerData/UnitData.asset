@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   towerLevel: 1
-  firstLevelExperience: 20
-  experienceIncreasePerLevel: 10
+  firstLevelExperience: 24
+  experienceIncreasePerLevel: 12
+  levelDamageGrowth: 0.05
+  levelAttackSpeedGrowth: 0.015
+  levelCriticalGrowth: 0.003
+  maximumCriticalChance: 0.6
   defaultWeapon: {fileID: 11400000, guid: 3760026e7ec10b14cadfbf2269f8faf9, type: 2}
   fireWeapon: {fileID: 11400000, guid: c6be944e47fc67446b80053aebebb75b, type: 2}
   waterWeapon: {fileID: 11400000, guid: 7c2a9e3950aae0d4ba94cc9b3ca4d2bf, type: 2}
@@ -22,9 +26,15 @@ MonoBehaviour:
   airWeapon: {fileID: 11400000, guid: 13aa873a0e4a8ba49b859f92cd8a7708, type: 2}
   type: 2
   damage: 4
-  criticalChance: 0.1
-  range: 4
-  attackSpeed: 1.2
+  criticalChance: 0.05
+  range: 3
+  attackSpeed: 1.35
   cost: 225
+  explosionRadius: 1.5
+  mortarFlightTime: 0.25
+  mortarArcHeight: 0.8
+  mortarCriticalMultiplier: 2
+  elementChangeCost: 100
+  typeChangeRefundRate: 0.5
   gridWidth: 5
   gridHeight: 5

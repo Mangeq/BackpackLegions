@@ -36,6 +36,7 @@ public class UİManager : MonoBehaviour
     public GameObject UnitTowerPrefab;
     public GameObject MegicTowerPrefab;
     public GameObject ArcherTowerPrefab;
+    public GameObject MortarTowerPrefab;
 
     [Header("Kule seçimi ve hazırlık göstergeleri")]
     public GameObject unitSelectionHighlight;
@@ -93,6 +94,66 @@ public class UİManager : MonoBehaviour
     private ElementType transitionElement;
     private GameObject transitionPrefab;
     private string transitionFailure;
+    private static int panelOpenedFrame = -1, panelDismissedFrame = -1;
+    public static void NotifyPanelOpened() => panelOpenedFrame = Time.frameCount;
+
+    public bool CloseTopPanel()
+    {
+        if (transitionPanel != null && transitionPanel.activeInHierarchy)
+        { BackpackDraggable.CancelActiveDrag(); CloseTransition(); return true; }
+        var bags = BackpackUIManager.Instance;
+        if (bags != null && bags.combinedPanel != null && bags.combinedPanel.activeInHierarchy)
+        { CloseTowerPanel(); return true; }
+        if (TowerShopUI != null && TowerShopUI.activeInHierarchy)
+        { ClosePurchasePanel(); return true; }
+        return false;
+    }
+
+    private static bool ContainsPoint(GameObject panel, Vector2 point)
+    {
+        if (panel == null || !panel.activeInHierarchy) return false;
+        var rect = panel.transform as RectTransform;
+        var canvas = panel.GetComponentInParent<Canvas>();
+        return rect != null && RectTransformUtility.RectangleContainsScreenPoint(rect, point,
+            canvas == null || canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera);
+    }
+
+    public bool HandleOutsideClick(Vector2 point)
+    {
+        if (SettingsPanelUI.BlocksWorldInput || SkillTreePanelUI.BlocksWorldInput || SceneLoadingUI.IsLoading) return true;
+        if (gameManager == null || gameManager.CurrentState == GameManager.GameState.Victory
+            || gameManager.CurrentState == GameManager.GameState.Defeat) return false;
+        if (gameManager.IsPaused)
+        {
+            if (ContainsPoint(gameManager.pausePanel, point)) return false;
+            gameManager.ContinueGame(); return true;
+        }
+        if (transitionPanel != null && transitionPanel.activeInHierarchy)
+        {
+            var card = transitionPanel.transform.Find("Card");
+            if (card != null && ContainsPoint(card.gameObject, point)) return false;
+        }
+        else if (BackpackUIManager.Instance != null && ContainsPoint(BackpackUIManager.Instance.combinedPanel, point)) return false;
+        else if (ContainsPoint(TowerShopUI, point)) return false;
+        return CloseTopPanel();
+    }
+
+    public static bool ConsumeWorldPanelClick()
+    {
+        if (panelDismissedFrame == Time.frameCount) return true;
+        var ui = FindObjectOfType<UİManager>();
+        if (ui == null || !ui.HandleOutsideClick(Input.mousePosition)) return false;
+        panelDismissedFrame = Time.frameCount;
+        return true;
+    }
+
+    private void LateUpdate()
+    {
+        // Açan tıklama aynı karede paneli kapatmasın; sürükleme bırakması satışla çakışmasın.
+        if (Input.GetMouseButtonDown(0) && panelOpenedFrame != Time.frameCount
+            && panelDismissedFrame != Time.frameCount && !BackpackDraggable.IsDragging
+            && HandleOutsideClick(Input.mousePosition)) panelDismissedFrame = Time.frameCount;
+    }
 
     public void OpenElementChange() => OpenTransition(false);
     public void OpenTowerTypeChange() => OpenTransition(true);
@@ -107,6 +168,7 @@ public class UİManager : MonoBehaviour
         transitionElement = ElementType.Normal;
         transitionPrefab = null;
         transitionPanel.SetActive(true);
+        NotifyPanelOpened();
         RefreshTransition();
     }
     public void CloseTransition()
@@ -129,11 +191,12 @@ public class UİManager : MonoBehaviour
         transitionFailure = null;
         transitionPrefab = type == (int)TowerType.MagicTower ? MegicTowerPrefab
             : type == (int)TowerType.ArrowTower ? ArcherTowerPrefab
-            : type == (int)TowerType.UnitTower ? UnitTowerPrefab : null;
+            : type == (int)TowerType.UnitTower ? UnitTowerPrefab
+            : type == (int)TowerType.CannonTower ? MortarTowerPrefab : null;
         RefreshTransition();
     }
     private static string TowerTypeLabel(TowerType type) => type == TowerType.MagicTower ? "Büyü Kulesi"
-        : type == TowerType.ArrowTower ? "Okçu Kulesi" : "Birlik Kulesi";
+        : type == TowerType.ArrowTower ? "Okçu Kulesi" : type == TowerType.CannonTower ? "Havan Kulesi" : "Birlik Kulesi";
 
     private void RefreshTransition()
     {
@@ -141,11 +204,9 @@ public class UİManager : MonoBehaviour
             && activeTower != null && activeTower.SelectedElement != ElementType.Normal;
         if (openTypeChangeButton != null)
         {
-            bool empty = activeTower != null && activeTower.Backpack != null;
-            if (empty) foreach (var item in activeTower.Backpack.Items) if (!activeTower.IsMainItem(item.Data)) empty = false;
-            openTypeChangeButton.interactable = GameManager.CanUpgradeTowers && empty && !BackpackDraggable.IsDragging;
+            openTypeChangeButton.interactable = GameManager.CanUpgradeTowers && activeTower != null && !BackpackDraggable.IsDragging;
             var label = openTypeChangeButton.GetComponentInChildren<UnityEngine.UI.Text>();
-            if (label != null) label.text = empty ? "Kule tipi değiştir" : "Tür için çantayı boşalt";
+            if (label != null) label.text = "Kule tipi değiştir";
         }
         if (transitionPanel == null || !transitionPanel.activeSelf) return;
         if (transitionOwner == null || transitionOwner != activeTower || !GameManager.CanUpgradeTowers
@@ -164,7 +225,10 @@ public class UİManager : MonoBehaviour
             var target = transitionPrefab != null ? transitionPrefab.GetComponent<Tower>() : null;
             transitionDetails.text = (target != null ? "Yeni kule: " + TowerTypeLabel(target.data.type)
                 + "\nYeni fiyat: " + target.data.cost + " altın · Eski kule iadesi: " + transitionOwner.TypeChangeRefund
-                + "\nÖdenecek: " + transitionOwner.GetTypeChangeCost(transitionPrefab) + " altın" : "Okçu, büyü veya birlik kulesine geçebilirsin.")
+                + "\nDönüşüm ücreti: " + transitionOwner.GetTypeChangeCost(transitionPrefab) + " altın"
+                + "\nÇantadaki " + transitionOwner.TypeChangeSaleCount + " eşya SATILACAK: +" + transitionOwner.TypeChangeSaleValue + " altın"
+                + "\nİşlem sonrası altın: " + (EconomyManager.Gold + transitionOwner.TypeChangeSaleValue - transitionOwner.GetTypeChangeCost(transitionPrefab))
+                : "Okçu, büyü, birlik veya havan kulesine geçebilirsin.")
                 + "\n\nSeviye 1 · XP 0 · Normal element\nEski ana eşya yeni başlangıç eşyasıyla değiştirilir."
                 + "\nDepo ve teslim bekleyen eşyalar korunur.\nMağaza yenilenir; dondurma kaldırılır."
                 + (transitionOwner is UnitTower ? "\nMevcut askerler kaldırılır." : "")
@@ -216,6 +280,7 @@ public class UİManager : MonoBehaviour
     public Text purchasePrice;
     public Image purchasePortrait;
     public Sprite magicPurchasePortrait, archerPurchasePortrait, unitPurchasePortrait;
+    public Sprite mortarPurchasePortrait;
     public GameObject cannonSelectionHighlight;
     private WaveManager waveManager;
     private Camera worldCamera;
@@ -313,19 +378,19 @@ public class UİManager : MonoBehaviour
     private void RefreshTowerPanel()
     {
         var bags = BackpackUIManager.Instance;
-        if (bags != null && bags.combinedPanel != null)
+        if (bags != null && bags.combinedPanel != null && bags.GetComponent<TowerPanelLayout>() == null)
         {
             var parent = bags.combinedPanel.transform.parent as RectTransform;
             if (parent != null)
-                bags.combinedPanel.transform.localScale = Vector3.one * Mathf.Min(parent.rect.width / 1660f, parent.rect.height / 940f);
+                bags.combinedPanel.transform.localScale = Vector3.one * Mathf.Min(parent.rect.width / 1660f, parent.rect.height / 970f);
         }
         bool visible = bags != null && bags.combinedPanel != null && bags.combinedPanel.activeInHierarchy && activeTower != null;
-        if (towerPreviewCamera != null) towerPreviewCamera.enabled = visible;
+        if (towerPreviewCamera != null) towerPreviewCamera.enabled = visible && bags.GetComponent<TowerPanelLayout>() == null;
         if (!visible) return;
         var t = activeTower;
-        string name = t is UnitTower ? "Birlik Kulesi" : t is ArcherTower ? "Okçu Kulesi" : "Büyü Kulesi";
+        string name = TowerTypeLabel(t.data.type);
         if (t.SelectedElement != ElementType.Normal)
-            name = ElementLabel(t.SelectedElement) + (t is UnitTower ? " Birlik Kulesi" : t is ArcherTower ? " Okçusu" : " Büyücüsü");
+            name = ElementLabel(t.SelectedElement) + (t is UnitTower ? " Birlik Kulesi" : t is ArcherTower ? " Okçusu" : t is MortarTower ? " Havanı" : " Büyücüsü");
         if (towerPanelTitle != null) towerPanelTitle.text = name + "  ·  Seviye " + t.towerLevel;
         if (towerPanelGold != null) towerPanelGold.text = EconomyManager.Gold + " altın";
         if (towerExperienceText != null)
@@ -348,7 +413,8 @@ public class UİManager : MonoBehaviour
             towerPanelStats.text = "HASAR  " + t.currentDamage.ToString("0.##") + "     (Temel " + t.baseDamage.ToString("0.##") + " · Eşya " + (t.currentDamage-t.baseDamage).ToString("+0.##;-0.##;0") + ")\n"
                 + "ATIŞ ARALIĞI  " + t.currentAttackSpeed.ToString("0.##") + " sn     (Temel " + t.baseAttackSpeed.ToString("0.##") + " · Eşya " + (t.currentAttackSpeed-t.baseAttackSpeed).ToString("+0.##;-0.##;0") + " sn)\n"
                 + "KRİTİK  %" + (100*t.currentCriticalChance).ToString("0.#") + "     (Temel %" + (100*t.baseCriticalChance).ToString("0.#") + " · Eşya " + (100*(t.currentCriticalChance-t.baseCriticalChance)).ToString("+0.#;-0.#;0") + " puan)\n"
-                + (t is UnitTower ? "ASKER CAN BONUSU  %" + (100*t.currentHealthBonus).ToString("0.#") + " · Değerler asker başına" : "MENZİL  " + t.data.range.ToString("0.#") + " birim");
+                + (t is UnitTower ? "ASKER CAN BONUSU  %" + (100*t.currentHealthBonus).ToString("0.#") + " · Değerler asker başına" : "MENZİL  " + t.CurrentRange.ToString("0.#") + " birim");
+            if (t is MortarTower) towerPanelStats.text += " · PATLAMA  " + t.data.explosionRadius.ToString("0.#") + " · Yalnız kara";
         }
         if (towerPreviewCamera != null)
         {
@@ -390,6 +456,8 @@ public class UİManager : MonoBehaviour
         targetingPanel.SetActive(visible);
         if (!visible) return;
         UpdateTargetButtons(targetTypeButtons, (int)activeTower.SelectedTargetType);
+        if (!activeTower.SupportsAirTargets)
+            foreach (var button in targetTypeButtons) if (button != null) button.interactable = false;
         UpdateTargetButtons(targetOrderButtons, (int)activeTower.SelectedTargetOrder);
     }
 
@@ -399,7 +467,8 @@ public class UİManager : MonoBehaviour
         {
             if (buttons[i] == null) continue;
             buttons[i].interactable = CanEditTargeting;
-            buttons[i].targetGraphic.color = i == selected ? new Color(0.55f, 0.35f, 0.08f) : new Color(0.10f, 0.13f, 0.18f);
+            bool referenceSkin=BackpackUIManager.Instance!=null&&BackpackUIManager.Instance.GetComponent<TowerPanelLayout>()!=null;
+            buttons[i].targetGraphic.color = referenceSkin ? Color.white : i == selected ? new Color(0.55f, 0.35f, 0.08f) : new Color(0.10f, 0.13f, 0.18f);
         }
     }
 
@@ -416,7 +485,7 @@ public class UİManager : MonoBehaviour
     public void RefreshPurchaseFeedback()
     {
         bool canBuy = GameManager.CanBuyTowers;
-        var prefab=selectedTowerType=="UnitTower"?UnitTowerPrefab:selectedTowerType=="ArcherTower"?ArcherTowerPrefab:selectedTowerType=="MegicTower"?MegicTowerPrefab:null;
+        var prefab=selectedTowerType=="UnitTower"?UnitTowerPrefab:selectedTowerType=="ArcherTower"?ArcherTowerPrefab:selectedTowerType=="MegicTower"?MegicTowerPrefab:selectedTowerType=="CannonTower"?MortarTowerPrefab:null;
         var selected=prefab!=null?prefab.GetComponent<Tower>():null;
         if (TowerShopBuyBTN != null) TowerShopBuyBTN.interactable = canBuy && selected != null && EconomyManager.Gold>=selected.data.cost;
         RefreshPurchaseCard(selected);
@@ -425,14 +494,13 @@ public class UİManager : MonoBehaviour
         if (magicSelectionHighlight != null) magicSelectionHighlight.SetActive(selectedTowerType == "MegicTower");
         if (cannonSelectionHighlight != null) cannonSelectionHighlight.SetActive(selectedTowerType == "CannonTower");
         if (towerPurchaseFeedback == null) return;
-        if(selectedTowerType=="CannonTower"){towerPurchaseFeedback.text="Topçu kulesi henüz hazır değil.";towerPurchaseFeedback.color=new Color(.7f,.72f,.75f);return;}
         if (!canBuy)
         {
             towerPurchaseFeedback.text = "Kule alımı kilitli · Hazırlığı bekle";
             towerPurchaseFeedback.color = new Color(1f, 0.35f, 0.3f);
             return;
         }
-        int cost = selectedTowerType == "UnitTower" ? UnitTowerCost : selectedTowerType == "ArcherTower" ? ArcherTowerCost : selectedTowerType == "MegicTower" ? MegicTowerCost : 0;
+        int cost = selected != null ? selected.data.cost : 0;
         bool insufficient = cost > EconomyManager.Gold;
         towerPurchaseFeedback.text = selectedTowerType == null ? "Bir kule seç" : insufficient
             ? "Yetersiz para! " + (cost - EconomyManager.Gold) + " altın eksik."
@@ -451,15 +519,22 @@ public class UİManager : MonoBehaviour
             purchaseStats.text="Bu kule henüz satın alınamaz.";if(purchaseStatValues!=null)purchaseStatValues.text="";purchasePrice.text="YAKINDA";purchasePortrait.enabled=false;return;
         }
         var data=tower.data;bool unit=tower is UnitTower;bool magic=tower is MegicTower;
-        purchaseTitle.text=unit?"BİRLİK KULESİ":magic?"BÜYÜ KULESİ":"OKÇU KULESİ";
+        purchaseTitle.text=tower is MortarTower?"HAVAN KULESİ":unit?"BİRLİK KULESİ":magic?"BÜYÜ KULESİ":"OKÇU KULESİ";
         purchaseDescription.text=unit?"Birlik üretir. Düşmanları tutarak ilerlemelerini yavaşlatır ve hasar verir.":magic?"Menzilindeki düşmanlara büyü saldırıları yapar. Kara ve hava hedefleri seçilebilir.":"Menzilindeki düşmanlara ok atar. Kara ve hava hedefleri seçilebilir.";
         purchasePortrait.sprite=unit?unitPurchasePortrait:magic?magicPurchasePortrait:archerPurchasePortrait;purchasePortrait.enabled=purchasePortrait.sprite!=null;
+        if (tower is MortarTower)
+        {
+            purchaseDescription.text = "Kara düşmanlarının bulunduğu noktayı bombalar. Alan hasarı verir; hareketli hedefler kaçabilir.";
+            purchasePortrait.sprite = mortarPurchasePortrait;
+            purchasePortrait.enabled = mortarPurchasePortrait != null;
+        }
         // Satın alınınca verilen ana itemin katkısı da fiyat kartındaki başlangıç değerlerine dahildir.
         var item=data.defaultWeapon;float damage=data.damage*(1+(item!=null?item.damageBonus:0));float interval=Mathf.Max(.1f,data.attackSpeed/(1+(item!=null?item.attackSpeedBonus:0)));float crit=Mathf.Clamp01(data.criticalChance+(item!=null?item.criticalChanceBonus:0));
         purchaseStats.text=(unit?"ASKER BAŞINA HASAR":"HASAR")+"\nATIŞ ARALIĞI\nKRİTİK ŞANSI\n";
         string values=damage.ToString("0.##")+"\n"+interval.ToString("0.##")+" sn\n%"+(crit*100).ToString("0.#")+"\n";
         if(unit){var barracks=(UnitTower)tower;purchaseStats.text+="BİRLİK SAYISI\nYENİDEN ÜRETİM\n";values+=barracks.maxUnitCount+"\n"+barracks.spawnCooldown.ToString("0.#")+" sn\n";}
         else {purchaseStats.text+="MENZİL\n";values+=data.range.ToString("0.#")+"\n";}
+        if (tower is MortarTower) { purchaseStats.text += "PATLAMA YARIÇAPI\n"; values += data.explosionRadius.ToString("0.#") + "\n"; }
         purchaseStats.text+="ÇANTA";values+=data.gridWidth+" × "+data.gridHeight;
         if(purchaseStatValues!=null)purchaseStatValues.text=values;
         purchasePrice.text="SATIN AL  ·  "+data.cost+" altın";
@@ -467,6 +542,7 @@ public class UİManager : MonoBehaviour
 
     public void PreparePurchasePanel()
     {
+        NotifyPanelOpened();
         CloseTowerPanel();
         RefreshPurchaseFeedback();
     }
@@ -592,6 +668,12 @@ public class UİManager : MonoBehaviour
         {
             EconomyManager.Gold -= ArcherTowerCost;
             Instantiate(ArcherTowerPrefab, selectedTowerPlace.position, Quaternion.identity);
+            UpdateGoldText();
+        }
+        else if(selectedTowerType == "CannonTower" && MortarTowerPrefab != null
+            && EconomyManager.TrySpendGold(MortarTowerPrefab.GetComponent<Tower>().data.cost))
+        {
+            Instantiate(MortarTowerPrefab, selectedTowerPlace.position, Quaternion.identity);
             UpdateGoldText();
         }
         else

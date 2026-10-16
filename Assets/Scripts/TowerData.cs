@@ -17,6 +17,11 @@ public class TowerData : ScriptableObject
     [Header("Kule deneyimi")]
     [Min(1f)] public float firstLevelExperience = 20f;
     [Min(0f)] public float experienceIncreasePerLevel = 10f;
+    [Header("Seviye başına temel büyüme — eşya bonusundan önce")]
+    [Min(0)] public float levelDamageGrowth = 0.05f;
+    [Min(0)] public float levelAttackSpeedGrowth = 0.015f;
+    [Min(0)] public float levelCriticalGrowth = 0.003f;
+    [Range(0, 1)] public float maximumCriticalChance = 0.6f;
     public ItemData defaultWeapon;
     [Header("Ana eşyanın element evrimleri — başlangıç eşyasıyla aynı şekil")]
     public ItemData fireWeapon;
@@ -48,6 +53,11 @@ public class TowerData : ScriptableObject
     [Min(0.1f)]
     public float attackSpeed;
     public int cost;
+    [Header("Havan — yalnız MortarTower kullanır")]
+    [Min(0.1f)] public float explosionRadius = 1.5f;
+    [Min(0.1f)] public float mortarFlightTime = 0.25f;
+    [Min(0f)] public float mortarArcHeight = 0.8f;
+    [Min(1f)] public float mortarCriticalMultiplier = 2f;
     [Header("Dönüşüm ücretleri")]
     [Min(0)] public int elementChangeCost = 100;
     [Tooltip("Kule tipi değişiminde eski kule fiyatının iade edilen oranı.")]

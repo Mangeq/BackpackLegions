@@ -32,6 +32,7 @@ public class Backpack
     /// <summary>Verilen item, verilen origin'e yerleşebilir mi? (sınır + çakışma kontrolü, L-şekli dahil)</summary>
     public bool CanPlace(ItemData data, Vector2Int origin, int rotation = 0)
     {
+        if(data==null||data.itemShape==null||data.itemShape.Count==0)return false;
         foreach (Vector2Int offset in ItemShapeUtility.GetRotatedShape(data, rotation))
         {
             int x = origin.x + offset.x;
@@ -48,25 +49,41 @@ public class Backpack
     }
 
     /// <summary>
-    /// Item'ı yerleştirir. Bilinçli olarak CanPlace'i içeride otomatik çağırmıyor -
-    /// "taşıma" senaryosunda çağıran taraf önce Remove ile eski pozisyonu boşaltıp
-    /// SONRA CanPlace kontrol etmesi gerekiyor (yoksa item kendi eski hücresine
-    /// çarpar). Bu yüzden check + act adımları caller'a bırakıldı.
+    /// Yeni eşya oluşturur; sınır/çakışma kontrolü başarısızsa null döner.
+    /// Mevcut eşyayı taşırken önce Remove, sonra PlaceExisting kullanılır.
+    /// Böylece aynı eşya kimliği ve üzerine takılı parçalar korunur.
     /// </summary>
     public PlacedItem Place(ItemData data, Vector2Int origin, int rotation = 0)
     {
-        PlacedItem placed = new PlacedItem(data, origin, rotation);
-
-        foreach (Vector2Int cell in placed.GetOccupiedCells())
-            grid[cell.x, cell.y] = placed;
-
-        items.Add(placed);
-        return placed;
+        var placed=new PlacedItem(data,origin,rotation);
+        return PlaceExisting(placed,origin,rotation)?placed:null;
     }
+    public bool PlaceExisting(PlacedItem item,Vector2Int origin,int rotation=0)
+    {
+        if(item==null||item.Bag!=null||item.Parent!=null||!CanPlace(item.Data,origin,rotation))return false;
+        item.SetPlacement(origin,rotation);item.SetBag(this);
+        foreach(var cell in item.GetOccupiedCells())grid[cell.x,cell.y]=item;
+        items.Add(item);return true;
+    }
+    public bool Contains(PlacedItem item) => item!=null && item.Bag==this;
+    public bool CanAttach(PlacedItem host,PlacedItem part)
+    {
+        if(host==null||part==null||host==part||!items.Contains(host)||part.Bag!=null||part.Parent!=null||part.Attachments.Count>0)return false;
+        if(host.Data.synergyRecipes==null)return false;
+        foreach(var recipe in host.Data.synergyRecipes){
+            if(recipe==null||recipe.targetItem!=host.Data||!recipe.AllowsAttachment||!recipe.Accepts(part.Data))continue;
+            int count=0;foreach(var existing in host.Attachments)if(recipe.Accepts(existing.Data))count++;
+            if(count<Mathf.Max(1,recipe.maxActivations))return true;
+        }
+        return false;
+    }
+    public bool TryAttach(PlacedItem host,PlacedItem part)
+    { if(!CanAttach(host,part))return false;host.Attach(part);return true; }
 
     /// <summary>Item'ı backpack'ten kaldırır - hem grid hücrelerini hem items listesini birlikte temizler.</summary>
     public void Remove(PlacedItem item)
     {
+        if(item!=null && item.Parent!=null && item.Bag==this){item.Parent.Detach(item);return;}
         if (item == null || !items.Contains(item))
             return;
 
@@ -74,6 +91,7 @@ public class Backpack
             grid[cell.x, cell.y] = null;
 
         items.Remove(item);
+        item.SetBag(null);
     }
 
     public PlacedItem GetItemAt(Vector2Int cell)

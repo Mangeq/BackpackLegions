@@ -41,6 +41,24 @@ public class Enemy : MonoBehaviour
         damage = enemyData.damage;  
         speed = enemyData.speed;
         currenthealth = enemyData.health;
+        // Per-instance tint: shared materials and other enemies remain untouched.
+        if (enemyData.element != ElementType.Normal)
+        {
+            Color tint = enemyData.element == ElementType.Fire ? new Color(1f,.35f,.16f)
+                : enemyData.element == ElementType.Water ? new Color(.2f,.65f,1f)
+                : enemyData.element == ElementType.Earth ? new Color(.65f,.48f,.23f)
+                : new Color(.55f,.90f,.77f);
+            var block = new MaterialPropertyBlock();
+            foreach(var renderer in GetComponentsInChildren<Renderer>())
+            {
+                var material=renderer.sharedMaterial;
+                if(material==null)continue;
+                renderer.GetPropertyBlock(block);
+                foreach(var property in new[]{"_BaseColor","_Color"})
+                    if(material.HasProperty(property)) block.SetColor(property,Color.Lerp(material.GetColor(property),tint,.38f));
+                renderer.SetPropertyBlock(block);block.Clear();
+            }
+        }
         if (IsAir)
         {
             if (visualRoot != null) visualRoot.position += Vector3.up * enemyData.flightHeight;

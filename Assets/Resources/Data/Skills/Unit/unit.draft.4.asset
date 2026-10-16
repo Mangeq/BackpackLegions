@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1990e9037d8a0643a4aa23c0049ff16, type: 3}
+  m_Name: unit.draft.4
+  m_EditorClassIdentifier: 
+  id: unit.draft.4
+  towerType: 2
+  displayName: "\xC7ifte Sancak"
+  description: "Ek birlik \xFCretimi ihtimali. Kapasite ve ge\xE7ici birlik kurallar\u0131
+    hen\xFCz belirlenmedi."
+  icon: {fileID: 21300000, guid: e16100601e4606b4782554d463de0bab, type: 3}
+  pointCost: 2
+  available: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 404f17e87733007468a6016c4795d105, type: 2}
+  effects: []

@@ -1,0 +1,193 @@
+{
+  "success": true,
+  "message": "Code executed successfully.",
+  "data": {
+    "result": [
+      {
+        "test": "Purchased mortar initialized once with one main and four offers",
+        "passed": true
+      },
+      {
+        "test": "Approved base stats",
+        "passed": true
+      },
+      {
+        "test": "World range is six and trigger enabled",
+        "passed": true
+      },
+      {
+        "test": "Both and air requests cannot override ground-only",
+        "passed": true
+      },
+      {
+        "test": "First entrant skips air",
+        "passed": true
+      },
+      {
+        "test": "Last entrant selects latest ground",
+        "passed": true
+      },
+      {
+        "test": "Area damages each ground once despite multiple colliders",
+        "passed": true
+      },
+      {
+        "test": "Air and out of radius untouched",
+        "passed": true
+      },
+      {
+        "test": "Explosion idempotent",
+        "passed": true
+      },
+      {
+        "test": "Moving target can escape fixed impact point",
+        "passed": true
+      },
+      {
+        "test": "Midpoint follows parabolic arc",
+        "passed": true
+      },
+      {
+        "test": "Pause freezes flight",
+        "passed": true
+      },
+      {
+        "test": "Kill credits owner XP once",
+        "passed": true
+      },
+      {
+        "test": "Duplicate explosion cannot repeat XP",
+        "passed": true
+      },
+      {
+        "test": "Guaranteed critical doubles one shell",
+        "passed": true
+      },
+      {
+        "test": "Element captured at launch; each victim applies own multiplier",
+        "passed": true
+      },
+      {
+        "test": "Direct Attack also rejects air",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 0 rarity 0",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 0 rarity 1",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 0 rarity 2",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 0 rarity 3",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 1 rarity 0",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 1 rarity 1",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 1 rarity 2",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 1 rarity 3",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 2 rarity 0",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 2 rarity 1",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 2 rarity 2",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 2 rarity 3",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 3 rarity 0",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 3 rarity 1",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 3 rarity 2",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 3 rarity 3",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 4 rarity 0",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 4 rarity 1",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 4 rarity 2",
+        "passed": true
+      },
+      {
+        "test": "Shop pool element 4 rarity 3",
+        "passed": true
+      },
+      {
+        "test": "Five recipes reference only compatible mortar items",
+        "passed": true
+      },
+      {
+        "test": "Protected main variant 0",
+        "passed": true
+      },
+      {
+        "test": "Protected main variant 1",
+        "passed": true
+      },
+      {
+        "test": "Protected main variant 2",
+        "passed": true
+      },
+      {
+        "test": "Protected main variant 3",
+        "passed": true
+      },
+      {
+        "test": "Protected main variant 4",
+        "passed": true
+      },
+      {
+        "test": "UI locks target type but permits order",
+        "passed": true
+      },
+      {
+        "test": "Mortar converts to archer retaining storage",
+        "passed": true
+      },
+      {
+        "test": "UI can convert back to mortar retaining storage",
+        "passed": true
+      }
+    ],
+    "compiler": "codedom"
+  }
+}

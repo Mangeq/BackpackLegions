@@ -78,7 +78,7 @@ public class HoverInfoController : MonoBehaviour
                 var slot = hit.gameObject.GetComponentInParent<ShopSlotUI>();
                 if (slot != null) return slot.isPurchased ? null : slot.currentItem;
                 var item = hit.gameObject.GetComponentInParent<BackpackDraggable>();
-                return item != null ? item.Item : null;
+                return item;
             }
         }
         if (worldCamera == null) worldCamera = Camera.main;

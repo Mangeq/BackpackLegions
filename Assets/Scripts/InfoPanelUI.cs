@@ -26,7 +26,9 @@ public class InfoPanelUI : MonoBehaviour
         Color color = new Color(0.45f, 0.72f, 1f);
         string title, subtitle;
 
-        if (target is ItemData item)
+        var visual=target as BackpackDraggable;
+        var item=visual!=null?visual.Item:target as ItemData;
+        if (item!=null)
         {
             title = item.Name;
             subtitle = RarityName(item.Rarity) + " · " + Owners(item.itemOwners);
@@ -49,11 +51,23 @@ public class InfoPanelUI : MonoBehaviour
             if (item.damageBonus == 0f && item.attackSpeedBonus == 0f && item.criticalChanceBonus == 0f && item.healthBonus == 0f)
                 body.AppendLine("Ek stat bonusu yok.");
             if (item.Type == ItemType.Potion) body.AppendLine("Pasif etki · tüketilmez.");
-            if(item.synergyRules!=null)foreach(var rule in item.synergyRules)
+            if(item.synergyRecipes!=null)foreach(var recipe in item.synergyRecipes)
             {
-                if(rule==null)continue;
-                string filter=rule.filter==ItemSynergyRule.Filter.Any?"Herhangi bir eşya":rule.filter==ItemSynergyRule.Filter.Type?rule.acceptedType.ToString():rule.acceptedItem!=null?rule.acceptedItem.Name:"Tanımsız";
-                body.AppendLine("Sinerji: "+filter+" · "+rule.description);
+                if(recipe==null)continue;
+                string support=recipe.filter==ItemSynergyRule.Filter.SpecificItem?(recipe.supportItem!=null?recipe.supportItem.Name:"Tanımsız"):recipe.filter==ItemSynergyRule.Filter.Any?"Herhangi bir eşya":recipe.supportType.ToString();
+                body.AppendLine("Sinerji: "+support+" · "+recipe.description);
+                if(recipe.AllowsAttachment)body.AppendLine("Üzerine takılabilir · birleşmez");
+            }
+            if(visual!=null && visual.Placed!=null){
+                var placed=visual.Placed;
+                if(placed.Parent!=null)body.AppendLine("TAKILI · "+placed.Parent.Data.Name+" · Sürükleyerek çıkar");
+                if(viewingTower!=null && visual.OwnerBag==viewingTower.Backpack){
+                    var active=ItemSynergyCalculator.Additional(viewingTower.Backpack,placed,viewingTower.IsItemActive);
+                    if(active.flatDamage!=0)body.AppendLine("Aktif sinerji: +"+Number(active.flatDamage)+" sabit hasar");
+                    Bonus(body,"Aktif sinerji hasarı",active.damage);Bonus(body,"Aktif sinerji hızı",active.attackSpeed);
+                    Bonus(body,"Aktif sinerji kritik",active.criticalChance);Bonus(body,"Aktif sinerji canı",active.health);
+                }else body.AppendLine("DEPO · Bonus uygulanmaz");
+                if(placed.Attachments.Count>0)body.AppendLine("Takılı parça: "+placed.Attachments.Count+" · Küçük ikonlardan çıkar");
             }
             var owner = BackpackUIManager.Instance != null ? BackpackUIManager.Instance.ActiveTower : null;
             if(owner!=null && owner.evolutionRecipes!=null)foreach(var recipe in owner.evolutionRecipes)
@@ -81,7 +95,10 @@ public class InfoPanelUI : MonoBehaviour
                 body.AppendLine("Yeniden üretim: " + Number(barracks.spawnCooldown) + " sn");
                 body.AppendLine("Asker can bonusu: %" + Number(tower.currentHealthBonus * 100f));
             }
-            else body.AppendLine("Menzil: " + Number(tower.data.range));
+            else body.AppendLine("Menzil: " + Number(tower.CurrentRange));
+            if (tower is MortarTower)
+                body.AppendLine("Yalnız kara · Patlama yarıçapı: " + Number(tower.data.explosionRadius)
+                    + "\nMermi uçuşu: " + Number(tower.data.mortarFlightTime) + " sn · Konuma saldırı");
         }
         else if (target is Unit unit && unit.CurrentHealth > 0)
         {
@@ -106,10 +123,12 @@ public class InfoPanelUI : MonoBehaviour
             body.AppendLine("Saldırı aralığı: " + Number(enemy.enemyData.attackInterval) + " sn");
             body.AppendLine("Hareket hızı: " + Number(enemy.speed));
             if(enemy.IsAir) body.AppendLine("Hava · Yolu takip eder · Birlikler durduramaz");
+            body.AppendLine("Kaleye hasar: " + enemy.enemyData.BaseDamage + (enemy.enemyData.isBoss ? " · BOSS" : ""));
+            if(enemy.enemyData.element != ElementType.Normal) body.AppendLine("Normal saldırı: ×" + Number(enemy.enemyData.normalAttackMultiplier));
             body.AppendLine("Ödül: " + enemy.enemyData.goldReward + " altın · " + Number(enemy.enemyData.experienceReward) + " XP");
-            body.AppendLine("Zayıflık (×1,5): " + (enemy.enemyData.element == ElementType.Normal
+            body.AppendLine("Zayıflık (×" + Number(enemy.enemyData.weaknessMultiplier) + "): " + (enemy.enemyData.element == ElementType.Normal
                 ? Elements(enemy.enemyData.weaknesses) : ElementName(enemy.enemyData.WeakTo)));
-            body.AppendLine("Direnç (×0,5): " + (enemy.enemyData.element == ElementType.Normal
+            body.AppendLine("Direnç (×" + Number(enemy.enemyData.resistanceMultiplier) + "): " + (enemy.enemyData.element == ElementType.Normal
                 ? Elements(enemy.enemyData.resistances) : ElementName(enemy.enemyData.ResistantTo)));
         }
         else { Hide(); return; }

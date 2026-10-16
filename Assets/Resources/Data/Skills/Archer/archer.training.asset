@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1990e9037d8a0643a4aa23c0049ff16, type: 3}
+  m_Name: archer.training
+  m_EditorClassIdentifier: 
+  id: archer.training
+  towerType: 0
+  displayName: "Ok\xE7u E\u011Fitimi"
+  description: "B\xFCt\xFCn ok\xE7u kulelerine +%5 hasar."
+  icon: {fileID: 21300000, guid: cb19e9b3506e2854e8e22f02c8996e63, type: 3}
+  pointCost: 1
+  available: 1
+  prerequisites: []
+  effects:
+  - type: 0
+    value: 5
+    count: 5
+    threshold: 50

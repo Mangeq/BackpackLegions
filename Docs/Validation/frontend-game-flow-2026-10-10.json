@@ -1,0 +1,18 @@
+[
+  {
+    "test": "Game scene loaded",
+    "passed": true
+  },
+  {
+    "test": "Settings open while paused",
+    "passed": true
+  },
+  {
+    "test": "ESC closes settings but keeps pause",
+    "passed": true
+  },
+  {
+    "test": "Second ESC resumes preparation",
+    "passed": true
+  }
+]

@@ -183,6 +183,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a487fd2e25014bb49a1cfcf8e9c0a681, type: 2}
   - {fileID: 11400000, guid: 479e9df813ab79a40833ad486b30af37, type: 2}
   - {fileID: 11400000, guid: 45e5c90866068c942af809199b6fb9c4, type: 2}
+  - {fileID: 11400000, guid: 320622f6ae91b3648ba978485d60cd41, type: 2}
   ArcherBulletP: {fileID: 2948252414374885547, guid: 2ed4a2314f742614b965707a73816510,
     type: 3}
   arcDamage: 0

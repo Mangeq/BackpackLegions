@@ -1,0 +1,34 @@
+[
+  {
+    "test": "Chapter 1 replaces previous gold",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 replaces previous gold",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 replaces previous gold",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 replaces previous gold",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 replaces previous gold",
+    "passed": true
+  },
+  {
+    "test": "Restart restores selected chapter budget",
+    "passed": true
+  },
+  {
+    "test": "Preview shows boss warning and actual multipliers",
+    "passed": true
+  },
+  {
+    "test": "Preview text fits panel",
+    "passed": true
+  }
+]

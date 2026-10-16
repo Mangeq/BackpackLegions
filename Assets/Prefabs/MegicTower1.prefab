@@ -187,6 +187,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7cb6e9e14f04be344acb186694472368, type: 2}
   - {fileID: 11400000, guid: e2d048d8dcacfa541a90019312f453a3, type: 2}
   - {fileID: 11400000, guid: d4f0202436aa086459e381c3c3fa0ba2, type: 2}
+  - {fileID: 11400000, guid: 320622f6ae91b3648ba978485d60cd41, type: 2}
   MegicBulletP: {fileID: 2948252414374885547, guid: c9857d1e2183a2744bd5fdbcbf2c19fd,
     type: 3}
 --- !u!65 &2897829282841990240

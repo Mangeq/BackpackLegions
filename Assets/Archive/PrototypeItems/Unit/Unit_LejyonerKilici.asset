@@ -19,10 +19,13 @@ MonoBehaviour:
   Type: 0
   Rarity: 0
   itemOwners: 02000000
+  element: 0
   itemID: unit_lejyoner_kilici
   cost: 60
   itemIcon: {fileID: 21300000, guid: 1328fdac4f9659944ba1f9ef1a937afc, type: 3}
   synergyIDs: []
+  synergyRecipes: []
+  synergyRules: []
   damageBonus: 0.18
   criticalChanceBonus: 0
   attackSpeedBonus: 0

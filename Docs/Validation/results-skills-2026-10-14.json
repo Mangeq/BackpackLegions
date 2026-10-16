@@ -1,0 +1,62 @@
+[
+  {
+    "test": "Menu opens skill tree",
+    "passed": true
+  },
+  {
+    "test": "Six selectable nodes branch 0",
+    "passed": true
+  },
+  {
+    "test": "Six selectable nodes branch 1",
+    "passed": true
+  },
+  {
+    "test": "Six selectable nodes branch 2",
+    "passed": true
+  },
+  {
+    "test": "Six selectable nodes branch 3",
+    "passed": true
+  },
+  {
+    "test": "Backdrop closes tree",
+    "passed": true
+  },
+  {
+    "test": "Game starts with both results hidden",
+    "passed": true
+  },
+  {
+    "test": "Gameplay cannot open skill tree without pause",
+    "passed": true
+  },
+  {
+    "test": "Paused skill tree ESC preserves pause",
+    "passed": true
+  },
+  {
+    "test": "Victory panel with next chapter",
+    "passed": true
+  },
+  {
+    "test": "Next button loads chapter two and its budget",
+    "passed": true
+  },
+  {
+    "test": "Defeat separate with no next progression",
+    "passed": true
+  },
+  {
+    "test": "Defeat retry restores same chapter",
+    "passed": true
+  },
+  {
+    "test": "Last chapter has no invalid next destination",
+    "passed": true
+  },
+  {
+    "test": "Victory controls fit",
+    "passed": true
+  }
+]

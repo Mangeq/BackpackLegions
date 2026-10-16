@@ -1,0 +1,34 @@
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+System.Func<Tower,string,float> stat=(tower,name)=>(float)typeof(Tower).GetField(name,flags).GetValue(tower);
+System.Action<bool,string> check=(ok,message)=>{if(!ok)throw new System.Exception(message);};
+var a=GameObject.Find("ValidationArcher").GetComponent<ArcherTower>();
+float baseline=stat(a,"currentDamage"),speed=stat(a,"currentAttackSpeed"),crit=stat(a,"currentCriticalChance"),range=a.CurrentRange;
+var p=new SkillTreeProgress();for(int i=0;i<11;i++)check(p.TryUnlockArcher(i),"Unlock "+i);
+check(p.AvailablePoints==0,"Total cost 21");
+check(Mathf.Abs(stat(a,"currentDamage")-baseline*1.1f)<.001f,"Live damage");
+check(Mathf.Abs(stat(a,"currentAttackSpeed")-speed/1.1f)<.001f,"Live speed");
+check(Mathf.Abs(stat(a,"currentCriticalChance")-Mathf.Min(a.data.maximumCriticalChance,crit+.03f))<.001f,"Crit points");
+check(Mathf.Abs(a.CurrentRange-range*1.1f)<.001f,"Range");
+var sphere=a.GetComponentInChildren<SphereCollider>();var scale=sphere.transform.lossyScale;float radius=sphere.radius*Mathf.Max(Mathf.Abs(scale.x),Mathf.Abs(scale.y),Mathf.Abs(scale.z));check(Mathf.Abs(radius-a.CurrentRange)<.001f,"Range collider");
+a.CalculateStats();check(Mathf.Abs(stat(a,"currentDamage")-baseline*1.1f)<.001f,"No compounding");
+var second=UnityEngine.Object.Instantiate(a.gameObject);second.name="SecondValidationArcher";var a2=second.GetComponent<ArcherTower>();typeof(Tower).GetMethod("InitializeTower",flags).Invoke(a2,null);check(Mathf.Abs(a2.CurrentRange-a.CurrentRange)<.001f,"New tower range");
+var go=new GameObject("ValidationEnemy");go.SetActive(false);var enemy=go.AddComponent<Enemy>();enemy.enabled=false;enemy.enemyData=ScriptableObject.CreateInstance<EnemyData>();enemy.enemyData.health=10000;
+typeof(Enemy).GetField("currenthealth",flags).SetValue(enemy,10000f);go.transform.position=a.transform.position+Vector3.right*a.CurrentRange*.75f;
+int shots=0;
+for(int n=1;n<=6;n++){
+ var before=UnityEngine.Object.FindObjectsOfType<Bullet>();a.Attack(go);var fresh=UnityEngine.Object.FindObjectsOfType<Bullet>().Except(before).ToArray();check(fresh.Length==1,"Exactly one arrow");var bullet=fresh[0];shots++;
+ float damage=(float)typeof(Bullet).GetField("finalDamage",flags).GetValue(bullet);float chance=(float)typeof(Bullet).GetField("finalCriticalChance",flags).GetValue(bullet);
+ check(Mathf.Abs(damage-baseline*1.1f*1.1f)<.001f,"Outer range damage");check(n==6?chance==1f:Mathf.Abs(chance-stat(a,"currentCriticalChance"))<.001f,"Sixth attack critical");
+ float hp=enemy.CurrentHealth;bullet.transform.position=go.transform.position;typeof(Bullet).GetMethod("Update",flags).Invoke(bullet,null);
+ if(n==6)check(Mathf.Abs((hp-enemy.CurrentHealth)-damage*bullet.bulletData.critMultiplier*enemy.enemyData.GetDamageMultiplier(bullet.bulletData.bulletType))<.01f,"Guaranteed critical impact");
+ check(a.SkillHitStacks==Mathf.Min(5,n),"Hit stacks");UnityEngine.Object.DestroyImmediate(bullet.gameObject);
+}
+check(Mathf.Abs(stat(a,"currentAttackSpeed")-speed/1.1f/1.1f)<.001f,"Stack cap speed");
+int oldVersion=a.SkillSequenceVersion;
+var other=new GameObject("ValidationEnemy2");other.SetActive(false);var e2=other.AddComponent<Enemy>();e2.enabled=false;e2.enemyData=enemy.enemyData;typeof(Enemy).GetField("currenthealth",flags).SetValue(e2,2000f);other.transform.position=a.transform.position+Vector3.right*a.CurrentRange*.25f;
+a.Attack(other);check(a.SkillHitStacks==0&&a.SkillSequenceVersion!=oldVersion,"Switch resets");a.RegisterSkillHit(enemy,oldVersion);check(a.SkillHitStacks==0,"Old projectile ignored");
+var last=UnityEngine.Object.FindObjectsOfType<Bullet>().Single();check(Mathf.Abs((float)typeof(Bullet).GetField("finalDamage",flags).GetValue(last)-baseline*1.1f*1.1f)<.001f,"Low HP bonus");check((float)typeof(Bullet).GetField("finalCriticalChance",flags).GetValue(last)<1f,"Switch clears attack counter");UnityEngine.Object.DestroyImmediate(last.gameObject);
+p.ResetArcher();check(Mathf.Abs(stat(a,"currentDamage")-baseline)<.001f&&Mathf.Abs(a.CurrentRange-range)<.001f&&a.SkillHitStacks==0,"Live refund removes effects");
+for(int i=0;i<11;i++)p.TryUnlockArcher(i);
+UnityEngine.Object.DestroyImmediate(enemy.enemyData);UnityEngine.Object.DestroyImmediate(go);UnityEngine.Object.DestroyImmediate(other);UnityEngine.Object.DestroyImmediate(second);
+return new {singleArrowAttacks=shots,checks="Live/new towers, damage, speed, range collider, crit, actual hits, stack cap, target switch, stale shots, low HP and refund passed"};

@@ -13,18 +13,28 @@ MonoBehaviour:
   m_Name: ArcherData
   m_EditorClassIdentifier: 
   towerLevel: 1
-  firstLevelExperience: 20
-  experienceIncreasePerLevel: 10
+  firstLevelExperience: 24
+  experienceIncreasePerLevel: 12
+  levelDamageGrowth: 0.05
+  levelAttackSpeedGrowth: 0.015
+  levelCriticalGrowth: 0.003
+  maximumCriticalChance: 0.6
   defaultWeapon: {fileID: 11400000, guid: f9afa129c73ad9b47a3155f8347ac2d4, type: 2}
   fireWeapon: {fileID: 11400000, guid: 23d47db8c876d4647bf5984b518fca78, type: 2}
   waterWeapon: {fileID: 11400000, guid: 49b063a1b5642ba4d8104ad5ffdfffb8, type: 2}
   earthWeapon: {fileID: 11400000, guid: 89f3e35d97a0ec649ad0449deaf8a922, type: 2}
   airWeapon: {fileID: 11400000, guid: 7607855c393f178469cbe9dee5ecf306, type: 2}
   type: 0
-  damage: 14
-  criticalChance: 0.1
-  range: 5
-  attackSpeed: 1
+  damage: 13
+  criticalChance: 0.05
+  range: 4.7
+  attackSpeed: 1.1
   cost: 250
+  explosionRadius: 1.5
+  mortarFlightTime: 0.25
+  mortarArcHeight: 0.8
+  mortarCriticalMultiplier: 2
+  elementChangeCost: 100
+  typeChangeRefundRate: 0.5
   gridWidth: 5
   gridHeight: 5

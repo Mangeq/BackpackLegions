@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ab1f1d53417be428fd4dc0f257a131, type: 3}
+  m_Name: Scout
+  m_EditorClassIdentifier: 
+  movementType: 0
+  flightHeight: 1
+  enemyName: "Goblin Ke\u015Fif\xE7i"
+  element: 2
+  weaknessMultiplier: 2
+  resistanceMultiplier: 0.4
+  normalAttackMultiplier: 0.95
+  baseDamageOverride: 5
+  isBoss: 0
+  health: 89
+  speed: 3.1
+  damage: 15
+  attackInterval: 1.2
+  goldReward: 18
+  experienceReward: 16
+  weaknesses: 
+  resistances: 

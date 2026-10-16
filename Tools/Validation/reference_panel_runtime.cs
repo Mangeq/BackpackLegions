@@ -1,0 +1,45 @@
+// Execute in Play Mode. This only changes the current runtime scene and cloned test data.
+if(!UnityEditor.EditorApplication.isPlaying)throw new System.Exception("Play Mode required");
+var rows=new System.Collections.Generic.List<object>();
+var gm=UnityEngine.Object.FindObjectOfType<GameManager>();gm.enabled=false;
+var ui=UnityEngine.Object.FindObjectOfType<UİManager>();
+var bags=BackpackUIManager.Instance;
+var shop=UnityEngine.Object.FindObjectOfType<ShopUIManager>();
+var t=UnityEngine.Object.FindObjectOfType<ArcherTower>();
+var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.NonPublic;
+UİManager.activeTower=t;bags.OpenBackpack(t);UnityEngine.Canvas.ForceUpdateCanvases();
+rows.Add(new{test="original texture imported without resizing",passed=ReferencePanelAssets.Sprite("Background").texture.width==1678&&ReferencePanelAssets.Sprite("Background").texture.height==937});
+rows.Add(new{test="four live offer cards in two columns",passed=shop.shopSlots.Length==4&&shop.offersScroll.content.GetComponent<UnityEngine.UI.GridLayoutGroup>().constraintCount==2});
+rows.Add(new{test="purchase card closed and evolution hidden",passed=!UİManager.TowerShopUI.activeInHierarchy&&!bags.evolutionStatus.gameObject.activeSelf});
+rows.Add(new{test="all four icons are the approved raster artwork",passed=bags.combinedPanel.GetComponentsInChildren<TowerStatIcon>(true).Length==0});
+var damage=typeof(Tower).GetField("currentDamage",flags);float original=(float)damage.GetValue(t);
+var d=UnityEngine.Object.Instantiate(UnityEngine.Resources.Load<ItemData>("Data/Items/Shop/Normal/v1_piercing_arrows"));
+d.Name="Reference UI transfer test";d.cost=100;d.damageBonus=.5f;d.attackSpeedBonus=0;d.criticalChanceBonus=0;d.healthBonus=0;
+d.itemShape=new System.Collections.Generic.List<Vector2Int>{Vector2Int.zero,new Vector2Int(0,1)};d.centerOffset=Vector2Int.zero;
+t.myShopItems[0]=d;shop.UpdateShopUI();EconomyManager.Gold=1000;
+System.Func<RectTransform,int,int,UnityEngine.EventSystems.PointerEventData> pointer=(grid,x,y)=>{
+var ev=new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);
+ev.position=RectTransformUtility.WorldToScreenPoint(null,grid.TransformPoint(new Vector3((x+.5f)*bags.cellSize,-(y+.5f)*bags.cellSize,0)));return ev;};
+var store=pointer(bags.storageGridContainer,0,0);var starter=shop.shopSlots[0].GetComponent<ShopSlotDragStarter>();
+starter.OnBeginDrag(store);starter.OnDrag(store);starter.OnEndDrag(store);
+rows.Add(new{test="shop to storage charges once and applies no stat bonus",passed=t.Storage.Items.Count==1&&EconomyManager.Gold==900&&(float)damage.GetValue(t)==original&&t.myShopItems[0]==null});
+System.Func<BackpackDraggable> visual=()=>{
+var dict=(System.Collections.Generic.Dictionary<PlacedItem,GameObject>)typeof(BackpackUIManager).GetField("itemVisuals",flags).GetValue(bags);
+foreach(var pair in dict)if(pair.Key.Data==d)return pair.Value.GetComponent<BackpackDraggable>();return null;};
+var drag=visual();drag.BeginDrag();var equip=pointer(bags.gridContainer,0,0);drag.UpdateDrag(equip);bool ok=drag.FinishDrag(equip);
+rows.Add(new{test="storage to inventory uses transformed source grid and applies bonus",passed=ok&&t.Storage.Items.Count==0&&(float)damage.GetValue(t)>original&&EconomyManager.Gold==900});
+drag=visual();drag.BeginDrag();drag.Rotate(1);drag.UpdateDrag(store);ok=drag.FinishDrag(store);
+rows.Add(new{test="rotated inventory to storage restores base stats",passed=ok&&t.Storage.Items.Count==1&&t.Storage.Items[0].Rotation==1&&(float)damage.GetValue(t)==original});
+Backpack targetBag;var hidden=pointer(bags.storageGridContainer,2,0);
+var hiddenCell=bags.FindDropCell(hidden.position,null,out targetBag);
+rows.Add(new{test="hidden third storage column rejects drops outside clipping bounds",passed=!hiddenCell.HasValue});
+var scroll=bags.storageGridContainer.GetComponentInParent<UnityEngine.UI.ScrollRect>();scroll.horizontalNormalizedPosition=1;
+UnityEngine.Canvas.ForceUpdateCanvases();var third=pointer(bags.storageGridContainer,2,0);
+var visibleCell=bags.FindDropCell(third.position,null,out targetBag);
+rows.Add(new{test="horizontal scroll preserves access to existing third storage column",passed=visibleCell.HasValue&&visibleCell.Value.x==2&&targetBag==t.Storage});
+scroll.horizontalNormalizedPosition=0;
+int before=EconomyManager.Gold;shop.rerollButton.onClick.Invoke();
+rows.Add(new{test="original reroll button callback charges configured price",passed=EconomyManager.Gold==before-shop.rerollCost});
+ui.CloseTowerPanel();rows.Add(new{test="close cancels interaction and hides full screen panel",passed=!bags.combinedPanel.activeInHierarchy&&!BackpackDraggable.IsDragging});
+string json=UnityEngine.JsonUtility.ToJson(new UnityEngine.Vector2(1,1));
+return rows;

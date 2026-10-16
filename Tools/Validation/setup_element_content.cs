@@ -1,3 +1,4 @@
+if (UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/Data/Items")) throw new System.Exception("Historical setup: content already migrated. Edit existing assets; do not recreate old folders.");
 if(UnityEditor.EditorApplication.isPlaying)throw new System.Exception("Stop Play first");
 var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene();if(scene.path!="Assets/Scenes/GameScane.unity")throw new System.Exception("Wrong scene");
 if(UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/Data/ElementsV1"))throw new System.Exception("Element content already exists; inspect before running again");

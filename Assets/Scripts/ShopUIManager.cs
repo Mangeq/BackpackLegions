@@ -102,7 +102,7 @@ public class ShopUIManager : MonoBehaviour
             if (UİManager.activeTower.myShopItems[i] != null)
             {
                 shopSlots[i].image.enabled = true;
-                shopSlots[i].image.sprite = UİManager.activeTower.myShopItems[i].itemIcon;
+                shopSlots[i].image.sprite = ReferencePanelAssets.IconFor(UİManager.activeTower.myShopItems[i]);
                 shopSlots[i].itemCost.text = UİManager.activeTower.myShopItems[i].cost.ToString();
                 shopSlots[i].currentItem = UİManager.activeTower.myShopItems[i];
             }

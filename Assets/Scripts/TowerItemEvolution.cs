@@ -11,8 +11,10 @@ public class TowerItemEvolution
     }
     public sealed class Delivery
     {
-        public ItemData Item { get; private set; }
-        public Delivery(ItemData item) { Item=item; }
+        public ItemData Item => Content.Data;
+        public PlacedItem Content { get; private set; }
+        public Delivery(ItemData item) { Content=new PlacedItem(item,Vector2Int.zero,0); }
+        public Delivery(PlacedItem item) { Content=item; }
     }
     private readonly Tower owner;
     private readonly List<Delivery> deliveries=new List<Delivery>();
@@ -23,6 +25,7 @@ public class TowerItemEvolution
     public TowerItemEvolution(Tower tower) { owner=tower; }
     public bool Contains(Delivery delivery) => deliveries.Contains(delivery);
     public bool Claim(Delivery delivery) => deliveries.Remove(delivery);
+    public void RestoreDelivery(Delivery delivery) { if(delivery!=null&&!deliveries.Contains(delivery))deliveries.Add(delivery); }
     internal void TransferDeliveriesTo(TowerItemEvolution destination)
     {
         if (destination == null || destination == this) return;
@@ -75,6 +78,7 @@ public class TowerItemEvolution
         {
             if(!ContainsItem(pair.first)||!ContainsItem(pair.second)||!Adjacent(pair.first,pair.second)
                 || !owner.IsItemActive(pair.first.Data) || !owner.IsItemActive(pair.second.Data) || !owner.IsItemActive(pair.recipe.result))continue;
+            ReleaseAttachments(pair.first);ReleaseAttachments(pair.second);
             owner.Backpack.Remove(pair.first);owner.Backpack.Remove(pair.second);
             if(!TryPlace(owner.Backpack,pair.recipe.result,pair.first.Origin) &&
                 !TryPlace(owner.Storage,pair.recipe.result,Vector2Int.zero))
@@ -83,6 +87,23 @@ public class TowerItemEvolution
         owner.CalculateStats();
         var ui=BackpackUIManager.Instance;
         if(ui!=null && ui.ActiveTower==owner)ui.RefreshItemVisuals();
+    }
+    // Attachments are never consumed by a host sale, main-item replacement or evolution.
+    public void ReleaseAttachments(PlacedItem host)
+    {
+        if(host==null)return;
+        foreach(var part in new List<PlacedItem>(host.Attachments)){
+            host.Detach(part);
+            StoreOrDeliver(part);
+        }
+    }
+    public void StoreOrDeliver(PlacedItem item)
+    {
+        if(item==null||item.Bag!=null||item.Parent!=null)return;
+        bool placed=false;
+        for(int y=0;y<owner.Storage.Height&&!placed;y++)for(int x=0;x<owner.Storage.Width&&!placed;x++)for(int r=0;r<4&&!placed;r++)
+            placed=owner.Storage.PlaceExisting(item,new Vector2Int(x,y),r);
+        if(!placed)deliveries.Add(new Delivery(item));
     }
     private bool ContainsItem(PlacedItem item)
     {

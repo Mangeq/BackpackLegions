@@ -1,0 +1,23 @@
+{
+  "state": {
+    "success": true,
+    "message": "Code executed successfully.",
+    "data": {
+      "result": {
+        "playing": false,
+        "dirty": false,
+        "path": "Assets/Scenes/GameScane.unity",
+        "background": false,
+        "towers": 0
+      },
+      "compiler": "codedom"
+    }
+  },
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "featureChecks": 59,
+  "regressionChecks": 80
+}

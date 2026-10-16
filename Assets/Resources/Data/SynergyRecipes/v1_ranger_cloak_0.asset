@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2175cbf1d15f82d4f96ee0aa6fcf0e33, type: 3}
+  m_Name: v1_ranger_cloak_0
+  m_EditorClassIdentifier: 
+  targetItem: {fileID: 11400000, guid: 8b5f955ffee76664b8080f1e06475afa, type: 2}
+  supportItem: {fileID: 11400000, guid: 1c6e7159aa1deca45920d7246710cb9a, type: 2}
+  filter: 2
+  supportType: 4
+  placement: 0
+  cells:
+  - {x: 2, y: 0}
+  - {x: 2, y: 1}
+  maxActivations: 1
+  description: denemee
+  bonus:
+    damage: 20
+    attackSpeed: 10
+    criticalChance: 10
+    health: 200
+    flatDamage: 0

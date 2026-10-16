@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0827e68647584d441a66fe370d0e2600, type: 3}
+  m_Name: MortarData
+  m_EditorClassIdentifier: 
+  towerLevel: 1
+  firstLevelExperience: 24
+  experienceIncreasePerLevel: 12
+  levelDamageGrowth: 0.05
+  levelAttackSpeedGrowth: 0.015
+  levelCriticalGrowth: 0.003
+  maximumCriticalChance: 0.6
+  defaultWeapon: {fileID: 11400000, guid: 80eaf549d4e076142943e56fcce70d75, type: 2}
+  fireWeapon: {fileID: 11400000, guid: b73d718053b32f24ab922179a7badedb, type: 2}
+  waterWeapon: {fileID: 11400000, guid: 690583970bc10ea49a98cccf8dff0ada, type: 2}
+  earthWeapon: {fileID: 11400000, guid: 7cdaf3dd8affdaa49af39188a245531c, type: 2}
+  airWeapon: {fileID: 11400000, guid: 16595031620741742a070d942d86a4c4, type: 2}
+  type: 1
+  damage: 46
+  criticalChance: 0.05
+  range: 4.8
+  attackSpeed: 3.4
+  cost: 375
+  explosionRadius: 1.25
+  mortarFlightTime: 0.25
+  mortarArcHeight: 0.8
+  mortarCriticalMultiplier: 2
+  elementChangeCost: 100
+  typeChangeRefundRate: 0.5
+  gridWidth: 5
+  gridHeight: 5

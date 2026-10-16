@@ -13,6 +13,14 @@ public class EnemyData : ScriptableObject
     public string enemyName;
     [Tooltip("Düşmanın element kimliği. Kara/hava hareket türünden bağımsızdır.")]
     public ElementType element = ElementType.Normal;
+    [Header("Element ve kale dengesi")]
+    [Min(0)] public float weaknessMultiplier = 1.5f;
+    [Min(0)] public float resistanceMultiplier = 0.5f;
+    [Min(0)] public float normalAttackMultiplier = 1f;
+    [Tooltip("0 ise eski davranış: saldırı hasarı. Boss için kale canı kadar ayarlanır.")]
+    [Min(0)] public int baseDamageOverride;
+    public bool isBoss;
+    public int BaseDamage => baseDamageOverride > 0 ? baseDamageOverride : damage;
     public float health;
     public float speed;
     public int damage;
@@ -40,9 +48,10 @@ public class EnemyData : ScriptableObject
     public float GetDamageMultiplier(ElementType attack)
     {
         if (element != ElementType.Normal)
-            return attack == WeakTo ? 1.5f : attack == ResistantTo ? 0.5f : 1f;
+            return attack == ElementType.Normal ? normalAttackMultiplier
+                : attack == WeakTo ? weaknessMultiplier : attack == ResistantTo ? resistanceMultiplier : 1f;
         // Eski nötr düşmanların özel verilerini sessizce değiştirme.
-        return weaknesses != null && weaknesses.Contains(attack) ? 1.5f
-            : resistances != null && resistances.Contains(attack) ? 0.5f : 1f;
+        return weaknesses != null && weaknesses.Contains(attack) ? weaknessMultiplier
+            : resistances != null && resistances.Contains(attack) ? resistanceMultiplier : 1f;
     }
 }

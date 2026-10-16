@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d24ac3c967221a4c91c2efb6b14afe3, type: 3}
+  m_Name: recipe_mortar_guclendirilmis_barut_normal
+  m_EditorClassIdentifier: 
+  first: {fileID: 11400000, guid: bd790d262bc8adc498615f99cc5cde80, type: 2}
+  second: {fileID: 11400000, guid: 879c3573e95173744949f58c2b5db9f4, type: 2}
+  result: {fileID: 11400000, guid: f9cf76ce30d9b424c8aaf5879b7e197f, type: 2}

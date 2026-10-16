@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EconomyManager : MonoBehaviour
 {
-    public static int Gold = 1000;
+    public static int Gold = 700;
 
     // Pozitif tam sayıda bölme küsuratı aşağı yuvarlar (151 -> 75).
     public static int GetSellValue(ItemData item) => item == null ? 0 : Mathf.Max(0, item.cost) / 2;

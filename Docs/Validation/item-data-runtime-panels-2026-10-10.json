@@ -1,0 +1,82 @@
+[
+  {
+    "test": "Each item rounded down, only backpack contributes",
+    "passed": true
+  },
+  {
+    "test": "Sale proceeds can fund conversion",
+    "passed": true
+  },
+  {
+    "test": "Nonempty bag can open and confirm quote",
+    "passed": true
+  },
+  {
+    "test": "Warning quotes sale amount and final balance",
+    "passed": true
+  },
+  {
+    "test": "ESC closes modal only, no sale and no pause",
+    "passed": true
+  },
+  {
+    "test": "Second ESC closes combined panel without pause",
+    "passed": true
+  },
+  {
+    "test": "ESC without panel pauses",
+    "passed": true
+  },
+  {
+    "test": "ESC closes pause and resumes previous preparation speed",
+    "passed": true
+  },
+  {
+    "test": "Inside click preserves combined panel",
+    "passed": true
+  },
+  {
+    "test": "Inside modal does not cancel",
+    "passed": true
+  },
+  {
+    "test": "Outside modal cancels without selling",
+    "passed": true
+  },
+  {
+    "test": "Outside combined closes backpack and shop",
+    "passed": true
+  },
+  {
+    "test": "ESC purchase closes and releases slot",
+    "passed": true
+  },
+  {
+    "test": "ESC during drag restores owned item before close",
+    "passed": true
+  },
+  {
+    "test": "Insufficient total funds preserves old tower, items, balance",
+    "passed": true
+  },
+  {
+    "test": "Confirm sells backpack and pays conversion atomically",
+    "passed": true
+  },
+  {
+    "test": "Storage survives with exact same item and no sale",
+    "passed": true
+  },
+  {
+    "test": "Main replaced, level and XP reset",
+    "passed": true
+  },
+  {
+    "test": "Double confirmation cannot duplicate sale proceeds",
+    "passed": true
+  },
+  {
+    "test": "Sale area is sixty pixels tall inside expanded panel",
+    "passed": true
+  }
+]

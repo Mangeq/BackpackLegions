@@ -26,6 +26,14 @@ public class BackpackCellView : MonoBehaviour
     {
         GridX = x;
         GridY = y;
+        if (background != null && BackpackUIManager.Instance != null &&
+            BackpackUIManager.Instance.GetComponent<TowerPanelLayout>() != null)
+        {
+            background.sprite = null;
+            background.type = Image.Type.Simple;
+            var outline=GetComponent<UnityEngine.UI.Outline>();
+            if(outline!=null)outline.enabled=false;
+        }
     }
 
     public void SetHighlight(CellHighlightState state)

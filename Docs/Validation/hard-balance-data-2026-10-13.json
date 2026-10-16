@@ -1,0 +1,1098 @@
+[
+  {
+    "test": "Chapter 1 budget",
+    "passed": true
+  },
+  {
+    "test": "Chapter 1 linear population",
+    "passed": true
+  },
+  {
+    "test": "Chapter 1 round count",
+    "passed": true
+  },
+  {
+    "test": "Chapter 1 second wave mixed",
+    "passed": true
+  },
+  {
+    "test": "Chapter 1 third wave air",
+    "passed": true
+  },
+  {
+    "test": "Chapter 1 one final boss",
+    "passed": true
+  },
+  {
+    "test": "Chapter 1 no early boss",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 1",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 1",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 1",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 1",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 1",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 budget",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 linear population",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 round count",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 second wave mixed",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 third wave air",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 one final boss",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 no early boss",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 2",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 2",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 2",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 2",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 2",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 2",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 2",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 budget",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 linear population",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 round count",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 second wave mixed",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 third wave air",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 one final boss",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 no early boss",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 3",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 budget",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 linear population",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 round count",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 second wave mixed",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 third wave air",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 one final boss",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 no early boss",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 4",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 budget",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 linear population",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 round count",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 second wave mixed",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 third wave air",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 one final boss",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 no early boss",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Valid populated groups chapter 5",
+    "passed": true
+  },
+  {
+    "test": "Elite readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Guard readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Raider readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Scout readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Warlord readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Warlord lethal escape",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Elite readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Guard readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Raider readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Scout readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Warlord readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Warlord lethal escape",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Elite readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Guard readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Raider readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Scout readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Warlord readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Warlord lethal escape",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Elite readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Guard readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Raider readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Scout readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Warlord readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Warlord lethal escape",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Elite readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Elite actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Guard readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Guard actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Raider readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Raider actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Scout readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Scout actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "SkyWisp actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "Warlord readable multipliers",
+    "passed": true
+  },
+  {
+    "test": "Warlord lethal escape",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Normal",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Fire",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Water",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Earth",
+    "passed": true
+  },
+  {
+    "test": "Warlord actual damage Air",
+    "passed": true
+  },
+  {
+    "test": "ArcherData level20 cooldown not collapsed",
+    "passed": true
+  },
+  {
+    "test": "ArcherData level growth bounded",
+    "passed": true
+  },
+  {
+    "test": "MegicData level20 cooldown not collapsed",
+    "passed": true
+  },
+  {
+    "test": "MegicData level growth bounded",
+    "passed": true
+  },
+  {
+    "test": "MortarData level20 cooldown not collapsed",
+    "passed": true
+  },
+  {
+    "test": "MortarData level growth bounded",
+    "passed": true
+  },
+  {
+    "test": "UnitData level20 cooldown not collapsed",
+    "passed": true
+  },
+  {
+    "test": "UnitData level growth bounded",
+    "passed": true
+  },
+  {
+    "test": "No invalid item prices or stats",
+    "passed": true
+  }
+]

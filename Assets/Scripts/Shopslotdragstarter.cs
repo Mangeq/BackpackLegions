@@ -36,7 +36,7 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
         RectTransform rt = ghost.GetComponent<RectTransform>();
         Vector2Int size = ItemShapeUtility.GetBoundingSize(shopSlot.currentItem.itemShape);
         rt.sizeDelta = new Vector2(size.x * BackpackUIManager.Instance.cellSize, size.y * BackpackUIManager.Instance.cellSize);
-        ghost.GetComponent<Image>().sprite = shopSlot.currentItem.itemIcon;
+        ghost.GetComponent<Image>().sprite = ReferencePanelAssets.IconFor(shopSlot.currentItem);
 
         activeGhost = ghost.GetComponent<BackpackDraggable>();
         activeGhost.InitializeFromShop(shopSlot.currentItem);

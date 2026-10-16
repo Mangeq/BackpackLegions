@@ -1,0 +1,32 @@
+[
+  {
+    "chapterNumber": 1,
+    "startingGold": 850,
+    "enemies": 180,
+    "boss": 2400.0
+  },
+  {
+    "chapterNumber": 2,
+    "startingGold": 1000,
+    "enemies": 260,
+    "boss": 3840.0
+  },
+  {
+    "chapterNumber": 3,
+    "startingGold": 1150,
+    "enemies": 340,
+    "boss": 5280.0
+  },
+  {
+    "chapterNumber": 4,
+    "startingGold": 1300,
+    "enemies": 420,
+    "boss": 6720.0
+  },
+  {
+    "chapterNumber": 5,
+    "startingGold": 1450,
+    "enemies": 500,
+    "boss": 8160.0
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "test": "Initially hidden",
+    "passed": true
+  },
+  {
+    "test": "Chapter budget softened",
+    "passed": true
+  },
+  {
+    "test": "Click pinning removed",
+    "passed": true
+  },
+  {
+    "test": "Enter opens 0",
+    "passed": true
+  },
+  {
+    "test": "Hover stays open 0",
+    "passed": true
+  },
+  {
+    "test": "Exit closes immediately 0",
+    "passed": true
+  },
+  {
+    "test": "Stays closed 0",
+    "passed": true
+  },
+  {
+    "test": "Enter opens 1",
+    "passed": true
+  },
+  {
+    "test": "Hover stays open 1",
+    "passed": true
+  },
+  {
+    "test": "Exit closes immediately 1",
+    "passed": true
+  },
+  {
+    "test": "Stays closed 1",
+    "passed": true
+  },
+  {
+    "test": "Enter opens 2",
+    "passed": true
+  },
+  {
+    "test": "Hover stays open 2",
+    "passed": true
+  },
+  {
+    "test": "Exit closes immediately 2",
+    "passed": true
+  },
+  {
+    "test": "Stays closed 2",
+    "passed": true
+  },
+  {
+    "test": "Enter opens 3",
+    "passed": true
+  },
+  {
+    "test": "Hover stays open 3",
+    "passed": true
+  },
+  {
+    "test": "Exit closes immediately 3",
+    "passed": true
+  },
+  {
+    "test": "Stays closed 3",
+    "passed": true
+  },
+  {
+    "test": "Enter opens 4",
+    "passed": true
+  },
+  {
+    "test": "Hover stays open 4",
+    "passed": true
+  },
+  {
+    "test": "Exit closes immediately 4",
+    "passed": true
+  },
+  {
+    "test": "Stays closed 4",
+    "passed": true
+  },
+  {
+    "test": "Pause hides",
+    "passed": true
+  },
+  {
+    "test": "Resume outside stays hidden",
+    "passed": true
+  },
+  {
+    "test": "Disable hides",
+    "passed": true
+  },
+  {
+    "test": "Enable does not reopen",
+    "passed": true
+  },
+  {
+    "test": "New wave does not auto-open",
+    "passed": true
+  },
+  {
+    "test": "New wave details correct",
+    "passed": true
+  },
+  {
+    "test": "Chapter 1 revised data",
+    "passed": true
+  },
+  {
+    "test": "Chapter 2 revised data",
+    "passed": true
+  },
+  {
+    "test": "Chapter 3 revised data",
+    "passed": true
+  },
+  {
+    "test": "Chapter 4 revised data",
+    "passed": true
+  },
+  {
+    "test": "Chapter 5 revised data",
+    "passed": true
+  }
+]

@@ -2,6 +2,8 @@
 
 Emir'in onayladığı oyun kuralları ve mevcut sınıf dağılımı uygulandı. Yeni manager eklenmedi. Bu belge aynı günün önceki ilk-element uygulamasını tamamlar; GDD 4.2–4.3'teki zorunlu satış akışının yerine üzerinde anlaşılmış dönüşüm düğmelerini kullanır.
 
+> 10 Ekim güncellemesi: kule değişimindeki elle çanta boşaltma şartı kaldırıldı. Onay ekranı satış gelirini gösterir; ana eşya dışındaki çanta eşyaları otomatik satılır. Güncel akış: [Panel ve otomatik satış](Panel_ve_Otomatik_Satis_2026-10-10.md). Aşağıdaki boş-çanta açıklamaları 9 Ekim uygulamasının tarihsel kaydıdır.
+
 ## Oyuncu akışı
 
 Kule panelinde çantanın altında iki düğme vardır. İşlemler yalnız hazırlıkta, pause kapalıyken yapılır. Seçim ekranı fiyat ve sonuçları gösterir; oyuncu Onayla veya Vazgeç der. Ekran açılması/seçenek seçilmesi altın kesmez. Savaş başlarsa veya kule/panel değişirse açık onay geçersiz olur.

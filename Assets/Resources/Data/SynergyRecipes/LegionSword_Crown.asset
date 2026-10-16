@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2175cbf1d15f82d4f96ee0aa6fcf0e33, type: 3}
+  m_Name: LegionSword_Crown
+  m_EditorClassIdentifier: 
+  targetItem: {fileID: 11400000, guid: b58bea0f62f0acd4c988d8d96285e835, type: 2}
+  supportItem: {fileID: 11400000, guid: be61a99a1dab93a4a9e113541e4460bb, type: 2}
+  filter: 2
+  supportType: 0
+  placement: 2
+  cells:
+  - {x: 1, y: 0}
+  maxActivations: 1
+  description: "Sa\u011F \xFCst kom\u015Fu karede veya k\u0131l\u0131ca tak\u0131l\u0131yken
+    +5 sabit hasar. Tarif en fazla bir kez i\u015Fler."
+  bonus:
+    damage: 0
+    attackSpeed: 0
+    criticalChance: 0
+    health: 0
+    flatDamage: 5

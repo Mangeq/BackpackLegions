@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1990e9037d8a0643a4aa23c0049ff16, type: 3}
+  m_Name: mortar.draft.6
+  m_EditorClassIdentifier: 
+  id: mortar.draft.6
+  towerType: 1
+  displayName: "Sa\u011Flam Namlu"
+  description: "Yeni uzmanl\u0131k d\xFC\u011F\xFCm\xFC \xF6nerisi. Etkisi, maliyeti
+    ve a\xE7\u0131lma ko\u015Fulu birlikte belirlenecek. \u015Eimdilik puan harcanmaz."
+  icon: {fileID: 21300000, guid: fcd562c7215d6f44abf8ee5f23ca8c46, type: 3}
+  pointCost: 2
+  available: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 2f45e464569bff446877f6e9df18057e, type: 2}
+  effects: []

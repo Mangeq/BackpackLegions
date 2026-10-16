@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e19424d56b32f4f9f053e937dfb22f, type: 3}
+  m_Name: Unit
+  m_EditorClassIdentifier: 
+  towerType: 2
+  title: "B\u0130RL\u0130K A\u011EACI"
+  subtitle: "Dayan\u0131kl\u0131l\u0131k \xB7 \u0130kmal \xB7 Birlik uyumu \xB7 Ba\u011Flant\u0131lar
+    taslak"
+  accent: {r: 0.22, g: 0.35, b: 0.42, a: 1}
+  nodes:
+  - skill: {fileID: 11400000, guid: 405d9aa5db4b2d7459f8406a90baaf84, type: 2}
+    position: {x: 400, y: 500}
+  - skill: {fileID: 11400000, guid: 404f17e87733007468a6016c4795d105, type: 2}
+    position: {x: 110, y: 365}
+  - skill: {fileID: 11400000, guid: 6082850c203783949bed04b97b7a5803, type: 2}
+    position: {x: 400, y: 365}
+  - skill: {fileID: 11400000, guid: 84776033cc9b7764aa69da1135b0b91f, type: 2}
+    position: {x: 690, y: 365}
+  - skill: {fileID: 11400000, guid: e31d641a67025eb4dbae1920030dfa64, type: 2}
+    position: {x: 110, y: 220}
+  - skill: {fileID: 11400000, guid: 107355bcbb9e8f2428f9787e1687c534, type: 2}
+    position: {x: 400, y: 220}
+  - skill: {fileID: 11400000, guid: f379bd4cecfdb6b4fa19409289bbbd3a, type: 2}
+    position: {x: 690, y: 220}
+  - skill: {fileID: 11400000, guid: 1b253911aecd42b4692fb3494a59a3a2, type: 2}
+    position: {x: 80, y: 70}
+  - skill: {fileID: 11400000, guid: 081b7b5ea5c8315418a80e22c976706d, type: 2}
+    position: {x: 240, y: 70}
+  - skill: {fileID: 11400000, guid: 3fd3394bbc4a4a74ba3f1b62441f182b, type: 2}
+    position: {x: 400, y: 70}
+  - skill: {fileID: 11400000, guid: b718d00bdfb724a459c1ad51de80d236, type: 2}
+    position: {x: 560, y: 70}
+  - skill: {fileID: 11400000, guid: c6a083f6a3389394593b05b91e5624f5, type: 2}
+    position: {x: 720, y: 70}

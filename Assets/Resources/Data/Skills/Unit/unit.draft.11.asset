@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1990e9037d8a0643a4aa23c0049ff16, type: 3}
+  m_Name: unit.draft.11
+  m_EditorClassIdentifier: 
+  id: unit.draft.11
+  towerType: 2
+  displayName: "Lejyon Ustas\u0131"
+  description: "Yeni uzmanl\u0131k d\xFC\u011F\xFCm\xFC \xF6nerisi. Etkisi, maliyeti
+    ve a\xE7\u0131lma ko\u015Fulu birlikte belirlenecek. \u015Eimdilik puan harcanmaz."
+  icon: {fileID: 21300000, guid: 99a7b848a9745084d83a7c268a8561ef, type: 3}
+  pointCost: 2
+  available: 0
+  prerequisites:
+  - {fileID: 11400000, guid: f379bd4cecfdb6b4fa19409289bbbd3a, type: 2}
+  effects: []

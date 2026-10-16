@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     private Vector3 targetLastPosition;
     private Enemy targetEnemy;
     private Tower owner;
+    private int archerSequenceVersion;
     private ElementType damageElement;
 
     // Update is called once per frame
@@ -46,7 +47,12 @@ public class Bullet : MonoBehaviour
                 float damage = Random.Range(0f, 1f) <= finalCriticalChance
                     ? finalDamage * bulletData.critMultiplier
                     : finalDamage;
-                target.GetComponent<Enemy>().TakeDamage(damage, damageElement, owner);
+                if(targetEnemy!=null && targetEnemy.CurrentHealth>0f)
+                {
+                    var archer=owner as ArcherTower;
+                    if(archer!=null)archer.RegisterSkillHit(targetEnemy,archerSequenceVersion);
+                    targetEnemy.TakeDamage(damage, damageElement, owner);
+                }
             }
             Destroy(gameObject); return;
         }
@@ -55,6 +61,7 @@ public class Bullet : MonoBehaviour
     public void Initialize(Transform target, float calculateDamage, float calculateCriticalChance, Tower owner = null)
     {
         this.owner = owner;
+        archerSequenceVersion=owner is ArcherTower ? ((ArcherTower)owner).SkillSequenceVersion : -1;
         damageElement = owner != null && owner.SelectedElement != ElementType.Normal
             ? owner.SelectedElement : bulletData.bulletType;
         if (owner != null && owner.SelectedElement != ElementType.Normal)

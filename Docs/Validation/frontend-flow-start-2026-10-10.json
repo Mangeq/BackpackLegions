@@ -1,0 +1,22 @@
+[
+  {
+    "test": "Unavailable chapter cannot load",
+    "passed": true
+  },
+  {
+    "test": "Cancel does not change volume",
+    "passed": true
+  },
+  {
+    "test": "Reopen restores applied value",
+    "passed": true
+  },
+  {
+    "test": "Settings close independently",
+    "passed": true
+  },
+  {
+    "test": "Playable chapter starts async loading",
+    "passed": true
+  }
+]

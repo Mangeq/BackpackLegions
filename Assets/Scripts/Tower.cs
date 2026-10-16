@@ -23,11 +23,12 @@ public abstract class Tower : MonoBehaviour
     public enum TargetOrder { FirstEntered = 0, LastEntered = 1 }
     public TargetType SelectedTargetType { get; private set; } = TargetType.Both;
     public TargetOrder SelectedTargetOrder { get; private set; } = TargetOrder.FirstEntered;
-    public bool SupportsManualTargeting => this is ArcherTower || this is MegicTower;
+    public bool SupportsManualTargeting => this is ArcherTower || this is MegicTower || this is MortarTower;
+    public bool SupportsAirTargets => !(this is MortarTower);
 
     public void SetTargetType(int value)
     {
-        if (SupportsManualTargeting && value >= 0 && value <= 2)
+        if (SupportsManualTargeting && value >= 0 && value <= 2 && (SupportsAirTargets || value == (int)TargetType.Ground))
             SelectedTargetType = (TargetType)value;
     }
 
@@ -38,6 +39,21 @@ public abstract class Tower : MonoBehaviour
     }
     private bool isShooting = false;
     private SphereCollider rangeCollider;
+    protected List<SkillData.Effect> skillEffects = new List<SkillData.Effect>();
+    protected float SkillTotal(SkillData.EffectType type)
+    { float value=0f;foreach(var effect in skillEffects)if(effect.type==type)value+=effect.value;return value/100f; }
+    public virtual float CurrentRange => data != null ? data.range*(1f+SkillTotal(SkillData.EffectType.RangePercent)) : 0f;
+    protected virtual void OnEnable() { SkillTreeProgress.Changed+=RefreshSkillStats; }
+    protected virtual void RefreshSkillStats() { if(data!=null)CalculateStats(); }
+    protected void RefreshRangeCollider()
+    {
+        if(rangeCollider==null)return;
+        Vector3 scale=rangeCollider.transform.lossyScale;
+        float largest=Mathf.Max(Mathf.Abs(scale.x),Mathf.Abs(scale.y),Mathf.Abs(scale.z));
+        rangeCollider.radius=Mathf.Max(0f,CurrentRange)/Mathf.Max(.0001f,largest);
+    }
+    protected virtual void OnTargetSelected(GameObject target) { }
+
 
     public ItemData[] myShopItems = new ItemData[4];
     public bool IsShopFrozen { get; private set; }
@@ -73,9 +89,7 @@ public abstract class Tower : MonoBehaviour
         {
             Experience -= ExperienceRequired;
             towerLevel++;
-            baseDamage += 5f;
-            baseCriticalChance = Mathf.Clamp01(baseCriticalChance + 0.05f);
-            baseAttackSpeed = Mathf.Max(0.1f, baseAttackSpeed - 0.1f);
+            RebuildLevelStats();
             CalculateStats();
         }
     }
@@ -132,6 +146,7 @@ public abstract class Tower : MonoBehaviour
             ElementSelectionError = "Evrilmiş ana eşya bu konuma sığmıyor.";
             return false;
         }
+        Evolution.ReleaseAttachments(original);
         // Doğrulama ve değiştirme aynı ana-thread çağrısında; başarısız dönüşüm ücret kesmez.
         if (paidChange) EconomyManager.TrySpendGold(ElementChangeCost);
         SelectedElement = element;
@@ -154,6 +169,28 @@ public abstract class Tower : MonoBehaviour
         return target != null && target.data != null ? Mathf.Max(0, target.data.cost - TypeChangeRefund) : 0;
     }
 
+    public int TypeChangeSaleValue
+    {
+        get
+        {
+            int total = 0;
+            if (Backpack != null) foreach (var item in Backpack.Items)
+                if (!IsMainItem(item.Data)) total += EconomyManager.GetSellValue(item.Data);
+            return total;
+        }
+    }
+
+    public int TypeChangeSaleCount
+    {
+        get
+        {
+            int count = 0;
+            if (Backpack != null) foreach (var item in Backpack.Items)
+                if (!IsMainItem(item.Data)) count++;
+            return count;
+        }
+    }
+
     public string GetTypeChangeError(GameObject prefab)
     {
         if (retired || !GameManager.CanUpgradeTowers) return "Dönüşüm yalnız hazırlıkta yapılabilir.";
@@ -161,8 +198,7 @@ public abstract class Tower : MonoBehaviour
         bool mainFound = false;
         foreach (var item in Backpack.Items)
         {
-            if (item.Data != MainItem) return "Ana eşya dışındaki çanta eşyalarını sat veya depoya taşı.";
-            mainFound = true;
+            if (item.Data == MainItem) mainFound = true;
         }
         if (!mainFound) return "Ana eşya bulunamadı.";
         var target = prefab != null ? prefab.GetComponent<Tower>() : null;
@@ -173,14 +209,14 @@ public abstract class Tower : MonoBehaviour
             || target.data.gridWidth < 1 || target.data.gridHeight < 1) return "Yeni kulenin çanta verisi eksik.";
         var grid = new Backpack(target.data.gridWidth, target.data.gridHeight);
         if (!grid.CanPlace(itemData, grid.GetCenterOrigin(itemData))) return "Yeni ana eşya çantaya sığmıyor.";
-        if (EconomyManager.Gold < GetTypeChangeCost(prefab)) return "Yetersiz altın.";
+        if (EconomyManager.Gold + TypeChangeSaleValue < GetTypeChangeCost(prefab)) return "Eşya satışı dahil yetersiz altın.";
         return null;
     }
 
     public bool TryChangeTowerType(GameObject prefab, out Tower replacement)
     {
         replacement = null;
-        // Sürüklenerek grid dışına alınan eşya boş-çanta kontrolünü aşamaz.
+        // Sürüklenen eşya önce geri konur; satış hesabından kaçamaz.
         BackpackDraggable.CancelActiveDrag();
         TransitionError = GetTypeChangeError(prefab);
         if (TransitionError != null) return false;
@@ -200,7 +236,8 @@ public abstract class Tower : MonoBehaviour
             Debug.LogException(error);
             return false;
         }
-        if (!EconomyManager.TrySpendGold(GetTypeChangeCost(prefab)))
+        int finalGold = EconomyManager.Gold + TypeChangeSaleValue - GetTypeChangeCost(prefab);
+        if (finalGold < 0)
         {
             created.SetActive(false);
             Destroy(created);
@@ -208,6 +245,11 @@ public abstract class Tower : MonoBehaviour
             TransitionError = "Yetersiz altın.";
             return false;
         }
+        // Yeni kule başarıyla hazırlandı: satış ve ücret tek bakiye değişikliğidir.
+        EconomyManager.Gold = finalGold;
+        UİManager.UpdateGoldText();
+        foreach (var item in new List<PlacedItem>(Backpack.Items))
+        { Evolution.ReleaseAttachments(item);if (!IsMainItem(item.Data)) Backpack.Remove(item); }
         replacement.Storage = Storage;
         if (Evolution != null) Evolution.TransferDeliveriesTo(replacement.Evolution);
         if (this is UnitTower oldBarracks) oldBarracks.RemoveUnitsForTypeChange();
@@ -246,6 +288,7 @@ public abstract class Tower : MonoBehaviour
     {
         if (initialized) return;
         InitializeBaseStats();
+        if (!SupportsAirTargets) SelectedTargetType = TargetType.Ground;
         shopUIManager = GameObject.FindObjectOfType<ShopUIManager>();
 
         if (rangeCollider != null)
@@ -257,7 +300,7 @@ public abstract class Tower : MonoBehaviour
             Vector3 scale = rangeCollider.transform.lossyScale;
             float largestScale = Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z));
             // SphereCollider yarıçapı yereldir; TowerData.range dünya birimidir.
-            rangeCollider.radius = Mathf.Max(0f, data.range) / Mathf.Max(0.0001f, largestScale);
+            rangeCollider.radius = Mathf.Max(0f, CurrentRange) / Mathf.Max(0.0001f, largestScale);
         }
 
         Backpack = new Backpack(data.gridWidth, data.gridHeight);
@@ -285,9 +328,15 @@ public abstract class Tower : MonoBehaviour
     {
         // Eski asset'lerde seviye 0 olabilir; dükkan seviyeleri 1'den başlar.
         towerLevel = startAtLevelOne ? 1 : Mathf.Max(1, data.towerLevel);
-        baseDamage = data.damage;
-        baseCriticalChance = data.criticalChance;
-        baseAttackSpeed = data.attackSpeed;
+        RebuildLevelStats();
+    }
+
+    private void RebuildLevelStats()
+    {
+        int gainedLevels = Mathf.Max(0, towerLevel - 1);
+        baseDamage = data.damage * (1f + gainedLevels * data.levelDamageGrowth);
+        baseCriticalChance = Mathf.Min(data.maximumCriticalChance, data.criticalChance + gainedLevels * data.levelCriticalGrowth);
+        baseAttackSpeed = Mathf.Max(0.1f, data.attackSpeed / (1f + gainedLevels * data.levelAttackSpeedGrowth));
     }
 
     protected virtual void Update()
@@ -315,8 +364,10 @@ public abstract class Tower : MonoBehaviour
 
     public virtual void CalculateStats()
     {
+        skillEffects=new SkillTreeProgress().ActiveEffects(data.type);
         // Item bonusları kesir (0.05 = %5) ve kendi aralarında toplanır.
         float damageBonus = 0f;
+        float flatDamageBonus = 0f;
         float criticalChanceBonus = 0f;
         float attackSpeedBonus = 0f;
         float healthBonus = 0f;
@@ -327,6 +378,7 @@ public abstract class Tower : MonoBehaviour
             {
                 if (!IsItemActive(placed.Data)) continue;
                 var synergy = ItemSynergyCalculator.Additional(Backpack, placed, IsItemActive);
+                flatDamageBonus += synergy.flatDamage;
                 damageBonus += synergy.damage;
                 criticalChanceBonus += synergy.criticalChance;
                 attackSpeedBonus += synergy.attackSpeed;
@@ -335,24 +387,34 @@ public abstract class Tower : MonoBehaviour
                 criticalChanceBonus += placed.Data.criticalChanceBonus;
                 attackSpeedBonus += placed.Data.attackSpeedBonus;
                 healthBonus += placed.Data.healthBonus;
+                foreach(var part in placed.Attachments)if(IsItemActive(part.Data)){
+                    damageBonus+=part.Data.damageBonus;criticalChanceBonus+=part.Data.criticalChanceBonus;
+                    attackSpeedBonus+=part.Data.attackSpeedBonus;healthBonus+=part.Data.healthBonus;
+                }
             }
         }
 
         currentHealthBonus = healthBonus;
-        currentDamage = baseDamage * (1f + damageBonus);
-        currentCriticalChance = Mathf.Clamp01(baseCriticalChance + criticalChanceBonus);
+        currentDamage = baseDamage * (1f + damageBonus) + flatDamageBonus;
+        currentCriticalChance = Mathf.Clamp(baseCriticalChance + criticalChanceBonus, 0f, data.maximumCriticalChance);
         // currentAttackSpeed bir "atışlar arası bekleme süresi" (cooldown). %X hızlanma
         // = süreyi (1 + X)'e bölmek; böylece bonuslar ne kadar birikirse biriksin süre sıfıra inmez.
         currentAttackSpeed = baseAttackSpeed / (1f + attackSpeedBonus);
 
         // �ok fazla attackSpeedBonus �st �ste binerse s�re s�f�ra/negatife d���p
         // Shoot() coroutine'inde WaitForSeconds'� bozmas�n diye alt s�n�r.
+        currentDamage*=1f+SkillTotal(SkillData.EffectType.DamagePercent);
+        currentCriticalChance=Mathf.Min(data.maximumCriticalChance,currentCriticalChance+SkillTotal(SkillData.EffectType.CriticalChancePoints));
+        currentAttackSpeed/=1f+SkillTotal(SkillData.EffectType.AttackSpeedPercent);
+        currentHealthBonus=(1f+currentHealthBonus)*(1f+SkillTotal(SkillData.EffectType.UnitHealthPercent))-1f;
         currentAttackSpeed = Mathf.Max(0.1f, currentAttackSpeed);
+        RefreshRangeCollider();
     }
 
     private void OnMouseDown()
     {
         if (TowerSlot.IsPointerOverUI(Input.mousePosition)) return;
+        if (UİManager.ConsumeWorldPanelClick()) return;
         UİManager.activeTower = this;
         ShopUIManager.ItemShopUI.SetActive(true);
         shopUIManager.UpdateShopUI();
@@ -365,6 +427,7 @@ public abstract class Tower : MonoBehaviour
         while (enemies.Count > 0)
         {
             GameObject targetEnemy = SelectTarget();
+            OnTargetSelected(targetEnemy);
             if (targetEnemy == null || Time.timeScale <= 0f)
             {
                 // Uygun tür yoksa veya oyun duruyorsa bekle; başka türe geçme.
@@ -375,6 +438,7 @@ public abstract class Tower : MonoBehaviour
 
             yield return new WaitForSeconds(currentAttackSpeed);
         }
+        OnTargetSelected(null);
         isShooting = false;
     }
 
@@ -392,6 +456,8 @@ public abstract class Tower : MonoBehaviour
             int index = SelectedTargetOrder == TargetOrder.FirstEntered ? n : enemies.Count - 1 - n;
             var enemy = enemies[index].GetComponent<Enemy>();
             if (enemy == null || enemy.CurrentHealth <= 0f || enemy.enemyData == null) continue;
+            if (Vector3.Distance(transform.position, enemy.transform.position) > CurrentRange) continue;
+            if (!SupportsAirTargets && enemy.IsAir) continue;
             bool matches = SelectedTargetType == TargetType.Both
                 || (SelectedTargetType == TargetType.Ground && enemy.enemyData.movementType == EnemyData.MovementType.Ground)
                 || (SelectedTargetType == TargetType.Air && enemy.enemyData.movementType == EnemyData.MovementType.Air);
@@ -416,8 +482,10 @@ public abstract class Tower : MonoBehaviour
         if (!enemyColliders.ContainsValue(enemy)) enemies.Remove(enemy);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
+        SkillTreeProgress.Changed-=RefreshSkillStats;
+        OnTargetSelected(null);
         if (!SupportsManualTargeting) return;
         StopAllCoroutines();
         isShooting = false;

@@ -5,9 +5,9 @@ using UnityEngine;
 [Serializable]
 public struct ItemBonus
 {
-    public float damage, attackSpeed, criticalChance, health;
+    public float damage, attackSpeed, criticalChance, health, flatDamage;
     public static ItemBonus operator +(ItemBonus a, ItemBonus b) => new ItemBonus {
-        damage=a.damage+b.damage, attackSpeed=a.attackSpeed+b.attackSpeed,
+        flatDamage=a.flatDamage+b.flatDamage, damage=a.damage+b.damage, attackSpeed=a.attackSpeed+b.attackSpeed,
         criticalChance=a.criticalChance+b.criticalChance, health=a.health+b.health };
 }
 
@@ -26,7 +26,8 @@ public class ItemSynergyRule
         (filter == Filter.SpecificItem && item == acceptedItem));
 }
 
-// Saf hesap: asset veya envanter değiştirmez. Her kural en fazla bir kez katkı verir.
+// Saf hesap: asset veya envanter değiştirmez. Aynı tarif referansı bir kez okunur;
+// farklı sağlayıcıların katkısı tarifin maxActivations değeriyle sınırlıdır.
 public static class ItemSynergyCalculator
 {
     public static IEnumerable<Vector2Int> Cells(ItemData data, ItemSynergyRule rule, Vector2Int origin, int rotation)
@@ -53,12 +54,33 @@ public static class ItemSynergyCalculator
         return false;
     }
 
-    public static ItemBonus Additional(Backpack bag, PlacedItem item, Func<ItemData, bool> compatible = null)
+    public static IEnumerable<Vector2Int> Cells(ItemData data,ItemSynergyRecipe recipe,Vector2Int origin,int rotation)
     {
-        var result = new ItemBonus();
-        if (item.Data.synergyRules != null)
-            foreach (var rule in item.Data.synergyRules)
-                if (rule != null && IsActive(bag,item.Data,rule,item.Origin,item.Rotation,compatible)) result += rule.bonus;
+        if(recipe==null||recipe.placement==ItemSynergyRecipe.Placement.Attached||recipe.cells==null)yield break;
+        foreach(var cell in recipe.cells){if(data.itemShape.Contains(cell))continue;
+            yield return origin+ItemShapeUtility.RotateCell(cell,ItemShapeUtility.GetBoundingSize(data.itemShape),rotation);
+        }
+    }
+    public static int Activations(Backpack bag,PlacedItem item,ItemSynergyRecipe recipe,Func<ItemData,bool> compatible=null)
+    {
+        if(bag==null||item==null||item.Parent!=null||!bag.Contains(item)||recipe==null||recipe.targetItem!=item.Data||
+           (compatible!=null&&!compatible(item.Data)))return 0;
+        var sources=new HashSet<PlacedItem>();
+        foreach(var cell in Cells(item.Data,recipe,item.Origin,item.Rotation)){
+            var source=bag.GetItemAt(cell);if(source!=null&&source!=item&&recipe.Accepts(source.Data)&&(compatible==null||compatible(source.Data)))sources.Add(source);
+        }
+        if(recipe.AllowsAttachment)foreach(var part in item.Attachments)
+            if(recipe.Accepts(part.Data)&&(compatible==null||compatible(part.Data)))sources.Add(part);
+        return Mathf.Min(Mathf.Max(1,recipe.maxActivations),sources.Count);
+    }
+    public static ItemBonus Additional(Backpack bag,PlacedItem item,Func<ItemData,bool> compatible=null)
+    {
+        var result=new ItemBonus();
+        if(item==null||item.Data.synergyRecipes==null)return result;
+        var used=new HashSet<ItemSynergyRecipe>();
+        foreach(var recipe in item.Data.synergyRecipes)if(recipe!=null&&used.Add(recipe)){
+            int count=Activations(bag,item,recipe,compatible);for(int i=0;i<count;i++)result+=recipe.bonus;
+        }
         return result;
     }
 }

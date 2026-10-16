@@ -1,0 +1,95 @@
+[
+  {
+    "scenario": "starter",
+    "gold": 700,
+    "baseHealth": 100,
+    "towers": [
+      {
+        "name": "BalanceProbe1_cost315",
+        "Level": 1,
+        "element": "Normal",
+        "items": 2
+      },
+      {
+        "name": "BalanceProbe0_cost315",
+        "Level": 1,
+        "element": "Normal",
+        "items": 2
+      }
+    ],
+    "result": {
+      "state": "Preparation",
+      "wave": 1,
+      "health": 100,
+      "enemies": []
+    }
+  },
+  {
+    "scenario": "poor",
+    "gold": 700,
+    "baseHealth": 100,
+    "towers": [
+      {
+        "name": "BalanceProbe1_cost1015",
+        "Level": 5,
+        "element": "Normal",
+        "items": 10
+      },
+      {
+        "name": "BalanceProbe0_cost1015",
+        "Level": 5,
+        "element": "Normal",
+        "items": 10
+      }
+    ],
+    "result": {
+      "state": "Defeat",
+      "wave": 0,
+      "health": 0,
+      "enemies": []
+    }
+  },
+  {
+    "scenario": "strong",
+    "gold": 700,
+    "baseHealth": 100,
+    "towers": [
+      {
+        "name": "BalanceProbe4_cost550",
+        "Level": 7,
+        "element": "Water",
+        "items": 5
+      },
+      {
+        "name": "BalanceProbe3_cost650",
+        "Level": 7,
+        "element": "Water",
+        "items": 6
+      },
+      {
+        "name": "BalanceProbe2_cost525",
+        "Level": 7,
+        "element": "Water",
+        "items": 6
+      },
+      {
+        "name": "BalanceProbe1_cost650",
+        "Level": 7,
+        "element": "Water",
+        "items": 6
+      },
+      {
+        "name": "BalanceProbe0_cost675",
+        "Level": 7,
+        "element": "Water",
+        "items": 5
+      }
+    ],
+    "result": {
+      "state": "Victory",
+      "wave": 1,
+      "health": 100,
+      "enemies": []
+    }
+  }
+]

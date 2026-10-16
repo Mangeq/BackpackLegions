@@ -3,7 +3,7 @@
 public class Base : MonoBehaviour
 {
     [Header("Base Ayarları")]
-    public int maxHealth = 10000;
+    public int maxHealth = 100;
     public int currentHealth;
 
     private UİManager uiManager;
@@ -24,7 +24,7 @@ public class Base : MonoBehaviour
             // Üsse ulaşan düşmanın hasarını uygula.
             var enemy = other.GetComponent<Enemy>();
             if (enemy == null || !enemy.TryReachBase()) return;
-            TakeDamage(enemy.damage);
+            TakeDamage(enemy.enemyData != null ? enemy.enemyData.BaseDamage : enemy.damage);
 
             // Üsse giren düşman objesini sahneden yok et
 
