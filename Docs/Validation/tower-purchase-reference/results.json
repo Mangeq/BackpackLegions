@@ -1,0 +1,50 @@
+[
+  {
+    "test": "BÜYÜ KULESİ uses its own data and the shared reference skin",
+    "passed": true
+  },
+  {
+    "test": "HAVAN KULESİ uses its own data and the shared reference skin",
+    "passed": true
+  },
+  {
+    "test": "OKÇU KULESİ uses its own data and the shared reference skin",
+    "passed": true
+  },
+  {
+    "test": "BİRLİK KULESİ uses its own data and the shared reference skin",
+    "passed": true
+  },
+  {
+    "test": "original selection and buy callbacks retained",
+    "passed": true
+  },
+  {
+    "test": "card fits within the screen",
+    "passed": true
+  },
+  {
+    "test": "insufficient gold disables purchase and cannot create a tower",
+    "passed": true
+  },
+  {
+    "test": "reference close button releases the selected slot",
+    "passed": true
+  },
+  {
+    "test": "BÜYÜ KULESİ button buys exactly one tower at its data price",
+    "passed": true
+  },
+  {
+    "test": "HAVAN KULESİ button buys exactly one tower at its data price",
+    "passed": true
+  },
+  {
+    "test": "OKÇU KULESİ button buys exactly one tower at its data price",
+    "passed": true
+  },
+  {
+    "test": "BİRLİK KULESİ button buys exactly one tower at its data price",
+    "passed": true
+  }
+]

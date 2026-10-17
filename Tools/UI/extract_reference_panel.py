@@ -78,10 +78,9 @@ def extract(source):
     ys = [414,505,595,686,777,869]
     for row in range(5):
         for col in range(5):
+            if (row==3 and col>=3) or (row==4 and col>=2):
+                continue  # Already empty in the reference: preserve these pixels exactly.
             clean.paste(cell.resize((xs[col+1]-xs[col],ys[row+1]-ys[row]),Image.Resampling.BILINEAR),(xs[col],ys[row]))
-    # Original equipment crosses the first column's margin and two grid beams.
-    clear_from_strip((50,419,66,867),(660,419,676,867))
-    clear_from_strip((581,419,595,867),(884,419,898,867))
     for x0,y0,x1,y1 in [(978,423,1281,589),(1317,423,1618,589),
                          (978,622,1281,787),(1317,622,1618,787)]:
         clear_from_strip((x0,y0,x1,y1),(x1-12,y0,x1,y1))
@@ -100,6 +99,12 @@ def extract(source):
         x1=max(p[0] for p in polygon)+3;y1=max(p[1] for p in polygon)+3
         piece=im.crop((x0,y0,x1,y1));mask=Image.new('L',piece.size)
         ImageDraw.Draw(mask).polygon([(x-x0,y-y0) for x,y in polygon],fill=255)
+        if name in ('PiercingArrows','ScoutHood'):
+            pixels=np.asarray(piece)
+            rgb=pixels[:,:,:3].astype(float)
+            background=(rgb[:,:,0]>rgb[:,:,1]*1.16)&(rgb[:,:,1]>rgb[:,:,2]*1.12)
+            alpha=np.asarray(mask).copy();alpha[background]=0
+            mask=Image.fromarray(alpha)
         piece.putalpha(mask);piece.save(OUT/(name+'.png'))
         manifest['parts'][name]=[x0,y0,x1,y1]
 

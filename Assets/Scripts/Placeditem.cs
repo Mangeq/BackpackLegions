@@ -14,6 +14,8 @@ public class PlacedItem
     public int Rotation { get; private set; }
     public Backpack Bag { get; private set; }
     public PlacedItem Parent { get; private set; }
+    public Vector2 StoragePosition;
+    public bool HasStoragePosition;
     private readonly List<PlacedItem> attachments = new List<PlacedItem>();
     public IReadOnlyList<PlacedItem> Attachments => attachments;
     internal void SetBag(Backpack bag) { Bag=bag;foreach(var part in attachments)part.SetBag(bag); }

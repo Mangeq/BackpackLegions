@@ -56,11 +56,19 @@ public abstract class Tower : MonoBehaviour
 
 
     public ItemData[] myShopItems = new ItemData[4];
-    public bool IsShopFrozen { get; private set; }
+    public bool IsShopFrozen => false;
+    private readonly HashSet<int> reservedOffers=new HashSet<int>();
+    public bool IsOfferReserved(int index)=>reservedOffers.Contains(index);
+    public void ToggleOfferReservation(int index)
+    {
+        if(!GameManager.CanEditItems||index<0||index>=myShopItems.Length||myShopItems[index]==null)return;
+        if(!reservedOffers.Remove(index))reservedOffers.Add(index);
+    }
+    public void ClearOfferReservation(int index)=>reservedOffers.Remove(index);
 
     public void ToggleShopFreeze()
     {
-        if (GameManager.CanEditItems) IsShopFrozen = !IsShopFrozen;
+        // Legacy inspector callback: reservations now belong to individual offers.
     }
 
     // TowerData'dan başlangıçta kopyalanır; yükseltmeler yalnız bu kuleyi etkiler.
@@ -71,7 +79,7 @@ public abstract class Tower : MonoBehaviour
     public ItemData MainItem => data != null ? data.GetMainItem(SelectedElement) : null;
     public string ElementSelectionError { get; private set; }
     public bool IsMainItem(ItemData item) => data != null && data.IsMainItem(item);
-    public bool AwaitingElement => towerLevel >= 5 && SelectedElement == ElementType.Normal;
+    public bool AwaitingElement => false;
     public float ExperienceRequired => Mathf.Max(1f, data.firstLevelExperience
         + Mathf.Max(0, towerLevel - 1) * data.experienceIncreasePerLevel);
 
@@ -85,83 +93,49 @@ public abstract class Tower : MonoBehaviour
 
     private void ProcessExperience()
     {
-        while (!AwaitingElement && Experience >= ExperienceRequired)
+        while (Experience >= ExperienceRequired)
         {
             Experience -= ExperienceRequired;
             towerLevel++;
+            if(towerLevel==5&&ShopManager.Instance!=null)GenerateShopItems();
             RebuildLevelStats();
             CalculateStats();
         }
     }
 
-    public bool TrySelectElement(ElementType element) => ApplyElement(element, false);
+    public bool TrySelectElement(ElementType element) => false;
 
     public string GetElementChangeError(ElementType element)
     {
-        if (retired || !GameManager.CanUpgradeTowers) return "Dönüşüm yalnız hazırlıkta yapılabilir.";
-        if (SelectedElement == ElementType.Normal) return "Önce 5. seviyede ilk elementini seç.";
-        if (element < ElementType.Fire || element > ElementType.Air || element == SelectedElement)
-            return "Farklı bir element seç.";
-        var main = data.GetMainItem(element);
-        if (main == null || main.element != element || main.itemShape == null || main.itemShape.Count == 0)
-            return "Yeni elementin ana eşya verisi eksik.";
-        if (EconomyManager.Gold < ElementChangeCost) return "Yetersiz altın.";
-        return null;
+        return "Element eşyasını ana silahın yanına yerleştir.";
     }
 
     public bool TryChangeElement(ElementType element)
     {
-        TransitionError = GetElementChangeError(element);
-        if (TransitionError != null) return false;
-        if (ApplyElement(element, true)) return true;
-        TransitionError = ElementSelectionError;
-        return false;
+        TransitionError = GetElementChangeError(element);return false;
     }
 
-    private bool ApplyElement(ElementType element, bool paidChange)
+    public bool TryFuseElement()
     {
+        if(retired||Level<5||!GameManager.CanEditItems||Backpack==null)return false;
         ElementSelectionError = null;
-        if (retired || !GameManager.CanUpgradeTowers || (!paidChange && !AwaitingElement)
-            || element < ElementType.Fire || element > ElementType.Air) return false;
-        if (paidChange && GetElementChangeError(element) != null) return false;
-        var evolved = data.GetMainItem(element);
-        if (evolved == null || evolved.element != element || evolved.itemShape == null || evolved.itemShape.Count == 0)
-        {
-            ElementSelectionError = "Bu elementin ana eşya verisi eksik.";
-            return false;
-        }
-        // Sürüklemede ana eşya geçici olarak grid dışında olabilir; önce güvenle geri koy.
-        BackpackDraggable.CancelActiveDrag();
         PlacedItem original = null;
-        if (Backpack != null)
-            foreach (var placed in Backpack.Items)
-                if (placed.Data == MainItem) { original = placed; break; }
-        if (original == null)
+        foreach(var placed in Backpack.Items)if(IsMainItem(placed.Data)){original=placed;break;}
+        if(original==null)return false;
+        foreach(var ingredient in new List<PlacedItem>(Backpack.Items))
         {
-            ElementSelectionError = "Ana eşya kule çantasında bulunamadı.";
-            return false;
+            if(!ingredient.Data.isElementCatalyst||ingredient.Data.element==original.Data.element||
+                !TowerItemEvolution.Adjacent(original,ingredient))continue;
+            var evolved=data.GetMainItem(ingredient.Data.element);
+            if(evolved==null||evolved.element!=ingredient.Data.element)continue;
+            if(!Backpack.TryReplace(original,evolved))
+            {ElementSelectionError="Dönüşen silah için çantada yer yok.";return false;}
+            Evolution.ReleaseAttachments(original);
+            Backpack.Remove(ingredient);
+            SelectedElement=evolved.element;
+            return true;
         }
-        if (!Backpack.TryReplace(original, evolved))
-        {
-            ElementSelectionError = "Evrilmiş ana eşya bu konuma sığmıyor.";
-            return false;
-        }
-        Evolution.ReleaseAttachments(original);
-        // Doğrulama ve değiştirme aynı ana-thread çağrısında; başarısız dönüşüm ücret kesmez.
-        if (paidChange) EconomyManager.TrySpendGold(ElementChangeCost);
-        SelectedElement = element;
-        ProcessExperience();
-        CalculateStats(); // Yaşayan askerler de seçilen elementi hemen alır.
-        // İlk uzmanlaşma eski teklifleri korur. Ücretli değişim yeni mağazayı hemen açar.
-        if (paidChange)
-        {
-            IsShopFrozen = false;
-            GenerateShopItems();
-        }
-        var bags = BackpackUIManager.Instance;
-        if (bags != null && bags.ActiveTower == this) bags.RefreshItemVisuals();
-        if (UİManager.activeTower == this && shopUIManager != null) shopUIManager.UpdateShopUI();
-        return true;
+        return false;
     }
     public int GetTypeChangeCost(GameObject prefab)
     {
@@ -289,7 +263,7 @@ public abstract class Tower : MonoBehaviour
         if (initialized) return;
         InitializeBaseStats();
         if (!SupportsAirTargets) SelectedTargetType = TargetType.Ground;
-        shopUIManager = GameObject.FindObjectOfType<ShopUIManager>();
+        shopUIManager = GameObject.FindObjectOfType<ShopUIManager>(true);
 
         if (rangeCollider != null)
         {
@@ -304,7 +278,7 @@ public abstract class Tower : MonoBehaviour
         }
 
         Backpack = new Backpack(data.gridWidth, data.gridHeight);
-        Storage = new Backpack(3, 5);
+        Storage = new Backpack(3, 5, true);
         Evolution = new TowerItemEvolution(this);
 
         // Varsay�lan item, olu�turuldu�u andan itibaren backpack'in merkezine yerle�ir.
@@ -349,8 +323,21 @@ public abstract class Tower : MonoBehaviour
     {
         for (int i = 0; i < myShopItems.Length; i++)
         {
+            if(IsOfferReserved(i)&&myShopItems[i]!=null)continue;
+            reservedOffers.Remove(i);
             ItemRarity rarity = ShopManager.Instance.GetRandomRarity(towerLevel);
             myShopItems[i] = ShopManager.Instance.GetRandomItem(data.type, rarity, SelectedElement);
+            if(Level>=5&&Random.value<.22f)
+            {
+                var catalysts=Resources.LoadAll<ItemData>("Data/Items/Elements");
+                if(catalysts.Length>0)myShopItems[i]=catalysts[Random.Range(0,catalysts.Length)];
+            }
+        }
+        if(Level>=5)
+        {
+            var catalysts=Resources.LoadAll<ItemData>("Data/Items/Elements");
+            if(catalysts.Length>0)for(int i=myShopItems.Length-1;i>=0;i--)
+                if(!IsOfferReserved(i)){myShopItems[i]=catalysts[Random.Range(0,catalysts.Length)];break;}
         }
     }
 
@@ -364,6 +351,10 @@ public abstract class Tower : MonoBehaviour
 
     public virtual void CalculateStats()
     {
+        TryFuseElement();
+        SelectedElement=ElementType.Normal;
+        if(Backpack!=null)foreach(var equipped in Backpack.Items)
+            if(IsMainItem(equipped.Data)){SelectedElement=equipped.Data.element;break;}
         skillEffects=new SkillTreeProgress().ActiveEffects(data.type);
         // Item bonusları kesir (0.05 = %5) ve kendi aralarında toplanır.
         float damageBonus = 0f;

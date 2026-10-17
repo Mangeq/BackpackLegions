@@ -6,20 +6,21 @@ using UnityEngine;
 public sealed class TowerPanelLayout : MonoBehaviour
 {
     const float Width=1678, Height=937, Cell=103;
-    BackpackUIManager bags;
-    UİManager ui;
-    ShopUIManager shop;
-    RectTransform root;
-    UnityEngine.UI.ScrollRect storageScroll;
-    readonly List<Card> cards=new List<Card>();
-    readonly Value[] stats=new Value[4], details=new Value[3];
-    Value title,xp,status,offers;
-    UnityEngine.UI.Image progress;
+    [SerializeField] BackpackUIManager bags;
+    [SerializeField] UİManager ui;
+    [SerializeField] ShopUIManager shop;
+    [SerializeField] RectTransform root;
+    [SerializeField] UnityEngine.UI.ScrollRect storageScroll;
+    [SerializeField] List<Card> cards=new List<Card>();
+    [SerializeField] Value[] stats=new Value[4], details=new Value[3];
+    [SerializeField] Value title,xp,status,offers;
+    [SerializeField] UnityEngine.UI.Image progress;
     Vector2 canvasSize;
-    TMP_FontAsset serif,body;
+    [SerializeField] TMP_FontAsset serif,body;
+    bool ownsFonts;
     readonly Color cream=new Color(1,.95f,.84f),gold=new Color(1,.74f,.35f);
 
-    sealed class Value
+    [System.Serializable] sealed class Value
     {
         public TMP_Text text;
         public UnityEngine.UI.Image original;
@@ -32,7 +33,7 @@ public sealed class TowerPanelLayout : MonoBehaviour
             if(!exact&&text.text!=value)text.text=value;
         }
     }
-    sealed class Card { public ShopSlotUI slot; public Value name,cost,footprint; }
+    [System.Serializable] sealed class Card { public ShopSlotUI slot; public Value name,cost,footprint; }
 
     public static void Install(BackpackUIManager owner)
     {
@@ -69,7 +70,8 @@ public sealed class TowerPanelLayout : MonoBehaviour
         if(sourceFont!=null)serif=TMP_FontAsset.CreateFontAsset(sourceFont);
         var bodySource=Resources.Load<Font>("UI/TowerPanel/Reference/BodyFont");
         if(bodySource!=null)body=TMP_FontAsset.CreateFontAsset(bodySource);
-        title=MakeValue("Title",root,84,28,750,57,45,cream,"TitleReference","Okçu Kulesi • Seviye 5",serif);
+        ownsFonts=true;
+        title=MakeValue("Title",root,81,30,750,57,45,cream,"TitleReference","Okçu Kulesi • Seviye 5",serif);
         stats[0]=MakeValue("Damage",root,341,85,131,42,35,gold,"DamageReference","55,76");
         stats[1]=MakeValue("Interval",root,341,133,132,42,35,gold,"IntervalReference","0,41 sn");
         stats[2]=MakeValue("Critical",root,341,180,132,42,35,gold,"CriticalReference","%74");
@@ -100,7 +102,64 @@ public sealed class TowerPanelLayout : MonoBehaviour
         scroll.content.pivot=new Vector2(0,1);scroll.content.sizeDelta=new Vector2(0,394);
         scroll.horizontal=false;scroll.vertical=true;
         foreach(var slot in shop.shopSlots)PrepareCard(slot);
+        ApplyInventoryRulesLayout();
         Resize();
+    }
+    public void ApplyInventoryRulesLayout()
+    {
+        if(root==null)return;
+        foreach(var button in ui.elementButtons)button.gameObject.SetActive(false);
+        var cover=root.Find("ElementRowCover") as RectTransform;
+        if(cover==null)
+        {
+            cover=NewRect("ElementRowCover",root);
+            var image=cover.gameObject.AddComponent<UnityEngine.UI.Image>();
+            var texture=ReferencePanelAssets.Sprite("Background").texture;
+            image.sprite=Sprite.Create(texture,new Rect(815,937-171,35,30),Vector2.one*.5f);
+            image.sprite.name="Approved_ElementRowCover";image.raycastTarget=false;
+        }
+        Place(cover,908,126,697,59);
+        var viewport=storageScroll.viewport;var surface=viewport.GetComponent<UnityEngine.UI.Image>();
+        if(surface.sprite==null)
+        {
+            var texture=Resources.Load<Texture2D>("UI/TowerPurchase/Reference/CardHD");
+            surface.sprite=Sprite.Create(texture,new Rect(120,texture.height-1120,700,400),Vector2.one*.5f);
+            surface.sprite.name="Approved_LooseStorageSurface";
+        }
+        surface.color=Color.white;
+        storageScroll.horizontal=false;storageScroll.vertical=true;
+        bags.storageGridContainer.localScale=Vector3.one;
+        Place(bags.storageGridContainer,0,0,242,455);
+        if(bags.storageGridContainer.GetComponent<StoragePileUI>()==null)bags.storageGridContainer.gameObject.AddComponent<StoragePileUI>();
+        var bulk=root.Find("MoveAllToStorage") as RectTransform;
+        if(bulk==null)
+        {
+            bulk=NewRect("MoveAllToStorage",root);var image=bulk.gameObject.AddComponent<UnityEngine.UI.Image>();
+            var button=bulk.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=image;
+            var caption=MakeValue("Caption",bulk,8,7,219,30,18,cream);
+            caption.text.alignment=TextAlignmentOptions.Center;caption.text.text="Tümünü depoya taşı";
+        }
+        Place(bulk,656,880,242,45);
+        var bulkImage=bulk.GetComponent<UnityEngine.UI.Image>();
+        // Clear baked target lettering using a plain cropped metal/parchment face.
+        if(bulkImage.sprite==null||bulkImage.sprite.name!="Approved_MoveAllFace")
+        {
+            var tex=Resources.Load<Texture2D>("UI/TowerPurchase/Reference/CardHD");
+            bulkImage.sprite=Sprite.Create(tex,new Rect(53,tex.height-1375,910,185),Vector2.one*.5f);
+            bulkImage.sprite.name="Approved_MoveAllFace";
+        }
+        if(Application.isPlaying)BindBulkButton();
+        Resize();
+    }
+    void Start()
+    {
+        if(root==null)return;
+        if(root.Find("MoveAllToStorage")==null)ApplyInventoryRulesLayout();else BindBulkButton();
+    }
+    void BindBulkButton()
+    {
+        var button=root.Find("MoveAllToStorage").GetComponent<UnityEngine.UI.Button>();
+        button.onClick.RemoveListener(bags.MoveAllToStorage);button.onClick.AddListener(bags.MoveAllToStorage);
     }
     void CreateStorageViewport()
     {
@@ -121,8 +180,9 @@ public sealed class TowerPanelLayout : MonoBehaviour
         if(ui!=null&&UİManager.TowerShopUI!=null)ui.ClosePurchasePanel();
         if(storageScroll!=null&&tower!=null)
         {
-            bags.storageGridContainer.sizeDelta=new Vector2(tower.Storage.Width*Cell,tower.Storage.Height*Cell);
-            storageScroll.horizontalNormalizedPosition=0;
+            if(tower.Storage.IsLooseStorage)bags.storageGridContainer.GetComponent<StoragePileUI>().Prepare(tower.Storage.Items.Count);
+            else bags.storageGridContainer.sizeDelta=new Vector2(tower.Storage.Width*Cell,tower.Storage.Height*Cell);
+            storageScroll.verticalNormalizedPosition=0;
         }
         Resize();
     }
@@ -137,6 +197,7 @@ public sealed class TowerPanelLayout : MonoBehaviour
         card.name=MakeValue("ReferenceName",slot.transform,132,15,185,42,23,cream);
         card.name.text.enableAutoSizing=true;card.name.text.fontSizeMin=18;card.name.text.fontSizeMax=23;
         card.cost=MakeValue("ReferenceCost",slot.transform,132,61,175,37,29,gold);
+        card.cost.text.alignment=TextAlignmentOptions.Center;
         card.footprint=MakeValue("ReferenceFootprint",slot.transform,140,151,182,28,19,cream);
         cards.Add(card);
     }
@@ -155,21 +216,32 @@ public sealed class TowerPanelLayout : MonoBehaviour
         details[2].Set(Breakdown(t.baseCriticalChance*100,t.currentCriticalChance*100));
         xp.Set(ui.towerExperienceText.text);status.Set(ui.towerElementStatus.text);offers.Set(shop.offerCountText.text);
         progress.fillAmount=Mathf.Clamp01(t.Experience/t.ExperienceRequired);
-        foreach(var button in ui.elementButtons)button.gameObject.SetActive(true);
         for(int i=cards.Count;i<shop.shopSlots.Length;i++)PrepareCard(shop.shopSlots[i]);
         foreach(var card in cards)
         {
             var item=card.slot.currentItem;
             card.name.Set(item!=null?item.Name:"Alındı");card.cost.Set(item!=null?item.cost.ToString():"");
             card.footprint.Set(card.slot.footprintText.text);
-            if(item!=null)card.slot.image.sprite=ReferencePanelAssets.IconFor(item);
+            if(item!=null)
+            {
+                var sprite=ReferencePanelAssets.IconFor(item);card.slot.image.sprite=sprite;
+                if(sprite!=item.itemIcon)
+                {
+                    Vector2 offset=item.itemID=="v1_scout_hood"?new Vector2(12,21):
+                        item.itemID=="v1_archer_gloves"?new Vector2(19,40):
+                        item.itemID=="v1_ranger_boots"?new Vector2(22,26):new Vector2(14,33);
+                    Place(card.slot.image.rectTransform,offset.x,offset.y,sprite.rect.width,sprite.rect.height);
+                }
+                else Place(card.slot.image.rectTransform,14,34,115,120);
+            }
         }
     }
     void Resize()
     {
         if(root==null)return;canvasSize=((RectTransform)root.parent).rect.size;
         root.anchorMin=root.anchorMax=root.pivot=Vector2.one*.5f;root.anchoredPosition=Vector2.zero;
-        root.sizeDelta=new Vector2(Width,Height);root.localScale=new Vector3(canvasSize.x/Width,canvasSize.y/Height,1);
+        float scale=Mathf.Min(1,Mathf.Min(canvasSize.x/1920f,canvasSize.y/1080f));
+        root.sizeDelta=new Vector2(Width,Height);root.localScale=new Vector3(1600f/Width*scale,930f/Height*scale,1);
         if(ui.transitionPanel!=null)Stretch((RectTransform)ui.transitionPanel.transform);
     }
     void BindButton(UnityEngine.UI.Button button,string resource,Rect rect)
@@ -211,5 +283,17 @@ public sealed class TowerPanelLayout : MonoBehaviour
     {r.anchorMin=r.anchorMax=r.pivot=new Vector2(0,1);r.localScale=Vector3.one;r.anchoredPosition=new Vector2(x,-y);r.sizeDelta=new Vector2(w,h);}
     static void Stretch(RectTransform r)
     {r.anchorMin=Vector2.zero;r.anchorMax=Vector2.one;r.offsetMin=r.offsetMax=Vector2.zero;}
-    void OnDestroy(){if(serif!=null)Destroy(serif);if(body!=null)Destroy(body);}
+    void OnDestroy()
+    {
+        if(!ownsFonts)return;
+        ReleaseFont(serif);ReleaseFont(body);
+    }
+    static void ReleaseFont(TMP_FontAsset font)
+    {
+        if(font==null)return;
+#if UNITY_EDITOR
+        if(UnityEditor.EditorUtility.IsPersistent(font))return;
+#endif
+        if(Application.isPlaying)Destroy(font);else DestroyImmediate(font);
+    }
 }

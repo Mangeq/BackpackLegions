@@ -1,0 +1,169 @@
+{
+  "integration": [
+    {
+      "test": "old panel dimensions 1600 x 930",
+      "passed": true
+    },
+    {
+      "test": "element selection removed",
+      "passed": true
+    },
+    {
+      "test": "no element offers before level five",
+      "passed": true
+    },
+    {
+      "test": "level four cannot fuse elements",
+      "passed": true
+    },
+    {
+      "test": "level five unlocks element shop items",
+      "passed": true
+    },
+    {
+      "test": "XP continues past five without element selection",
+      "passed": true
+    },
+    {
+      "test": "right click reserves only that offer",
+      "passed": true
+    },
+    {
+      "test": "paid reroll preserves reservation and charges once",
+      "passed": true
+    },
+    {
+      "test": "next-wave refresh preserves reserved item",
+      "passed": true
+    },
+    {
+      "test": "second right click removes reservation",
+      "passed": true
+    },
+    {
+      "test": "nonadjacent catalyst does not transform weapon",
+      "passed": true
+    },
+    {
+      "test": "adjacent fireball becomes fire bow exactly once",
+      "passed": true
+    },
+    {
+      "test": "old selection API cannot bypass catalyst consumption",
+      "passed": true
+    },
+    {
+      "test": "fire bow projectiles deal fire damage",
+      "passed": true
+    },
+    {
+      "test": "bulk move preserves every item including main weapon",
+      "passed": true
+    },
+    {
+      "test": "depot has no grid and has physics",
+      "passed": true
+    },
+    {
+      "test": "main weapon can return from loose depot",
+      "passed": true
+    },
+    {
+      "test": "reserved item can be bought directly into loose depot",
+      "passed": true
+    },
+    {
+      "test": "depot has no old fifteen-cell capacity limit",
+      "passed": true
+    },
+    {
+      "test": "gravity and collisions settle items into a pile",
+      "passed": true
+    }
+  ],
+  "allTowerElements": [
+    {
+      "tower": "ArrowTower",
+      "element": "Air",
+      "passed": true
+    },
+    {
+      "tower": "ArrowTower",
+      "element": "Earth",
+      "passed": true
+    },
+    {
+      "tower": "ArrowTower",
+      "element": "Fire",
+      "passed": true
+    },
+    {
+      "tower": "ArrowTower",
+      "element": "Water",
+      "passed": true
+    },
+    {
+      "tower": "MagicTower",
+      "element": "Air",
+      "passed": true
+    },
+    {
+      "tower": "MagicTower",
+      "element": "Earth",
+      "passed": true
+    },
+    {
+      "tower": "MagicTower",
+      "element": "Fire",
+      "passed": true
+    },
+    {
+      "tower": "MagicTower",
+      "element": "Water",
+      "passed": true
+    },
+    {
+      "tower": "CannonTower",
+      "element": "Air",
+      "passed": true
+    },
+    {
+      "tower": "CannonTower",
+      "element": "Earth",
+      "passed": true
+    },
+    {
+      "tower": "CannonTower",
+      "element": "Fire",
+      "passed": true
+    },
+    {
+      "tower": "CannonTower",
+      "element": "Water",
+      "passed": true
+    },
+    {
+      "tower": "UnitTower",
+      "element": "Air",
+      "passed": true
+    },
+    {
+      "tower": "UnitTower",
+      "element": "Earth",
+      "passed": true
+    },
+    {
+      "tower": "UnitTower",
+      "element": "Fire",
+      "passed": true
+    },
+    {
+      "tower": "UnitTower",
+      "element": "Water",
+      "passed": true
+    }
+  ],
+  "bulkButton": {
+    "passed": true
+  }
+}

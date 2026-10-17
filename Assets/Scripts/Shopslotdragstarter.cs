@@ -24,6 +24,7 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if(eventData.button!=PointerEventData.InputButton.Left)return;
         if (!GameManager.CanEditItems) return;
         if (shopSlot.currentItem == null || shopSlot.isPurchased)
             return;
@@ -61,13 +62,17 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
             ShopSlotUI[] slots = FindObjectOfType<ShopUIManager>().shopSlots;
             int slotIndex = System.Array.IndexOf(slots, shopSlot);
             if (slotIndex >= 0 && UİManager.activeTower != null)
+            {
                 UİManager.activeTower.myShopItems[slotIndex] = null;
+                UİManager.activeTower.ClearOfferReservation(slotIndex);
+            }
 
             shopSlot.isPurchased = true;
             shopSlot.image.enabled = false;
             shopSlot.itemCost.text = "";
             shopSlot.currentItem = null;
             shopSlot.RefreshCard();
+            shopSlot.ShowReservation(false);
         }
     }
 }

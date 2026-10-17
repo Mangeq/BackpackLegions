@@ -63,7 +63,7 @@ public class UnitTower : Tower
 
     private void ApplyStatsTo(Unit unit)
     {
-        if (SelectedElement != ElementType.Normal) unit.elementType = SelectedElement;
+        unit.elementType = SelectedElement;
         unit.ApplyStats(currentDamage, currentCriticalChance, currentAttackSpeed, 1f + currentHealthBonus);
     }
 

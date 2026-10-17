@@ -191,7 +191,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void UpdateSellPreview()
     {
         var ui = BackpackUIManager.Instance;
-        string reason = delivery != null ? "TESLİM · Önce çantaya veya depoya yerleştir" : sourcePlacedItem == null ? "SATILAMAZ · Önce eşyayı satın almalısın" : "ANA İTEM · Satılamaz ve depoya konulamaz";
+        string reason = delivery != null ? "TESLİM · Önce çantaya veya depoya yerleştir" : sourcePlacedItem == null ? "SATILAMAZ · Önce eşyayı satın almalısın" : "ANA İTEM · Satılamaz";
         ui.ShowSellPreview(data, CanSell, reason, ui.IsOverSellArea(pointerPosition, pointerCamera));
     }
 
@@ -242,12 +242,13 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (!placed && sourcePlacedItem != null)
             RestoreSource(); // Kaynak alan, konum ve yönü birlikte geri al.
 
-        BackpackUIManager.Instance.RefreshItemVisuals();
-
         // Yerleşti/taşındı/geri alındı fark etmez - backpack'in son hali her zaman
         // stat'a yansımalı. Küçük bir grid için maliyeti önemsiz, koşulsuz çağırmak
         // "item ekledim ama stat güncellenmedi" tarzı bir senkron hatasını baştan eler.
         dragOwner.CalculateStats();
+        if(placed&&draggedItem.Bag==dragOwner.Storage)
+            BackpackUIManager.Instance.RememberStorageDrop(draggedItem,eventData.position,eventData.pressEventCamera);
+        BackpackUIManager.Instance.RefreshItemVisuals();
 
         if (sourcePlacedItem == null)
             Destroy(gameObject); // mağaza ghost'u geçiciydi, işi bitti (başarılıysa gerçek görsel Refresh ile oluştu)
@@ -271,7 +272,6 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         if (backpack == null || (backpack != dragOwner.Backpack && backpack != dragOwner.Storage)) return false;
         // Kule türünü belirleyen ana item çantada kalır. Önizleme ve bırakma aynı kuralı kullanır.
-        if (backpack == dragOwner.Storage && dragOwner.IsMainItem(data)) return false;
         bool fitsGrid = backpack.CanPlace(data, candidateOrigin, Rotation);
         bool canAfford = sourcePlacedItem != null || delivery != null || EconomyManager.Gold >= data.cost;
         return fitsGrid && canAfford;

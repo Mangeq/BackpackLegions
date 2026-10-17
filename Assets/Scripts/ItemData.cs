@@ -30,9 +30,11 @@ public class ItemData : ScriptableObject
     public TowerType[] itemOwners;
     [Tooltip("Mağaza havuzu: Normal yalnız element seçilmeden önce sunulur. Önceden alınmış eşyalar korunur.")]
     public ElementType element = ElementType.Normal;
+    [Tooltip("5. seviyeden sonra mağazaya gelir; ana silaha komşu konunca tüketilerek silahı dönüştürür.")]
+    public bool isElementCatalyst;
     public bool IsCompatibleWith(TowerType towerType, ElementType towerElement) =>
         itemOwners != null && System.Array.Exists(itemOwners, owner => owner == towerType)
-        && (element == ElementType.Normal || element == towerElement);
+        && (isElementCatalyst || element == ElementType.Normal || element == towerElement);
     public string itemID;
     public int cost;
     public Sprite itemIcon;

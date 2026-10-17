@@ -115,6 +115,16 @@ public class BackpackUIManager : MonoBehaviour
 
     private void Start()
     {
+        InitializeForScene();
+    }
+
+    private bool sceneInitialized;
+    public void InitializeForScene()
+    {
+        if(sceneInitialized)return;
+        sceneInitialized=true;
+        Instance=this;
+        gridContainer.pivot=new Vector2(0,1);
         TowerPanelLayout.Install(this);
         backpackPanel.SetActive(false);
         if (combinedPanel != null) combinedPanel.SetActive(false);
@@ -154,6 +164,7 @@ public class BackpackUIManager : MonoBehaviour
     private void BuildStorageGrid(Backpack bag)
     {
         foreach (Transform child in storageGridContainer) Destroy(child.gameObject);
+        if(bag.IsLooseStorage){storageCellViews=null;return;}
         storageCellViews = new BackpackCellView[bag.Width, bag.Height];
         for (int y = 0; y < bag.Height; y++) for (int x = 0; x < bag.Width; x++)
         {
@@ -203,6 +214,8 @@ public class BackpackUIManager : MonoBehaviour
             Destroy(visual);
 
         itemVisuals.Clear();
+        var pile=storageGridContainer!=null?storageGridContainer.GetComponent<StoragePileUI>():null;
+        if(pile!=null)pile.Prepare(ActiveTower.Storage.Items.Count);
 
         foreach (PlacedItem placed in ActiveTower.Backpack.Items)
             SpawnItemVisual(placed, ActiveTower.Backpack, gridContainer);
@@ -211,6 +224,30 @@ public class BackpackUIManager : MonoBehaviour
                 SpawnItemVisual(placed, ActiveTower.Storage, storageGridContainer);
         RefreshDeliveries();
         RefreshEvolutionStatus();
+        if(ActiveTower.Storage.IsLooseStorage&&storageGridContainer!=null)
+        {
+            Canvas.ForceUpdateCanvases();
+            var scroll=storageGridContainer.GetComponentInParent<ScrollRect>();
+            if(scroll!=null)scroll.verticalNormalizedPosition=0;
+        }
+    }
+
+    public void MoveAllToStorage()
+    {
+        if(ActiveTower==null||!GameManager.CanEditItems)return;
+        BackpackDraggable.CancelActiveDrag();
+        foreach(var item in new List<PlacedItem>(ActiveTower.Backpack.Items))
+        {
+            ActiveTower.Backpack.Remove(item);item.HasStoragePosition=false;
+            ActiveTower.Storage.PlaceExisting(item,Vector2Int.zero,item.Rotation);
+        }
+        ActiveTower.CalculateStats();RefreshItemVisuals();
+    }
+    public void RememberStorageDrop(PlacedItem item,Vector2 point,Camera cam)
+    {
+        Vector2 local;
+        if(RectTransformUtility.ScreenPointToLocalPointInRectangle(storageGridContainer,point,cam,out local))
+        {item.StoragePosition=new Vector2(local.x,-local.y);item.HasStoragePosition=true;}
     }
 
     private void SpawnItemVisual(PlacedItem placed, Backpack bag, RectTransform container)
@@ -226,6 +263,10 @@ public class BackpackUIManager : MonoBehaviour
             -(placed.Origin.y + size.y * 0.5f) * cellSize);
 
         visualGO.GetComponent<Image>().sprite = ReferencePanelAssets.IconFor(placed.Data);
+        if(!placed.Data.isElementCatalyst&&placed.Data.element!=ElementType.Normal)
+            visualGO.GetComponent<Image>().color=placed.Data.element==ElementType.Fire?new Color(1,.58f,.24f)
+                :placed.Data.element==ElementType.Water?new Color(.45f,.75f,1)
+                :placed.Data.element==ElementType.Earth?new Color(.8f,.63f,.35f):new Color(.65f,1,1);
         if (!ActiveTower.IsItemActive(placed.Data))
         {
             visualGO.GetComponent<Image>().color = new Color(.45f, .45f, .45f, .8f);
@@ -246,6 +287,11 @@ public class BackpackUIManager : MonoBehaviour
 
         BackpackDraggable draggable = visualGO.GetComponent<BackpackDraggable>();
         draggable.InitializeAsPlaced(placed, bag);
+        if(bag.IsLooseStorage)
+        {
+            var pile=container.GetComponent<StoragePileUI>();
+            if(pile!=null)pile.Register(placed,rt);
+        }
 
         itemVisuals[placed] = visualGO;
         int attachmentIndex=0;
@@ -282,6 +328,7 @@ public class BackpackUIManager : MonoBehaviour
         var scroll=container.GetComponentInParent<UnityEngine.UI.ScrollRect>();
         if(scroll!=null&&scroll.viewport!=null&&
             !RectTransformUtility.RectangleContainsScreenPoint(scroll.viewport,screenPoint,cam))return null;
+        if(bag.IsLooseStorage)return RectTransformUtility.RectangleContainsScreenPoint(container,screenPoint,cam)?Vector2Int.zero:(Vector2Int?)null;
 
         if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(container, screenPoint, cam, out Vector2 local))
             return null;

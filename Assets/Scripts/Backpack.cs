@@ -16,16 +16,18 @@ public class Backpack
 {
     public int Width { get; }
     public int Height { get; }
+    public bool IsLooseStorage { get; }
 
     private readonly PlacedItem[,] grid;
     private readonly List<PlacedItem> items = new List<PlacedItem>();
 
     public IReadOnlyList<PlacedItem> Items => items;
 
-    public Backpack(int width, int height)
+    public Backpack(int width, int height, bool looseStorage=false)
     {
         Width = width;
         Height = height;
+        IsLooseStorage=looseStorage;
         grid = new PlacedItem[width, height];
     }
 
@@ -33,6 +35,7 @@ public class Backpack
     public bool CanPlace(ItemData data, Vector2Int origin, int rotation = 0)
     {
         if(data==null||data.itemShape==null||data.itemShape.Count==0)return false;
+        if(IsLooseStorage)return true;
         foreach (Vector2Int offset in ItemShapeUtility.GetRotatedShape(data, rotation))
         {
             int x = origin.x + offset.x;
@@ -62,7 +65,7 @@ public class Backpack
     {
         if(item==null||item.Bag!=null||item.Parent!=null||!CanPlace(item.Data,origin,rotation))return false;
         item.SetPlacement(origin,rotation);item.SetBag(this);
-        foreach(var cell in item.GetOccupiedCells())grid[cell.x,cell.y]=item;
+        if(!IsLooseStorage)foreach(var cell in item.GetOccupiedCells())grid[cell.x,cell.y]=item;
         items.Add(item);return true;
     }
     public bool Contains(PlacedItem item) => item!=null && item.Bag==this;
@@ -87,7 +90,7 @@ public class Backpack
         if (item == null || !items.Contains(item))
             return;
 
-        foreach (Vector2Int cell in item.GetOccupiedCells())
+        if(!IsLooseStorage)foreach (Vector2Int cell in item.GetOccupiedCells())
             grid[cell.x, cell.y] = null;
 
         items.Remove(item);
@@ -96,6 +99,7 @@ public class Backpack
 
     public PlacedItem GetItemAt(Vector2Int cell)
     {
+        if(IsLooseStorage)return null;
         if (cell.x < 0 || cell.x >= Width || cell.y < 0 || cell.y >= Height)
             return null;
 

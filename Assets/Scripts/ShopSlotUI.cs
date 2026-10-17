@@ -4,8 +4,29 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopSlotUI : MonoBehaviour
+public class ShopSlotUI : MonoBehaviour, UnityEngine.EventSystems.IPointerClickHandler
 {
+    public void OnPointerClick(UnityEngine.EventSystems.PointerEventData e)
+    {
+        if(e.button!=UnityEngine.EventSystems.PointerEventData.InputButton.Right||BackpackDraggable.IsDragging)return;
+        var shop=FindObjectOfType<ShopUIManager>(true);var tower=UİManager.activeTower;
+        if(shop==null||tower==null)return;
+        tower.ToggleOfferReservation(System.Array.IndexOf(shop.shopSlots,this));
+        shop.UpdateShopUI();
+    }
+    public void ShowReservation(bool reserved)
+    {
+        var badge=transform.Find("ReservationBadge");
+        if(badge==null)
+        {
+            var go=new GameObject("ReservationBadge",typeof(RectTransform),typeof(TextMeshProUGUI));go.transform.SetParent(transform,false);
+            var r=(RectTransform)go.transform;r.anchorMin=r.anchorMax=r.pivot=new Vector2(0,1);r.anchoredPosition=new Vector2(10,-172);r.sizeDelta=new Vector2(115,18);
+            var t=go.GetComponent<TextMeshProUGUI>();var name=transform.Find("ReferenceName");
+            if(name!=null)t.font=name.GetComponent<TMP_Text>().font;
+            t.fontSize=13;t.fontStyle=FontStyles.Bold;t.color=new Color(1,.77f,.3f);t.alignment=TextAlignmentOptions.TopLeft;t.raycastTarget=false;t.text="REZERVE";badge=go.transform;
+        }
+        badge.gameObject.SetActive(reserved);
+    }
     public ItemData currentItem;
     public Image image;
     public GameObject synergyGlowVisual;

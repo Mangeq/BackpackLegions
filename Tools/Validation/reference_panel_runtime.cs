@@ -28,7 +28,7 @@ var dict=(System.Collections.Generic.Dictionary<PlacedItem,GameObject>)typeof(Ba
 foreach(var pair in dict)if(pair.Key.Data==d)return pair.Value.GetComponent<BackpackDraggable>();return null;};
 var drag=visual();drag.BeginDrag();var equip=pointer(bags.gridContainer,0,0);drag.UpdateDrag(equip);bool ok=drag.FinishDrag(equip);
 rows.Add(new{test="storage to inventory uses transformed source grid and applies bonus",passed=ok&&t.Storage.Items.Count==0&&(float)damage.GetValue(t)>original&&EconomyManager.Gold==900});
-drag=visual();drag.BeginDrag();drag.Rotate(1);drag.UpdateDrag(store);ok=drag.FinishDrag(store);
+drag=visual();drag.BeginDrag();drag.Rotate(1);var rotatedStore=pointer(bags.storageGridContainer,1,0);drag.UpdateDrag(rotatedStore);ok=drag.FinishDrag(rotatedStore);
 rows.Add(new{test="rotated inventory to storage restores base stats",passed=ok&&t.Storage.Items.Count==1&&t.Storage.Items[0].Rotation==1&&(float)damage.GetValue(t)==original});
 Backpack targetBag;var hidden=pointer(bags.storageGridContainer,2,0);
 var hiddenCell=bags.FindDropCell(hidden.position,null,out targetBag);
@@ -41,5 +41,4 @@ scroll.horizontalNormalizedPosition=0;
 int before=EconomyManager.Gold;shop.rerollButton.onClick.Invoke();
 rows.Add(new{test="original reroll button callback charges configured price",passed=EconomyManager.Gold==before-shop.rerollCost});
 ui.CloseTowerPanel();rows.Add(new{test="close cancels interaction and hides full screen panel",passed=!bags.combinedPanel.activeInHierarchy&&!BackpackDraggable.IsDragging});
-string json=UnityEngine.JsonUtility.ToJson(new UnityEngine.Vector2(1,1));
 return rows;

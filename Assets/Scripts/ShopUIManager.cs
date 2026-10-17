@@ -14,14 +14,22 @@ public class ShopUIManager : MonoBehaviour
     public UnityEngine.UI.Text offerCountText;
     public UnityEngine.UI.ScrollRect offersScroll;
     internal static GameObject ItemShopUI;
+    [SerializeField] private GameObject itemShopPanel;
+    private bool sceneInitialized;
     private void Awake()
     {
-        ItemShopUI = GameObject.Find("İtemShopUİ");
-
+        InitializeForScene();
     }
 
     private void Start()
     {
+        InitializeForScene();
+    }
+    public void InitializeForScene()
+    {
+        if(sceneInitialized)return;
+        sceneInitialized=true;
+        ItemShopUI = itemShopPanel != null ? itemShopPanel : GameObject.Find("İtemShopUİ");
         ItemShopUI.SetActive(false);
     }
     public void RefreshShop()
@@ -47,9 +55,9 @@ public class ShopUIManager : MonoBehaviour
         bool canEdit = GameManager.CanEditItems;
         if (offersScroll != null) offersScroll.enabled = !BackpackDraggable.IsDragging;
         var tower = UİManager.activeTower;
-        bool frozen = tower != null && tower.IsShopFrozen;
+        bool frozen = false;
         if (rerollButton != null) rerollButton.interactable = canEdit && tower != null && !frozen && EconomyManager.Gold >= rerollCost;
-        if (freezeButton != null) freezeButton.interactable = canEdit && tower != null;
+        if (freezeButton != null) freezeButton.gameObject.SetActive(false);
         if (freezeButtonText != null) freezeButtonText.text = frozen ? "Dondurmayı kaldır" : "Dükkanı dondur";
         if (interactionStatus != null)
             interactionStatus.text = !canEdit ? "Eşya işlemleri kilitli · Hazırlığı bekle" : frozen ? "Bu kulenin teklifleri korunuyor" : "Hazırlık · Eşyaları düzenleyebilirsin";
@@ -76,9 +84,7 @@ public class ShopUIManager : MonoBehaviour
         if (offerCountText != null)
         {
             var tower = UİManager.activeTower;
-            bool previousOffers = System.Array.Exists(tower.myShopItems, item => item != null && item.element != tower.SelectedElement);
-            offerCountText.text = previousOffers ? "Sonraki yenileme: " + UİManager.ElementLabel(tower.SelectedElement) + " eşyaları"
-                : count + " teklif · " + UİManager.ElementLabel(tower.SelectedElement) + " mağazası";
+            offerCountText.text=count+" teklif · Sağ tık: rezerve et";
         }
         if (count > shopSlots.Length && shopSlots.Length > 0)
         {
@@ -107,6 +113,7 @@ public class ShopUIManager : MonoBehaviour
                 shopSlots[i].currentItem = UİManager.activeTower.myShopItems[i];
             }
             shopSlots[i].RefreshCard();
+            shopSlots[i].ShowReservation(UİManager.activeTower.IsOfferReserved(i)&&shopSlots[i].currentItem!=null);
         }
         if (offersScroll != null) offersScroll.verticalNormalizedPosition = 1f;
     }

@@ -23,10 +23,13 @@ public class UİManager : MonoBehaviour
     public static TowerSlot selectedTowerSlot;
     public static string selectedTowerType;
     public static Tower activeTower;
-    private Button TowerShopBuyBTN;
-    private Text UnitTowerGold;
-    private Text MegicTowerGold;
-    private Text ArcherTowerGold;
+    [SerializeField] private GameObject towerShopPanel;
+    [SerializeField] private BackpackUIManager backpackUI;
+    [SerializeField] private ShopUIManager itemShopUI;
+    [SerializeField] private Button TowerShopBuyBTN;
+    [SerializeField] private Text UnitTowerGold;
+    [SerializeField] private Text MegicTowerGold;
+    [SerializeField] private Text ArcherTowerGold;
     private static Text GoldText;
     // Kule fiyatlarının tek kaynağı her prefab'ın kendi TowerData.cost'u.
     private int UnitTowerCost => UnitTowerPrefab.GetComponent<Tower>().data.cost;
@@ -293,11 +296,11 @@ public class UİManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        TowerShopUI = GameObject.Find("TowerShopUI");
-        TowerShopBuyBTN = GameObject.Find("TowerShopBuyBTN").GetComponent<Button>();
-        UnitTowerGold = GameObject.Find("UnitTowerGold").GetComponent<Text>();
-        MegicTowerGold = GameObject.Find("MegicTowerGold").GetComponent<Text>();
-        ArcherTowerGold = GameObject.Find("ArcherTowerGold").GetComponent<Text>();
+        TowerShopUI = towerShopPanel != null ? towerShopPanel : GameObject.Find("TowerShopUI");
+        if (TowerShopBuyBTN == null) TowerShopBuyBTN = GameObject.Find("TowerShopBuyBTN").GetComponent<Button>();
+        if (UnitTowerGold == null) UnitTowerGold = GameObject.Find("UnitTowerGold").GetComponent<Text>();
+        if (MegicTowerGold == null) MegicTowerGold = GameObject.Find("MegicTowerGold").GetComponent<Text>();
+        if (ArcherTowerGold == null) ArcherTowerGold = GameObject.Find("ArcherTowerGold").GetComponent<Text>();
         GoldText = GameObject.Find("GoldText").GetComponent<Text>();
         Heart1 = GameObject.Find("HealBar/Heart1");
         Heart2 = GameObject.Find("HealBar/Heart2");
@@ -309,6 +312,10 @@ public class UİManager : MonoBehaviour
         selectedTowerType = null;
         selectedTowerSlot = null;
         selectedTowerPlace = null;
+        // The saved UI starts closed, so panel-owned controllers may not have
+        // received Awake yet. Initialize them from this always-active controller.
+        if(itemShopUI!=null)itemShopUI.InitializeForScene();
+        if(backpackUI!=null)backpackUI.InitializeForScene();
 
         //cellVisuals = new UnityEngine.UI.Image[5, 5]; // Çanta 5x5
         //if (gridVisualsParent != null)
@@ -329,6 +336,7 @@ public class UİManager : MonoBehaviour
     }
     void Start()
     {
+        TowerPurchaseSkin.Install(this);
         TowerShopBuyBTN.enabled = false;
         UnitTowerGold.text = UnitTowerCost.ToString();
         MegicTowerGold.text = MegicTowerCost.ToString();
@@ -348,7 +356,7 @@ public class UİManager : MonoBehaviour
         if(TowerShopUI!=null && TowerShopUI.activeSelf)
         {
             var parent=TowerShopUI.transform.parent as RectTransform;
-            if(parent!=null)TowerShopUI.transform.localScale=Vector3.one*Mathf.Min(1f,Mathf.Min(parent.rect.width/700f,parent.rect.height/760f));
+            if(parent!=null&&GetComponent<TowerPurchaseSkin>()==null)TowerShopUI.transform.localScale=Vector3.one*Mathf.Min(1f,Mathf.Min(parent.rect.width/700f,parent.rect.height/760f));
             if(gameManager!=null && gameManager.CurrentState!=GameManager.GameState.Preparation)ClosePurchasePanel();
         }
         if (gameManager == null) return;
@@ -399,9 +407,8 @@ public class UİManager : MonoBehaviour
         if (towerExperienceFill != null)
             towerExperienceFill.rectTransform.anchorMax = new Vector2(Mathf.Clamp01(t.Experience / t.ExperienceRequired), 1f);
         if (towerElementStatus != null)
-            towerElementStatus.text = !string.IsNullOrEmpty(t.ElementSelectionError) ? t.ElementSelectionError : t.AwaitingElement
-                ? (GameManager.CanUpgradeTowers ? "Element seç · Biriken XP korunur" : "Hazırlıkta element seç · XP birikiyor")
-                : t.SelectedElement == ElementType.Normal ? "Element seçimi 5. seviyede açılır" : "Element seçildi · Saldırılara uygulanır";
+            towerElementStatus.text = !string.IsNullOrEmpty(t.ElementSelectionError) ? t.ElementSelectionError
+                : t.Level<5 ? "5. seviyede element eşyaları mağazaya gelir" : "Element eşyasını ana silahın yanına koy";
         for (int i = 0; i < elementButtons.Length; i++)
             if (elementButtons[i] != null)
             {
