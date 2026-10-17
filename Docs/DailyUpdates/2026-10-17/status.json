@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-17",
+  "timezone": "Europe/Istanbul",
+  "github": {
+    "status": "pushed",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "branch": "main",
+    "baseline_commit": "ef0a1fc477fa5a941905502c702e874d13b26590",
+    "commit": "f2ef0072a6a4ee1a1e4dff950fe6302e4d56619b",
+    "verified_at": "2026-10-17T15:22:27.6158404Z",
+    "changed_files": 194
+  },
+  "summary": [
+    "Element katalizörleri ve eşya bazında mağaza rezervasyonu",
+    "Serbest depo ve eşya yığını görünümü",
+    "Kule satın alma arayüzü ve sahnede kalıcı UI"
+  ],
+  "validation": {
+    "integration_passed": 20,
+    "bulk_button_passed": true,
+    "existing_report": "Docs/Validation/element-inventory/results.json",
+    "backup_and_logs_excluded": true,
+    "oversize_files": 0,
+    "tests_rerun": false,
+    "tower_element_passed": 16,
+    "missing_meta_files": 0
+  },
+  "linkedin": {
+    "reason": "Cumartesi; haftalık yayın cuma günü.",
+    "status": "not_scheduled"
+  }
+}
