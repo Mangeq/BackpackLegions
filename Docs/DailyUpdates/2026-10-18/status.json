@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-18",
+  "timezone": "Europe/Istanbul",
+  "github": {
+    "status": "pushed",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "branch": "main",
+    "baseline_commit": "08a3192083d0e8a8c35464a8c98bcb076215e52a",
+    "commit": "96ea6c8168124a01f71b79c26128b8aa9667484c",
+    "verified_at": "2026-10-18T17:41:42.2592535Z",
+    "changed_files": 353
+  },
+  "summary": [
+    "Ana menü ve yetenek ağacı arayüzleri",
+    "Sonuç ve duraklatma panelleri, dalga önizlemesi",
+    "Ayrı element mağazası ve tek hücreli depo görünümü"
+  ],
+  "validation": {
+    "panel_checks_passed": 29,
+    "missing_meta_files": 0,
+    "tests_rerun": false,
+    "existing_reports": [
+      "Docs/Validation/panel-v2/results.json",
+      "Docs/Validation/frontend-reference/results.json",
+      "Docs/Validation/wave-reference/results.json",
+      "Docs/Validation/result-centered/results.json"
+    ],
+    "frontend_checks_passed": 31,
+    "backup_and_logs_excluded": true,
+    "oversize_files": 0,
+    "wave_checks_passed": 18
+  },
+  "linkedin": {
+    "reason": "Pazar; haftalık yayın cuma günü.",
+    "status": "not_scheduled"
+  }
+}
