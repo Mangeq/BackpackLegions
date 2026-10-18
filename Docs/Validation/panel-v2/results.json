@@ -1,0 +1,118 @@
+[
+  {
+    "test": "approved panel active at original dimensions",
+    "passed": true
+  },
+  {
+    "test": "old physics component absent",
+    "passed": true
+  },
+  {
+    "test": "empty depot does not scroll",
+    "passed": true
+  },
+  {
+    "test": "gray selection follows air and last",
+    "passed": true
+  },
+  {
+    "test": "gray selection follows ground and first",
+    "passed": true
+  },
+  {
+    "test": "twelve items use six rows without scroll",
+    "passed": true
+  },
+  {
+    "test": "thirteenth item enables downward scroll",
+    "passed": true
+  },
+  {
+    "test": "wheel-scroll content can reach extra row",
+    "passed": true
+  },
+  {
+    "test": "all storage images fit one cell",
+    "passed": true
+  },
+  {
+    "test": "single-cell storage restores original shape on drag",
+    "passed": true
+  },
+  {
+    "test": "returning to twelve disables scroll",
+    "passed": true
+  },
+  {
+    "test": "bulk button moves main weapon without loss",
+    "passed": true
+  },
+  {
+    "test": "right-hand sell tray pays exactly half once",
+    "passed": true
+  },
+  {
+    "test": "level four stays in ordinary shop",
+    "passed": true
+  },
+  {
+    "test": "level five opens four element offers",
+    "passed": true
+  },
+  {
+    "test": "element reroll charges once and stays in element shop",
+    "passed": true
+  },
+  {
+    "test": "element offers do not reroll free between waves",
+    "passed": true
+  },
+  {
+    "test": "invalid drop costs nothing and keeps element shop",
+    "passed": true
+  },
+  {
+    "test": "element purchase requires backpack rather than depot",
+    "passed": true
+  },
+  {
+    "test": "insufficient gold keeps element offers and charges nothing",
+    "passed": true
+  },
+  {
+    "test": "successful element drag charges once and closes element shop",
+    "passed": true
+  },
+  {
+    "test": "normal shop and reserved offer restored",
+    "passed": true
+  },
+  {
+    "test": "fifty normal rerolls never leak elements or reopen",
+    "passed": true
+  },
+  {
+    "test": "later level ups do not reopen element shop",
+    "passed": true
+  },
+  {
+    "test": "change element button explicitly reopens shop",
+    "passed": true
+  },
+  {
+    "test": "element shop heading changes",
+    "passed": true
+  },
+  {
+    "test": "tower type dialog opens above the updated panel",
+    "passed": true
+  },
+  {
+    "test": "combat targeting changes move gray highlight",
+    "passed": true
+  },
+  {
+    "test": "sell area is only under shop",
+    "passed": true
+  }
+]

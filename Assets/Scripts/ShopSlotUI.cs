@@ -20,11 +20,12 @@ public class ShopSlotUI : MonoBehaviour, UnityEngine.EventSystems.IPointerClickH
         if(badge==null)
         {
             var go=new GameObject("ReservationBadge",typeof(RectTransform),typeof(TextMeshProUGUI));go.transform.SetParent(transform,false);
-            var r=(RectTransform)go.transform;r.anchorMin=r.anchorMax=r.pivot=new Vector2(0,1);r.anchoredPosition=new Vector2(10,-172);r.sizeDelta=new Vector2(115,18);
+            var r=(RectTransform)go.transform;r.anchorMin=r.anchorMax=r.pivot=new Vector2(0,1);r.anchoredPosition=new Vector2(10,-8);r.sizeDelta=new Vector2(115,18);
             var t=go.GetComponent<TextMeshProUGUI>();var name=transform.Find("ReferenceName");
             if(name!=null)t.font=name.GetComponent<TMP_Text>().font;
             t.fontSize=13;t.fontStyle=FontStyles.Bold;t.color=new Color(1,.77f,.3f);t.alignment=TextAlignmentOptions.TopLeft;t.raycastTarget=false;t.text="REZERVE";badge=go.transform;
         }
+        ((RectTransform)badge).anchoredPosition=new Vector2(10,-8);
         badge.gameObject.SetActive(reserved);
     }
     public ItemData currentItem;

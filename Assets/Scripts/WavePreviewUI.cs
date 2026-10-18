@@ -30,6 +30,8 @@ public class WavePreviewUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         lastWave=waves.UpcomingWaveIndex;lastState=game.CurrentState;
         title.text=waves.UpcomingWave==null?"SON DALGA":"SIRADAKİ DALGA  " + (lastWave+1) + " / " + waves.waves.Count;
         details.text=Describe(waves.UpcomingWave);
+        var skin=GetComponent<WavePreviewSkin>();
+        if(skin!=null)skin.Render(waves.UpcomingWave,lastWave,waves.waves.Count);
     }
     public static string Describe(WaveRound wave)
     {

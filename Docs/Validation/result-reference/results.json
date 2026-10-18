@@ -1,0 +1,78 @@
+[
+  {
+    "test": "pause opens approved original image",
+    "passed": true
+  },
+  {
+    "test": "pause skill button opens skill tree",
+    "passed": true
+  },
+  {
+    "test": "pause settings button works",
+    "passed": true
+  },
+  {
+    "test": "continue restores preparation without starting combat",
+    "passed": true
+  },
+  {
+    "test": "defeat opens only approved defeat panel",
+    "passed": true
+  },
+  {
+    "test": "defeat banner shows actual chapter",
+    "passed": true
+  },
+  {
+    "test": "defeat skill button opens tree",
+    "passed": true
+  },
+  {
+    "test": "victory opens only approved original victory image",
+    "passed": true
+  },
+  {
+    "test": "next chapter is available before final chapter",
+    "passed": true
+  },
+  {
+    "test": "victory skill button opens tree",
+    "passed": true
+  },
+  {
+    "test": "final chapter disables next and changes caption",
+    "passed": true
+  },
+  {
+    "test": "legacy retry and menu identities retained for game bindings",
+    "passed": true
+  },
+  {
+    "test": "player skill progress restored after validation",
+    "passed": true
+  },
+  {
+    "test": "all four pause button raycasts align with artwork after rendering",
+    "passed": true
+  },
+  {
+    "test": "all three defeat button raycasts align with artwork after rendering",
+    "passed": true
+  },
+  {
+    "test": "all four victory button raycasts align with artwork after rendering",
+    "passed": true
+  },
+  {
+    "test": "next chapter button loads chapter two",
+    "passed": true
+  },
+  {
+    "test": "retry button reloads the same chapter",
+    "passed": true
+  },
+  {
+    "test": "main menu button loads MainMenu",
+    "passed": true
+  }
+]

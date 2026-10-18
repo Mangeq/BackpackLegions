@@ -57,6 +57,31 @@ public abstract class Tower : MonoBehaviour
 
     public ItemData[] myShopItems = new ItemData[4];
     public bool IsShopFrozen => false;
+    public bool IsElementShop { get; private set; }
+    private bool elementShopUnlocked;
+    private ItemData[] savedItemOffers;
+    private readonly HashSet<int> savedReservations = new HashSet<int>();
+
+    public bool OpenElementShop()
+    {
+        if(Level<5||!GameManager.CanEditItems||IsElementShop)return false;
+        elementShopUnlocked=true;
+        savedItemOffers=(ItemData[])myShopItems.Clone();
+        savedReservations.Clear();
+        foreach(var index in reservedOffers)savedReservations.Add(index);
+        reservedOffers.Clear();IsElementShop=true;GenerateShopItems();return true;
+    }
+    public void CompleteShopPurchase(int index, ItemData purchased)
+    {
+        if(index<0||index>=myShopItems.Length||myShopItems[index]!=purchased)return;
+        myShopItems[index]=null;reservedOffers.Remove(index);
+        if(!IsElementShop||purchased==null||!purchased.isElementCatalyst)return;
+        IsElementShop=false;
+        myShopItems=savedItemOffers??new ItemData[4];savedItemOffers=null;
+        reservedOffers.Clear();foreach(var slot in savedReservations)reservedOffers.Add(slot);
+        savedReservations.Clear();
+        if(System.Array.TrueForAll(myShopItems,x=>x==null))GenerateShopItems();
+    }
     private readonly HashSet<int> reservedOffers=new HashSet<int>();
     public bool IsOfferReserved(int index)=>reservedOffers.Contains(index);
     public void ToggleOfferReservation(int index)
@@ -278,7 +303,7 @@ public abstract class Tower : MonoBehaviour
         }
 
         Backpack = new Backpack(data.gridWidth, data.gridHeight);
-        Storage = new Backpack(3, 5, true);
+        Storage = new Backpack(2, 6, true);
         Evolution = new TowerItemEvolution(this);
 
         // Varsay�lan item, olu�turuldu�u andan itibaren backpack'in merkezine yerle�ir.
@@ -321,23 +346,26 @@ public abstract class Tower : MonoBehaviour
 
     public void GenerateShopItems()
     {
+        if(Level>=5&&!elementShopUnlocked)
+        {
+            elementShopUnlocked=true;savedItemOffers=(ItemData[])myShopItems.Clone();
+            savedReservations.Clear();foreach(var index in reservedOffers)savedReservations.Add(index);
+            reservedOffers.Clear();IsElementShop=true;
+        }
+        var catalysts=IsElementShop?Resources.LoadAll<ItemData>("Data/Items/Elements"):null;
         for (int i = 0; i < myShopItems.Length; i++)
         {
             if(IsOfferReserved(i)&&myShopItems[i]!=null)continue;
             reservedOffers.Remove(i);
+            if(IsElementShop)
+            {
+                myShopItems[i]=catalysts.Length>0?catalysts[Random.Range(0,catalysts.Length)]:null;
+                continue;
+            }
             ItemRarity rarity = ShopManager.Instance.GetRandomRarity(towerLevel);
             myShopItems[i] = ShopManager.Instance.GetRandomItem(data.type, rarity, SelectedElement);
-            if(Level>=5&&Random.value<.22f)
-            {
-                var catalysts=Resources.LoadAll<ItemData>("Data/Items/Elements");
-                if(catalysts.Length>0)myShopItems[i]=catalysts[Random.Range(0,catalysts.Length)];
-            }
-        }
-        if(Level>=5)
-        {
-            var catalysts=Resources.LoadAll<ItemData>("Data/Items/Elements");
-            if(catalysts.Length>0)for(int i=myShopItems.Length-1;i>=0;i--)
-                if(!IsOfferReserved(i)){myShopItems[i]=catalysts[Random.Range(0,catalysts.Length)];break;}
+            if(myShopItems[i]==null&&SelectedElement!=ElementType.Normal)
+                myShopItems[i]=ShopManager.Instance.GetRandomItem(data.type,rarity,ElementType.Normal);
         }
     }
 

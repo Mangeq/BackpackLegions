@@ -8,6 +8,8 @@ public static class ReferencePanelAssets
     public static Sprite Sprite(string name)
     {
         if(sprites.TryGetValue(name,out Sprite result)&&result!=null)return result;
+        result=Resources.Load<Sprite>("UI/ApprovedScene/ApprovedReference_"+name);
+        if(result!=null){sprites[name]=result;return result;}
         var texture=Resources.Load<Texture2D>("UI/TowerPanel/Reference/"+name);
         if(texture==null)throw new System.InvalidOperationException("Missing reference UI crop: "+name);
         result=UnityEngine.Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),Vector2.one*.5f,100,0,SpriteMeshType.FullRect);

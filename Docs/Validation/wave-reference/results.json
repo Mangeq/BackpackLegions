@@ -1,0 +1,74 @@
+[
+  {
+    "test": "wave indicator hover opens reference panel",
+    "passed": true
+  },
+  {
+    "test": "old unstructured text hidden",
+    "passed": true
+  },
+  {
+    "test": "all 45 real wave headers are dynamic",
+    "passed": true
+  },
+  {
+    "test": "only actual enemy types get rows",
+    "passed": true
+  },
+  {
+    "test": "enemy names and grouped counts match spawn data",
+    "passed": true
+  },
+  {
+    "test": "health elements and air/ground match enemy data",
+    "passed": true
+  },
+  {
+    "test": "weaknesses and resistances use configured multipliers",
+    "passed": true
+  },
+  {
+    "test": "normal damage uses actual combat multiplier",
+    "passed": true
+  },
+  {
+    "test": "every campaign enemy has real prefab portrait",
+    "passed": true
+  },
+  {
+    "test": "totals match actual wave counts",
+    "passed": true
+  },
+  {
+    "test": "UI never mutates chapter or wave data",
+    "passed": true
+  },
+  {
+    "test": "panel grows from one to three rows",
+    "passed": true
+  },
+  {
+    "test": "repeated enemy groups combine without mutating source",
+    "passed": true
+  },
+  {
+    "test": "combat preview follows next wave rather than running wave",
+    "passed": true
+  },
+  {
+    "test": "last combat wave has no invented next enemies",
+    "passed": true
+  },
+  {
+    "test": "boss data adds real escape warning",
+    "passed": true
+  },
+  {
+    "test": "leaving indicator closes preview",
+    "passed": true
+  },
+  {
+    "test": "pause hides preview",
+    "passed": true
+  }
+]

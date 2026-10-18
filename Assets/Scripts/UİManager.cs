@@ -158,7 +158,17 @@ public class UİManager : MonoBehaviour
             && HandleOutsideClick(Input.mousePosition)) panelDismissedFrame = Time.frameCount;
     }
 
-    public void OpenElementChange() => OpenTransition(false);
+    public void OpenElementChange()
+    {
+        if(activeTower==null)return;
+        BackpackDraggable.CancelActiveDrag();
+        if(activeTower.OpenElementShop())
+        {
+            CloseTransition();
+            if(itemShopUI!=null)itemShopUI.UpdateShopUI();
+            NotifyPanelOpened();
+        }
+    }
     public void OpenTowerTypeChange() => OpenTransition(true);
     private void OpenTransition(bool typeChange)
     {
@@ -171,6 +181,7 @@ public class UİManager : MonoBehaviour
         transitionElement = ElementType.Normal;
         transitionPrefab = null;
         transitionPanel.SetActive(true);
+        transitionPanel.transform.SetAsLastSibling();
         NotifyPanelOpened();
         RefreshTransition();
     }
@@ -204,7 +215,7 @@ public class UİManager : MonoBehaviour
     private void RefreshTransition()
     {
         if (openElementChangeButton != null) openElementChangeButton.interactable = GameManager.CanUpgradeTowers
-            && activeTower != null && activeTower.SelectedElement != ElementType.Normal;
+            && activeTower != null && activeTower.Level>=5 && !activeTower.IsElementShop;
         if (openTypeChangeButton != null)
         {
             openTypeChangeButton.interactable = GameManager.CanUpgradeTowers && activeTower != null && !BackpackDraggable.IsDragging;

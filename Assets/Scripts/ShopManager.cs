@@ -50,7 +50,7 @@ public class ShopManager : MonoBehaviour
     public ItemData GetRandomItem(TowerType towerType, ItemRarity targetRarity, ElementType element = ElementType.Normal)
     {
         if (allItems == null) return null;
-        List<ItemData> filteredItems = allItems.FindAll(item => item != null && item.element == element && item.itemOwners != null && item.Rarity == targetRarity && System.Array.Exists(item.itemOwners, owner => owner == towerType));
+        List<ItemData> filteredItems = allItems.FindAll(item => item != null && !item.isElementCatalyst && item.element == element && item.itemOwners != null && item.Rarity == targetRarity && System.Array.Exists(item.itemOwners, owner => owner == towerType));
         // Henüz içeriği olmayan kule/tier için dükkan boş slot gösterebilir.
         if (filteredItems.Count == 0) return null;
         return filteredItems[Random.Range(0, filteredItems.Count)];

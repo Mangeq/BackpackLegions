@@ -1,0 +1,126 @@
+[
+  {
+    "test": "main menu uses original supplied image",
+    "passed": true
+  },
+  {
+    "test": "old main menu artwork hidden",
+    "passed": true
+  },
+  {
+    "test": "four menu callbacks preserved",
+    "passed": true
+  },
+  {
+    "test": "click targets align with all four illustrated buttons",
+    "passed": true
+  },
+  {
+    "test": "menu opens new skill screen",
+    "passed": true
+  },
+  {
+    "test": "skill background is persistent native sprite",
+    "passed": true
+  },
+  {
+    "test": "OKÇU AĞACI retains all data nodes",
+    "passed": true
+  },
+  {
+    "test": "OKÇU AĞACI selected tab follows selection",
+    "passed": true
+  },
+  {
+    "test": "OKÇU AĞACI shows live labels and icons",
+    "passed": true
+  },
+  {
+    "test": "OKÇU AĞACI node click updates details and selection",
+    "passed": true
+  },
+  {
+    "test": "OKÇU AĞACI keeps unlock conditions",
+    "passed": true
+  },
+  {
+    "test": "BÜYÜCÜ AĞACI retains all data nodes",
+    "passed": true
+  },
+  {
+    "test": "BÜYÜCÜ AĞACI selected tab follows selection",
+    "passed": true
+  },
+  {
+    "test": "BÜYÜCÜ AĞACI shows live labels and icons",
+    "passed": true
+  },
+  {
+    "test": "BÜYÜCÜ AĞACI node click updates details and selection",
+    "passed": true
+  },
+  {
+    "test": "BÜYÜCÜ AĞACI keeps unlock conditions",
+    "passed": true
+  },
+  {
+    "test": "HAVAN AĞACI retains all data nodes",
+    "passed": true
+  },
+  {
+    "test": "HAVAN AĞACI selected tab follows selection",
+    "passed": true
+  },
+  {
+    "test": "HAVAN AĞACI shows live labels and icons",
+    "passed": true
+  },
+  {
+    "test": "HAVAN AĞACI node click updates details and selection",
+    "passed": true
+  },
+  {
+    "test": "HAVAN AĞACI keeps unlock conditions",
+    "passed": true
+  },
+  {
+    "test": "BİRLİK AĞACI retains all data nodes",
+    "passed": true
+  },
+  {
+    "test": "BİRLİK AĞACI selected tab follows selection",
+    "passed": true
+  },
+  {
+    "test": "BİRLİK AĞACI shows live labels and icons",
+    "passed": true
+  },
+  {
+    "test": "BİRLİK AĞACI node click updates details and selection",
+    "passed": true
+  },
+  {
+    "test": "BİRLİK AĞACI keeps unlock conditions",
+    "passed": true
+  },
+  {
+    "test": "close button returns to home",
+    "passed": true
+  },
+  {
+    "test": "settings menu still opens",
+    "passed": true
+  },
+  {
+    "test": "play opens existing chapter selection",
+    "passed": true
+  },
+  {
+    "test": "return from chapter selection restores reference home",
+    "passed": true
+  },
+  {
+    "test": "skill save unchanged by presentation and navigation",
+    "passed": true
+  }
+]

@@ -16,6 +16,9 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
 {
     private ShopSlotUI shopSlot;
     private BackpackDraggable activeGhost;
+    private Tower purchaseOwner;
+    private ItemData purchaseItem;
+    private int purchaseIndex;
 
     private void Awake()
     {
@@ -31,6 +34,9 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
 
         if (BackpackUIManager.Instance.ActiveTower == null)
             return;
+        purchaseOwner=BackpackUIManager.Instance.ActiveTower;
+        purchaseItem=shopSlot.currentItem;
+        purchaseIndex=System.Array.IndexOf(FindObjectOfType<ShopUIManager>().shopSlots,shopSlot);
 
         GameObject ghost = Instantiate(BackpackUIManager.Instance.itemVisualPrefab, BackpackUIManager.Instance.transform.root);
 
@@ -57,22 +63,8 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
 
         if (success)
         {
-            // Dükkan artık kule başına kalıcı - satın alınan item kulenin listesinden de
-            // silinmeli, yoksa panel tekrar açılınca slot yeniden dolu görünür.
-            ShopSlotUI[] slots = FindObjectOfType<ShopUIManager>().shopSlots;
-            int slotIndex = System.Array.IndexOf(slots, shopSlot);
-            if (slotIndex >= 0 && UİManager.activeTower != null)
-            {
-                UİManager.activeTower.myShopItems[slotIndex] = null;
-                UİManager.activeTower.ClearOfferReservation(slotIndex);
-            }
-
-            shopSlot.isPurchased = true;
-            shopSlot.image.enabled = false;
-            shopSlot.itemCost.text = "";
-            shopSlot.currentItem = null;
-            shopSlot.RefreshCard();
-            shopSlot.ShowReservation(false);
+            purchaseOwner.CompleteShopPurchase(purchaseIndex,purchaseItem);
+            FindObjectOfType<ShopUIManager>().UpdateShopUI();
         }
     }
 }

@@ -61,7 +61,8 @@ public class SkillTreePanelUI : MonoBehaviour
             nodeLabels[i].text=skill.displayName;nodeIcons[i].sprite=skill.icon;
             var button=nodes[i].GetComponent<UnityEngine.UI.Button>();button.onClick=new UnityEngine.UI.Button.ButtonClickedEvent();int nodeIndex=i;button.onClick.AddListener(()=>SelectNode(nodeIndex));
         }
-        DrawConnections(tree);
+        var reference=GetComponent<SkillTreeReferenceSkin>();
+        if(reference!=null)reference.LayoutBranch(tree,index);else DrawConnections(tree);
         if(resetButton!=null)resetButton.gameObject.SetActive(true);
         if(first>=0)SelectNode(first);
         else {selectedNode=-1;detailTitle.text="Ağaç boş";detailBody.text="Inspector'da bu ağaca SkillData ekle.";detailIndex.text="";detailIcon.sprite=null;unlockButton.interactable=false;unlockLabel.text="YETENEK YOK";rulesLabel.text="";}
@@ -90,6 +91,7 @@ public class SkillTreePanelUI : MonoBehaviour
         if(unlockButton!=null)unlockButton.interactable=error==null;
         if(unlockLabel!=null)unlockLabel.text=error==null?"AÇ · "+skill.pointCost+" PUAN":error=="TASLAK"?"HENÜZ ETKİN DEĞİL":error=="AÇILDI"||error=="YETERSİZ PUAN"||error=="ÖNCE ÖN KOŞULU AÇ"?error:"DATA AYARINI KONTROL ET";
         if(rulesLabel!=null){var names=new System.Collections.Generic.List<string>();foreach(var parent in skill.prerequisites)if(parent!=null)names.Add(parent.displayName);rulesLabel.text=tree.ConfigurationError()??(names.Count==0?"Başlangıç yeteneği":"Ön koşul: "+string.Join(", ",names));}
+        var reference=GetComponent<SkillTreeReferenceSkin>();if(reference!=null)reference.RefreshSelection(tree,index);
     }
     public void UnlockSelected()
     {

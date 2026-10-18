@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>Approved raster artwork, at its original 1678 x 937 coordinates.</summary>
-public sealed class TowerPanelLayout : MonoBehaviour
+public sealed partial class TowerPanelLayout : MonoBehaviour
 {
     const float Width=1678, Height=937, Cell=103;
     [SerializeField] BackpackUIManager bags;
@@ -15,6 +15,7 @@ public sealed class TowerPanelLayout : MonoBehaviour
     [SerializeField] Value[] stats=new Value[4], details=new Value[3];
     [SerializeField] Value title,xp,status,offers;
     [SerializeField] UnityEngine.UI.Image progress;
+    [SerializeField] Sprite shopShelf;
     Vector2 canvasSize;
     [SerializeField] TMP_FontAsset serif,body;
     bool ownsFonts;
@@ -102,59 +103,39 @@ public sealed class TowerPanelLayout : MonoBehaviour
         scroll.content.pivot=new Vector2(0,1);scroll.content.sizeDelta=new Vector2(0,394);
         scroll.horizontal=false;scroll.vertical=true;
         foreach(var slot in shop.shopSlots)PrepareCard(slot);
+        ApplyShopShelfLayout();
         ApplyInventoryRulesLayout();
         Resize();
     }
-    public void ApplyInventoryRulesLayout()
-    {
-        if(root==null)return;
-        foreach(var button in ui.elementButtons)button.gameObject.SetActive(false);
-        var cover=root.Find("ElementRowCover") as RectTransform;
-        if(cover==null)
-        {
-            cover=NewRect("ElementRowCover",root);
-            var image=cover.gameObject.AddComponent<UnityEngine.UI.Image>();
-            var texture=ReferencePanelAssets.Sprite("Background").texture;
-            image.sprite=Sprite.Create(texture,new Rect(815,937-171,35,30),Vector2.one*.5f);
-            image.sprite.name="Approved_ElementRowCover";image.raycastTarget=false;
-        }
-        Place(cover,908,126,697,59);
-        var viewport=storageScroll.viewport;var surface=viewport.GetComponent<UnityEngine.UI.Image>();
-        if(surface.sprite==null)
-        {
-            var texture=Resources.Load<Texture2D>("UI/TowerPurchase/Reference/CardHD");
-            surface.sprite=Sprite.Create(texture,new Rect(120,texture.height-1120,700,400),Vector2.one*.5f);
-            surface.sprite.name="Approved_LooseStorageSurface";
-        }
-        surface.color=Color.white;
-        storageScroll.horizontal=false;storageScroll.vertical=true;
-        bags.storageGridContainer.localScale=Vector3.one;
-        Place(bags.storageGridContainer,0,0,242,455);
-        if(bags.storageGridContainer.GetComponent<StoragePileUI>()==null)bags.storageGridContainer.gameObject.AddComponent<StoragePileUI>();
-        var bulk=root.Find("MoveAllToStorage") as RectTransform;
-        if(bulk==null)
-        {
-            bulk=NewRect("MoveAllToStorage",root);var image=bulk.gameObject.AddComponent<UnityEngine.UI.Image>();
-            var button=bulk.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=image;
-            var caption=MakeValue("Caption",bulk,8,7,219,30,18,cream);
-            caption.text.alignment=TextAlignmentOptions.Center;caption.text.text="Tümünü depoya taşı";
-        }
-        Place(bulk,656,880,242,45);
-        var bulkImage=bulk.GetComponent<UnityEngine.UI.Image>();
-        // Clear baked target lettering using a plain cropped metal/parchment face.
-        if(bulkImage.sprite==null||bulkImage.sprite.name!="Approved_MoveAllFace")
-        {
-            var tex=Resources.Load<Texture2D>("UI/TowerPurchase/Reference/CardHD");
-            bulkImage.sprite=Sprite.Create(tex,new Rect(53,tex.height-1375,910,185),Vector2.one*.5f);
-            bulkImage.sprite.name="Approved_MoveAllFace";
-        }
-        if(Application.isPlaying)BindBulkButton();
-        Resize();
-    }
+    public void ApplyInventoryRulesLayout() { ApplyPanelV2(); }
     void Start()
     {
         if(root==null)return;
-        if(root.Find("MoveAllToStorage")==null)ApplyInventoryRulesLayout();else BindBulkButton();
+        ApplyInventoryRulesLayout();
+        ApplyShopShelfLayout();
+    }
+    public void ApplyShopShelfLayout()
+    {
+        if(shopShelf==null)
+        {
+            var texture=Resources.Load<Texture2D>("UI/TowerPanel/Reference/ShopShelf");
+            if(texture==null)return;
+            shopShelf=Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),Vector2.one*.5f,100,0,SpriteMeshType.FullRect);
+            shopShelf.name="Approved_ShopShelf";
+        }
+        foreach(var card in cards)StyleShelfCard(card);
+    }
+    void StyleShelfCard(Card card)
+    {
+        var face=card.slot.GetComponent<UnityEngine.UI.Image>();
+        face.enabled=true;face.sprite=shopShelf;face.color=Color.white;face.type=UnityEngine.UI.Image.Type.Simple;face.raycastTarget=true;
+        card.name.text.gameObject.SetActive(false);
+        card.footprint.text.gameObject.SetActive(false);
+        card.slot.footprint.gameObject.SetActive(false);
+        Place(card.slot.image.rectTransform,90,2,150,115);
+        card.slot.image.preserveAspect=true;
+        Place(card.cost.text.rectTransform,10,133,310,36);
+        card.cost.text.fontSize=34;card.cost.text.color=cream;card.cost.text.alignment=TextAlignmentOptions.Center;
     }
     void BindBulkButton()
     {
@@ -177,12 +158,13 @@ public sealed class TowerPanelLayout : MonoBehaviour
     }
     public void PrepareToOpen(Tower tower)
     {
+        if(root!=null&&root.Find("MoveAllToStorage")!=null)BindBulkButton();
         if(ui!=null&&UİManager.TowerShopUI!=null)ui.ClosePurchasePanel();
         if(storageScroll!=null&&tower!=null)
         {
-            if(tower.Storage.IsLooseStorage)bags.storageGridContainer.GetComponent<StoragePileUI>().Prepare(tower.Storage.Items.Count);
+            if(tower.Storage.IsLooseStorage)bags.storageGridContainer.GetComponent<StorageGridUI>().Prepare(tower.Storage.Items.Count);
             else bags.storageGridContainer.sizeDelta=new Vector2(tower.Storage.Width*Cell,tower.Storage.Height*Cell);
-            storageScroll.verticalNormalizedPosition=0;
+            storageScroll.verticalNormalizedPosition=1;
         }
         Resize();
     }
@@ -200,6 +182,7 @@ public sealed class TowerPanelLayout : MonoBehaviour
         card.cost.text.alignment=TextAlignmentOptions.Center;
         card.footprint=MakeValue("ReferenceFootprint",slot.transform,140,151,182,28,19,cream);
         cards.Add(card);
+        if(shopShelf!=null)StyleShelfCard(card);
     }
     void LateUpdate()
     {
@@ -214,7 +197,8 @@ public sealed class TowerPanelLayout : MonoBehaviour
         details[0].Set(Breakdown(t.baseDamage,t.currentDamage));
         details[1].Set(Breakdown(t.baseAttackSpeed,t.currentAttackSpeed," sn"));
         details[2].Set(Breakdown(t.baseCriticalChance*100,t.currentCriticalChance*100));
-        xp.Set(ui.towerExperienceText.text);status.Set(ui.towerElementStatus.text);offers.Set(shop.offerCountText.text);
+        xp.Set(ui.towerExperienceText.text);status.text.gameObject.SetActive(false);offers.Set(shop.offerCountText.text);
+        RefreshPanelV2(t);
         progress.fillAmount=Mathf.Clamp01(t.Experience/t.ExperienceRequired);
         for(int i=cards.Count;i<shop.shopSlots.Length;i++)PrepareCard(shop.shopSlots[i]);
         foreach(var card in cards)
@@ -225,14 +209,7 @@ public sealed class TowerPanelLayout : MonoBehaviour
             if(item!=null)
             {
                 var sprite=ReferencePanelAssets.IconFor(item);card.slot.image.sprite=sprite;
-                if(sprite!=item.itemIcon)
-                {
-                    Vector2 offset=item.itemID=="v1_scout_hood"?new Vector2(12,21):
-                        item.itemID=="v1_archer_gloves"?new Vector2(19,40):
-                        item.itemID=="v1_ranger_boots"?new Vector2(22,26):new Vector2(14,33);
-                    Place(card.slot.image.rectTransform,offset.x,offset.y,sprite.rect.width,sprite.rect.height);
-                }
-                else Place(card.slot.image.rectTransform,14,34,115,120);
+                Place(card.slot.image.rectTransform,90,2,150,115);
             }
         }
     }

@@ -74,6 +74,7 @@ public class BackpackUIManager : MonoBehaviour
             if (image != null) image.color = hovered
                 ? (allowed ? new Color(.22f, .36f, .24f) : new Color(.38f, .18f, .18f))
                 : new Color(.16f, .19f, .21f);
+            if(GetComponent<TowerPanelLayout>()!=null&&image!=null)image.color=hovered?new Color(allowed?.2f:.8f,allowed?.8f:.2f,.2f,.22f):Color.clear;
         }
     }
 
@@ -83,7 +84,7 @@ public class BackpackUIManager : MonoBehaviour
         if (sellArea != null)
         {
             var image = sellArea.GetComponent<Image>();
-            if (image != null) image.color = new Color(.16f, .19f, .21f);
+            if (image != null) image.color = GetComponent<TowerPanelLayout>()!=null?Color.clear:new Color(.16f, .19f, .21f);
         }
     }
 
@@ -163,7 +164,7 @@ public class BackpackUIManager : MonoBehaviour
 
     private void BuildStorageGrid(Backpack bag)
     {
-        foreach (Transform child in storageGridContainer) Destroy(child.gameObject);
+        foreach (Transform child in storageGridContainer) if(child.name!="StorageCells") Destroy(child.gameObject);
         if(bag.IsLooseStorage){storageCellViews=null;return;}
         storageCellViews = new BackpackCellView[bag.Width, bag.Height];
         for (int y = 0; y < bag.Height; y++) for (int x = 0; x < bag.Width; x++)
@@ -214,7 +215,7 @@ public class BackpackUIManager : MonoBehaviour
             Destroy(visual);
 
         itemVisuals.Clear();
-        var pile=storageGridContainer!=null?storageGridContainer.GetComponent<StoragePileUI>():null;
+        var pile=storageGridContainer!=null?storageGridContainer.GetComponent<StorageGridUI>():null;
         if(pile!=null)pile.Prepare(ActiveTower.Storage.Items.Count);
 
         foreach (PlacedItem placed in ActiveTower.Backpack.Items)
@@ -227,8 +228,8 @@ public class BackpackUIManager : MonoBehaviour
         if(ActiveTower.Storage.IsLooseStorage&&storageGridContainer!=null)
         {
             Canvas.ForceUpdateCanvases();
-            var scroll=storageGridContainer.GetComponentInParent<ScrollRect>();
-            if(scroll!=null)scroll.verticalNormalizedPosition=0;
+            var scroll=storageGridContainer.GetComponentInParent<ScrollRect>(true);
+            if(scroll!=null)scroll.verticalNormalizedPosition=1;
         }
     }
 
@@ -267,7 +268,7 @@ public class BackpackUIManager : MonoBehaviour
             visualGO.GetComponent<Image>().color=placed.Data.element==ElementType.Fire?new Color(1,.58f,.24f)
                 :placed.Data.element==ElementType.Water?new Color(.45f,.75f,1)
                 :placed.Data.element==ElementType.Earth?new Color(.8f,.63f,.35f):new Color(.65f,1,1);
-        if (!ActiveTower.IsItemActive(placed.Data))
+        if (!bag.IsLooseStorage && !ActiveTower.IsItemActive(placed.Data))
         {
             visualGO.GetComponent<Image>().color = new Color(.45f, .45f, .45f, .8f);
             var labelGO = new GameObject("IncompatibleLabel", typeof(RectTransform), typeof(UnityEngine.UI.Text));
@@ -289,7 +290,7 @@ public class BackpackUIManager : MonoBehaviour
         draggable.InitializeAsPlaced(placed, bag);
         if(bag.IsLooseStorage)
         {
-            var pile=container.GetComponent<StoragePileUI>();
+            var pile=container.GetComponent<StorageGridUI>();
             if(pile!=null)pile.Register(placed,rt);
         }
 
@@ -325,7 +326,7 @@ public class BackpackUIManager : MonoBehaviour
     private Vector2Int? CellInGrid(RectTransform container, Backpack bag, Vector2 screenPoint, Camera cam)
     {
         if (container == null || !container.gameObject.activeInHierarchy || bag == null) return null;
-        var scroll=container.GetComponentInParent<UnityEngine.UI.ScrollRect>();
+        var scroll=container.GetComponentInParent<UnityEngine.UI.ScrollRect>(true);
         if(scroll!=null&&scroll.viewport!=null&&
             !RectTransformUtility.RectangleContainsScreenPoint(scroll.viewport,screenPoint,cam))return null;
         if(bag.IsLooseStorage)return RectTransformUtility.RectangleContainsScreenPoint(container,screenPoint,cam)?Vector2Int.zero:(Vector2Int?)null;

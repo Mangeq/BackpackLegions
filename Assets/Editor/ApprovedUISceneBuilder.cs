@@ -43,7 +43,16 @@ public static class ApprovedUISceneBuilder
         TowerPanelLayout.Install(bags);
         TowerPurchaseSkin.Install(ui);
         bags.GetComponent<TowerPanelLayout>().ApplyInventoryRulesLayout();
+        bags.GetComponent<TowerPanelLayout>().ApplyShopShelfLayout();
         EnsureFolder(ArtFolder);
+        foreach(var image in bags.combinedPanel.GetComponentsInChildren<Image>(true))
+        {
+            var material=image.material;
+            if(material!=null&&material.name=="PanelSelected"&&!EditorUtility.IsPersistent(material))
+            {
+                AssetDatabase.CreateAsset(material,ArtFolder+"/PanelSelected.mat");
+            }
+        }
         var roots=new[]{bags.combinedPanel,purchase};
         foreach(var root in roots)
         {

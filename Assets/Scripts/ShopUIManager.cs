@@ -16,6 +16,8 @@ public class ShopUIManager : MonoBehaviour
     internal static GameObject ItemShopUI;
     [SerializeField] private GameObject itemShopPanel;
     private bool sceneInitialized;
+    private Tower renderedTower;
+    private bool renderedElementShop;
     private void Awake()
     {
         InitializeForScene();
@@ -55,6 +57,7 @@ public class ShopUIManager : MonoBehaviour
         bool canEdit = GameManager.CanEditItems;
         if (offersScroll != null) offersScroll.enabled = !BackpackDraggable.IsDragging;
         var tower = UİManager.activeTower;
+        if(tower!=null&&(renderedTower!=tower||renderedElementShop!=tower.IsElementShop))UpdateShopUI();
         bool frozen = false;
         if (rerollButton != null) rerollButton.interactable = canEdit && tower != null && !frozen && EconomyManager.Gold >= rerollCost;
         if (freezeButton != null) freezeButton.gameObject.SetActive(false);
@@ -73,18 +76,19 @@ public class ShopUIManager : MonoBehaviour
     public void RefreshShopsForPreparation()
     {
         foreach (var tower in FindObjectsOfType<Tower>())
-            if (tower.Backpack != null && !tower.IsShopFrozen) tower.GenerateShopItems();
+            if (tower.Backpack != null && !tower.IsShopFrozen && !tower.IsElementShop) tower.GenerateShopItems();
         if (UİManager.activeTower != null) UpdateShopUI();
     }
 
     public void UpdateShopUI()
     {
         if (UİManager.activeTower == null) return;
+        renderedTower=UİManager.activeTower;renderedElementShop=renderedTower.IsElementShop;
         int count = UİManager.activeTower.myShopItems.Length;
         if (offerCountText != null)
         {
             var tower = UİManager.activeTower;
-            offerCountText.text=count+" teklif · Sağ tık: rezerve et";
+            offerCountText.text=tower.IsElementShop?"4 teklif · Elementi çantana sürükle":count+" teklif · Sağ tık: rezerve et";
         }
         if (count > shopSlots.Length && shopSlots.Length > 0)
         {

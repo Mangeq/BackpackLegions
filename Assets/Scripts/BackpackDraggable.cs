@@ -271,6 +271,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private bool EvaluatePlacement(Backpack backpack, Vector2Int candidateOrigin)
     {
         if (backpack == null || (backpack != dragOwner.Backpack && backpack != dragOwner.Storage)) return false;
+        if(sourcePlacedItem==null&&delivery==null&&data.isElementCatalyst&&dragOwner.IsElementShop&&backpack!=dragOwner.Backpack)return false;
         // Kule türünü belirleyen ana item çantada kalır. Önizleme ve bırakma aynı kuralı kullanır.
         bool fitsGrid = backpack.CanPlace(data, candidateOrigin, Rotation);
         bool canAfford = sourcePlacedItem != null || delivery != null || EconomyManager.Gold >= data.cost;
