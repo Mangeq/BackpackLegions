@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Kritik Odak
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3035,8 +3035,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: YETENEK PUANI  0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4897,8 +4897,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Uzak At\u0131\u015F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5840,8 +5840,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "B\xDCY\xDCC\xDC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -8497,8 +8497,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Avc\u0131 Sezgisi"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11194,8 +11194,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "LEJYON AKADEM\u0130S\u0130"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11478,8 +11479,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "H\u0131z \xB7 Menzil \xB7 Kritik \xB7 Kal\u0131c\u0131 yetenekler"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12738,8 +12739,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "OK\xC7U"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -12873,8 +12874,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Puanlar b\xFCt\xFCn kule t\xFCrleri i\xE7in ortakt\u0131r."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13308,8 +13310,9 @@ MonoBehaviour:
   m_text: "Yetenekler SkillData \xFCzerinden d\xFCzenlenir \xB7 A\xE7\u0131lan yetenekler
     kal\u0131c\u0131d\u0131r."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15242,8 +15245,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "A\xC7ILDI"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -21268,8 +21271,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: KULE UZMANLIKLARI
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 958d4c97afb7f6d48a2f93f563092f04, type: 2}
+  m_sharedMaterial: {fileID: 6627156925356222987, guid: 958d4c97afb7f6d48a2f93f563092f04,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -21299,7 +21303,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -22302,8 +22306,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Kartal G\xF6z\xFC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -22737,8 +22741,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "B\u0130RL\u0130K"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -24439,8 +24443,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: HAVAN
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -25596,8 +25600,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "D\xDC\u011E\xDCM 01 / A\xC7IK"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -26556,8 +26560,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Kartal G\xF6z\xFC"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -28340,8 +28345,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: KAPAT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -28849,8 +28855,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "B\xFCt\xFCn ok\xE7u kulelerine +%5 hasar."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -29584,8 +29590,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Keskin U\xE7lar"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -29719,8 +29725,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "H\u0131zl\u0131 Kiri\u015F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -32610,8 +32616,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Ba\u015Flang\u0131\xE7 yetene\u011Fi"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -32745,8 +32751,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Kesintisiz At\u0131\u015F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -33780,8 +33786,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\xDCCRETS\u0130Z SIFIRLA"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -38744,8 +38751,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Kusursuz Ni\u015Fanc\u0131l\u0131k"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -40529,8 +40536,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: YETENEK DOSYASI
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40663,8 +40671,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Uzun Menzilli Vuru\u015F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -41319,7 +41327,7 @@ MonoBehaviour:
   tabFace: {fileID: 21300000, guid: 35c2870bbf8d9d74f97afa47229d70fe, type: 2}
   selectedTabFace: {fileID: 21300000, guid: 2723f5516ae6ea144a7047ae32246763, type: 2}
   lockedAction: {fileID: 21300000, guid: fc05bd88b99f7b94a894133010326f27, type: 2}
-  font: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
+  font: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
 --- !u!1 &7987701529872427438
 GameObject:
   m_ObjectHideFlags: 0
@@ -41762,8 +41770,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Ok\xE7u E\u011Fitimi"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -43322,8 +43330,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hafif Yaylar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 716744f3f82d8a24d8db5c6359686e47, type: 2}
+  m_sharedMaterial: {fileID: 4219011945327621914, guid: 716744f3f82d8a24d8db5c6359686e47,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -43607,8 +43615,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "OK\xC7U A\u011EACI"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 958d4c97afb7f6d48a2f93f563092f04, type: 2}
+  m_sharedMaterial: {fileID: 6627156925356222987, guid: 958d4c97afb7f6d48a2f93f563092f04,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -43639,7 +43647,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -45167,8 +45175,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Ok\xE7u E\u011Fitimi"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78af82e3446b16346af4857dd73c5bd5, type: 2}
-  m_sharedMaterial: {fileID: -3175682763611572285, guid: 78af82e3446b16346af4857dd73c5bd5,
+  m_fontAsset: {fileID: 11400000, guid: 958d4c97afb7f6d48a2f93f563092f04, type: 2}
+  m_sharedMaterial: {fileID: 6627156925356222987, guid: 958d4c97afb7f6d48a2f93f563092f04,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -45199,7 +45207,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

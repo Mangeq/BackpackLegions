@@ -1,0 +1,107 @@
+{
+  "checks": [
+    {
+      "test": "both static atlases include Turkish and numeric glyphs",
+      "passed": true
+    },
+    {
+      "test": "menu TMP components use the two new shared fonts",
+      "passed": true
+    },
+    {
+      "test": "chapter titles use Cinzel and details use Alegreya",
+      "passed": true
+    },
+    {
+      "test": "skill buttons created on selection use Cinzel",
+      "passed": true
+    },
+    {
+      "test": "HUD and runtime TMP values use the two shared fonts",
+      "passed": true
+    },
+    {
+      "test": "tower panel shares static fonts rather than generating dynamic atlases",
+      "passed": true
+    },
+    {
+      "test": "Alegreya legacy source is used for future item badges",
+      "passed": true
+    },
+    {
+      "test": "shared fonts remain alive when tower panel closes",
+      "passed": true
+    }
+  ],
+  "overflows": {
+    "chapter-fonts": [],
+    "skill-fonts": [],
+    "inventory-fonts": [
+      {
+        "name": "ReferenceCost",
+        "text": "65",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "ReferenceCost",
+        "text": "260",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "Range",
+        "text": "3,4 birim",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "ReferenceCost",
+        "text": "65",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "ShopHeading",
+        "text": "EŞYA MAĞAZASI",
+        "font": "CinzelBold SDF"
+      },
+      {
+        "name": "Title",
+        "text": "Büyü Kulesi • Seviye 1",
+        "font": "CinzelBold SDF"
+      },
+      {
+        "name": "Interval",
+        "text": "1,9 sn",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "Critical",
+        "text": "%5",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "OfferCount",
+        "text": "4 teklif · Sağ tık: rezerve et",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "ReferenceCost",
+        "text": "75",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "Damage",
+        "text": "29",
+        "font": "AlegreyaMedium SDF"
+      },
+      {
+        "name": "XP",
+        "text": "XP  0 / 24    ·    Normal",
+        "font": "AlegreyaMedium SDF"
+      }
+    ]
+  },
+  "final": {
+    "playing": false,
+    "path": "Assets/Scenes/Blackpine_V5_Test.unity",
+    "dirty": false
+  }
+}

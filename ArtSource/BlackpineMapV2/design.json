@@ -1,0 +1,97 @@
+{
+  "size_m": [
+    56,
+    48
+  ],
+  "tower_pads": [
+    {
+      "id": 1,
+      "position": [
+        -17,
+        -3.3
+      ],
+      "road_clearance_m": 2.69
+    },
+    {
+      "id": 2,
+      "position": [
+        -11,
+        3.3
+      ],
+      "road_clearance_m": 4.28
+    },
+    {
+      "id": 3,
+      "position": [
+        -3,
+        10.5
+      ],
+      "road_clearance_m": 3.26
+    },
+    {
+      "id": 4,
+      "position": [
+        2,
+        -1.5
+      ],
+      "road_clearance_m": 3.64
+    },
+    {
+      "id": 5,
+      "position": [
+        17,
+        4
+      ],
+      "road_clearance_m": 2.55
+    }
+  ],
+  "bridge": {
+    "length_m": 3.8,
+    "deck_width_m": 1.7,
+    "rise_m": 0.25
+  },
+  "conceptual_range_m": 6.2,
+  "route_controls": [
+    [
+      -28,
+      -11
+    ],
+    [
+      -20,
+      -11
+    ],
+    [
+      -12,
+      -5
+    ],
+    [
+      -18,
+      2
+    ],
+    [
+      -11,
+      8
+    ],
+    [
+      -3,
+      7
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      12,
+      2
+    ],
+    [
+      18,
+      9
+    ],
+    [
+      28,
+      9
+    ]
+  ],
+  "unity_exported": false
+}

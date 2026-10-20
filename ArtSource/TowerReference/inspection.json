@@ -1,0 +1,324 @@
+{
+  "bounds": {
+    "min": [
+      -1.9007985591888428,
+      -1.9178234338760376,
+      -0.8911166191101074
+    ],
+    "max": [
+      1.9007985591888428,
+      2.3791491985321045,
+      6.341089725494385
+    ]
+  },
+  "objects": [
+    {
+      "name": "BigDoor",
+      "vertices": 170,
+      "materials": [
+        "Material.008"
+      ]
+    },
+    {
+      "name": "Metal.001",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.002",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.003",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.004",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.005",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.006",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.007",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.008",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.009",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.010",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.011",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.012",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.013",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.014",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.015",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "Metal.016",
+      "vertices": 9,
+      "materials": [
+        "Material.002"
+      ]
+    },
+    {
+      "name": "MaintAltCorner.002",
+      "vertices": 184,
+      "materials": [
+        "Material.001",
+        "Material.003"
+      ]
+    },
+    {
+      "name": "Main alt",
+      "vertices": 186,
+      "materials": [
+        "Material.001",
+        "Material"
+      ]
+    },
+    {
+      "name": "Flag Front ",
+      "vertices": 321,
+      "materials": [
+        "Material.005",
+        "Material.007"
+      ]
+    },
+    {
+      "name": "Flag Metal",
+      "vertices": 20,
+      "materials": [
+        "Material.003"
+      ]
+    },
+    {
+      "name": "Flag Top",
+      "vertices": 194,
+      "materials": [
+        "Material.005",
+        "Material.007"
+      ]
+    },
+    {
+      "name": "Pillar Flag",
+      "vertices": 45,
+      "materials": [
+        "Material.001",
+        "Material"
+      ]
+    },
+    {
+      "name": "Flag Stone Top",
+      "vertices": 24,
+      "materials": [
+        "Material.003"
+      ]
+    },
+    {
+      "name": "Pillar High",
+      "vertices": 392,
+      "materials": [
+        "Material"
+      ]
+    },
+    {
+      "name": "Tower High",
+      "vertices": 132,
+      "materials": [
+        "Material.006",
+        "Material.001"
+      ]
+    },
+    {
+      "name": "Pillar HighMid",
+      "vertices": 128,
+      "materials": [
+        "Material"
+      ]
+    },
+    {
+      "name": "Tower HighMid",
+      "vertices": 8,
+      "materials": [
+        "Material.004"
+      ]
+    },
+    {
+      "name": "Pillar LowerMid",
+      "vertices": 160,
+      "materials": [
+        "Material"
+      ]
+    },
+    {
+      "name": "Tower LowerMid",
+      "vertices": 24,
+      "materials": [
+        "Material.001"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "Material",
+      "color": [
+        0.06593938916921616,
+        0.06593938916921616,
+        0.06593938916921616,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.001",
+      "color": [
+        0.17788845300674438,
+        0.1119324341416359,
+        0.04970657825469971,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.002",
+      "color": [
+        0.4620770215988159,
+        0.22322800755500793,
+        0.01599629782140255,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.003",
+      "color": [
+        0.11095549166202545,
+        0.11095549166202545,
+        0.11095549166202545,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.004",
+      "color": [
+        0.0338953472673893,
+        0.0219578817486763,
+        0.01902606710791588,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.005",
+      "color": [
+        0.31266844272613525,
+        0.21711447834968567,
+        0.050382889807224274,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.006",
+      "color": [
+        0.12214063107967377,
+        0.05780676007270813,
+        0.020288459956645966,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.007",
+      "color": [
+        0.04245362430810928,
+        0.04245362430810928,
+        0.04245362430810928,
+        1.0
+      ],
+      "textures": []
+    },
+    {
+      "name": "Material.008",
+      "color": [
+        0.13198113441467285,
+        0.08817512542009354,
+        0.04655969887971878,
+        1.0
+      ],
+      "textures": []
+    }
+  ]
+}

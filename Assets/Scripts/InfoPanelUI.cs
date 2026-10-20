@@ -141,6 +141,8 @@ public class InfoPanelUI : MonoBehaviour
         accent.color = color;
         subtitleText.color = color;
         panel.gameObject.SetActive(true);
+        var reference = GetComponent<InfoReferenceSkin>();
+        if (reference != null) reference.Refresh();
         MoveTo(screenPosition);
     }
 

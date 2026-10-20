@@ -1,0 +1,73 @@
+{
+  "groups": [
+    {
+      "group": "Terrain",
+      "triangles": 120
+    },
+    {
+      "group": "Road",
+      "triangles": 360
+    },
+    {
+      "group": "River",
+      "triangles": 16752
+    },
+    {
+      "group": "Bridge",
+      "triangles": 10696
+    },
+    {
+      "group": "Tower_Pad_01",
+      "triangles": 2406
+    },
+    {
+      "group": "Tower_Pad_02",
+      "triangles": 2491
+    },
+    {
+      "group": "Tower_Pad_03",
+      "triangles": 2549
+    },
+    {
+      "group": "Tower_Pad_04",
+      "triangles": 2419
+    },
+    {
+      "group": "Tower_Pad_05",
+      "triangles": 2480
+    },
+    {
+      "group": "Forest",
+      "triangles": 221760
+    },
+    {
+      "group": "Rocks",
+      "triangles": 11366
+    },
+    {
+      "group": "Props",
+      "triangles": 23282
+    },
+    {
+      "group": "V3_Understory",
+      "triangles": 150331
+    },
+    {
+      "group": "V3_Environmental_Stories",
+      "triangles": 6103
+    },
+    {
+      "group": "V4_Compact_Dark_Base",
+      "triangles": 38445
+    },
+    {
+      "group": "V5_Tower_Style_Details",
+      "triangles": 1731
+    },
+    {
+      "group": "REFERENCE_PREVIEW_Tower_On_Pad_02",
+      "triangles": 3872
+    }
+  ],
+  "triangles": 497163
+}

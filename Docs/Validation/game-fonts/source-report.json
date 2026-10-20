@@ -1,0 +1,20 @@
+[
+  {
+    "family": "Cinzel",
+    "weight": 700,
+    "face": "Bold",
+    "file": "Assets\\Resources\\UI\\Fonts\\Cinzel-Bold.ttf",
+    "characters": 319,
+    "turkish": true,
+    "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/cinzel/Cinzel%5Bwght%5D.ttf"
+  },
+  {
+    "family": "Alegreya",
+    "weight": 500,
+    "face": "Regular",
+    "file": "Assets\\Resources\\UI\\Fonts\\Alegreya-Medium.ttf",
+    "characters": 443,
+    "turkish": true,
+    "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/alegreya/Alegreya%5Bwght%5D.ttf"
+  }
+]

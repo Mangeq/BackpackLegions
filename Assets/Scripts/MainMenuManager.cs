@@ -52,6 +52,8 @@ public class MainMenuManager : MonoBehaviour
     {
         selectedChapter = Mathf.Clamp(index, 0, chapters != null && chapters.Length > 0 ? chapters.Length-1 : 4);
         var chapter = chapters != null && selectedChapter < chapters.Length ? chapters[selectedChapter] : null;
+        var reference = chapterPanel != null ? chapterPanel.GetComponent<ChapterReferenceSkin>() : null;
+        if (reference != null) { reference.Refresh(selectedChapter, chapters); return; }
         string[] titles = { "KARAÇAM GEÇİDİ", "ESKİ TAŞ KÖPRÜ", "SİSLİ SIRTLAR", "KÜL VADİSİ", "KUZEY KALESİ" };
         chapterTitle.text = chapter != null ? chapter.chapterName : titles[selectedChapter];
         chapterDescription.text = chapter != null

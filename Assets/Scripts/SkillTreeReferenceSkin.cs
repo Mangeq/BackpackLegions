@@ -19,7 +19,7 @@ public sealed class SkillTreeReferenceSkin : MonoBehaviour
     public void Configure(SkillTreePanelUI owner)
     {
         ui=owner;card=(RectTransform)ui.nodes[0].transform.parent;
-        font=Resources.Load<TMP_FontAsset>("UI/ApprovedScene/Approved_BodyFont");
+        font=GameFonts.Body;
         nodeFace=Art("NodeTransparent");selectedNodeFace=Art("SelectedNodeTransparent");tabFace=Art("Tab");selectedTabFace=Art("SelectedTab");lockedAction=Art("UnlockLocked");
         foreach(var graphic in card.GetComponentsInChildren<Graphic>(true))graphic.enabled=false;
         foreach(var effect in card.GetComponentsInChildren<Shadow>(true))effect.enabled=false;
@@ -49,7 +49,8 @@ public sealed class SkillTreeReferenceSkin : MonoBehaviour
     }
     void Label(TMP_Text label,Transform parent,float x,float y,float w,float h,float size)
     {
-        Place(label.rectTransform,parent,x,y,w,h);label.enabled=true;if(font!=null)label.font=font;
+        Place(label.rectTransform,parent,x,y,w,h);label.enabled=true;
+        label.font=label.GetComponentInParent<Button>()!=null||label==ui.branchTitle||label==ui.detailTitle?GameFonts.Title:font;
         label.fontSize=size;label.color=cream;label.raycastTarget=false;label.alignment=TextAlignmentOptions.TopLeft;label.fontStyle=FontStyles.Normal;
         label.enableAutoSizing=false;label.enableWordWrapping=false;label.margin=Vector4.zero;
     }
@@ -60,7 +61,12 @@ public sealed class SkillTreeReferenceSkin : MonoBehaviour
     }
     public void LayoutBranch(SkillTreeData tree,int branch)
     {
-        for(int i=0;i<ui.tabs.Length;i++){ui.tabs[i].sprite=i==branch?selectedTabFace:tabFace;ui.tabs[i].color=Color.white;}
+        for(int i=0;i<ui.tabs.Length;i++)
+        {
+            ui.tabs[i].sprite=i==branch?selectedTabFace:tabFace;ui.tabs[i].color=Color.white;
+            var caption=ui.tabs[i].GetComponentInChildren<TMP_Text>(true);
+            if(caption!=null){caption.font=GameFonts.Title;caption.fontStyle=FontStyles.Normal;}
+        }
         for(int i=0;i<tree.nodes.Count;i++)
         {
             if(tree.nodes[i]==null||tree.nodes[i].skill==null)continue;
@@ -71,6 +77,7 @@ public sealed class SkillTreeReferenceSkin : MonoBehaviour
             ButtonFace(ui.nodes[i].GetComponent<Button>(),nodeFace);
             ui.nodeIcons[i].enabled=true;ui.nodeIcons[i].color=Color.white;ui.nodeIcons[i].preserveAspect=true;Place(ui.nodeIcons[i].rectTransform,ui.nodes[i].transform,6,18,18,19);
             Label(ui.nodeLabels[i],ui.nodes[i].transform,28,8,66,39,10);ui.nodeLabels[i].enableWordWrapping=true;ui.nodeLabels[i].alignment=TextAlignmentOptions.MidlineLeft;
+            ui.nodeLabels[i].enableAutoSizing=true;ui.nodeLabels[i].fontSizeMin=8;ui.nodeLabels[i].fontSizeMax=10;
         }
     }
     public void RefreshSelection(SkillTreeData tree,int selected)

@@ -1,0 +1,48 @@
+{
+  "before": {
+    "playing": false,
+    "scene": "Assets/Scenes/GameScane.unity",
+    "dirty": true,
+    "background": true,
+    "start": ""
+  },
+  "checks": [
+    {
+      "test": "saved loader prefab has native reference artwork",
+      "passed": true
+    },
+    {
+      "test": "real Boot loads MainMenu and removes loading overlay",
+      "passed": true
+    },
+    {
+      "test": "progress controls fiery chain at zero half and full",
+      "passed": true
+    },
+    {
+      "test": "artwork keeps original proportions and complete frame",
+      "passed": true
+    },
+    {
+      "test": "failed load enters native error state",
+      "passed": true
+    },
+    {
+      "test": "error caption and retry are visible",
+      "passed": true
+    },
+    {
+      "test": "retry uses native async loading and removes overlay",
+      "passed": true
+    },
+    {
+      "test": "normal return to menu uses same loader successfully",
+      "passed": true
+    }
+  ],
+  "final": {
+    "playing": false,
+    "scene": "Assets/Scenes/GameScane.unity",
+    "dirty": true
+  }
+}

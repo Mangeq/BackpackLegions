@@ -1,0 +1,59 @@
+{
+  "before": {
+    "playing": false,
+    "path": "Assets/Scenes/Boot.unity",
+    "dirty": false,
+    "start": ""
+  },
+  "checks": [
+    {
+      "test": "home starts with chapter map closed",
+      "passed": true
+    },
+    {
+      "test": "native Play opens reference chapter map",
+      "passed": true
+    },
+    {
+      "test": "chapter 1 native selection updates real data and shield",
+      "passed": true
+    },
+    {
+      "test": "chapter 2 native selection updates real data and shield",
+      "passed": true
+    },
+    {
+      "test": "chapter 3 native selection updates real data and shield",
+      "passed": true
+    },
+    {
+      "test": "chapter 4 native selection updates real data and shield",
+      "passed": true
+    },
+    {
+      "test": "chapter 5 native selection updates real data and shield",
+      "passed": true
+    },
+    {
+      "test": "all seven visible buttons receive real EventSystem raycasts",
+      "passed": true
+    },
+    {
+      "test": "star and talent counters read actual saved progress",
+      "passed": true
+    },
+    {
+      "test": "back callback returns to original home",
+      "passed": true
+    },
+    {
+      "test": "native OYNA loads selected fifth chapter through loader",
+      "passed": true
+    }
+  ],
+  "final": {
+    "playing": false,
+    "path": "Assets/Scenes/Boot.unity",
+    "dirty": false
+  }
+}

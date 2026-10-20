@@ -1,0 +1,79 @@
+{
+  "before": {
+    "playing": false,
+    "path": "Assets/Scenes/Boot.unity",
+    "dirty": false,
+    "start": ""
+  },
+  "checks": [
+    {
+      "test": "gold reads actual fresh chapter budget",
+      "passed": true
+    },
+    {
+      "test": "gold updates on spending and earning",
+      "passed": true
+    },
+    {
+      "test": "wave panel updates both current and total values",
+      "passed": true
+    },
+    {
+      "test": "three native speed buttons stay locked in preparation",
+      "passed": true
+    },
+    {
+      "test": "countdown reflects real preparation timer",
+      "passed": true
+    },
+    {
+      "test": "countdown reflects paused preparation state",
+      "passed": true
+    },
+    {
+      "test": "item tooltip displays real item name icon and shape",
+      "passed": true
+    },
+    {
+      "test": "tooltip stays inside the screen at every corner",
+      "passed": true
+    },
+    {
+      "test": "all existing item descriptions retain native content",
+      "passed": true
+    },
+    {
+      "test": "native Start begins combat and hides countdown",
+      "passed": true
+    },
+    {
+      "test": "native 1x selects actual speed and only its gold highlight",
+      "passed": true
+    },
+    {
+      "test": "native 2x selects actual speed and only its gold highlight",
+      "passed": true
+    },
+    {
+      "test": "native 3x selects actual speed and only its gold highlight",
+      "passed": true
+    },
+    {
+      "test": "all speed buttons receive real UI raycasts",
+      "passed": true
+    },
+    {
+      "test": "all five raster sources have transparent exterior",
+      "passed": true
+    },
+    {
+      "test": "pause locks speed without changing selected multiplier",
+      "passed": true
+    }
+  ],
+  "final": {
+    "playing": false,
+    "path": "Assets/Scenes/Boot.unity",
+    "dirty": false
+  }
+}

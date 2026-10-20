@@ -67,11 +67,9 @@ public sealed partial class TowerPanelLayout : MonoBehaviour
         Place(bags.gridContainer,66,414,Cell*5,Cell*5);
         bags.gridContainer.localScale=new Vector3(1,455f/(Cell*5),1);
         CreateStorageViewport();
-        var sourceFont=Resources.Load<Font>("UI/TowerPanel/Reference/TitleFont");
-        if(sourceFont!=null)serif=TMP_FontAsset.CreateFontAsset(sourceFont);
-        var bodySource=Resources.Load<Font>("UI/TowerPanel/Reference/BodyFont");
-        if(bodySource!=null)body=TMP_FontAsset.CreateFontAsset(bodySource);
-        ownsFonts=true;
+        serif=GameFonts.Title;
+        body=GameFonts.Body;
+        ownsFonts=false;
         title=MakeValue("Title",root,81,30,750,57,45,cream,"TitleReference","Okçu Kulesi • Seviye 5",serif);
         stats[0]=MakeValue("Damage",root,341,85,131,42,35,gold,"DamageReference","55,76");
         stats[1]=MakeValue("Interval",root,341,133,132,42,35,gold,"IntervalReference","0,41 sn");

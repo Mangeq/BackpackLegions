@@ -1,0 +1,13 @@
+{
+  "art_and_raycast": true,
+  "native_click_starts_combat": true,
+  "raycast_details": {
+    "interactable": true,
+    "art": "StartGame",
+    "hits": [
+      "StartBTN",
+      "PlaneTestMVP"
+    ],
+    "passed": true
+  }
+}

@@ -82,7 +82,7 @@ public sealed class TowerPurchaseSkin : MonoBehaviour
             outline.enabled=false;tabOutlines[i]=outline;
         }
         // These are the existing bound labels, portraits and persistent callbacks.
-        var font=Resources.Load<Font>("UI/TowerPanel/Reference/BodyFont");
+        var font=GameFonts.BodySource;
         Label(ui.purchaseTitle,14,10,194,25,16,new Color(.96f,.92f,.82f),font);
         Label(ui.purchaseDescription,122,58,109,97,10,new Color(.08f,.065f,.035f),font);
         Label(ui.purchaseStats,21,178,157,91,11,new Color(.06f,.045f,.025f),font);

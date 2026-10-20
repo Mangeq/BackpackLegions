@@ -23,8 +23,8 @@ public sealed class WavePreviewSkin : MonoBehaviour
     public void Configure(WavePreviewUI view)
     {
         owner=view;panel=(RectTransform)view.panel.transform;
-        body=Resources.Load<TMP_FontAsset>("UI/ApprovedScene/Approved_BodyFont");
-        serif=Resources.Load<TMP_FontAsset>("UI/ApprovedScene/Approved_TitleFont");
+        body=GameFonts.Body;
+        serif=GameFonts.Title;
         var image=panel.GetComponent<Image>();image.sprite=Resources.Load<Sprite>(Path+"Frame");image.type=Image.Type.Sliced;image.color=Color.white;image.raycastTarget=true;
         owner.details.enabled=false;
         Place(owner.title.rectTransform,panel,275,34,470,54);

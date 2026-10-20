@@ -1,0 +1,77 @@
+{
+  "checks": [
+    {
+      "test": "native menu settings opens approved reference panel",
+      "passed": true
+    },
+    {
+      "test": "sliders update independent native percent captions",
+      "passed": true
+    },
+    {
+      "test": "draft does not change engine before Apply",
+      "passed": true
+    },
+    {
+      "test": "Cancel discards slider edits",
+      "passed": true
+    },
+    {
+      "test": "resolution and quality arrows cycle their drafts",
+      "passed": true
+    },
+    {
+      "test": "VSync disables conflicting FPS control",
+      "passed": true
+    },
+    {
+      "test": "FPS arrows work with VSync off including unlimited",
+      "passed": true
+    },
+    {
+      "test": "all nine active buttons receive native raycasts",
+      "passed": true
+    },
+    {
+      "test": "SFX slider accepts actual pointer positions",
+      "passed": true
+    },
+    {
+      "test": "language row has no interactive controls",
+      "passed": true
+    },
+    {
+      "test": "Apply changes master, effects, quality and saves display flags",
+      "passed": true
+    },
+    {
+      "test": "SFX scales real sources without compounding",
+      "passed": true
+    },
+    {
+      "test": "VSync Apply sets sync and clears conflicting frame cap",
+      "passed": true
+    },
+    {
+      "test": "saved settings reapply after engine values are reset",
+      "passed": true
+    },
+    {
+      "test": "settings persist across real scene transition",
+      "passed": true
+    },
+    {
+      "test": "game pause opens same reference settings",
+      "passed": true
+    },
+    {
+      "test": "Close discards edits and preserves game pause",
+      "passed": true
+    }
+  ],
+  "final": {
+    "playing": false,
+    "path": "Assets/Scenes/Boot.unity",
+    "dirty": false
+  }
+}

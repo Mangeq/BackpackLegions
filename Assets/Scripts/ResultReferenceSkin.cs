@@ -59,7 +59,7 @@ public sealed class ResultReferenceSkin : MonoBehaviour
     }
     static void TextStyle(TMP_Text text,Transform parent,float x,float y,float w,float h,int size)
     {
-        Place(text.rectTransform,parent,x,y,w,h);text.font=Resources.Load<TMP_FontAsset>("UI/ApprovedScene/Approved_BodyFont");text.enabled=true;text.color=new Color(1,.91f,.75f);text.fontSize=size;text.enableAutoSizing=true;text.fontSizeMin=13;text.fontSizeMax=size;text.enableWordWrapping=false;text.raycastTarget=false;
+        Place(text.rectTransform,parent,x,y,w,h);text.font=text.GetComponentInParent<Button>()!=null?GameFonts.Title:GameFonts.Body;text.enabled=true;text.color=new Color(1,.91f,.75f);text.fontSize=size;text.enableAutoSizing=true;text.fontSizeMin=13;text.fontSizeMax=size;text.enableWordWrapping=false;text.raycastTarget=false;
     }
     static void Place(RectTransform r,Transform parent,float x,float y,float w,float h)
     {r.SetParent(parent,false);r.anchorMin=r.anchorMax=r.pivot=new Vector2(0,1);r.localScale=Vector3.one;r.anchoredPosition=new Vector2(x,-y);r.sizeDelta=new Vector2(w,h);}

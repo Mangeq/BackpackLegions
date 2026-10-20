@@ -203,6 +203,16 @@ PrefabInstance:
       propertyPath: loadOnStart
       value: MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3703340314995764888, guid: bc2102aff07eab8409cd28aa43f429b9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703340314995764888, guid: bc2102aff07eab8409cd28aa43f429b9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.875
+      objectReference: {fileID: 0}
     - target: {fileID: 6116502841240158824, guid: bc2102aff07eab8409cd28aa43f429b9,
         type: 3}
       propertyPath: m_Pivot.x
