@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-20",
+  "timezone": "Europe/Istanbul",
+  "github": {
+    "status": "pushed",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "branch": "main",
+    "baseline_commit": "5ca3b40856ae2706fde88d25270481bf55bf672f",
+    "commit": "2a09236dec7c826f180ab63a355fbf3001d4c373",
+    "verified_at": "2026-10-20T19:14:52.1888711Z",
+    "changed_files": 330
+  },
+  "summary": [
+    "Ayarlar: ses efektleri seviyesi, FPS ve VSync",
+    "Bölüm seçimi, yükleme, HUD ve yazı tipi düzenlemeleri",
+    "Blackpine harita kaynakları ve görsel test sahnesi"
+  ],
+  "limitations": [
+    "Blackpine_V5_Test görsel test içindir; oynanışa bağlanmamıştır."
+  ],
+  "validation": {
+    "backup_and_logs_excluded": true,
+    "existing_reports": [
+      "chapter-reference",
+      "game-fonts",
+      "hud-reference",
+      "loading-reference",
+      "settings-reference",
+      "start-reference"
+    ],
+    "missing_meta_files": 0,
+    "tests_rerun": false,
+    "explicit_report_failures": 0,
+    "oversize_files": 0
+  },
+  "linkedin": {
+    "status": "not_scheduled",
+    "reason": "Salı; haftalık yayın cuma günü."
+  }
+}
