@@ -1,0 +1,1 @@
+var map=UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects().First(g=>g.name.StartsWith("Blackpine"));return map.GetComponentsInChildren<Transform>().Where(t=>t.parent==map.transform).Select(t=>new{t.name,components=t.GetComponents<Component>().Select(c=>c.GetType().Name).ToArray()}).ToArray();

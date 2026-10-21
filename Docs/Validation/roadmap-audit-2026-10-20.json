@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-20",
+  "method": "Static source and serialized asset inspection; no Unity runtime or build execution",
+  "counts": {
+    "Items/Shop": 200,
+    "Items/Main": 20,
+    "Items/Evolved": 20,
+    "Items/Elements": 4,
+    "EvolutionRecipes": 21,
+    "SynergyRecipes": 22,
+    "Skills": 47,
+    "SkillTrees": 4,
+    "EnemyData/Campaign": 30,
+    "Chapters": 5
+  },
+  "skills": {
+    "Archer": {
+      "total": 11,
+      "available": 11
+    },
+    "Magic": {
+      "total": 12,
+      "available": 0
+    },
+    "Mortar": {
+      "total": 12,
+      "available": 0
+    },
+    "Unit": {
+      "total": 12,
+      "available": 0
+    }
+  },
+  "chapters": [
+    {
+      "asset": "Chapter01.asset",
+      "sceneName": "GameScane",
+      "startingGold": "850",
+      "preparationSeconds": "60",
+      "extraPreparationPerWave": "5",
+      "waves": 5,
+      "enemies": 180
+    },
+    {
+      "asset": "Chapter02.asset",
+      "sceneName": "GameScane",
+      "startingGold": "1000",
+      "preparationSeconds": "75",
+      "extraPreparationPerWave": "5",
+      "waves": 7,
+      "enemies": 260
+    },
+    {
+      "asset": "Chapter03.asset",
+      "sceneName": "GameScane",
+      "startingGold": "1150",
+      "preparationSeconds": "90",
+      "extraPreparationPerWave": "5",
+      "waves": 9,
+      "enemies": 340
+    },
+    {
+      "asset": "Chapter04.asset",
+      "sceneName": "GameScane",
+      "startingGold": "1300",
+      "preparationSeconds": "105",
+      "extraPreparationPerWave": "5",
+      "waves": 11,
+      "enemies": 420
+    },
+    {
+      "asset": "Chapter05.asset",
+      "sceneName": "GameScane",
+      "startingGold": "1450",
+      "preparationSeconds": "120",
+      "extraPreparationPerWave": "5",
+      "waves": 13,
+      "enemies": 532
+    }
+  ],
+  "towerData": [
+    {
+      "asset": "Assets\\Resources\\Data\\TowerData\\ArcherData.asset",
+      "cost": "250",
+      "damage": "13",
+      "attackSpeed": "1.1",
+      "range": "4.7",
+      "elementChangeCost": "100"
+    },
+    {
+      "asset": "Assets\\Resources\\Data\\TowerData\\MegicData.asset",
+      "cost": "325",
+      "damage": "29",
+      "attackSpeed": "1.9",
+      "range": "3.4",
+      "elementChangeCost": "100"
+    },
+    {
+      "asset": "Assets\\Resources\\Data\\TowerData\\MortarData.asset",
+      "cost": "375",
+      "damage": "46",
+      "attackSpeed": "3.4",
+      "range": "4.8",
+      "elementChangeCost": "100"
+    },
+    {
+      "asset": "Assets\\Resources\\Data\\TowerData\\UnitData.asset",
+      "cost": "225",
+      "damage": "4",
+      "attackSpeed": "1.35",
+      "range": "3",
+      "elementChangeCost": "100"
+    }
+  ],
+  "bossData": [
+    {
+      "asset": "EnemyData\\Campaign\\Chapter01\\Warlord.asset",
+      "health": "2400",
+      "isBoss": "1",
+      "weaknessMultiplier": "2",
+      "resistanceMultiplier": "0.4",
+      "normalAttackMultiplier": "0.6",
+      "baseDamageOverride": "100"
+    },
+    {
+      "asset": "EnemyData\\Campaign\\Chapter02\\Warlord.asset",
+      "health": "3840",
+      "isBoss": "1",
+      "weaknessMultiplier": "2",
+      "resistanceMultiplier": "0.4",
+      "normalAttackMultiplier": "0.6",
+      "baseDamageOverride": "100"
+    },
+    {
+      "asset": "EnemyData\\Campaign\\Chapter03\\Warlord.asset",
+      "health": "5280",
+      "isBoss": "1",
+      "weaknessMultiplier": "2",
+      "resistanceMultiplier": "0.4",
+      "normalAttackMultiplier": "0.6",
+      "baseDamageOverride": "100"
+    },
+    {
+      "asset": "EnemyData\\Campaign\\Chapter04\\Warlord.asset",
+      "health": "6720",
+      "isBoss": "1",
+      "weaknessMultiplier": "2",
+      "resistanceMultiplier": "0.4",
+      "normalAttackMultiplier": "0.6",
+      "baseDamageOverride": "100"
+    },
+    {
+      "asset": "EnemyData\\Campaign\\Chapter05\\Warlord.asset",
+      "health": "8160",
+      "isBoss": "1",
+      "weaknessMultiplier": "2",
+      "resistanceMultiplier": "0.4",
+      "normalAttackMultiplier": "0.6",
+      "baseDamageOverride": "100"
+    }
+  ],
+  "sceneScriptUsage": {
+    "Blackpine_Demo.unity": [],
+    "Blackpine_V5_Test.unity": [],
+    "Boot.unity": [],
+    "GameScane.unity": [
+      "Assets\\Scripts\\BackpackUIManager.cs",
+      "Assets\\Scripts\\Base.cs",
+      "Assets\\Scripts\\GameManager.cs",
+      "Assets\\Scripts\\HoverInfoController.cs",
+      "Assets\\Scripts\\HudReferenceSkin.cs",
+      "Assets\\Scripts\\InfoPanelUI.cs",
+      "Assets\\Scripts\\InfoReferenceSkin.cs",
+      "Assets\\Scripts\\ResultReferenceSkin.cs",
+      "Assets\\Scripts\\SettingsPanelUI.cs",
+      "Assets\\Scripts\\ShopManager.cs",
+      "Assets\\Scripts\\ShopSlotUI.cs",
+      "Assets\\Scripts\\ShopUIManager.cs",
+      "Assets\\Scripts\\Shopslotdragstarter.cs",
+      "Assets\\Scripts\\SkillTreePanelUI.cs",
+      "Assets\\Scripts\\StorageGridUI.cs",
+      "Assets\\Scripts\\TowerPanelLayout.cs",
+      "Assets\\Scripts\\TowerPurchaseSkin.cs",
+      "Assets\\Scripts\\TowerSlot.cs",
+      "Assets\\Scripts\\UİManager.cs",
+      "Assets\\Scripts\\WaveManager.cs",
+      "Assets\\Scripts\\WavePreviewSkin.cs",
+      "Assets\\Scripts\\WavePreviewUI.cs"
+    ],
+    "MainMenu.unity": [
+      "Assets\\Scripts\\ChapterReferenceSkin.cs",
+      "Assets\\Scripts\\MainMenuManager.cs",
+      "Assets\\Scripts\\SettingsPanelUI.cs",
+      "Assets\\Scripts\\SkillTreePanelUI.cs"
+    ]
+  }
+}
