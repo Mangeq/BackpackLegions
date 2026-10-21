@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-21",
+  "timezone": "Europe/Istanbul",
+  "github": {
+    "status": "pushed",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "branch": "main",
+    "baseline_commit": "e8c625a3c3fb51ce961145094804ac11317b63b4",
+    "commit": "fe3f2620e3e49cd93c8ef42fb041c4b6940bd8da",
+    "verified_at": "2026-10-21T18:16:14.2229095Z",
+    "changed_files": 52
+  },
+  "summary": [
+    "Blackpine oyun sahnesi entegrasyonu ve yeni kule prefabları",
+    "Yol bulma verileri, kamera ve aydınlatma düzenlemeleri",
+    "Güncel yol haritası ve statik inceleme kaydı"
+  ],
+  "validation": {
+    "observed_report_health": 95,
+    "existing_report": "Docs/Validation/new-map/runtime-result.json",
+    "missing_meta_files": 0,
+    "observed_report_state": "Preparation",
+    "oversize_files": 0,
+    "tests_rerun": false,
+    "note": "Uzak commit doğrulamasındaki geçici DNS hatası yeniden denemede çözüldü.",
+    "backup_and_logs_excluded": true
+  },
+  "linkedin": {
+    "status": "not_scheduled",
+    "reason": "Çarşamba; haftalık yayın cuma günü."
+  }
+}
