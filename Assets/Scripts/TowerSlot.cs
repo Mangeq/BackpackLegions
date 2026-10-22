@@ -8,6 +8,22 @@ public class TowerSlot : MonoBehaviour
     private Transform Place; // Kule yerle�tirilecek nokta
     public bool isOccupied = false; // Kule yerle�tirilip yerle�tirilmedi�ini kontrol eder
     private Collider slotCollider;
+    [Header("Platform visuals")]
+    public Renderer[] platformRenderers;
+    public GameObject selectionHighlight;
+
+    private void LateUpdate()
+    {
+        if (selectionHighlight == null) return;
+        bool selected = !isOccupied && UİManager.selectedTowerSlot == this
+            && UİManager.TowerShopUI != null && UİManager.TowerShopUI.activeInHierarchy;
+        if (selectionHighlight.activeSelf != selected) selectionHighlight.SetActive(selected);
+    }
+
+    private void OnDisable()
+    {
+        if (selectionHighlight != null) selectionHighlight.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -67,11 +83,17 @@ public class TowerSlot : MonoBehaviour
     public void MarkOccupied()
     {
         isOccupied = true;
+        if (slotCollider != null) slotCollider.enabled = false;
+        if (selectionHighlight != null) selectionHighlight.SetActive(false);
+        if (platformRenderers != null)
+            foreach (var renderer in platformRenderers)
+                if (renderer != null) renderer.enabled = false;
     }
 
     // Panel kule al�nmadan kapat�ld���nda �a�r�l�r, slot tekrar t�klanabilir olur
     public void ReleaseSelection()
     {
+        if (selectionHighlight != null) selectionHighlight.SetActive(false);
         if (!isOccupied)
         {
             slotCollider.enabled = true;

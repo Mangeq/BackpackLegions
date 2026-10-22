@@ -2828,7 +2828,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bd349ceeb9249f4ca4c77a3e18142ab, type: 2}
   maxUnitCount: 3
   spawnCooldown: 6
-  UnitPrefab: {fileID: 147910018351505527, guid: a3efcbc6e816210488bc0ce19fd02cca,
+  UnitPrefab: {fileID: 2393464487216757257, guid: e88b7b747f695e64f8a102d76c58aa9f,
     type: 3}
   ActiveUnits: []
   rallyPointTransform: {fileID: 6687411495742336860}
