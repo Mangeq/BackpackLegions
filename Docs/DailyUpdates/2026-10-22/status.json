@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-22",
+  "timezone": "Europe/Istanbul",
+  "github": {
+    "status": "push_failed",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "branch": "main",
+    "remote_commit": "d8a6a1b3bc5deee909e48dfe5d8a915ced0da0c8",
+    "local_commit": "8f2bf672b71993a43998629ff018378e26d188c1",
+    "checked_at": "2026-10-22T19:23:28.1468196Z",
+    "changed_files": 99,
+    "attempts": 2,
+    "error": "HTTP 408 RPC failed; remote verified unchanged after both attempts",
+    "next_action": "Retry normal push of existing local commit; do not duplicate commit or force push."
+  },
+  "summary": [
+    "Kule platformu seçimi ve dolu platformun gizlenmesi",
+    "Harita kamerası, birim boyutları ve havan prefabları"
+  ],
+  "validation": {
+    "tests_rerun": false,
+    "backup_and_logs_excluded": true,
+    "missing_meta_files": 0,
+    "oversize_files": 0
+  },
+  "linkedin": {
+    "status": "not_scheduled",
+    "reason": "Perşembe; haftalık yayın cuma günü."
+  }
+}

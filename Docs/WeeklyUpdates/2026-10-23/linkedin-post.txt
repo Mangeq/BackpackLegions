@@ -1,0 +1,12 @@
+Backpack Legions geliştirme günlüğü | 17–23 Ekim 🎒🏰
+
+Bu hafta projenin görünümünü ve yeni haritadaki oynanışı geliştirdim:
+
+• Blackpine haritasını oyun sahnesine taşıdım; kule yerleri, düşman yolu, kamera ve aydınlatma üzerinde çalıştım. Birim boyutlarını ve seçilen kule platformunun görsel vurgusunu düzenledim.
+• Ana menü, bölüm seçimi, yetenek ağacı, yükleme, sonuç ve duraklatma ekranlarını ortak görsel stile yaklaştırdım. Dalga önizlemesi gerçek düşman verilerini gösteriyor.
+• Element alışverişini ayrı bir mağaza akışına aldım. Depoyu, her eşyanın tek hücrede gösterildiği ve gerektiğinde kaydırılan bir liste olarak düzenledim.
+• Ayarlara bağımsız ses efekti seviyesi ve FPS seçenekleri ekledim; VSync ile ilişkisini düzenledim. Arayüz yazı tiplerini Türkçe karakter desteğiyle ortaklaştırdım.
+
+Sıradaki iş, yeni haritadaki dengeyi ve güncel oyun döngüsünü uçtan uca test etmek. Diğer kulelerin yetenek içerikleri üzerinde de yapılacak işler var.
+
+#GameDevelopment #Unity #IndieDev #TowerDefense #BackpackLegions
