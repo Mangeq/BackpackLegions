@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-25",
+  "timezone": "Europe/Istanbul",
+  "github": {
+    "status": "pushed",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "branch": "main",
+    "baseline_commit": "f4c0c430de05c1ab6a7c9a1621451ed682958fa1",
+    "commit": "25c074c97db955042656890fd5967a042349ed8c",
+    "verified_at": "2026-10-25T16:03:45.0188127Z",
+    "changed_files": 101
+  },
+  "summary": [
+    "Savaş, üs, sonuç, arayüz ve eşya ses efektleri",
+    "33 ses klibi ve sınırlı ses kaynağı havuzu",
+    "Sahne ve kule modeli dosyaları"
+  ],
+  "validation": {
+    "oversize_files": 0,
+    "backup_and_logs_excluded": true,
+    "existing_reports": [
+      "Docs/Validation/sfx/result.txt",
+      "Docs/Validation/sfx/runtime.json"
+    ],
+    "reported_items_mapped": 244,
+    "missing_meta_files": 0,
+    "listening_evaluation": false,
+    "reported_clips": 33,
+    "tests_rerun": false
+  },
+  "linkedin": {
+    "reason": "Pazar; 23 Ekim görsel erişim engeliyle saklanan taslak korunuyor.",
+    "status": "not_scheduled"
+  }
+}
