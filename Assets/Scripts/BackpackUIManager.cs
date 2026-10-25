@@ -150,7 +150,7 @@ public class BackpackUIManager : MonoBehaviour
         if (storageGridContainer != null) BuildStorageGrid(tower.Storage);
         RefreshItemVisuals();
         backpackPanel.SetActive(true);
-        if (combinedPanel != null) combinedPanel.SetActive(true);
+        if (combinedPanel != null) GameAudio.SetPanel(combinedPanel, true);
         if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(true);
     }
 
@@ -158,7 +158,7 @@ public class BackpackUIManager : MonoBehaviour
     {
         BackpackDraggable.CancelActiveDrag();
         backpackPanel.SetActive(false);
-        if (combinedPanel != null) combinedPanel.SetActive(false);
+        if (combinedPanel != null) GameAudio.SetPanel(combinedPanel, false);
         if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(false);
     }
 

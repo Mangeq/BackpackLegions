@@ -26,6 +26,7 @@ public sealed class SoundEffectsVolume : MonoBehaviour
         // music by its mixer group keeps its own gain and is affected by master only.
         foreach(var source in FindObjectsOfType<AudioSource>())
         {
+            if(source.GetComponent<GameAudio>()!=null){source.volume=Gain;continue;}
             if(source.outputAudioMixerGroup!=null&&source.outputAudioMixerGroup.name.IndexOf("Music",System.StringComparison.OrdinalIgnoreCase)>=0)continue;
             Voice voice;if(!voices.TryGetValue(source,out voice)){voice=new Voice{original=source.volume,last=source.volume};voices.Add(source,voice);}
             if(!Mathf.Approximately(source.volume,voice.last))voice.original=source.volume;

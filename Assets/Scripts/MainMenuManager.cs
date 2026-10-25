@@ -34,14 +34,14 @@ public class MainMenuManager : MonoBehaviour
     {
         if (SceneLoadingUI.IsLoading) return;
         homePanel.SetActive(false);
-        chapterPanel.SetActive(true);
+        GameAudio.SetPanel(chapterPanel, true);
         SelectChapter(0);
     }
 
     public void ShowHome()
     {
         if (homePanel != null) homePanel.SetActive(true);
-        if (chapterPanel != null) chapterPanel.SetActive(false);
+        if (chapterPanel != null) GameAudio.SetPanel(chapterPanel, false);
     }
 
     public void OpenSkillTree() { if(skillTreePanel!=null)skillTreePanel.Open(); }
@@ -85,6 +85,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void TogglePanel(GameObject panel)
     {
-        panel.SetActive(!panel.activeSelf);
+        GameAudio.SetPanel(panel, !panel.activeSelf);
     }
 }

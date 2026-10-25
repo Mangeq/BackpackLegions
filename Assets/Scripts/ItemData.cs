@@ -35,6 +35,8 @@ public class ItemData : ScriptableObject
     public bool IsCompatibleWith(TowerType towerType, ElementType towerElement) =>
         itemOwners != null && System.Array.Exists(itemOwners, owner => owner == towerType)
         && (isElementCatalyst || element == ElementType.Normal || element == towerElement);
+    [Tooltip("0: otomatik malzeme eşleştirmesi; 1–16: paketteki SFX numarası.")]
+    [Range(0, 16)] public int soundEffectIndex;
     public string itemID;
     public int cost;
     public Sprite itemIcon;

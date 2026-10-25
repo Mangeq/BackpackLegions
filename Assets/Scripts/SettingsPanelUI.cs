@@ -53,7 +53,7 @@ public class SettingsPanelUI : MonoBehaviour
         if(effects!=null)effects.SetValueWithoutNotify(SoundEffectsVolume.Gain);
         fullscreen.SetIsOnWithoutNotify(Screen.fullScreen);
         vsync.SetIsOnWithoutNotify(QualitySettings.vSyncCount > 0);
-        modal.SetActive(true); openPanel = this; RefreshLabels();
+        GameAudio.SetPanel(modal, true); openPanel = this; RefreshLabels();
         UİManager.NotifyPanelOpened();
     }
 
@@ -99,7 +99,7 @@ public class SettingsPanelUI : MonoBehaviour
 
     public void Close()
     {
-        modal.SetActive(false); if (openPanel == this) openPanel = null;
+        GameAudio.SetPanel(modal, false); if (openPanel == this) openPanel = null;
         dismissedFrame = Time.frameCount;
     }
     public static bool TryCloseOpen() { if (!IsOpen) return false; openPanel.Close(); return true; }

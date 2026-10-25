@@ -39,7 +39,7 @@ public class SkillTreePanelUI : MonoBehaviour
         var game=FindObjectOfType<GameManager>();
         if(game!=null&&!game.IsPaused&&!game.HasEnded)return;
         SettingsPanelUI.TryCloseOpen();
-        modal.SetActive(true);openPanel=this;SelectBranch(selectedBranch);
+        GameAudio.SetPanel(modal, true);openPanel=this;SelectBranch(selectedBranch);
         if(pointsLabel!=null)pointsLabel.text="YETENEK PUANI  " + new SkillTreeProgress().AvailablePoints;
     }
     public void SelectBranch(int index)
@@ -116,7 +116,7 @@ public class SkillTreePanelUI : MonoBehaviour
             }
         }}
     }
-    public void Close() { modal.SetActive(false);if(openPanel==this)openPanel=null;dismissedFrame=Time.frameCount; }
+    public void Close() { GameAudio.SetPanel(modal, false);if(openPanel==this)openPanel=null;dismissedFrame=Time.frameCount; }
     public static bool TryCloseOpen() { if(!IsOpen)return false;openPanel.Close();return true; }
     private void OnDestroy() { if(openPanel==this)openPanel=null; }
 }

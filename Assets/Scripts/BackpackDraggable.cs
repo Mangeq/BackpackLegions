@@ -239,6 +239,8 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
             }
         }
 
+        if (placed) GameAudio.Item(data);
+
         if (!placed && sourcePlacedItem != null)
             RestoreSource(); // Kaynak alan, konum ve yönü birlikte geri al.
 

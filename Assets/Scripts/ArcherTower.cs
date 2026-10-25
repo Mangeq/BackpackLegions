@@ -54,5 +54,6 @@ public class ArcherTower : Tower
         }
         GameObject bullet=Instantiate(ArcherBulletP,transform.position,Quaternion.identity);
         bullet.GetComponent<Bullet>().Initialize(target.transform,currentDamage*(1f+bonus),guaranteed?1f:currentCriticalChance,this);
+        GameAudio.Play("arrow_tower_attack", .32f, true, .07f);
     }
 }

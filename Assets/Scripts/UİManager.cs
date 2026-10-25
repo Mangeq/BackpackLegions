@@ -180,14 +180,14 @@ public class UİManager : MonoBehaviour
         transitionOwner = activeTower;
         transitionElement = ElementType.Normal;
         transitionPrefab = null;
-        transitionPanel.SetActive(true);
+        GameAudio.SetPanel(transitionPanel, true);
         transitionPanel.transform.SetAsLastSibling();
         NotifyPanelOpened();
         RefreshTransition();
     }
     public void CloseTransition()
     {
-        if (transitionPanel != null) transitionPanel.SetActive(false);
+        if (transitionPanel != null) GameAudio.SetPanel(transitionPanel, false);
         transitionOwner = null;
         transitionPrefab = null;
         transitionElement = ElementType.Normal;
@@ -353,7 +353,7 @@ public class UİManager : MonoBehaviour
         MegicTowerGold.text = MegicTowerCost.ToString();
         ArcherTowerGold.text = ArcherTowerCost.ToString();
         UpdateGoldText();
-        TowerShopUI.SetActive(false);
+        GameAudio.SetPanel(TowerShopUI, false);
         CacheEntryDirection();
         RefreshPurchaseFeedback();
     }
@@ -566,7 +566,7 @@ public class UİManager : MonoBehaviour
     }
     public void ClosePurchasePanel()
     {
-        TowerShopUI.SetActive(false);CancelTowerPurchase();
+        GameAudio.SetPanel(TowerShopUI, false);CancelTowerPurchase();
     }
     public void CannonTowerBTN()
     {
@@ -611,7 +611,7 @@ public class UİManager : MonoBehaviour
     public void TogglePanel(GameObject panel)
     {
         bool willBeActive = !panel.activeSelf;
-        panel.SetActive(willBeActive);
+        GameAudio.SetPanel(panel, willBeActive);
 
         if (panel == TowerShopUI && !willBeActive)
             CancelTowerPurchase();
@@ -708,7 +708,7 @@ public class UİManager : MonoBehaviour
         selectedTowerType = null;
         TowerShopBuyBTN.enabled = false;
         RefreshPurchaseFeedback();
-        TowerShopUI.SetActive(false);
+        GameAudio.SetPanel(TowerShopUI, false);
     }
 
     //public void ResetAllHighlights()

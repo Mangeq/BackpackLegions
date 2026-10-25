@@ -38,5 +38,6 @@ public class MortarTower : Tower
         projectile.gameObject.SetActive(true);
         // Atış anının konumu ve statları sabitlenir; mermi sonradan hedefi takip etmez.
         projectile.Initialize(enemy.transform.position, currentDamage, currentCriticalChance, this);
+        GameAudio.Play("cannon_tower_attack", .5f, true, .12f);
     }
 }

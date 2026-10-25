@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Base : MonoBehaviour
 {
@@ -33,7 +33,9 @@ public class Base : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        if (currentHealth <= 0 || damageAmount <= 0) return;
         currentHealth = Mathf.Max(0, currentHealth - damageAmount);
+        GameAudio.Play(currentHealth == 0 ? "base_fall" : "base_damage", .8f, false, .12f);
         UpdateHealthUI();
         Debug.Log("Üs Hasar Aldı! Kalan Can: " + currentHealth);
         if (currentHealth <= 0)

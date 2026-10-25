@@ -55,7 +55,7 @@ public class TowerSlot : MonoBehaviour
             UİManager.selectedTowerType = null;
             UİManager.selectedTowerPlace = Place; // Se�ilen kule yerini UI Manager'a g�nder
             UİManager.selectedTowerSlot = this; // Se�ilen slotu UI Manager'a g�nder (sat�n alma iptal edilirse geri a�mak i�in)
-            UİManager.TowerShopUI.SetActive(true); // Kule sat�n alma UI's�n� a�
+            GameAudio.SetPanel(UİManager.TowerShopUI, true); // Kule satın alma paneli.
             FindObjectOfType<UİManager>().PreparePurchasePanel();
             slotCollider.enabled = false; // Panel a��kken slot tekrar t�klanamas�n
         }

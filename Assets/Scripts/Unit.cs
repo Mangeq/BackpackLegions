@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -66,6 +66,7 @@ public class Unit : MonoBehaviour
         {
             yield return new WaitForSeconds(attackInterval);
             if (currentEnemy==null) break;
+            GameAudio.Play("SFX_02", .25f, true, .1f);
             float finalDamage = Random.Range(0f, 1f) <= critChance ? damage * critMultiplier : damage;
             currentEnemy.GetComponent<Enemy>().TakeDamage(finalDamage, elementType, myTower != null ? myTower.GetComponent<Tower>() : null);
             if (currentEnemy==null) break;

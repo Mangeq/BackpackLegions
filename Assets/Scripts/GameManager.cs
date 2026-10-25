@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         continueButton.onClick.AddListener(ContinueGame);
         backMainMenuButton.onClick.AddListener(ExitToMainMenu);
 
-        pausePanel.SetActive(false);
+        GameAudio.SetPanel(pausePanel, false);
         GameOverPanel.SetActive(false);
         if(victoryPanel!=null)victoryPanel.SetActive(false);
     }
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
         BackpackDraggable.CancelActiveDrag();
         IsPaused = true;
         Time.timeScale = 0f;
-        pausePanel.SetActive(true);
+        GameAudio.SetPanel(pausePanel, true);
         UİManager.NotifyPanelOpened();
     }
 
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
 
         IsPaused = false;
         Time.timeScale = timeScaleBeforePause;
-        pausePanel.SetActive(false);
+        GameAudio.SetPanel(pausePanel, false);
     }
 
     // Separate result panels share the same authoritative game state.
@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour
             return;
 
         BackpackDraggable.CancelActiveDrag();
+        GameAudio.Result(isVictory);
         gm.CurrentState = isVictory ? GameState.Victory : GameState.Defeat;
         gm.IsPaused = false;
         gm.pausePanel.SetActive(false);

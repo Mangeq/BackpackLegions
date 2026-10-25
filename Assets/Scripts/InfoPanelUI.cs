@@ -16,7 +16,7 @@ public class InfoPanelUI : MonoBehaviour
 
     public void Hide()
     {
-        if (panel != null) panel.gameObject.SetActive(false);
+        if (panel != null) GameAudio.SetPanel(panel.gameObject, false, true);
     }
 
     public void Show(Object target, Vector2 screenPosition)
@@ -140,7 +140,7 @@ public class InfoPanelUI : MonoBehaviour
         icon.enabled = sprite != null;
         accent.color = color;
         subtitleText.color = color;
-        panel.gameObject.SetActive(true);
+        GameAudio.SetPanel(panel.gameObject, true, true);
         var reference = GetComponent<InfoReferenceSkin>();
         if (reference != null) reference.Refresh();
         MoveTo(screenPosition);
