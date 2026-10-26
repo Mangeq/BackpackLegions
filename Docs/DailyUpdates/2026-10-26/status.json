@@ -1,0 +1,22 @@
+{
+  "github": {
+    "status": "pushed",
+    "commit": "48f42134beb071dcdf6106d006f7db4fbab24b1f",
+    "verified_at": "2026-10-26T15:26:33.2798703Z",
+    "baseline_commit": "dc622fb84421d09fa71a9074a8e4ce3cf8da2235",
+    "changed_files": 1,
+    "repository": "https://github.com/Mangeq/BackpackLegions"
+  },
+  "validation": {
+    "tests_rerun": false,
+    "diff_reviewed": true,
+    "backup_and_logs_excluded": true
+  },
+  "timezone": "Europe/Istanbul",
+  "summary": "GameScane towers prefab instance m_IsActive=1 override preserved.",
+  "linkedin": {
+    "status": "not_scheduled",
+    "reason": "Pazartesi; cuma paylaşımı dışında yayın yapılmadı."
+  },
+  "date": "2026-10-26"
+}
