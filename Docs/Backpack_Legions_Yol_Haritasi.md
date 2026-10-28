@@ -2,6 +2,8 @@
 
 Son inceleme: **20 Ekim 2026**. Projenin güncel yapılacaklar listesi bu belgedir.
 
+**27 Ekim güncellemesi:** kule tipi/element değişimi kabul-red akışı, takılı parçaların satış hesabı, işlevsiz eşya etiketleri ve mermi görünürlüğü düzenlendi. Güncel davranış ve ücretler: [27 Ekim değişim kuralları](Kule_Element_Degisimi_2026-10-27.md). Bu aşağıdaki tüm eski regresyon işlerinin kapandığı anlamına gelmez.
+
 ## İnceleme kapsamı
 
 Kaynak kod, Resources/Data assetleri, sahnelerin script bağlantıları, Build Settings, önceki teknik açıklamalar ve test kayıtları yeniden incelendi. Bu tur oyun kodu, sahne, prefab, denge veya kayıt değiştirilmedi. **Unity Play Mode, Console ve Windows build testi bu tur çalıştırılmadı.** Aşağıdaki “uygulandı” işaretleri mevcut kod/veriyi anlatır; yeni sürümün hatasız olduğuna dair garanti değildir. Önceki testler kendi tarihleriyle geçerlidir.

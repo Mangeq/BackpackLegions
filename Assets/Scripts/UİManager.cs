@@ -162,18 +162,12 @@ public class UİManager : MonoBehaviour
     {
         if(activeTower==null)return;
         BackpackDraggable.CancelActiveDrag();
-        if(activeTower.OpenElementShop())
-        {
-            CloseTransition();
-            if(itemShopUI!=null)itemShopUI.UpdateShopUI();
-            NotifyPanelOpened();
-        }
+        OpenTransition(false);
     }
     public void OpenTowerTypeChange() => OpenTransition(true);
     private void OpenTransition(bool typeChange)
     {
         if (!GameManager.CanUpgradeTowers || activeTower == null || transitionPanel == null) return;
-        if (!typeChange && activeTower.SelectedElement == ElementType.Normal) return;
         BackpackDraggable.CancelActiveDrag();
         changingTowerType = typeChange;
         transitionFailure = null;
@@ -181,6 +175,9 @@ public class UİManager : MonoBehaviour
         transitionElement = ElementType.Normal;
         transitionPrefab = null;
         GameAudio.SetPanel(transitionPanel, true);
+        // Panel kaplaması eski UI görsellerini gizler; onay kartı etkileşimli kalmalı.
+        foreach (var graphic in transitionPanel.GetComponentsInChildren<UnityEngine.UI.Graphic>(true))
+            graphic.enabled = true;
         transitionPanel.transform.SetAsLastSibling();
         NotifyPanelOpened();
         RefreshTransition();
@@ -227,7 +224,7 @@ public class UİManager : MonoBehaviour
             || BackpackUIManager.Instance == null || !BackpackUIManager.Instance.combinedPanel.activeInHierarchy)
         { CloseTransition(); return; }
         transitionTitle.text = changingTowerType ? "Kule tipi değiştir" : "Element değiştir";
-        foreach (var button in transitionElements) if (button != null) button.gameObject.SetActive(!changingTowerType);
+        foreach (var button in transitionElements) if (button != null) button.gameObject.SetActive(false);
         foreach (var button in transitionTypes) if (button != null) button.gameObject.SetActive(changingTowerType);
         for (int i = 0; i < transitionElements.Length; i++) if (transitionElements[i] != null)
             transitionElements[i].interactable = (ElementType)(i + 1) != transitionOwner.SelectedElement;
@@ -244,20 +241,24 @@ public class UİManager : MonoBehaviour
                 + "\nİşlem sonrası altın: " + (EconomyManager.Gold + transitionOwner.TypeChangeSaleValue - transitionOwner.GetTypeChangeCost(transitionPrefab))
                 : "Okçu, büyü, birlik veya havan kulesine geçebilirsin.")
                 + "\n\nSeviye 1 · XP 0 · Normal element\nEski ana eşya yeni başlangıç eşyasıyla değiştirilir."
-                + "\nDepo ve teslim bekleyen eşyalar korunur.\nMağaza yenilenir; dondurma kaldırılır."
+                + "\nÇanta ve takılı parçalar sıfırlanır; satış bedeli yukarıya dahildir."
+                + "\nDepo ve teslim bekleyen eşyalar korunur.\nMağaza ve rezervasyonlar sıfırlanır."
                 + (transitionOwner is UnitTower ? "\nMevcut askerler kaldırılır." : "")
                 + "\n\n" + (error ?? "Bu değişikliği onaylıyor musun?");
         }
         else
         {
-            error = transitionElement == ElementType.Normal ? "Yeni elementi seç." : transitionOwner.GetElementChangeError(transitionElement);
+            error = transitionOwner.GetElementShopChangeError();
             error = error ?? transitionFailure;
-            transitionDetails.text = "Yeni element: " + (transitionElement == ElementType.Normal ? "—" : ElementLabel(transitionElement))
-                + "\nÜcret: " + transitionOwner.ElementChangeCost + " altın"
-                + "\n\nSeviye ve XP korunur; ana silah dönüşür."
-                + "\nNormal eşyalar çalışmaya devam eder.\nEski elemente özel eşyalar kalır fakat bonus vermez."
-                + "\nMağaza hemen yenilenir; dondurma kaldırılır."
-                + "\nDepodaki eşyalar hiçbir bonus vermez."
+            transitionDetails.text = "Mevcut element: " + ElementLabel(transitionOwner.SelectedElement)
+                + "\nElement mağazasını yeniden açma bedeli: " + transitionOwner.ElementChangeCost + " altın"
+                + "\nKatalizörün mağazada görünen fiyatı ayrıca ödenir."
+                + "\n\nKabul edersen element seçim mağazası açılır."
+                + "\nKabul anında ana silah ve kule NÖTR olur. Seviye ve XP korunur."
+                + "\nYeni katalizörü yerleştirene kadar savaşta da nötr kalır."
+                + "\nYeni elemente uymayan eski element eşyaları İŞLEVSİZ olur."
+                + "\nBu eşyaların üzerinde İŞLEVSİZ yazacak; bonus vermeyecekler."
+                + "\nNormal eşyalar çalışmaya devam eder."
                 + "\n\n" + (error ?? "Bu değişikliği onaylıyor musun?");
         }
         transitionConfirm.interactable = error == null;
@@ -279,8 +280,10 @@ public class UİManager : MonoBehaviour
         }
         else
         {
-            if (!owner.TryChangeElement(transitionElement)) { transitionFailure = owner.TransitionError; RefreshTransition(); return; }
+            if (!owner.TryReopenElementShop()) { transitionFailure = owner.TransitionError; RefreshTransition(); return; }
             CloseTransition();
+            if (BackpackUIManager.Instance != null) BackpackUIManager.Instance.RefreshItemVisuals();
+            if (itemShopUI != null) itemShopUI.UpdateShopUI();
         }
         RefreshTowerPanel();
     }

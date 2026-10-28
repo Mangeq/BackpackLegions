@@ -1,0 +1,1 @@
+UnityEngine.Application.runInBackground=false;UnityEditor.PlayerSettings.runInBackground=false;UnityEditor.AssetDatabase.SaveAssets();return "background setting restored; playing="+UnityEditor.EditorApplication.isPlaying;

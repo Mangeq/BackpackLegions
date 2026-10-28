@@ -1,0 +1,5 @@
+var wm=UnityEngine.Object.FindObjectOfType<WaveManager>();if(wm==null)return "no game";var castle=UnityEngine.GameObject.FindWithTag("Base");var path=new UnityEngine.AI.NavMeshPath();UnityEngine.AI.NavMesh.CalculatePath(wm.spawnPoint.position,castle.transform.position,UnityEngine.AI.NavMesh.AllAreas,path);
+var output=new System.Collections.Generic.List<object>();foreach(var tower in UnityEngine.Object.FindObjectsOfType<UnitTower>())foreach(var obj in tower.ActiveUnits){if(obj==null)continue;var unit=obj.GetComponent<Unit>();var p=obj.transform.position;p.y=0;float distance=999;
+for(int i=1;i<path.corners.Length;i++){var a=path.corners[i-1];var b=path.corners[i];a.y=b.y=0;var v=b-a;float t=UnityEngine.Mathf.Clamp01(UnityEngine.Vector3.Dot(p-a,v)/v.sqrMagnitude);distance=UnityEngine.Mathf.Min(distance,UnityEngine.Vector3.Distance(p,a+v*t));}
+output.Add(new{tower=tower.transform.position.ToString(),unit=p.ToString(),idle=unit.IsIdle,engageRange=unit.engageRange,nearestRouteDistance=distance});}
+return Newtonsoft.Json.JsonConvert.SerializeObject(output);

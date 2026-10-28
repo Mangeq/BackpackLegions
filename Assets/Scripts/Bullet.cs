@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
     {
         this.owner = owner;
         archerSequenceVersion=owner is ArcherTower ? ((ArcherTower)owner).SkillSequenceVersion : -1;
-        damageElement = owner != null && owner.SelectedElement != ElementType.Normal
+        damageElement = owner != null
             ? owner.SelectedElement : bulletData.bulletType;
         if (owner != null && owner.SelectedElement != ElementType.Normal)
         {

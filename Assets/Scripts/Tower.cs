@@ -59,6 +59,7 @@ public abstract class Tower : MonoBehaviour
     public bool IsShopFrozen => false;
     public bool IsElementShop { get; private set; }
     private bool elementShopUnlocked;
+    private bool awaitingNewElementPlacement;
     private ItemData[] savedItemOffers;
     private readonly HashSet<int> savedReservations = new HashSet<int>();
 
@@ -70,6 +71,53 @@ public abstract class Tower : MonoBehaviour
         savedReservations.Clear();
         foreach(var index in reservedOffers)savedReservations.Add(index);
         reservedOffers.Clear();IsElementShop=true;GenerateShopItems();return true;
+    }
+    public string GetElementShopChangeError()
+    {
+        if (retired || !GameManager.CanUpgradeTowers) return "Element değişimi yalnız hazırlıkta yapılabilir.";
+        if (Level < 5) return "Element seçimi için kule 5. seviye olmalı.";
+        if (IsElementShop) return "Element seçim mağazası zaten açık.";
+        if (BackpackDraggable.IsDragging) return "Önce eşya sürüklemeyi bitir.";
+        if (data.defaultWeapon == null) return "Nötr ana silah verisi eksik.";
+        if (FindMainWeapon() == null) return "Ana silah bulunamadı.";
+        if (EconomyManager.Gold < ElementChangeCost) return "Yetersiz altın.";
+        return null;
+    }
+
+    private PlacedItem FindMainWeapon()
+    {
+        if (Backpack != null) foreach (var item in Backpack.Items) if (IsMainItem(item.Data)) return item;
+        if (Storage != null) foreach (var item in Storage.Items) if (IsMainItem(item.Data)) return item;
+        return null;
+    }
+
+    // Onayda eski element bırakılır; yeni katalizör yerleşene kadar kule nötrdür.
+    public bool TryReopenElementShop()
+    {
+        TransitionError = GetElementShopChangeError();
+        if (TransitionError != null) return false;
+        var weapon = FindMainWeapon();
+        var bag = weapon.Bag;
+        if (!bag.TryReplace(weapon, data.defaultWeapon))
+        { TransitionError = "Nötr ana silah için çantada yer yok."; return false; }
+        if (!OpenElementShop())
+        {
+            foreach (var item in new List<PlacedItem>(bag.Items))
+                if (item.Data == data.defaultWeapon) { bag.TryReplace(item, weapon.Data); break; }
+            TransitionError = "Element mağazası açılamadı."; return false;
+        }
+        Evolution.ReleaseAttachments(weapon);
+        SelectedElement = ElementType.Normal;
+        awaitingNewElementPlacement = true;
+        CalculateStats();
+        EconomyManager.TrySpendGold(ElementChangeCost);
+        return true;
+    }
+
+    public void NotifyElementCatalystPlaced(PlacedItem item)
+    {
+        if (item != null && item.Bag == Backpack && item.Data.isElementCatalyst)
+            awaitingNewElementPlacement = false;
     }
     public void CompleteShopPurchase(int index, ItemData purchased)
     {
@@ -142,7 +190,7 @@ public abstract class Tower : MonoBehaviour
 
     public bool TryFuseElement()
     {
-        if(retired||Level<5||!GameManager.CanEditItems||Backpack==null)return false;
+        if(retired||Level<5||!GameManager.CanEditItems||Backpack==null||awaitingNewElementPlacement)return false;
         ElementSelectionError = null;
         PlacedItem original = null;
         foreach(var placed in Backpack.Items)if(IsMainItem(placed.Data)){original=placed;break;}
@@ -174,7 +222,7 @@ public abstract class Tower : MonoBehaviour
         {
             int total = 0;
             if (Backpack != null) foreach (var item in Backpack.Items)
-                if (!IsMainItem(item.Data)) total += EconomyManager.GetSellValue(item.Data);
+                total += TypeChangeItemSaleValue(item);
             return total;
         }
     }
@@ -185,9 +233,23 @@ public abstract class Tower : MonoBehaviour
         {
             int count = 0;
             if (Backpack != null) foreach (var item in Backpack.Items)
-                if (!IsMainItem(item.Data)) count++;
+                count += TypeChangeItemSaleCount(item);
             return count;
         }
+    }
+
+    private int TypeChangeItemSaleValue(PlacedItem item)
+    {
+        int total = IsMainItem(item.Data) ? 0 : EconomyManager.GetSellValue(item.Data);
+        foreach (var part in item.Attachments) total += TypeChangeItemSaleValue(part);
+        return total;
+    }
+
+    private int TypeChangeItemSaleCount(PlacedItem item)
+    {
+        int count = IsMainItem(item.Data) ? 0 : 1;
+        foreach (var part in item.Attachments) count += TypeChangeItemSaleCount(part);
+        return count;
     }
 
     public string GetTypeChangeError(GameObject prefab)
@@ -248,7 +310,7 @@ public abstract class Tower : MonoBehaviour
         EconomyManager.Gold = finalGold;
         UİManager.UpdateGoldText();
         foreach (var item in new List<PlacedItem>(Backpack.Items))
-        { Evolution.ReleaseAttachments(item);if (!IsMainItem(item.Data)) Backpack.Remove(item); }
+            Backpack.Remove(item);
         replacement.Storage = Storage;
         if (Evolution != null) Evolution.TransferDeliveriesTo(replacement.Evolution);
         if (this is UnitTower oldBarracks) oldBarracks.RemoveUnitsForTypeChange();
@@ -352,14 +414,15 @@ public abstract class Tower : MonoBehaviour
             savedReservations.Clear();foreach(var index in reservedOffers)savedReservations.Add(index);
             reservedOffers.Clear();IsElementShop=true;
         }
-        var catalysts=IsElementShop?Resources.LoadAll<ItemData>("Data/Items/Elements"):null;
+        var catalysts = IsElementShop ? System.Array.FindAll(Resources.LoadAll<ItemData>("Data/Items/Elements"),
+            item => item != null && item.isElementCatalyst && item.element != SelectedElement) : null;
         for (int i = 0; i < myShopItems.Length; i++)
         {
             if(IsOfferReserved(i)&&myShopItems[i]!=null)continue;
             reservedOffers.Remove(i);
             if(IsElementShop)
             {
-                myShopItems[i]=catalysts.Length>0?catalysts[Random.Range(0,catalysts.Length)]:null;
+                myShopItems[i] = i < catalysts.Length ? catalysts[i] : null;
                 continue;
             }
             ItemRarity rarity = ShopManager.Instance.GetRandomRarity(towerLevel);

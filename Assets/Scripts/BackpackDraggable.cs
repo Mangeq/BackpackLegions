@@ -247,6 +247,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         // Yerleşti/taşındı/geri alındı fark etmez - backpack'in son hali her zaman
         // stat'a yansımalı. Küçük bir grid için maliyeti önemsiz, koşulsuz çağırmak
         // "item ekledim ama stat güncellenmedi" tarzı bir senkron hatasını baştan eler.
+        if (placed) dragOwner.NotifyElementCatalystPlaced(draggedItem);
         dragOwner.CalculateStats();
         if(placed&&draggedItem.Bag==dragOwner.Storage)
             BackpackUIManager.Instance.RememberStorageDrop(draggedItem,eventData.position,eventData.pressEventCamera);

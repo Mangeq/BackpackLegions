@@ -268,7 +268,7 @@ public class BackpackUIManager : MonoBehaviour
             visualGO.GetComponent<Image>().color=placed.Data.element==ElementType.Fire?new Color(1,.58f,.24f)
                 :placed.Data.element==ElementType.Water?new Color(.45f,.75f,1)
                 :placed.Data.element==ElementType.Earth?new Color(.8f,.63f,.35f):new Color(.65f,1,1);
-        if (!bag.IsLooseStorage && !ActiveTower.IsItemActive(placed.Data))
+        if (!ActiveTower.IsItemActive(placed.Data))
         {
             visualGO.GetComponent<Image>().color = new Color(.45f, .45f, .45f, .8f);
             var labelGO = new GameObject("IncompatibleLabel", typeof(RectTransform), typeof(UnityEngine.UI.Text));
@@ -282,7 +282,7 @@ public class BackpackUIManager : MonoBehaviour
             label.fontSize = 13;
             label.alignment = TextAnchor.MiddleCenter;
             label.color = new Color(1f, .8f, .6f);
-            label.text = "UYUMSUZ\nBonus yok";
+            label.text = "İŞLEVSİZ\nBonus yok";
             label.raycastTarget = false;
         }
 
@@ -300,6 +300,18 @@ public class BackpackUIManager : MonoBehaviour
             var badge=Instantiate(itemVisualPrefab,visualGO.transform);badge.name="Attached_"+part.Data.Name;
             var badgeRect=badge.GetComponent<RectTransform>();badgeRect.anchorMin=badgeRect.anchorMax=new Vector2(1,1);badgeRect.pivot=new Vector2(1,1);badgeRect.sizeDelta=new Vector2(32,32);badgeRect.anchoredPosition=new Vector2(-2,-2-attachmentIndex*34);badgeRect.localRotation=Quaternion.Euler(0,0,90f*placed.Rotation);
             var image=badge.GetComponent<UnityEngine.UI.Image>();image.sprite=part.Data.itemIcon;image.preserveAspect=true;image.color=ActiveTower.IsItemActive(placed.Data)&&ActiveTower.IsItemActive(part.Data)?Color.white:new Color(.45f,.45f,.45f,.8f);
+            if (!ActiveTower.IsItemActive(placed.Data) || !ActiveTower.IsItemActive(part.Data))
+            {
+                var status = new GameObject("IncompatibleLabel", typeof(RectTransform), typeof(UnityEngine.UI.Text));
+                status.transform.SetParent(badge.transform, false);
+                var rect = status.GetComponent<RectTransform>();
+                rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one;
+                rect.offsetMin = rect.offsetMax = Vector2.zero;
+                var text = status.GetComponent<UnityEngine.UI.Text>();
+                text.font = itemStatusFont != null ? itemStatusFont : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                text.fontSize = 7; text.alignment = TextAnchor.MiddleCenter;
+                text.color = new Color(1f, .8f, .6f); text.text = "İŞLEVSİZ"; text.raycastTarget = false;
+            }
             badge.GetComponent<BackpackDraggable>().InitializeAsPlaced(part,bag);itemVisuals[part]=badge;attachmentIndex++;
         }
     }

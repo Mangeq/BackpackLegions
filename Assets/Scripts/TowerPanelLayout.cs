@@ -50,7 +50,8 @@ public sealed partial class TowerPanelLayout : MonoBehaviour
         image.sprite=ReferencePanelAssets.Sprite("Background");image.type=UnityEngine.UI.Image.Type.Simple;
         image.color=Color.white;image.raycastTarget=true;
         // Keep the existing callbacks and model objects; replace their presentation.
-        foreach(var g in root.GetComponentsInChildren<UnityEngine.UI.Graphic>(true))if(g!=image)g.enabled=false;
+        foreach(var g in root.GetComponentsInChildren<UnityEngine.UI.Graphic>(true))
+            if(g!=image && (ui.transitionPanel==null || !g.transform.IsChildOf(ui.transitionPanel.transform)))g.enabled=false;
         foreach(var effect in root.GetComponentsInChildren<UnityEngine.UI.Shadow>(true))effect.enabled=false;
         Hide(root,"Preview");Hide(root,"Help");Hide(bags.backpackPanel.transform,"GridLayout");
         if(bags.evolutionStatus!=null)bags.evolutionStatus.gameObject.SetActive(false);

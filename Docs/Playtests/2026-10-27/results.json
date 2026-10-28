@@ -1,0 +1,356 @@
+[
+  {
+    "scene": "GameScane",
+    "loading": false,
+    "frame": 2804,
+    "time": 233.000275,
+    "state": "Defeat",
+    "paused": false,
+    "chapter": 1,
+    "wave": 2,
+    "waves": 5,
+    "gold": 262,
+    "hp": 0,
+    "maxHp": 100,
+    "enemies": 6,
+    "enemyHp": 326.52063,
+    "towers": [
+      {
+        "id": -75866,
+        "type": "MagicTower",
+        "level": 2,
+        "xp": 12.0603819,
+        "element": "Normal",
+        "position": "(2.66, 0.19, 10.68)",
+        "items": 1,
+        "damage": 30.45,
+        "range": 5.2
+      },
+      {
+        "id": -67742,
+        "type": "UnitTower",
+        "level": 2,
+        "xp": 34.3434143,
+        "element": "Normal",
+        "position": "(6.21, 0.19, -1.83)",
+        "items": 4,
+        "damage": 5.376,
+        "range": 3.0
+      },
+      {
+        "id": -67706,
+        "type": "CannonTower",
+        "level": 5,
+        "xp": 64.5796356,
+        "element": "Normal",
+        "position": "(-6.13, 0.19, 4.48)",
+        "items": 2,
+        "damage": 55.2,
+        "range": 4.8
+      },
+      {
+        "id": -67378,
+        "type": "ArrowTower",
+        "level": 11,
+        "xp": 101.016571,
+        "element": "Water",
+        "position": "(-12.87, 0.19, -1.36)",
+        "items": 3,
+        "damage": 25.26615,
+        "range": 4.935
+      }
+    ]
+  },
+  {
+    "scene": "GameScane",
+    "loading": false,
+    "frame": 5072,
+    "time": 425.8959,
+    "state": "Defeat",
+    "paused": false,
+    "chapter": 2,
+    "wave": 2,
+    "waves": 7,
+    "gold": 85,
+    "hp": 0,
+    "maxHp": 100,
+    "enemies": 9,
+    "enemyHp": 625.1261,
+    "towers": [
+      {
+        "id": -103592,
+        "type": "ArrowTower",
+        "level": 1,
+        "xp": 14.9951382,
+        "element": "Normal",
+        "position": "(21.75, 0.19, 1.86)",
+        "items": 3,
+        "damage": 17.5812,
+        "range": 4.935
+      },
+      {
+        "id": -98868,
+        "type": "MagicTower",
+        "level": 2,
+        "xp": 25.12371,
+        "element": "Normal",
+        "position": "(2.66, 0.19, 10.68)",
+        "items": 1,
+        "damage": 30.45,
+        "range": 5.2
+      },
+      {
+        "id": -94762,
+        "type": "UnitTower",
+        "level": 2,
+        "xp": 6.30015564,
+        "element": "Normal",
+        "position": "(6.21, 0.19, -1.83)",
+        "items": 1,
+        "damage": 4.2,
+        "range": 3.0
+      },
+      {
+        "id": -94726,
+        "type": "CannonTower",
+        "level": 4,
+        "xp": 55.204895,
+        "element": "Normal",
+        "position": "(-6.13, 0.19, 4.48)",
+        "items": 1,
+        "damage": 52.9,
+        "range": 4.8
+      },
+      {
+        "id": -94398,
+        "type": "ArrowTower",
+        "level": 9,
+        "xp": 38.3761,
+        "element": "Normal",
+        "position": "(-12.87, 0.19, -1.36)",
+        "items": 3,
+        "damage": 21.8618412,
+        "range": 4.935
+      }
+    ]
+  },
+  {
+    "scene": "GameScane",
+    "loading": false,
+    "frame": 6824,
+    "time": 587.9395,
+    "state": "Defeat",
+    "paused": false,
+    "chapter": 3,
+    "wave": 2,
+    "waves": 9,
+    "gold": 63,
+    "hp": 0,
+    "maxHp": 100,
+    "enemies": 10,
+    "enemyHp": 1033.35425,
+    "towers": [
+      {
+        "id": -130722,
+        "type": "UnitTower",
+        "level": 1,
+        "xp": 0.0,
+        "element": "Normal",
+        "position": "(21.75, 0.19, 1.86)",
+        "items": 1,
+        "damage": 4.0,
+        "range": 3.0
+      },
+      {
+        "id": -126424,
+        "type": "CannonTower",
+        "level": 2,
+        "xp": 8.032542,
+        "element": "Normal",
+        "position": "(2.66, 0.19, 10.68)",
+        "items": 1,
+        "damage": 48.3,
+        "range": 4.8
+      },
+      {
+        "id": -121802,
+        "type": "UnitTower",
+        "level": 1,
+        "xp": 18.2036667,
+        "element": "Normal",
+        "position": "(6.21, 0.19, -1.83)",
+        "items": 1,
+        "damage": 4.0,
+        "range": 3.0
+      },
+      {
+        "id": -121766,
+        "type": "CannonTower",
+        "level": 5,
+        "xp": 20.1818066,
+        "element": "Normal",
+        "position": "(-6.13, 0.19, 4.48)",
+        "items": 2,
+        "damage": 55.2,
+        "range": 4.8
+      },
+      {
+        "id": -121438,
+        "type": "ArrowTower",
+        "level": 8,
+        "xp": 69.58198,
+        "element": "Air",
+        "position": "(-12.87, 0.19, -1.36)",
+        "items": 3,
+        "damage": 24.5085735,
+        "range": 4.935
+      }
+    ]
+  },
+  {
+    "scene": "GameScane",
+    "loading": false,
+    "frame": 9037,
+    "time": 747.6848,
+    "state": "Defeat",
+    "paused": false,
+    "chapter": 4,
+    "wave": 2,
+    "waves": 11,
+    "gold": 15,
+    "hp": 0,
+    "maxHp": 100,
+    "enemies": 11,
+    "enemyHp": 1506.03467,
+    "towers": [
+      {
+        "id": -153340,
+        "type": "UnitTower",
+        "level": 1,
+        "xp": 0.0,
+        "element": "Normal",
+        "position": "(21.75, 0.19, 1.86)",
+        "items": 1,
+        "damage": 4.0,
+        "range": 3.0
+      },
+      {
+        "id": -148464,
+        "type": "CannonTower",
+        "level": 3,
+        "xp": 34.02153,
+        "element": "Normal",
+        "position": "(2.66, 0.19, 10.68)",
+        "items": 1,
+        "damage": 50.6,
+        "range": 4.8
+      },
+      {
+        "id": -148136,
+        "type": "ArrowTower",
+        "level": 2,
+        "xp": 14.3492823,
+        "element": "Normal",
+        "position": "(6.21, 0.19, -1.83)",
+        "items": 8,
+        "damage": 22.8173389,
+        "range": 4.935
+      },
+      {
+        "id": -148052,
+        "type": "MagicTower",
+        "level": 6,
+        "xp": 20.2052536,
+        "element": "Normal",
+        "position": "(-6.13, 0.19, 4.48)",
+        "items": 1,
+        "damage": 36.25,
+        "range": 5.2
+      },
+      {
+        "id": -147724,
+        "type": "ArrowTower",
+        "level": 6,
+        "xp": 31.4239273,
+        "element": "Normal",
+        "position": "(-12.87, 0.19, -1.36)",
+        "items": 1,
+        "damage": 17.0625,
+        "range": 4.935
+      }
+    ]
+  },
+  {
+    "scene": "GameScane",
+    "loading": false,
+    "frame": 9665,
+    "time": 804.1737,
+    "state": "Defeat",
+    "paused": false,
+    "chapter": 5,
+    "wave": 0,
+    "waves": 13,
+    "gold": 277,
+    "hp": 0,
+    "maxHp": 100,
+    "enemies": 24,
+    "enemyHp": 1623.13562,
+    "towers": [
+      {
+        "id": -176648,
+        "type": "UnitTower",
+        "level": 1,
+        "xp": 0.0,
+        "element": "Normal",
+        "position": "(21.75, 0.19, 1.86)",
+        "items": 1,
+        "damage": 4.0,
+        "range": 3.0
+      },
+      {
+        "id": -176612,
+        "type": "CannonTower",
+        "level": 3,
+        "xp": 25.540184,
+        "element": "Normal",
+        "position": "(2.66, 0.19, 10.68)",
+        "items": 1,
+        "damage": 50.6,
+        "range": 4.8
+      },
+      {
+        "id": -176284,
+        "type": "ArrowTower",
+        "level": 1,
+        "xp": 12.469038,
+        "element": "Normal",
+        "position": "(6.21, 0.19, -1.83)",
+        "items": 1,
+        "damage": 13.65,
+        "range": 4.935
+      },
+      {
+        "id": -176200,
+        "type": "MagicTower",
+        "level": 3,
+        "xp": 13.537981,
+        "element": "Normal",
+        "position": "(-6.13, 0.19, 4.48)",
+        "items": 1,
+        "damage": 31.9,
+        "range": 5.2
+      },
+      {
+        "id": -175872,
+        "type": "ArrowTower",
+        "level": 2,
+        "xp": 28.4528084,
+        "element": "Normal",
+        "position": "(-12.87, 0.19, -1.36)",
+        "items": 1,
+        "damage": 14.3324995,
+        "range": 4.935
+      }
+    ]
+  }
+]

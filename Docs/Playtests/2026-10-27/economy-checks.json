@@ -1,0 +1,312 @@
+{
+  "purchase_actions": 135,
+  "checks": [
+    {
+      "run": "İlk tur",
+      "chapter": 1,
+      "wave": 1,
+      "before": 850,
+      "spent": 850,
+      "after": 0,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 1,
+      "wave": 2,
+      "before": 280,
+      "spent": 255,
+      "after": 25,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 1,
+      "wave": 3,
+      "before": 537,
+      "spent": 535,
+      "after": 2,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 2,
+      "wave": 1,
+      "before": 1000,
+      "spent": 980,
+      "after": 20,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 2,
+      "wave": 2,
+      "before": 365,
+      "spent": 325,
+      "after": 40,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 2,
+      "wave": 3,
+      "before": 402,
+      "spent": 380,
+      "after": 22,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 3,
+      "wave": 1,
+      "before": 1150,
+      "spent": 1135,
+      "after": 15,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 3,
+      "wave": 2,
+      "before": 415,
+      "spent": 375,
+      "after": 40,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 3,
+      "wave": 3,
+      "before": 368,
+      "spent": 305,
+      "after": 63,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 4,
+      "wave": 1,
+      "before": 1300,
+      "spent": 1265,
+      "after": 35,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 4,
+      "wave": 2,
+      "before": 511,
+      "spent": 500,
+      "after": 11,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 4,
+      "wave": 3,
+      "before": 240,
+      "spent": 225,
+      "after": 15,
+      "passed": true
+    },
+    {
+      "run": "İlk tur",
+      "chapter": 5,
+      "wave": 1,
+      "before": 1450,
+      "spent": 1425,
+      "after": 25,
+      "passed": true
+    },
+    {
+      "run": "Hava savunması",
+      "chapter": 1,
+      "wave": 1,
+      "before": 850,
+      "spent": 825,
+      "after": 25,
+      "passed": true
+    },
+    {
+      "run": "Hava savunması",
+      "chapter": 1,
+      "wave": 2,
+      "before": 305,
+      "spent": 300,
+      "after": 5,
+      "passed": true
+    },
+    {
+      "run": "Hava savunması",
+      "chapter": 1,
+      "wave": 3,
+      "before": 535,
+      "spent": 515,
+      "after": 20,
+      "passed": true
+    },
+    {
+      "run": "Hava savunması",
+      "chapter": 1,
+      "wave": 4,
+      "before": 780,
+      "spent": 770,
+      "after": 10,
+      "passed": true
+    },
+    {
+      "run": "Hava savunması",
+      "chapter": 1,
+      "wave": 5,
+      "before": 889,
+      "spent": 850,
+      "after": 39,
+      "passed": true
+    },
+    {
+      "run": "Önde birlik",
+      "chapter": 1,
+      "wave": 1,
+      "before": 850,
+      "spent": 800,
+      "after": 50,
+      "passed": true
+    },
+    {
+      "run": "Önde birlik",
+      "chapter": 1,
+      "wave": 2,
+      "before": 330,
+      "spent": 330,
+      "after": 0,
+      "passed": true
+    },
+    {
+      "run": "Önde birlik",
+      "chapter": 1,
+      "wave": 3,
+      "before": 530,
+      "spent": 485,
+      "after": 45,
+      "passed": true
+    },
+    {
+      "run": "Önde birlik",
+      "chapter": 1,
+      "wave": 4,
+      "before": 785,
+      "spent": 765,
+      "after": 20,
+      "passed": true
+    },
+    {
+      "run": "Önde birlik",
+      "chapter": 1,
+      "wave": 5,
+      "before": 848,
+      "spent": 815,
+      "after": 33,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 2,
+      "wave": 1,
+      "before": 1000,
+      "spent": 955,
+      "after": 45,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 2,
+      "wave": 2,
+      "before": 360,
+      "spent": 360,
+      "after": 0,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 2,
+      "wave": 3,
+      "before": 495,
+      "spent": 455,
+      "after": 40,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 2,
+      "wave": 4,
+      "before": 670,
+      "spent": 645,
+      "after": 25,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 3,
+      "wave": 1,
+      "before": 1150,
+      "spent": 1140,
+      "after": 10,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 3,
+      "wave": 2,
+      "before": 378,
+      "spent": 325,
+      "after": 53,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 3,
+      "wave": 3,
+      "before": 521,
+      "spent": 495,
+      "after": 26,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 3,
+      "wave": 4,
+      "before": 554,
+      "spent": 505,
+      "after": 49,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 4,
+      "wave": 1,
+      "before": 1300,
+      "spent": 1300,
+      "after": 0,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 4,
+      "wave": 2,
+      "before": 238,
+      "spent": 225,
+      "after": 13,
+      "passed": true
+    },
+    {
+      "run": "Erken eşya yatırımı",
+      "chapter": 5,
+      "wave": 1,
+      "before": 1450,
+      "spent": 1410,
+      "after": 40,
+      "passed": true
+    }
+  ],
+  "total_spent": 22825
+}
