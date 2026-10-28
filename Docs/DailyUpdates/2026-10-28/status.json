@@ -1,0 +1,29 @@
+{
+  "timezone": "Europe/Istanbul",
+  "summary": [
+    "Kule ve element değişimi onayı, nötr element geçişi ve takılı eşya satış hesabı",
+    "Mermi görünürlüğü ve canlı oynama kayıtları"
+  ],
+  "date": "2026-10-28",
+  "linkedin": {
+    "reason": "Çarşamba; cuma dışında paylaşım yapılmadı.",
+    "status": "not_scheduled"
+  },
+  "validation": {
+    "limitation": "Önceki testte yalnız ilk bölüm kazanıldı; kampanyanın tamamı kazanılarak bitirilmedi.",
+    "playtest_report": "Docs/Playtests/2026-10-27/Oynanis_Raporu.md",
+    "oversize_files": 0,
+    "existing_neutral_checks_passed": 24,
+    "missing_meta_files": 0,
+    "tests_rerun": false,
+    "backup_and_logs_excluded": true
+  },
+  "github": {
+    "status": "pushed",
+    "commit": "5050edf1473cbc7f4f34107d9e8957ef426ffc94",
+    "baseline_commit": "88a1fb38ce7db117c7e03fae989267dde5c4dfff",
+    "changed_files": 162,
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "verified_at": "2026-10-28T17:27:10.8283737Z"
+  }
+}
