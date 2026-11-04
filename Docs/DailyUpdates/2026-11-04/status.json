@@ -1,0 +1,18 @@
+{
+  "github": {
+    "commit": "24df2a73e7e940aed3dd59e6ac4c601f40bc3db1",
+    "status": "pushed",
+    "verified_at": "2026-11-04T15:06:32.4388442Z",
+    "repository": "https://github.com/Mangeq/BackpackLegions"
+  },
+  "summary": "Altınla kule yükseltme, savaşta kule satın alma ve menzil göstergesi. Yeni haritaların kaynakları korundu. Oyun sahnesi Blackpine V5 kullanıyor.",
+  "validation": {
+    "report": "Docs/Validation/gameplay-revision/README.md",
+    "tests_rerun": false
+  },
+  "linkedin": {
+    "status": "not_scheduled"
+  },
+  "date": "2026-11-04",
+  "timezone": "Europe/Istanbul"
+}
