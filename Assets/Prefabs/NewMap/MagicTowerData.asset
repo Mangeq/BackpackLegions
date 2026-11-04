@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: MagicTowerData
   m_EditorClassIdentifier: 
   towerLevel: 1
-  firstLevelExperience: 24
-  experienceIncreasePerLevel: 12
+  upgradeBaseCost: 100
+  upgradeCostPerLevel: 50
+  attackSpeedVersion: 1
   levelDamageGrowth: 0.05
   levelAttackSpeedGrowth: 0.015
   levelCriticalGrowth: 0.003
@@ -28,7 +29,7 @@ MonoBehaviour:
   damage: 29
   criticalChance: 0.05
   range: 5.2
-  attackSpeed: 1.9
+  attackSpeed: 0.5263158
   cost: 325
   explosionRadius: 1.5
   mortarFlightTime: 0.25

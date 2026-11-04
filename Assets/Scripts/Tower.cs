@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -147,33 +147,22 @@ public abstract class Tower : MonoBehaviour
     // TowerData'dan başlangıçta kopyalanır; yükseltmeler yalnız bu kuleyi etkiler.
     internal int towerLevel;
     public int Level => towerLevel;
-    public float Experience { get; private set; }
     public ElementType SelectedElement { get; private set; } = ElementType.Normal;
     public ItemData MainItem => data != null ? data.GetMainItem(SelectedElement) : null;
     public string ElementSelectionError { get; private set; }
     public bool IsMainItem(ItemData item) => data != null && data.IsMainItem(item);
     public bool AwaitingElement => false;
-    public float ExperienceRequired => Mathf.Max(1f, data.firstLevelExperience
-        + Mathf.Max(0, towerLevel - 1) * data.experienceIncreasePerLevel);
-
-    // XP savaş sırasında gelir. Hazırlık kısıtı yalnız element seçimine aittir.
-    public void AddExperience(float amount)
+    public int UpgradeCost => (int)System.Math.Min(int.MaxValue,
+        (long)Mathf.Max(1, data.upgradeBaseCost) + (long)Mathf.Max(0, Level - 1) * Mathf.Max(0, data.upgradeCostPerLevel));
+    public bool TryUpgrade()
     {
-        if (retired || amount <= 0f || float.IsNaN(amount) || float.IsInfinity(amount)) return;
-        Experience += amount;
-        ProcessExperience();
-    }
-
-    private void ProcessExperience()
-    {
-        while (Experience >= ExperienceRequired)
-        {
-            Experience -= ExperienceRequired;
-            towerLevel++;
-            if(towerLevel==5&&ShopManager.Instance!=null)GenerateShopItems();
-            RebuildLevelStats();
-            CalculateStats();
-        }
+        if (retired || !initialized || !GameManager.CanLevelUpTowers || BackpackDraggable.IsDragging) return false;
+        if (!EconomyManager.TrySpendGold(UpgradeCost)) return false;
+        towerLevel++;
+        RebuildLevelStats();
+        CalculateStats();
+        if (towerLevel == 5 && ShopManager.Instance != null) GenerateShopItems();
+        return true;
     }
 
     public bool TrySelectElement(ElementType element) => false;
@@ -397,7 +386,7 @@ public abstract class Tower : MonoBehaviour
         int gainedLevels = Mathf.Max(0, towerLevel - 1);
         baseDamage = data.damage * (1f + gainedLevels * data.levelDamageGrowth);
         baseCriticalChance = Mathf.Min(data.maximumCriticalChance, data.criticalChance + gainedLevels * data.levelCriticalGrowth);
-        baseAttackSpeed = Mathf.Max(0.1f, data.attackSpeed / (1f + gainedLevels * data.levelAttackSpeedGrowth));
+        baseAttackSpeed = Mathf.Max(0.01f, data.attackSpeed * (1f + gainedLevels * data.levelAttackSpeedGrowth));
     }
 
     protected virtual void Update()
@@ -432,10 +421,10 @@ public abstract class Tower : MonoBehaviour
         }
     }
 
-    // Eski Inspector bağlantıları için korunur; ücretsiz seviye atlatmaz.
+    // Mevcut Inspector bağlantıları da aynı altın kontrolünden geçer.
     public void UpgradeTower()
     {
-        if (GameManager.CanUpgradeTowers) ProcessExperience();
+        TryUpgrade();
     }
 
     public abstract void Attack(GameObject target);
@@ -479,17 +468,14 @@ public abstract class Tower : MonoBehaviour
         currentHealthBonus = healthBonus;
         currentDamage = baseDamage * (1f + damageBonus) + flatDamageBonus;
         currentCriticalChance = Mathf.Clamp(baseCriticalChance + criticalChanceBonus, 0f, data.maximumCriticalChance);
-        // currentAttackSpeed bir "atışlar arası bekleme süresi" (cooldown). %X hızlanma
-        // = süreyi (1 + X)'e bölmek; böylece bonuslar ne kadar birikirse biriksin süre sıfıra inmez.
-        currentAttackSpeed = baseAttackSpeed / (1f + attackSpeedBonus);
+        // Saldırı hızı: saniyedeki saldırı sayısı. Bonuslar hızı artırır.
+        currentAttackSpeed = baseAttackSpeed * Mathf.Max(0.01f, 1f + attackSpeedBonus);
 
-        // �ok fazla attackSpeedBonus �st �ste binerse s�re s�f�ra/negatife d���p
-        // Shoot() coroutine'inde WaitForSeconds'� bozmas�n diye alt s�n�r.
         currentDamage*=1f+SkillTotal(SkillData.EffectType.DamagePercent);
         currentCriticalChance=Mathf.Min(data.maximumCriticalChance,currentCriticalChance+SkillTotal(SkillData.EffectType.CriticalChancePoints));
-        currentAttackSpeed/=1f+SkillTotal(SkillData.EffectType.AttackSpeedPercent);
+        currentAttackSpeed*=1f+SkillTotal(SkillData.EffectType.AttackSpeedPercent);
         currentHealthBonus=(1f+currentHealthBonus)*(1f+SkillTotal(SkillData.EffectType.UnitHealthPercent))-1f;
-        currentAttackSpeed = Mathf.Max(0.1f, currentAttackSpeed);
+        currentAttackSpeed = Mathf.Clamp(currentAttackSpeed, 0.01f, 100f);
         RefreshRangeCollider();
     }
 
@@ -498,7 +484,7 @@ public abstract class Tower : MonoBehaviour
         if (TowerSlot.IsPointerOverUI(Input.mousePosition)) return;
         if (UİManager.ConsumeWorldPanelClick()) return;
         UİManager.activeTower = this;
-        ShopUIManager.ItemShopUI.SetActive(true);
+        if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(GameManager.CanEditItems);
         shopUIManager.UpdateShopUI();
         BackpackUIManager.Instance.OpenBackpack(this);
     }
@@ -518,7 +504,7 @@ public abstract class Tower : MonoBehaviour
             }
             Attack(targetEnemy);
 
-            yield return new WaitForSeconds(currentAttackSpeed);
+            yield return new WaitForSeconds(1f / currentAttackSpeed);
         }
         OnTargetSelected(null);
         isShooting = false;

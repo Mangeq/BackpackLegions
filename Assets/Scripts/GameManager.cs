@@ -19,8 +19,11 @@ public class GameManager : MonoBehaviour
     [Min(0f)] public float autoStartDelay = 60f;
     private static GameManager instance;
     private UİManager uiManager;
-    public static bool CanEditItems => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
-    public static bool CanBuyTowers => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
+    public bool itemPlacementEnabled = true;
+    public static bool ItemPlacementEnabled => instance != null && instance.itemPlacementEnabled;
+    public static bool CanEditItems => ItemPlacementEnabled && instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
+    public static bool CanBuyTowers => instance != null && !instance.HasEnded && !instance.IsPaused;
+    public static bool CanLevelUpTowers => CanBuyTowers;
     public static bool CanUpgradeTowers => instance != null && instance.CurrentState == GameState.Preparation && !instance.IsPaused;
     public float PreparationSecondsRemaining { get; private set; }
     private bool autoStartAttempted;
@@ -111,6 +114,7 @@ public class GameManager : MonoBehaviour
             CurrentState = GameState.Preparation;
             Time.timeScale = 0f;
         }
+        else if (uiManager != null) uiManager.CloseTowerPanel();
     }
 
     public void BeginPreparation()
@@ -120,7 +124,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         PreparationSecondsRemaining = waveManager != null ? waveManager.PreparationSeconds(autoStartDelay) : autoStartDelay;
         autoStartAttempted = false;
-        var shop = FindObjectOfType<ShopUIManager>();
+        var shop = FindObjectOfType<ShopUIManager>(true);
         if (shop != null) shop.RefreshShopsForPreparation();
     }
 

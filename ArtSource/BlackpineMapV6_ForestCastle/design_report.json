@@ -1,0 +1,18 @@
+{
+  "size_m": [
+    84,
+    72
+  ],
+  "previous_size_m": [
+    56,
+    48
+  ],
+  "linear_scale": 1.5,
+  "area_multiplier": 2.25,
+  "new_forest_trees": 856,
+  "tower_pads": 5,
+  "castle_footprint_m": [
+    6.56,
+    8.86
+  ]
+}

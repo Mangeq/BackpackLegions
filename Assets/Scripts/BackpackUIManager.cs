@@ -142,7 +142,10 @@ public class BackpackUIManager : MonoBehaviour
         var layout=GetComponent<TowerPanelLayout>();
         if(layout!=null)layout.PrepareToOpen(tower);
         if (ActiveTower == tower && backpackPanel.activeSelf)
+        {
+            if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(GameManager.CanEditItems);
             return;
+        }
 
         BackpackDraggable.CancelActiveDrag();
         ActiveTower = tower;
@@ -151,7 +154,7 @@ public class BackpackUIManager : MonoBehaviour
         RefreshItemVisuals();
         backpackPanel.SetActive(true);
         if (combinedPanel != null) GameAudio.SetPanel(combinedPanel, true);
-        if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(true);
+        if (ShopUIManager.ItemShopUI != null) ShopUIManager.ItemShopUI.SetActive(GameManager.CanEditItems);
     }
 
     public void CloseBackpack()

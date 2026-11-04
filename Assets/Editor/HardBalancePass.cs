@@ -27,13 +27,13 @@ public static class HardBalancePass
         foreach(var tower in towers)
         {
             tower.levelDamageGrowth=.05f;tower.levelAttackSpeedGrowth=.015f;tower.levelCriticalGrowth=.003f;tower.maximumCriticalChance=.6f;
-            tower.firstLevelExperience=24;tower.experienceIncreasePerLevel=12;tower.criticalChance=.05f;
+            tower.upgradeBaseCost=100;tower.upgradeCostPerLevel=50;tower.criticalChance=.05f;
             switch(tower.type)
             {
-                case TowerType.ArrowTower: tower.damage=13;tower.attackSpeed=1.1f;tower.range=4.7f;tower.cost=250;break;
-                case TowerType.MagicTower: tower.damage=29;tower.attackSpeed=1.9f;tower.range=3.4f;tower.cost=325;break;
-                case TowerType.CannonTower: tower.damage=46;tower.attackSpeed=3.4f;tower.range=4.8f;tower.cost=375;tower.explosionRadius=1.25f;break;
-                case TowerType.UnitTower: tower.damage=4;tower.attackSpeed=1.35f;tower.range=3;tower.cost=225;break;
+                case TowerType.ArrowTower: tower.damage=13;tower.attackSpeed=1f/1.1f;tower.range=4.7f;tower.cost=250;break;
+                case TowerType.MagicTower: tower.damage=29;tower.attackSpeed=1f/1.9f;tower.range=3.4f;tower.cost=325;break;
+                case TowerType.CannonTower: tower.damage=46;tower.attackSpeed=1f/3.4f;tower.range=4.8f;tower.cost=375;tower.explosionRadius=1.25f;break;
+                case TowerType.UnitTower: tower.damage=4;tower.attackSpeed=1f/1.35f;tower.range=3;tower.cost=225;break;
             }
             EditorUtility.SetDirty(tower);
         }
@@ -58,7 +58,7 @@ public static class HardBalancePass
             {
                 var data=AssetDatabase.LoadAssetAtPath<EnemyData>("Assets/Resources/Data/EnemyData/Campaign/"+key+"/"+roles[r]+".asset");
                 data.health=health[r]+healthStep[r]*c;data.damage=Mathf.RoundToInt(damage[r]*(1+.18f*c));
-                data.goldReward=gold[r]+(r==5?30*c:c);data.experienceReward=xp[r];data.speed=speed[r];
+                data.goldReward=gold[r]+(r==5?30*c:c);data.speed=speed[r];
                 data.attackInterval=r==5?.9f:1.2f;data.isBoss=r==5;data.baseDamageOverride=leak[r];
                 data.weaknessMultiplier=2;data.resistanceMultiplier=.3f;data.normalAttackMultiplier=r==5?.45f:r==0?.9f:.75f;
                 EditorUtility.SetDirty(data);

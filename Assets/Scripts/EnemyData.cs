@@ -27,8 +27,6 @@ public class EnemyData : ScriptableObject
     [Tooltip("Birliğe yapılan saldırılar arasındaki süre (saniye).")]
     [Min(0.1f)] public float attackInterval = 1.2f;
     public int goldReward;
-    [Tooltip("Ölümde, gerçek hasar katkısına göre kulelere paylaştırılan XP.")]
-    [Min(0f)] public float experienceReward = 20f;
 
     [Tooltip("Normal kimlikli eski düşmanlar için özel zayıflıklar. Elementli düşmanda aşağıdaki döngü kullanılır.")]
     public List<ElementType> weaknesses;

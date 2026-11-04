@@ -33,7 +33,7 @@ public static class CampaignBuilder
                 if(source==null)throw new System.Exception("Missing enemy: "+roles[r]);
                 var baseData=source.GetComponent<Enemy>().enemyData;var data=Object.Instantiate(baseData);
                 data.name=key+"_"+roles[r];data.health=Mathf.Round(baseData.health*(1+.25f*chapter));data.damage=Mathf.RoundToInt(baseData.damage*(1+.15f*chapter));
-                data.goldReward=Mathf.RoundToInt(baseData.goldReward*(1+.1f*chapter));data.experienceReward=baseData.experienceReward*(1+.1f*chapter);
+                data.goldReward=Mathf.RoundToInt(baseData.goldReward*(1+.1f*chapter));
                 data.element=cycle[(roleElements[r]+chapter)%cycle.Length];
                 AssetDatabase.CreateAsset(data,dataFolder+"/"+roles[r]+".asset");
                 var instance=(GameObject)PrefabUtility.InstantiatePrefab(source);instance.name=key+"_"+roles[r];instance.GetComponent<Enemy>().enemyData=data;

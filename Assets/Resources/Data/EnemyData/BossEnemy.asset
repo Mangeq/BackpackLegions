@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ab1f1d53417be428fd4dc0f257a131, type: 3}
   m_Name: BossEnemy
   m_EditorClassIdentifier: 
+  movementType: 0
+  flightHeight: 1
   enemyName: Boss
+  element: 0
+  weaknessMultiplier: 1.5
+  resistanceMultiplier: 0.5
+  normalAttackMultiplier: 1
+  baseDamageOverride: 0
+  isBoss: 0
   health: 350
   speed: 1
   damage: 25

@@ -81,7 +81,7 @@ public class InfoPanelUI : MonoBehaviour
         {
             title = TowerName(tower.data.type) + " Kulesi";
             subtitle = "Seviye " + tower.towerLevel;
-            body.AppendLine("XP: " + Number(tower.Experience) + " / " + Number(tower.ExperienceRequired));
+            body.AppendLine("Yükseltme: " + tower.UpgradeCost + " altın");
             body.AppendLine("Element: " + ElementName(tower.SelectedElement));
             if (tower.AwaitingElement) body.AppendLine("Hazırlıkta element seçimi bekleniyor.");
             sprite = tower.MainItem != null ? tower.MainItem.itemIcon : null;
@@ -108,7 +108,7 @@ public class InfoPanelUI : MonoBehaviour
             var ownerTower = unit.myTower != null ? unit.myTower.GetComponent<Tower>() : null;
             if (ownerTower != null && ownerTower.MainItem != null) sprite = ownerTower.MainItem.itemIcon;
             body.AppendLine("Can: " + unit.CurrentHealth + " / " + unit.MaxHealth);
-            Combat(body, unit.damage, unit.attackInterval, unit.critChance);
+            Combat(body, unit.damage, unit.attackSpeed, unit.critChance);
             body.AppendLine("Kritik çarpanı: ×" + Number(unit.critMultiplier));
             body.AppendLine("Element: " + ElementName(unit.elementType));
         }
@@ -120,12 +120,12 @@ public class InfoPanelUI : MonoBehaviour
             color = new Color(1f, 0.4f, 0.38f);
             body.AppendLine("Can: " + Number(enemy.CurrentHealth) + " / " + Number(enemy.MaxHealth));
             body.AppendLine("Hasar: " + enemy.damage);
-            body.AppendLine("Saldırı aralığı: " + Number(enemy.enemyData.attackInterval) + " sn");
+            body.AppendLine("Saldırı hızı: " + Number(1f / Mathf.Max(.1f, enemy.enemyData.attackInterval)) + " /sn");
             body.AppendLine("Hareket hızı: " + Number(enemy.speed));
             if(enemy.IsAir) body.AppendLine("Hava · Yolu takip eder · Birlikler durduramaz");
             body.AppendLine("Kaleye hasar: " + enemy.enemyData.BaseDamage + (enemy.enemyData.isBoss ? " · BOSS" : ""));
             if(enemy.enemyData.element != ElementType.Normal) body.AppendLine("Normal saldırı: ×" + Number(enemy.enemyData.normalAttackMultiplier));
-            body.AppendLine("Ödül: " + enemy.enemyData.goldReward + " altın · " + Number(enemy.enemyData.experienceReward) + " XP");
+            body.AppendLine("Ödül: " + enemy.enemyData.goldReward + " altın");
             body.AppendLine("Zayıflık (×" + Number(enemy.enemyData.weaknessMultiplier) + "): " + (enemy.enemyData.element == ElementType.Normal
                 ? Elements(enemy.enemyData.weaknesses) : ElementName(enemy.enemyData.WeakTo)));
             body.AppendLine("Direnç (×" + Number(enemy.enemyData.resistanceMultiplier) + "): " + (enemy.enemyData.element == ElementType.Normal
@@ -164,7 +164,7 @@ public class InfoPanelUI : MonoBehaviour
     private static void Combat(StringBuilder body, float damage, float interval, float critical)
     {
         body.AppendLine("Hasar: " + Number(damage));
-        body.AppendLine("Saldırı aralığı: " + Number(interval) + " sn");
+        body.AppendLine("Saldırı hızı: " + Number(interval) + " /sn");
         body.AppendLine("Kritik şansı: %" + Number(critical * 100f));
     }
     private static void Bonus(StringBuilder body, string label, float value)

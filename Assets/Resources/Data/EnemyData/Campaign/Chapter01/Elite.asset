@@ -26,6 +26,5 @@ MonoBehaviour:
   damage: 30
   attackInterval: 1.2
   goldReward: 29
-  experienceReward: 36
   weaknesses: 
   resistances: 

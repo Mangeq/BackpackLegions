@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ArcherData
   m_EditorClassIdentifier: 
   towerLevel: 1
-  firstLevelExperience: 24
-  experienceIncreasePerLevel: 12
+  upgradeBaseCost: 100
+  upgradeCostPerLevel: 50
+  attackSpeedVersion: 1
   levelDamageGrowth: 0.05
   levelAttackSpeedGrowth: 0.015
   levelCriticalGrowth: 0.003
@@ -28,7 +29,7 @@ MonoBehaviour:
   damage: 13
   criticalChance: 0.05
   range: 4.7
-  attackSpeed: 1.1
+  attackSpeed: 0.9090909
   cost: 250
   explosionRadius: 1.5
   mortarFlightTime: 0.25

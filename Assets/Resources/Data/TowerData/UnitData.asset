@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: UnitData
   m_EditorClassIdentifier: 
   towerLevel: 1
-  firstLevelExperience: 24
-  experienceIncreasePerLevel: 12
+  upgradeBaseCost: 100
+  upgradeCostPerLevel: 50
+  attackSpeedVersion: 1
   levelDamageGrowth: 0.05
   levelAttackSpeedGrowth: 0.015
   levelCriticalGrowth: 0.003
@@ -28,7 +29,7 @@ MonoBehaviour:
   damage: 4
   criticalChance: 0.05
   range: 3
-  attackSpeed: 1.35
+  attackSpeed: 0.7407407
   cost: 225
   explosionRadius: 1.5
   mortarFlightTime: 0.25

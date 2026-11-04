@@ -1,0 +1,37 @@
+[
+  {
+    "chapter": 1,
+    "map": "Chapter01(Clone)",
+    "slots": 5,
+    "path": "PathComplete",
+    "corners": 29
+  },
+  {
+    "chapter": 2,
+    "map": "Chapter02(Clone)",
+    "slots": 6,
+    "path": "PathComplete",
+    "corners": 34
+  },
+  {
+    "chapter": 3,
+    "map": "Chapter03(Clone)",
+    "slots": 7,
+    "path": "PathComplete",
+    "corners": 41
+  },
+  {
+    "chapter": 4,
+    "map": "Chapter04(Clone)",
+    "slots": 8,
+    "path": "PathComplete",
+    "corners": 38
+  },
+  {
+    "chapter": 5,
+    "map": "Chapter05(Clone)",
+    "slots": 9,
+    "path": "PathComplete",
+    "corners": 44
+  }
+]

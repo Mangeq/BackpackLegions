@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-// Hedef sırası, menzil, çanta ve XP ortak Tower sınıfında kalır.
+// Hedef sırası, menzil, çanta ve yükseltme ortak Tower sınıfında kalır.
 public class MortarTower : Tower
 {
     public MortarProjectile projectilePrefab;

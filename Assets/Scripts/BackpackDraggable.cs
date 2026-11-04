@@ -64,6 +64,19 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         if (sourcePlacedItem == null) Destroy(gameObject);
     }
 
+    private Vector2 grabOffset;
+    private void LateUpdate()
+    {
+        if (!isDragging) return;
+        pointerPosition = Input.mousePosition;
+        MoveWithPointer();
+    }
+    private void MoveWithPointer()
+    {
+        var parent = rectTransform.parent as RectTransform;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, pointerPosition, pointerCamera, out var local))
+            rectTransform.localPosition = (Vector3)(local + grabOffset);
+    }
     private void Update()
     {
         if (!isDragging) return;
@@ -92,6 +105,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         rootCanvas = GetComponentInParent<Canvas>();
+        if (rootCanvas != null) rootCanvas = rootCanvas.rootCanvas;
     }
 
     public void InitializeAsPlaced(PlacedItem placedItem, Backpack ownerBag = null)
@@ -139,6 +153,10 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         if (rootCanvas != null)
             transform.SetParent(rootCanvas.transform, true);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform.parent as RectTransform,
+            pointerPosition, pointerCamera, out var grabbed);
+        grabOffset = sourcePlacedItem != null ? (Vector2)rectTransform.localPosition - grabbed : Vector2.zero;
+        transform.SetAsLastSibling();
 
         if (sourcePlacedItem != null)
         {
@@ -164,9 +182,7 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void RefreshDragPreview()
     {
         UpdateSellPreview();
-        RectTransform parent = rectTransform.parent as RectTransform;
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(parent, pointerPosition, pointerCamera, out Vector3 world))
-            rectTransform.position = world;
+        MoveWithPointer();
 
         Backpack targetBag;
         Vector2Int? cell = BackpackUIManager.Instance.FindDropCell(pointerPosition, pointerCamera, out targetBag);

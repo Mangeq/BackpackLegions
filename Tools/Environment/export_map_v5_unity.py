@@ -1,8 +1,8 @@
-import bpy,json,math
+import bpy,json,math,sys
 from pathlib import Path
 from mathutils import Vector
-ROOT=Path('C:/Users/Emir/BackPackDefance');OUT=ROOT/'Assets/Art/BlackpineV5Test';OUT.mkdir(parents=True,exist_ok=True)
-scene=bpy.data.scenes['Blackpine_V5_UnityTower_Theme'];bpy.context.window.scene=scene
+ROOT=Path('C:/Users/Emir/BackPackDefance');version='V6' if '--v6' in sys.argv else 'V5';OUT=ROOT/('Assets/Art/Blackpine'+version+'Test');OUT.mkdir(parents=True,exist_ok=True)
+scene=bpy.data.scenes['Blackpine_V6_84x72_Forest_Castle' if version=='V6' else 'Blackpine_V5_UnityTower_Theme'];bpy.context.window.scene=scene
 hidden={'V3_Base_Architecture','V3_Base_Details','SOURCE_UnityTower_Hidden','Tactical_Overlay'}
 exportgroups={};materials={};deps=bpy.context.evaluated_depsgraph_get()
 source=list(scene.objects)
@@ -33,15 +33,26 @@ for o in source:
 # Batch static pieces by semantic collection, retaining source hierarchy meaning.
 exported=[];exportobjects=[]
 for group,objs in exportgroups.items():
-    bpy.ops.object.select_all(action='DESELECT')
-    for o in objs:o.select_set(True)
-    bpy.context.view_layer.objects.active=objs[0]
-    if len(objs)>1:bpy.ops.object.join()
-    o=bpy.context.object;o.name=group
-    bpy.ops.object.transform_apply(location=True,rotation=True,scale=True)
+    vs=[];faces=[];slots=[];smooth=[];uvs=[];mats=[]
+    for src in objs:
+        me=src.data;off=len(vs);vs.extend([tuple(v.co) for v in me.vertices]);local=[]
+        for m in me.materials:
+            if m not in mats:mats.append(m)
+            local.append(mats.index(m))
+        for p in me.polygons:
+            faces.append(tuple(off+i for i in p.vertices));slots.append(local[p.material_index] if local else 0);smooth.append(p.use_smooth)
+        uvs.extend([tuple(v.uv) for v in me.uv_layers.active.data] if me.uv_layers.active else [(0,0)]*len(me.loops))
+    me=bpy.data.meshes.new(group);me.from_pydata(vs,[],faces);me.update()
+    for m in mats:me.materials.append(m)
+    for p,slot,sm in zip(me.polygons,slots,smooth):p.material_index=slot;p.use_smooth=sm
+    uv=me.uv_layers.new(name='UVMap')
+    for l,v in zip(uv.data,uvs):l.uv=v
+    o=bpy.data.objects.new(group,me);scene.collection.objects.link(o)
+    for src in objs:bpy.data.objects.remove(src,do_unlink=True)
     o.data.calc_loop_triangles();exported.append({'group':group,'triangles':len(o.data.loop_triangles)});exportobjects.append(o)
-bpy.ops.object.select_all(action='DESELECT')
+bpy.context.view_layer.update()
+for o in bpy.context.view_layer.objects:o.select_set(False)
 for o in exportobjects:o.select_set(True)
-bpy.ops.export_scene.fbx(filepath=str(OUT/'Blackpine_V5_Map.fbx'),use_selection=True,object_types={'MESH'},axis_forward='-Z',axis_up='Y',apply_unit_scale=True,apply_scale_options='FBX_SCALE_UNITS',bake_space_transform=True,bake_anim=False,add_leaf_bones=False,use_mesh_modifiers=True)
+bpy.ops.export_scene.fbx(filepath=str(OUT/('Blackpine_'+version+'_Map.fbx')),use_selection=True,object_types={'MESH'},axis_forward='-Z',axis_up='Y',apply_unit_scale=True,apply_scale_options='FBX_SCALE_UNITS',bake_space_transform=True,bake_anim=False,add_leaf_bones=False,use_mesh_modifiers=True)
 (OUT/'materials.json').write_text(json.dumps(list(materials.values()),indent=2))
-(ROOT/'ArtSource/BlackpineMapV5_TowerTheme/unity_export_report.json').write_text(json.dumps({'groups':exported,'triangles':sum(a['triangles'] for a in exported)},indent=2))
+(ROOT/('ArtSource/BlackpineMapV6_ForestCastle' if version=='V6' else 'ArtSource/BlackpineMapV5_TowerTheme')/'unity_export_report.json').write_text(json.dumps({'groups':exported,'triangles':sum(a['triangles'] for a in exported)},indent=2))

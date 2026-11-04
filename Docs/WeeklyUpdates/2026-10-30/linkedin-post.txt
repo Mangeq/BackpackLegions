@@ -1,0 +1,7 @@
+Backpack Legions testinde ilk bölümü üçüncü denemede, kalede sadece 4 can kalmışken geçtim. Önceki denemede aynı son dalgada kaybetmiştim. Birliği yolun başına yakın kurmak, düşmanlarla daha erken karşılaşmasını sağladı.
+
+Son paylaşımdan beri Blackpine haritasını oynanabilir sahneye taşıdım. Kule değiştirirken artık çantadaki eşyaların satış getirisini onay vermeden görebiliyorsunuz. Element değişiminde ise kule seviyesini koruyor ve yeni katalizörü çantada ana silahın yanına koyana kadar nötr kalıyor.
+
+Ok, büyü ve havan atışlarına, ayrıca eşya alışverişine ses efektleri ekledim. Beş bölümü de oynama testine aldım. Sırada yaklaşan hava dalgasını oyuncuya daha iyi göstermek ve ilk bölümü birkaç farklı savunma düzeniyle yeniden denemek var.
+
+#BackpackLegions #OyunGeliştirme #Unity

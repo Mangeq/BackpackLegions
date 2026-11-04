@@ -1,0 +1,11 @@
+{
+  "frame": 704,
+  "before": 0.9090909,
+  "after": 1.13636363,
+  "expected": 1.13636363,
+  "attackSpeedBonusCorrect": true,
+  "disabledBlocked": true,
+  "dragDelta": "(230.00, 100.00)",
+  "cursorAttachmentExact": true,
+  "sourceRestored": true
+}

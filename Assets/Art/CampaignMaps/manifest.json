@@ -1,0 +1,29 @@
+{
+  "maps": [
+    {
+      "chapter": 1,
+      "name": "Pinewatch",
+      "slots": 5
+    },
+    {
+      "chapter": 2,
+      "name": "AmberCanyon",
+      "slots": 6
+    },
+    {
+      "chapter": 3,
+      "name": "Mistfen",
+      "slots": 7
+    },
+    {
+      "chapter": 4,
+      "name": "Frostgate",
+      "slots": 8
+    },
+    {
+      "chapter": 5,
+      "name": "Crownfall",
+      "slots": 9
+    }
+  ]
+}

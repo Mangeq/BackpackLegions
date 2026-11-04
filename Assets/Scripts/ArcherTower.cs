@@ -6,25 +6,25 @@ public class ArcherTower : Tower
     public float arcDamage;
     private GameObject sequenceTarget;
     private int attacksOnTarget, hitStacks;
-    private float skillCooldown;
+    private float skillAttackSpeed;
     public int SkillSequenceVersion { get; private set; }
     public int SkillHitStacks => hitStacks;
     protected override void OnDisable() { base.OnDisable();ResetSequence(); }
     protected override void RefreshSkillStats() { ResetSequence();base.RefreshSkillStats(); }
     public override void CalculateStats()
     {
-        base.CalculateStats();skillCooldown=currentAttackSpeed;ApplyStackSpeed();
+        base.CalculateStats();skillAttackSpeed=currentAttackSpeed;ApplyStackSpeed();
     }
     private void ApplyStackSpeed()
     {
         float bonus=0f;
         foreach(var effect in skillEffects)if(effect.type==SkillData.EffectType.SameTargetHitSpeed)bonus+=Mathf.Min(hitStacks,effect.count)*effect.value/100f;
-        currentAttackSpeed=Mathf.Max(.1f,skillCooldown/(1f+bonus));
+        currentAttackSpeed=Mathf.Clamp(skillAttackSpeed*(1f+bonus),.01f,100f);
     }
     private void ResetSequence()
     {
         sequenceTarget=null;attacksOnTarget=0;hitStacks=0;SkillSequenceVersion++;
-        if(skillCooldown>0f)ApplyStackSpeed();
+        if(skillAttackSpeed>0f)ApplyStackSpeed();
     }
     protected override void OnTargetSelected(GameObject target)
     {

@@ -105,7 +105,7 @@ public class MortarProjectile : MonoBehaviour
             var enemy = collider.GetComponentInParent<Enemy>();
             if (enemy == null || enemy.enemyData == null || enemy.IsAir
                 || !enemy.gameObject.activeInHierarchy || enemy.CurrentHealth <= 0f || !hit.Add(enemy)) continue;
-            // Aynı düşmanın birden çok collider'ı olsa da tek hasar ve tek XP katkısı.
+            // Aynı düşmanın birden çok collider'ı olsa da yalnız bir kez hasar.
             enemy.TakeDamage(damage, element, owner);
         }
         if (effect == null) Release();

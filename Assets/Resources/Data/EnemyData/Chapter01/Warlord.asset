@@ -16,11 +16,15 @@ MonoBehaviour:
   flightHeight: 1
   enemyName: "Goblin Sava\u015F Lordu"
   element: 1
+  weaknessMultiplier: 1.5
+  resistanceMultiplier: 0.5
+  normalAttackMultiplier: 1
+  baseDamageOverride: 0
+  isBoss: 0
   health: 900
   speed: 1.5
   damage: 40
   attackInterval: 2
   goldReward: 200
-  experienceReward: 150
   weaknesses: 
   resistances: 

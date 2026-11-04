@@ -16,11 +16,15 @@ MonoBehaviour:
   flightHeight: 1
   enemyName: "Goblin Ak\u0131nc\u0131"
   element: 1
+  weaknessMultiplier: 1.5
+  resistanceMultiplier: 0.5
+  normalAttackMultiplier: 1
+  baseDamageOverride: 0
+  isBoss: 0
   health: 70
   speed: 4
   damage: 10
   attackInterval: 1.2
   goldReward: 18
-  experienceReward: 25
   weaknesses: 
   resistances: 

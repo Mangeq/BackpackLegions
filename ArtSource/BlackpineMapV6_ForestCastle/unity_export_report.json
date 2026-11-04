@@ -1,0 +1,89 @@
+{
+  "groups": [
+    {
+      "group": "Terrain",
+      "triangles": 120
+    },
+    {
+      "group": "Road",
+      "triangles": 360
+    },
+    {
+      "group": "River",
+      "triangles": 16752
+    },
+    {
+      "group": "Bridge",
+      "triangles": 10696
+    },
+    {
+      "group": "Tower_Pad_01",
+      "triangles": 2406
+    },
+    {
+      "group": "Tower_Pad_02",
+      "triangles": 2491
+    },
+    {
+      "group": "Tower_Pad_03",
+      "triangles": 2549
+    },
+    {
+      "group": "Tower_Pad_04",
+      "triangles": 2419
+    },
+    {
+      "group": "Tower_Pad_05",
+      "triangles": 2480
+    },
+    {
+      "group": "Forest",
+      "triangles": 221760
+    },
+    {
+      "group": "Rocks",
+      "triangles": 11366
+    },
+    {
+      "group": "Props",
+      "triangles": 23282
+    },
+    {
+      "group": "V3_Understory",
+      "triangles": 150331
+    },
+    {
+      "group": "V3_Environmental_Stories",
+      "triangles": 6103
+    },
+    {
+      "group": "REFERENCE_PREVIEW_Tower_On_Pad_02",
+      "triangles": 3872
+    },
+    {
+      "group": "V6_Forest_Extension",
+      "triangles": 1129920
+    },
+    {
+      "group": "V6_Forest_Understory",
+      "triangles": 62540
+    },
+    {
+      "group": "V6_Castle",
+      "triangles": 64658
+    },
+    {
+      "group": "V6_Castle_Details",
+      "triangles": 6883
+    },
+    {
+      "group": "V6_River_Extension",
+      "triangles": 17472
+    },
+    {
+      "group": "V6_Entrance_Road",
+      "triangles": 2
+    }
+  ],
+  "triangles": 1738462
+}

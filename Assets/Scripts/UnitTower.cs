@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -28,7 +28,7 @@ public class UnitTower : Tower
         // Her birligin nobet noktasi: kuleye en yakin yol parcasinin ortasinda, yol yonunde yan yana
         slotPositions = CalculateSlotPositions();
 
-        // Oyun basladiginda haritaya hemen maxUnitCount kadar birlik cikar
+        // İlk birlikler kuleden doğar, savaş başlayınca nöbet noktalarına yürür.
         for (int i = 0; i < maxUnitCount; i++)
         {
             SpawnUnitAt(i);
@@ -78,7 +78,7 @@ public class UnitTower : Tower
 
     private void SpawnUnitAt(int slot)
     {
-        GameObject unit = Instantiate(UnitPrefab, slotPositions[slot], Quaternion.identity);
+        GameObject unit = Instantiate(UnitPrefab, transform.position, Quaternion.identity);
         Unit unitComp = unit.GetComponent<Unit>();
         unitComp.myTower = gameObject;
         ApplyStatsTo(unitComp); // Kule backpack'indeki itemlerin statlarini birlige aktar

@@ -18,6 +18,9 @@ public class HoverInfoController : MonoBehaviour
     private UnityEngine.Object hovered;
     private float showAt, refreshAt;
     private GameManager gameManager;
+    private Tower rangeTower;
+    private LineRenderer rangeLine;
+    private Material rangeMaterial;
 
     private void Awake()
     {
@@ -29,7 +32,46 @@ public class HoverInfoController : MonoBehaviour
 
     private void Update()
     {
+        bool rightClick = Input.GetMouseButtonDown(1);
+        if (rightClick || Input.GetMouseButtonDown(0))
+            HandleRangeClick(Input.mousePosition, rightClick);
+        RefreshRange();
         UpdateHover(Input.mousePosition, Input.GetMouseButton(0));
+    }
+
+    private void HandleRangeClick(Vector2 position, bool rightClick)
+    {
+        var target = rightClick ? FindTarget(position) as Tower : null;
+        rangeTower = target != rangeTower ? target : null;
+        if (rangeLine != null && rangeTower == null) rangeLine.enabled = false;
+        ClearHover();
+    }
+
+    private void RefreshRange()
+    {
+        if (rangeLine == null && rangeTower != null)
+        {
+            var obj = new GameObject("TowerRange");
+            obj.transform.SetParent(transform, false);
+            rangeLine = obj.AddComponent<LineRenderer>();
+            rangeMaterial = new Material(Shader.Find("Sprites/Default"));
+            rangeLine.sharedMaterial = rangeMaterial;
+            rangeLine.useWorldSpace = true;
+            rangeLine.loop = true;
+            rangeLine.positionCount = 128;
+            rangeLine.widthMultiplier = .085f;
+            rangeLine.startColor = rangeLine.endColor = new Color(.35f, 1f, .65f, .85f);
+            rangeLine.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+        if (rangeLine == null) return;
+        rangeLine.enabled = rangeTower != null && rangeTower.isActiveAndEnabled && !gameManager.HasEnded;
+        if (!rangeLine.enabled) return;
+        var center = rangeTower.transform.position + Vector3.up * .12f;
+        for (int i = 0; i < 128; i++)
+        {
+            float angle = i * Mathf.PI * 2f / 128;
+            rangeLine.SetPosition(i, center + new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * rangeTower.CurrentRange);
+        }
     }
 
     // Girdi okuma ile hedef/gösterim akışını ayrı tutar.
@@ -42,6 +84,7 @@ public class HoverInfoController : MonoBehaviour
             return;
         }
         UnityEngine.Object target = FindTarget(position);
+        if (target is Tower) target = null;
         if (target != hovered)
         {
             hovered = target;
@@ -106,6 +149,11 @@ public class HoverInfoController : MonoBehaviour
         hovered = null;
         if (infoPanel != null) infoPanel.Hide();
     }
-    private void OnDisable() => ClearHover();
-    private void OnDestroy() { if (Instance == this) Instance = null; }
+    private void OnDisable()
+    {
+        rangeTower = null;
+        if (rangeLine != null) rangeLine.enabled = false;
+        ClearHover();
+    }
+    private void OnDestroy() { if (rangeMaterial != null) Destroy(rangeMaterial); if (Instance == this) Instance = null; }
 }

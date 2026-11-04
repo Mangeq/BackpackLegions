@@ -1,0 +1,20 @@
+{
+  "frame": 5955,
+  "units": [
+    {
+      "distance": 3.59404254,
+      "idle": false
+    },
+    {
+      "distance": 3.24886179,
+      "idle": false
+    }
+  ],
+  "rangeVisible": true,
+  "radius": 4.935,
+  "targetIsTower": true,
+  "boughtDuringCombat": true,
+  "spent": 325,
+  "itemEditing": false,
+  "enemies": 10
+}

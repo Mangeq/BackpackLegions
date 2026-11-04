@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,10 +14,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private float attackTimer;
     private bool isDead;
-    private readonly Dictionary<Tower, float> damageContributions = new Dictionary<Tower, float>();
-    private float totalDamageReceived;
-
-    // Kale teması aynı karedeki mermilerden önce ölüm/XP yolunu kapatır.
+    // Kale teması aynı karedeki mermilerden önce ölüm yolunu kapatır.
     public bool TryReachBase()
     {
         if (isDead) return false;
@@ -123,12 +120,6 @@ public class Enemy : MonoBehaviour
         if (isDead || damageAmount <= 0f || float.IsNaN(damageAmount) || float.IsInfinity(damageAmount)) return;
         float multiplier = enemyData.GetDamageMultiplier(elementType);
         float actualDamage = Mathf.Min(CurrentHealth, damageAmount * multiplier);
-        totalDamageReceived += actualDamage;
-        if (owner != null)
-        {
-            damageContributions.TryGetValue(owner, out float previous);
-            damageContributions[owner] = previous + actualDamage;
-        }
         currenthealth -= actualDamage;
         if (currenthealth <= 0f) Die();
     }
@@ -141,10 +132,6 @@ public class Enemy : MonoBehaviour
             currentUnit.GetComponent<Unit>().currentEnemy = null;
         }
         EconomyManager.AddGold(enemyData.goldReward);
-        if (totalDamageReceived > 0f)
-            foreach (var contribution in damageContributions)
-                if (contribution.Key != null)
-                    contribution.Key.AddExperience(enemyData.experienceReward * (contribution.Value / totalDamageReceived));
         Destroy(gameObject);
     }
 }

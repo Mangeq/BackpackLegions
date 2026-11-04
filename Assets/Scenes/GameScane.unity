@@ -11218,7 +11218,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ed86016e3a6fe0946a95a6d1ae79efd8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4865064391339405807, guid: ed86016e3a6fe0946a95a6d1ae79efd8,
         type: 3}
@@ -36640,6 +36640,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e704efb0b90f7eb4d8cc39e02b328df3,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e704efb0b90f7eb4d8cc39e02b328df3,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -39185,6 +39190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoStartDelay: 60
+  itemPlacementEnabled: 1
   pausePanel: {fileID: 1231478633}
   settingsPanel: {fileID: 1495698312}
   GameOverPanel: {fileID: 909218359}
@@ -46640,6 +46646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04aea9fea7b09c84faa92ceb27f130d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldUpgrade: {fileID: 0}
+  goldUpgradeCaption: {fileID: 0}
+  itemPlacementLock: {fileID: 0}
   bags: {fileID: 1463167110}
   ui: {fileID: 1147619042}
   shop: {fileID: 705441573}

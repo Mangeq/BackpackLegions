@@ -190,15 +190,16 @@ public sealed partial class TowerPanelLayout : MonoBehaviour
         if(!root.gameObject.activeInHierarchy||bags.ActiveTower==null)return;
         var t=bags.ActiveTower;
         title.Set(ui.towerPanelTitle.text.Replace("  ·  "," • "));
-        stats[0].Set(Number(t.currentDamage));stats[1].Set(Number(t.currentAttackSpeed)+" sn");
+        stats[0].Set(Number(t.currentDamage));stats[1].Set(Number(t.currentAttackSpeed)+" /sn");
         stats[2].Set("%"+Number(100*t.currentCriticalChance));
         stats[3].Set(t is UnitTower?"%"+Number(100*t.currentHealthBonus):Number(t.CurrentRange)+" birim");
         details[0].Set(Breakdown(t.baseDamage,t.currentDamage));
-        details[1].Set(Breakdown(t.baseAttackSpeed,t.currentAttackSpeed," sn"));
+        details[1].Set(Breakdown(t.baseAttackSpeed,t.currentAttackSpeed," /sn"));
         details[2].Set(Breakdown(t.baseCriticalChance*100,t.currentCriticalChance*100));
         xp.Set(ui.towerExperienceText.text);status.text.gameObject.SetActive(false);offers.Set(shop.offerCountText.text);
         RefreshPanelV2(t);
-        progress.fillAmount=Mathf.Clamp01(t.Experience/t.ExperienceRequired);
+        progress.gameObject.SetActive(false);
+        RefreshGoldUpgrade(t);
         for(int i=cards.Count;i<shop.shopSlots.Length;i++)PrepareCard(shop.shopSlots[i]);
         foreach(var card in cards)
         {

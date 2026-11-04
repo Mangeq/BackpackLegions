@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -63,7 +63,7 @@ public class UİManager : MonoBehaviour
     public UnityEngine.UI.Text towerPanelStats;
     public UnityEngine.UI.Text towerPanelGold;
     public Camera towerPreviewCamera;
-    [Header("Kule XP ve element seçimi")]
+    [Header("Kule yükseltme ve element seçimi")]
     public UnityEngine.UI.Text towerExperienceText;
     public UnityEngine.UI.Text towerElementStatus;
     public UnityEngine.UI.Image towerExperienceFill;
@@ -240,7 +240,7 @@ public class UİManager : MonoBehaviour
                 + "\nÇantadaki " + transitionOwner.TypeChangeSaleCount + " eşya SATILACAK: +" + transitionOwner.TypeChangeSaleValue + " altın"
                 + "\nİşlem sonrası altın: " + (EconomyManager.Gold + transitionOwner.TypeChangeSaleValue - transitionOwner.GetTypeChangeCost(transitionPrefab))
                 : "Okçu, büyü, birlik veya havan kulesine geçebilirsin.")
-                + "\n\nSeviye 1 · XP 0 · Normal element\nEski ana eşya yeni başlangıç eşyasıyla değiştirilir."
+                + "\n\nSeviye 1 · Normal element\nEski ana eşya yeni başlangıç eşyasıyla değiştirilir."
                 + "\nÇanta ve takılı parçalar sıfırlanır; satış bedeli yukarıya dahildir."
                 + "\nDepo ve teslim bekleyen eşyalar korunur.\nMağaza ve rezervasyonlar sıfırlanır."
                 + (transitionOwner is UnitTower ? "\nMevcut askerler kaldırılır." : "")
@@ -254,7 +254,7 @@ public class UİManager : MonoBehaviour
                 + "\nElement mağazasını yeniden açma bedeli: " + transitionOwner.ElementChangeCost + " altın"
                 + "\nKatalizörün mağazada görünen fiyatı ayrıca ödenir."
                 + "\n\nKabul edersen element seçim mağazası açılır."
-                + "\nKabul anında ana silah ve kule NÖTR olur. Seviye ve XP korunur."
+                + "\nKabul anında ana silah ve kule NÖTR olur. Kule seviyesi korunur."
                 + "\nYeni katalizörü yerleştirene kadar savaşta da nötr kalır."
                 + "\nYeni elemente uymayan eski element eşyaları İŞLEVSİZ olur."
                 + "\nBu eşyaların üzerinde İŞLEVSİZ yazacak; bonus vermeyecekler."
@@ -371,7 +371,7 @@ public class UİManager : MonoBehaviour
         {
             var parent=TowerShopUI.transform.parent as RectTransform;
             if(parent!=null&&GetComponent<TowerPurchaseSkin>()==null)TowerShopUI.transform.localScale=Vector3.one*Mathf.Min(1f,Mathf.Min(parent.rect.width/700f,parent.rect.height/760f));
-            if(gameManager!=null && gameManager.CurrentState!=GameManager.GameState.Preparation)ClosePurchasePanel();
+            if(gameManager!=null && !GameManager.CanBuyTowers)ClosePurchasePanel();
         }
         if (gameManager == null) return;
         RefreshTowerPanel();
@@ -415,11 +415,8 @@ public class UİManager : MonoBehaviour
             name = ElementLabel(t.SelectedElement) + (t is UnitTower ? " Birlik Kulesi" : t is ArcherTower ? " Okçusu" : t is MortarTower ? " Havanı" : " Büyücüsü");
         if (towerPanelTitle != null) towerPanelTitle.text = name + "  ·  Seviye " + t.towerLevel;
         if (towerPanelGold != null) towerPanelGold.text = EconomyManager.Gold + " altın";
-        if (towerExperienceText != null)
-            towerExperienceText.text = "XP  " + t.Experience.ToString("0.#") + " / " + t.ExperienceRequired.ToString("0.#")
-                + "    ·    " + ElementLabel(t.SelectedElement);
-        if (towerExperienceFill != null)
-            towerExperienceFill.rectTransform.anchorMax = new Vector2(Mathf.Clamp01(t.Experience / t.ExperienceRequired), 1f);
+        if (towerExperienceText != null) towerExperienceText.text = "YÜKSELT  ·  " + t.UpgradeCost + " altın";
+        if (towerExperienceFill != null) towerExperienceFill.gameObject.SetActive(false);
         if (towerElementStatus != null)
             towerElementStatus.text = !string.IsNullOrEmpty(t.ElementSelectionError) ? t.ElementSelectionError
                 : t.Level<5 ? "5. seviyede element eşyaları mağazaya gelir" : "Element eşyasını ana silahın yanına koy";
@@ -432,7 +429,7 @@ public class UİManager : MonoBehaviour
         if (towerPanelStats != null)
         {
             towerPanelStats.text = "HASAR  " + t.currentDamage.ToString("0.##") + "     (Temel " + t.baseDamage.ToString("0.##") + " · Eşya " + (t.currentDamage-t.baseDamage).ToString("+0.##;-0.##;0") + ")\n"
-                + "ATIŞ ARALIĞI  " + t.currentAttackSpeed.ToString("0.##") + " sn     (Temel " + t.baseAttackSpeed.ToString("0.##") + " · Eşya " + (t.currentAttackSpeed-t.baseAttackSpeed).ToString("+0.##;-0.##;0") + " sn)\n"
+                + "SALDIRI HIZI  " + t.currentAttackSpeed.ToString("0.##") + " /sn     (Temel " + t.baseAttackSpeed.ToString("0.##") + " · Eşya " + (t.currentAttackSpeed-t.baseAttackSpeed).ToString("+0.##;-0.##;0") + " /sn)\n"
                 + "KRİTİK  %" + (100*t.currentCriticalChance).ToString("0.#") + "     (Temel %" + (100*t.baseCriticalChance).ToString("0.#") + " · Eşya " + (100*(t.currentCriticalChance-t.baseCriticalChance)).ToString("+0.#;-0.#;0") + " puan)\n"
                 + (t is UnitTower ? "ASKER CAN BONUSU  %" + (100*t.currentHealthBonus).ToString("0.#") + " · Değerler asker başına" : "MENZİL  " + t.CurrentRange.ToString("0.#") + " birim");
             if (t is MortarTower) towerPanelStats.text += " · PATLAMA  " + t.data.explosionRadius.ToString("0.#") + " · Yalnız kara";
@@ -517,7 +514,7 @@ public class UİManager : MonoBehaviour
         if (towerPurchaseFeedback == null) return;
         if (!canBuy)
         {
-            towerPurchaseFeedback.text = "Kule alımı kilitli · Hazırlığı bekle";
+            towerPurchaseFeedback.text = "Kule alımı şu anda kapalı";
             towerPurchaseFeedback.color = new Color(1f, 0.35f, 0.3f);
             return;
         }
@@ -550,9 +547,9 @@ public class UİManager : MonoBehaviour
             purchasePortrait.enabled = mortarPurchasePortrait != null;
         }
         // Satın alınınca verilen ana itemin katkısı da fiyat kartındaki başlangıç değerlerine dahildir.
-        var item=data.defaultWeapon;float damage=data.damage*(1+(item!=null?item.damageBonus:0));float interval=Mathf.Max(.1f,data.attackSpeed/(1+(item!=null?item.attackSpeedBonus:0)));float crit=Mathf.Clamp01(data.criticalChance+(item!=null?item.criticalChanceBonus:0));
-        purchaseStats.text=(unit?"ASKER BAŞINA HASAR":"HASAR")+"\nATIŞ ARALIĞI\nKRİTİK ŞANSI\n";
-        string values=damage.ToString("0.##")+"\n"+interval.ToString("0.##")+" sn\n%"+(crit*100).ToString("0.#")+"\n";
+        var item=data.defaultWeapon;float damage=data.damage*(1+(item!=null?item.damageBonus:0));float speed=Mathf.Max(.01f,data.attackSpeed*(1+(item!=null?item.attackSpeedBonus:0)));float crit=Mathf.Clamp01(data.criticalChance+(item!=null?item.criticalChanceBonus:0));
+        purchaseStats.text=(unit?"ASKER BAŞINA HASAR":"HASAR")+"\nSALDIRI HIZI\nKRİTİK ŞANSI\n";
+        string values=damage.ToString("0.##")+"\n"+speed.ToString("0.##")+" /sn\n%"+(crit*100).ToString("0.#")+"\n";
         if(unit){var barracks=(UnitTower)tower;purchaseStats.text+="BİRLİK SAYISI\nYENİDEN ÜRETİM\n";values+=barracks.maxUnitCount+"\n"+barracks.spawnCooldown.ToString("0.#")+" sn\n";}
         else {purchaseStats.text+="MENZİL\n";values+=data.range.ToString("0.#")+"\n";}
         if (tower is MortarTower) { purchaseStats.text += "PATLAMA YARIÇAPI\n"; values += data.explosionRadius.ToString("0.#") + "\n"; }

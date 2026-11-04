@@ -63,7 +63,7 @@ public class ShopUIManager : MonoBehaviour
         if (freezeButton != null) freezeButton.gameObject.SetActive(false);
         if (freezeButtonText != null) freezeButtonText.text = frozen ? "Dondurmayı kaldır" : "Dükkanı dondur";
         if (interactionStatus != null)
-            interactionStatus.text = !canEdit ? "Eşya işlemleri kilitli · Hazırlığı bekle" : frozen ? "Bu kulenin teklifleri korunuyor" : "Hazırlık · Eşyaları düzenleyebilirsin";
+            interactionStatus.text = !canEdit ? "Eşya işlemleri kilitli · Hazırlıkta açılır" : frozen ? "Bu kulenin teklifleri korunuyor" : "Hazırlık · Eşyaları düzenleyebilirsin";
     }
 
     public void ToggleFreeze()
