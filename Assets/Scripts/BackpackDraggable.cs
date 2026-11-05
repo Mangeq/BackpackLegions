@@ -167,6 +167,10 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
             sourceBag.Remove(sourcePlacedItem);
         }
         BackpackUIManager.Instance.ConfigureItemVisual(rectTransform, data, Rotation, true);
+        var shadow=GetComponent<UnityEngine.UI.Shadow>();
+        if(!shadow)shadow=gameObject.AddComponent<UnityEngine.UI.Shadow>();
+        shadow.effectDistance=new Vector2(5,-6);shadow.effectColor=new Color(0,0,0,.55f);
+        rectTransform.localScale*=1.05f;
         UpdateSellPreview();
     }
 
@@ -267,7 +271,9 @@ public class BackpackDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler,
         dragOwner.CalculateStats();
         if(placed&&draggedItem.Bag==dragOwner.Storage)
             BackpackUIManager.Instance.RememberStorageDrop(draggedItem,eventData.position,eventData.pressEventCamera);
+        var releasePosition=rectTransform.position;
         BackpackUIManager.Instance.RefreshItemVisuals();
+        BackpackUIManager.Instance.ShowDropMotion(draggedItem,releasePosition,placed);
 
         if (sourcePlacedItem == null)
             Destroy(gameObject); // mağaza ghost'u geçiciydi, işi bitti (başarılıysa gerçek görsel Refresh ile oluştu)

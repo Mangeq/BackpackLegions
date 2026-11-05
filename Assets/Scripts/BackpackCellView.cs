@@ -36,11 +36,21 @@ public class BackpackCellView : MonoBehaviour
         }
     }
 
+    private RectTransform hatch;
     public void SetHighlight(CellHighlightState state)
     {
         if (background == null || BackpackUIManager.Instance == null)
             return;
 
+        if(state==CellHighlightState.Invalid && !hatch)
+        {
+            var go=new GameObject("Blocked cell",typeof(RectTransform),typeof(Image));
+            hatch=(RectTransform)go.transform;hatch.SetParent(transform,false);
+            hatch.sizeDelta=new Vector2(((RectTransform)transform).rect.width*.8f,3);
+            hatch.localRotation=Quaternion.Euler(0,0,40);
+            var stripe=go.GetComponent<Image>();stripe.raycastTarget=false;stripe.color=new Color(1,.8f,.6f);
+        }
+        if(hatch)hatch.gameObject.SetActive(state==CellHighlightState.Invalid);
         switch (state)
         {
             case CellHighlightState.Valid:

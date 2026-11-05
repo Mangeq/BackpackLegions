@@ -14,7 +14,8 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private float attackTimer;
     private bool isDead;
-    // Kale temasÄ± aynÄ± karedeki mermilerden Ã¶nce Ã¶lÃ¼m yolunu kapatÄ±r.
+    private LegionFigure figure;
+    // Kale temasý ayný karedeki mermilerden önce ölüm yolunu kapatýr.
     public bool TryReachBase()
     {
         if (isDead) return false;
@@ -22,11 +23,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
         return true;
     }
-    [Tooltip("UÃ§an prefabÄ±n gÃ¶rsel kÃ¶kÃ¼. Yol takibi ve kale temasÄ± ana objede kalÄ±r.")]
+    [Tooltip("Uçan prefabýn görsel kökü. Yol takibi ve kale temasý ana objede kalýr.")]
     public Transform visualRoot;
     public bool IsAir => enemyData != null && enemyData.movementType == EnemyData.MovementType.Air;
-    public Vector3 AimPosition => IsAir && visualRoot != null ? visualRoot.position : transform.position;
-    // UI canÄ± okuyabilir; savaÅŸ verisini deÄŸiÅŸtiremez.
+    public Vector3 AimPosition => figure ? figure.Center : IsAir && visualRoot != null ? visualRoot.position : transform.position;
+    // UI caný okuyabilir; savaþ verisini deðiþtiremez.
     public float CurrentHealth => Mathf.Max(0f, currenthealth);
     public float MaxHealth => enemyData != null ? enemyData.health : 0f;
     internal bool isEngaged = false; // Bir birlik tarafindan hedeflenip savasiliyor mu (baska birliklerin ayni dusmani secmesini onler)
@@ -39,7 +40,10 @@ public class Enemy : MonoBehaviour
         speed = enemyData.speed;
         currenthealth = enemyData.health;
         // Per-instance tint: shared materials and other enemies remain untouched.
-        if (enemyData.element != ElementType.Normal)
+        float size = enemyData.isBoss ? .93f : IsAir ? .62f : Mathf.Clamp(transform.lossyScale.x*2.02f,.34f,1.27f);
+        figure=LegionFigure.Attach(transform,IsAir?visualRoot:null,enemyData.characterModel,size,IsAir);
+        if (figure && enemyData.element!=ElementType.Normal) figure.Accent(LegionFx.Hue(enemyData.element));
+        if (!figure && enemyData.element != ElementType.Normal)
         {
             Color tint = enemyData.element == ElementType.Fire ? new Color(1f,.35f,.16f)
                 : enemyData.element == ElementType.Water ? new Color(.2f,.65f,1f)
@@ -59,7 +63,7 @@ public class Enemy : MonoBehaviour
         if (IsAir)
         {
             if (visualRoot != null) visualRoot.position += Vector3.up * enemyData.flightHeight;
-            // Yol Ã¼zerinde ilerler, fakat yerdeki asker/dÃ¼ÅŸmanlardan kaÃ§Ä±nmak iÃ§in beklemez.
+            // Yol üzerinde ilerler, fakat yerdeki asker/düþmanlardan kaçýnmak için beklemez.
             agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         }
         agent.SetDestination(GameObject.FindWithTag("Base").transform.position);
@@ -69,19 +73,22 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDead || !isEngaged) return;
+        if (isDead) return;
+        if (figure) figure.Tick(!isEngaged, currentUnit ? currentUnit.transform.position-transform.position : agent.velocity,
+            speed,isEngaged ? attackTimer : -1,enemyData.attackInterval);
+        if (!isEngaged) return;
         if (currentUnit == null)
         {
             ResumeMoving();
             return;
         }
 
-        // SaldÄ±rÄ± ritmi askerin hÄ±zÄ±ndan baÄŸÄ±msÄ±zdÄ±r; pause ile birlikte durur.
+        // Saldýrý ritmi askerin hýzýndan baðýmsýzdýr; pause ile birlikte durur.
         attackTimer -= Time.deltaTime;
         if (attackTimer > 0f) return;
         attackTimer = Mathf.Max(0.1f, enemyData.attackInterval);
         Unit unit = currentUnit.GetComponent<Unit>();
-        if (unit != null && unit.health > 0) unit.TakeDamage(damage);
+        if (unit != null && unit.health > 0) { if(figure)figure.Contact(); unit.TakeDamage(damage); }
         else ResumeMoving();
     }
 
@@ -111,15 +118,17 @@ public class Enemy : MonoBehaviour
             currentUnit = unit;
             isEngaged = true;
             StopMoving();
-            // Ä°lk vuruÅŸ da dÃ¼ÅŸmanÄ±n kendi saldÄ±rÄ± sÃ¼resini bekler.
+            // Ýlk vuruþ da düþmanýn kendi saldýrý süresini bekler.
             attackTimer = Mathf.Max(0.1f, enemyData.attackInterval);
         }
     }
-    public void TakeDamage(float damageAmount, ElementType elementType, Tower owner = null)
+    public void TakeDamage(float damageAmount, ElementType elementType, Tower owner = null, bool critical = false)
     {
         if (isDead || damageAmount <= 0f || float.IsNaN(damageAmount) || float.IsInfinity(damageAmount)) return;
         float multiplier = enemyData.GetDamageMultiplier(elementType);
         float actualDamage = Mathf.Min(CurrentHealth, damageAmount * multiplier);
+        if(figure) figure.Hit();
+        LegionFx.Burst(AimPosition,elementType,critical);
         currenthealth -= actualDamage;
         if (currenthealth <= 0f) Die();
     }
@@ -131,6 +140,7 @@ public class Enemy : MonoBehaviour
         {
             currentUnit.GetComponent<Unit>().currentEnemy = null;
         }
+        if(figure) figure.Fall();
         EconomyManager.AddGold(enemyData.goldReward);
         Destroy(gameObject);
     }

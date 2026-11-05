@@ -9,7 +9,7 @@ public class MortarProjectile : MonoBehaviour
     private Tower owner;
     private ElementType element;
     private bool initialized, exploded;
-    private bool reusable;
+    private bool reusable, critical;
     private ParticleSystem effect;
     private Renderer[] shellRenderers;
     private MaterialPropertyBlock properties;
@@ -52,7 +52,8 @@ public class MortarProjectile : MonoBehaviour
         height = Mathf.Max(0f, source.data.mortarArcHeight);
         radius = Mathf.Max(0.1f, source.data.explosionRadius);
         // Kritik tek atış için belirlenir. Element çarpanını her Enemy kendisi uygular.
-        damage = attackDamage * (Random.value < Mathf.Clamp01(criticalChance)
+        critical = Random.value < Mathf.Clamp01(criticalChance);
+        damage = attackDamage * (critical
             ? Mathf.Max(1f, source.data.mortarCriticalMultiplier) : 1f);
         Color tint = element == ElementType.Water ? new Color(.2f, .65f, 1f)
             : element == ElementType.Fire ? new Color(1f, .3f, .08f)
@@ -94,6 +95,7 @@ public class MortarProjectile : MonoBehaviour
             effect.transform.localScale = Vector3.one * (radius / scale);
             effect.Play();
         }
+        LegionFx.Ring(destination,radius,new Color(.72f,.52f,.32f));
         int count;
         // Tam dolu tamponu büyütüp yeniden sorgula: yoğun gruplarda hedef kaybetme.
         while ((count = Physics.OverlapSphereNonAlloc(destination, radius, overlaps, ~0, QueryTriggerInteraction.Collide)) == overlaps.Length)
@@ -106,7 +108,7 @@ public class MortarProjectile : MonoBehaviour
             if (enemy == null || enemy.enemyData == null || enemy.IsAir
                 || !enemy.gameObject.activeInHierarchy || enemy.CurrentHealth <= 0f || !hit.Add(enemy)) continue;
             // Aynı düşmanın birden çok collider'ı olsa da yalnız bir kez hasar.
-            enemy.TakeDamage(damage, element, owner);
+            enemy.TakeDamage(damage, element, owner,critical);
         }
         if (effect == null) Release();
     }

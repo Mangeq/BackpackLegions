@@ -1,0 +1,7 @@
+Protected components unchanged: 3679
+Original transforms unchanged: 1365
+Collider components unchanged: 32
+Gameplay scripts unchanged: 1278
+Road, bridge and pad MeshFilters unchanged: 7
+New visual renderers (no colliders/scripts): 6
+Backup: Assets/Scenes/Backups/GameScane_Before_V6_VisualOnly.unity

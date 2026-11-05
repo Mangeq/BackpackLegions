@@ -52,7 +52,8 @@ public class ArcherTower : Tower
             if(effect.type==SkillData.EffectType.LowHealthDamage&&enemy.CurrentHealth<enemy.MaxHealth*effect.threshold/100f)bonus+=effect.value/100f;
             if(effect.type==SkillData.EffectType.EveryNthAttackCritical&&attacksOnTarget%effect.count==0)guaranteed=true;
         }
-        GameObject bullet=Instantiate(ArcherBulletP,transform.position,Quaternion.identity);
+        Vector3 origin=LegionWeapon.Release(this,target);
+        GameObject bullet=Instantiate(ArcherBulletP,origin,Quaternion.identity);
         bullet.GetComponent<Bullet>().Initialize(target.transform,currentDamage*(1f+bonus),guaranteed?1f:currentCriticalChance,this);
         GameAudio.Play("arrow_tower_attack", .32f, true, .07f);
     }

@@ -14,7 +14,7 @@ public sealed class HudReferenceSkin : MonoBehaviour
     void LateUpdate() { Refresh(); }
     public void Refresh()
     {
-        if(gold!=null&&goldSource!=null)gold.text=goldSource.text;
+        if(gold!=null && goldSource!=null && gold.text!=goldSource.text){gold.text=goldSource.text;LegionUiMotion.Pulse(gold.transform);}
         if(wave!=null&&waveSource!=null)wave.text=waveSource.text.Replace("WAVE: ","WAVE:\n");
         if(countdown!=null&&ui!=null&&ui.preparationCountdownText!=null)countdown.text=ui.preparationCountdownText.text;
         if(ui==null||speedLabels==null)return;

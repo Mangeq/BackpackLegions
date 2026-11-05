@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public bool CanChangeSpeed => CurrentState == GameState.Combat && !IsPaused;
     [Min(0f)] public float autoStartDelay = 60f;
     private static GameManager instance;
+    // Finish transient battle visuals when preparation or results stop the combat clock.
+    internal static float EffectDelta => instance && !instance.IsPaused && instance.CurrentState!=GameState.Combat
+        ? Time.unscaledDeltaTime : Time.deltaTime;
     private UİManager uiManager;
     public bool itemPlacementEnabled = true;
     public static bool ItemPlacementEnabled => instance != null && instance.itemPlacementEnabled;
@@ -215,6 +218,7 @@ public class GameManager : MonoBehaviour
         gm.gameOverText.text=isVictory&&gm.victoryPanel==null?"BÖLÜM GEÇİLDİ":"KULE DÜŞTÜ";
         gm.GameOverPanel.SetActive(!isVictory || gm.victoryPanel==null);
         if(gm.victoryPanel!=null)gm.victoryPanel.SetActive(isVictory);
+        gm.StartCoroutine(LegionUiMotion.Reveal(isVictory&&gm.victoryPanel?gm.victoryPanel:gm.GameOverPanel,isVictory?gm.victorySummary:gm.defeatSummary,isVictory,gained));
         if(gm.nextChapterButton!=null)
         {
             gm.nextChapterButton.interactable=gm.NextChapterIndex>=0;

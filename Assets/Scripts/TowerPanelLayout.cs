@@ -17,6 +17,7 @@ public sealed partial class TowerPanelLayout : MonoBehaviour
     [SerializeField] UnityEngine.UI.Image progress;
     [SerializeField] Sprite shopShelf;
     Vector2 canvasSize;
+    readonly string[] previousStats=new string[4];
     [SerializeField] TMP_FontAsset serif,body;
     bool ownsFonts;
     readonly Color cream=new Color(1,.95f,.84f),gold=new Color(1,.74f,.35f);
@@ -190,9 +191,11 @@ public sealed partial class TowerPanelLayout : MonoBehaviour
         if(!root.gameObject.activeInHierarchy||bags.ActiveTower==null)return;
         var t=bags.ActiveTower;
         title.Set(ui.towerPanelTitle.text.Replace("  ·  "," • "));
+        for(int i=0;i<stats.Length;i++) previousStats[i]=stats[i].text.text;
         stats[0].Set(Number(t.currentDamage));stats[1].Set(Number(t.currentAttackSpeed)+" /sn");
         stats[2].Set("%"+Number(100*t.currentCriticalChance));
         stats[3].Set(t is UnitTower?"%"+Number(100*t.currentHealthBonus):Number(t.CurrentRange)+" birim");
+        for(int i=0;i<stats.Length;i++) if(previousStats[i]!=stats[i].text.text) LegionUiMotion.Pulse(stats[i].text.transform);
         details[0].Set(Breakdown(t.baseDamage,t.currentDamage));
         details[1].Set(Breakdown(t.baseAttackSpeed,t.currentAttackSpeed," /sn"));
         details[2].Set(Breakdown(t.baseCriticalChance*100,t.currentCriticalChance*100));

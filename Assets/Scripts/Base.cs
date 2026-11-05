@@ -24,6 +24,7 @@ public class Base : MonoBehaviour
             // Üsse ulaşan düşmanın hasarını uygula.
             var enemy = other.GetComponent<Enemy>();
             if (enemy == null || !enemy.TryReachBase()) return;
+            LegionFx.Ring(other.transform.position,.7f,new Color(1,.32f,.10f),.14f,true);
             TakeDamage(enemy.enemyData != null ? enemy.enemyData.BaseDamage : enemy.damage);
 
             // Üsse giren düşman objesini sahneden yok et
@@ -38,6 +39,7 @@ public class Base : MonoBehaviour
         GameAudio.Play(currentHealth == 0 ? "base_fall" : "base_damage", .8f, false, .12f);
         UpdateHealthUI();
         Debug.Log("Üs Hasar Aldı! Kalan Can: " + currentHealth);
+        if(uiManager && uiManager.Heart1) LegionUiMotion.Pulse(uiManager.Heart1.transform.parent,true);
         if (currentHealth <= 0)
         {
             GameOver();

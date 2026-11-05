@@ -15,6 +15,8 @@ MonoBehaviour:
   movementType: 0
   flightHeight: 1
   enemyName: Goblin Elit
+  characterModel: {fileID: 919132149155446097, guid: 9f08456c991758647a3373dc02fb4356,
+    type: 3}
   element: 2
   weaknessMultiplier: 1.5
   resistanceMultiplier: 0.5

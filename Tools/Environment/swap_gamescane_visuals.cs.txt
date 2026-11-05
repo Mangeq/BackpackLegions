@@ -1,0 +1,66 @@
+if(EditorApplication.isPlaying)throw new System.Exception("Exit Play Mode first");
+var scene=UnityEngine.SceneManagement.SceneManager.GetSceneByPath("Assets/Scenes/GameScane.unity");
+if(!scene.IsValid()||!scene.isLoaded)throw new System.Exception("GameScane must be loaded");
+var map=scene.GetRootGameObjects().Single(g=>g.name.StartsWith("Blackpine V5"));
+var prefab=AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Art/BlackpineV6Test/BlackpineV6Map.prefab");
+if(prefab==null)throw new System.Exception("V6 source missing");
+if(map.transform.Cast<Transform>().Any(t=>t.name=="V6 Visual Extensions"))throw new System.Exception("Visual extension already exists; inspect before rerunning");
+var allObjects=scene.GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Transform>(true)).Select(t=>t.gameObject).ToArray();
+var allComponents=allObjects.SelectMany(g=>g.GetComponents<Component>()).Where(c=>c!=null).ToArray();
+System.Func<Component,string> fingerprint=c=>{var t=c as Transform;if(t!=null)return t.gameObject.name+"|"+t.gameObject.activeSelf+"|"+t.gameObject.layer+"|"+t.gameObject.tag+"|"+(t.parent==null?0:t.parent.GetInstanceID())+"|"+t.localPosition.ToString("R")+"|"+t.localRotation.ToString("R")+"|"+t.localScale.ToString("R");return EditorJsonUtility.ToJson(c);};
+var protectedComponents=allComponents.Where(c=>!(c is MeshFilter)&&!(c is Renderer)).ToArray();
+var before=protectedComponents.ToDictionary(c=>c.GetInstanceID(),c=>fingerprint(c));
+var oldRenderers=allComponents.OfType<Renderer>().ToArray();
+var rendererEnabled=oldRenderers.ToDictionary(r=>r.GetInstanceID(),r=>r.enabled);
+var oldMeshes=allComponents.OfType<MeshFilter>().ToDictionary(f=>f.GetInstanceID(),f=>f.sharedMesh);
+var oldMaterials=oldRenderers.ToDictionary(r=>r.GetInstanceID(),r=>r.sharedMaterials);
+var protectedMeshObjects=new[]{"Bridge","Road","Tower_Pad_01.001","Tower_Pad_02.001","Tower_Pad_03.001","Tower_Pad_04.001","Tower_Pad_05.001"};
+var protectedMeshes=map.GetComponentsInChildren<MeshFilter>(true).Where(f=>protectedMeshObjects.Contains(f.name)).ToDictionary(f=>f.GetInstanceID(),f=>f.sharedMesh);
+if(!AssetDatabase.IsValidFolder("Assets/Scenes/Backups"))AssetDatabase.CreateFolder("Assets/Scenes","Backups");
+var backup=AssetDatabase.GenerateUniqueAssetPath("Assets/Scenes/Backups/GameScane_Before_V6_VisualOnly.unity");
+if(!UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene,backup,true))throw new System.Exception("Backup failed");
+var source=prefab.GetComponentsInChildren<MeshFilter>(true).ToDictionary(f=>f.name,f=>f);
+var hiddenNames=new[]{"V4_Compact_Dark_Base","V5_Tower_Style_Details"};
+int meshUpdates=0,materialUpdates=0,hiddenRenderers=0,newRenderers=0;
+var changedMeshFilters=new System.Collections.Generic.List<MeshFilter>();
+var changedRenderers=new System.Collections.Generic.List<Renderer>();
+var originalActive=UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
+var extension=new GameObject("V6 Visual Extensions");extension.transform.SetParent(map.transform,false);
+try{
+ foreach(Transform t in map.transform){
+  if(t==extension.transform)continue;
+  var mf=t.GetComponent<MeshFilter>();var mr=t.GetComponent<MeshRenderer>();if(mf==null||mr==null)continue;
+  if(hiddenNames.Contains(t.name)){mr.enabled=false;changedRenderers.Add(mr);hiddenRenderers++;continue;}
+  MeshFilter src;if(!source.TryGetValue(t.name,out src))continue;
+  if(!protectedMeshObjects.Contains(t.name)){mf.sharedMesh=src.sharedMesh;changedMeshFilters.Add(mf);meshUpdates++;}
+  mr.sharedMaterials=src.GetComponent<MeshRenderer>().sharedMaterials;changedRenderers.Add(mr);materialUpdates++;
+ }
+ foreach(var pair in source.Where(p=>p.Key.StartsWith("V6_"))){
+  var child=new GameObject(pair.Key);child.transform.SetParent(extension.transform,false);
+  child.transform.localPosition=pair.Value.transform.localPosition;child.transform.localRotation=pair.Value.transform.localRotation;child.transform.localScale=pair.Value.transform.localScale;
+  child.AddComponent<MeshFilter>().sharedMesh=pair.Value.sharedMesh;
+  var renderer=child.AddComponent<MeshRenderer>();renderer.sharedMaterials=pair.Value.GetComponent<MeshRenderer>().sharedMaterials;
+  GameObjectUtility.SetStaticEditorFlags(child,StaticEditorFlags.BatchingStatic|StaticEditorFlags.ReflectionProbeStatic);
+  newRenderers++;
+ }
+ var differences=new System.Collections.Generic.List<string>();
+ foreach(var c in protectedComponents)if(c==null||fingerprint(c)!=before[c.GetInstanceID()])differences.Add(c==null?"Removed component":c.GetType().FullName+" on "+c.gameObject.name);
+ foreach(var f in map.GetComponentsInChildren<MeshFilter>(true))if(protectedMeshes.ContainsKey(f.GetInstanceID())&&f.sharedMesh!=protectedMeshes[f.GetInstanceID()])differences.Add("Protected road/bridge/pad mesh changed: "+f.name);
+ if(extension.GetComponentsInChildren<Collider>(true).Length!=0||extension.GetComponentsInChildren<MonoBehaviour>(true).Length!=0)differences.Add("Unexpected gameplay component on visual extension");
+ if(differences.Count>0)throw new System.Exception("Preservation check failed: "+string.Join("; ",differences.ToArray()));
+ foreach(var f in changedMeshFilters){EditorUtility.SetDirty(f);if(PrefabUtility.IsPartOfPrefabInstance(f))PrefabUtility.RecordPrefabInstancePropertyModifications(f);}
+ foreach(var r in changedRenderers){EditorUtility.SetDirty(r);if(PrefabUtility.IsPartOfPrefabInstance(r))PrefabUtility.RecordPrefabInstancePropertyModifications(r);}
+ UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(scene);
+ if(!UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene))throw new System.Exception("Save failed");
+ var snapshot=protectedComponents.ToDictionary(c=>c.GetInstanceID().ToString(),c=>fingerprint(c));
+ var report="Protected components unchanged: "+snapshot.Count+"\nOriginal transforms unchanged: "+protectedComponents.OfType<Transform>().Count()+"\nCollider components unchanged: "+protectedComponents.OfType<Collider>().Count()+"\nGameplay scripts unchanged: "+protectedComponents.OfType<MonoBehaviour>().Count()+"\nRoad, bridge and pad MeshFilters unchanged: "+protectedMeshes.Count+"\nNew visual renderers (no colliders/scripts): "+newRenderers+"\nBackup: "+backup+"\n";
+ System.IO.File.WriteAllText("ArtSource/BlackpineMapV6_ForestCastle/GameScane_VisualSwap_Verification.txt",report);
+ Selection.activeGameObject=map;
+ return new{scene=scene.path,backup,meshUpdates,materialUpdates,hiddenRenderers,newRenderers,protectedComponents=protectedComponents.Length,unchangedTransforms=protectedComponents.OfType<Transform>().Count(),unchangedColliders=protectedComponents.OfType<Collider>().Count(),unchangedScripts=protectedComponents.OfType<MonoBehaviour>().Count(),protectedRoadBridgePadMeshes=protectedMeshes.Count,spawnPositionsUntouched=true,gameplayUnchanged=true};
+}catch{
+ foreach(var f in allComponents.OfType<MeshFilter>())if(f!=null)f.sharedMesh=oldMeshes[f.GetInstanceID()];
+ foreach(var r in oldRenderers)if(r!=null){r.sharedMaterials=oldMaterials[r.GetInstanceID()];r.enabled=rendererEnabled[r.GetInstanceID()];}
+ UnityEngine.Object.DestroyImmediate(extension);
+ throw;
+}

@@ -159,6 +159,7 @@ public abstract class Tower : MonoBehaviour
         if (retired || !initialized || !GameManager.CanLevelUpTowers || BackpackDraggable.IsDragging) return false;
         if (!EconomyManager.TrySpendGold(UpgradeCost)) return false;
         towerLevel++;
+        LegionFx.Ring(transform.position,.85f,LegionFx.Gold,1,true);
         RebuildLevelStats();
         CalculateStats();
         if (towerLevel == 5 && ShopManager.Instance != null) GenerateShopItems();
@@ -502,9 +503,17 @@ public abstract class Tower : MonoBehaviour
                 yield return null;
                 continue;
             }
+            float interval=1f/currentAttackSpeed;
+            float drawTime=LegionWeapon.Prepare(this,targetEnemy,interval);
+            if(drawTime>0)
+            {
+                yield return new WaitForSeconds(drawTime);
+                targetEnemy=SelectTarget();
+                OnTargetSelected(targetEnemy);
+                if(!targetEnemy)continue;
+            }
             Attack(targetEnemy);
-
-            yield return new WaitForSeconds(1f / currentAttackSpeed);
+            yield return new WaitForSeconds(Mathf.Max(0,1f/currentAttackSpeed-drawTime));
         }
         OnTargetSelected(null);
         isShooting = false;

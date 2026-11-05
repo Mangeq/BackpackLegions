@@ -85,6 +85,8 @@ public class WaveManager : MonoBehaviour
         }
 
         waveRunning = true;
+        LegionUiMotion.Banner("DALGA "+(currentWaveIndex+1));
+        if(spawnPoint) LegionFx.Ring(spawnPoint.position,.8f,LegionFx.Gold,.12f);
         foreach(var tower in FindObjectsOfType<Tower>()) tower.Evolution?.BeginWave(currentWaveIndex);
         StartCoroutine(SpawnWave());
         return true;
@@ -109,6 +111,7 @@ public class WaveManager : MonoBehaviour
         // Üretim tamamlanmış olsa bile sahadaki son düşman temizlenmeden dalga bitmez.
         yield return new WaitUntil(() => !gameManager.IsPaused && GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
         foreach(var tower in FindObjectsOfType<Tower>()) tower.Evolution?.CompleteWave(currentWaveIndex);
+        LegionUiMotion.Banner("DALGA TAMAMLANDI");
         currentWaveIndex++;
         waveRunning = false;
 

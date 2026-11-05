@@ -11,6 +11,7 @@ public class EnemyData : ScriptableObject
     public MovementType movementType = MovementType.Ground;
     [Min(0f)] public float flightHeight = 1f;
     public string enemyName;
+    public GameObject characterModel;
     [Tooltip("Düşmanın element kimliği. Kara/hava hareket türünden bağımsızdır.")]
     public ElementType element = ElementType.Normal;
     [Header("Element ve kale dengesi")]

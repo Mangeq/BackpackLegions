@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// AynÄ± bileÅŸen hem asker hem dÃ¼ÅŸman prefabÄ±nda Ã§alÄ±ÅŸÄ±r. CanÄ±n sahibi deÄŸildir.
+// Ayný bileþen hem asker hem düþman prefabýnda çalýþýr. Canýn sahibi deðildir.
 public class HealthBarUI : MonoBehaviour
 {
     public RectTransform barPrefab;
@@ -8,6 +8,8 @@ public class HealthBarUI : MonoBehaviour
     private Unit unit;
     private Enemy enemy;
     private Collider bodyCollider;
+    private LegionFigure figure;
+    private bool checkedFigure;
     private Camera worldCamera;
     private RectTransform bar, fill;
     private UnityEngine.UI.Text label;
@@ -35,6 +37,7 @@ public class HealthBarUI : MonoBehaviour
         {
             bar = Instantiate(barPrefab, controller.healthBarLayer);
             bar.name = name + " HealthBar";
+            bar.localScale*=enemy && enemy.enemyData && enemy.enemyData.isBoss ? .85f : .68f;
             fill = (RectTransform)bar.Find("Track/Fill");
             label = bar.Find("HealthText").GetComponent<UnityEngine.UI.Text>();
             canvas = bar.GetComponentInParent<Canvas>();
@@ -43,6 +46,8 @@ public class HealthBarUI : MonoBehaviour
         Vector3 position = bodyCollider != null ? new Vector3(bodyCollider.bounds.center.x, bodyCollider.bounds.max.y, bodyCollider.bounds.center.z) : transform.position;
         if (enemy != null && enemy.IsAir && enemy.visualRoot != null)
             position += enemy.visualRoot.position - enemy.transform.position;
+        if(!checkedFigure){figure=GetComponentInChildren<LegionFigure>();checkedFigure=true;}
+        if(figure)position.y=Mathf.Max(position.y,figure.HealthBarY);
         Vector3 screen = worldCamera.WorldToScreenPoint(position + Vector3.up * heightOffset);
         bool visible = screen.z > 0 && screen.x >= 0 && screen.x <= Screen.width && screen.y >= 0 && screen.y <= Screen.height;
         bar.gameObject.SetActive(visible);

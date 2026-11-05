@@ -658,7 +658,7 @@ public class UİManager : MonoBehaviour
     }
     public static void UpdateGoldText()
     {
-        GoldText.text = EconomyManager.Gold.ToString();
+        if(GoldText && GoldText.text!=EconomyManager.Gold.ToString()){ GoldText.text=EconomyManager.Gold.ToString(); LegionUiMotion.Pulse(GoldText.transform); }
     }
     public void BuyTower() //Bu fonksiyonun içindeki ifler kalkacak towermanager adında bir sınıf oluşturulacak ve o sınıfta kule satın alma işlemi yapılacak. Bu sınıfın içinde kule türüne göre fiyat kontrolü yapılacak ve kule satın alınacak.
     {

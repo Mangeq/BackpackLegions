@@ -212,6 +212,52 @@ public class BackpackUIManager : MonoBehaviour
     }
 
     /// <summary>Tüm item görsellerini siler ve ActiveTower.Backpack'in güncel durumuna göre yeniden çizer.</summary>
+    public void ShowDropMotion(PlacedItem dropped,Vector3 start,bool placed)
+    {
+        if(!itemVisuals.TryGetValue(dropped,out var view))return;
+        LegionUiMotion.Pulse(view.transform,!placed,start);
+        if(!placed || dropped.Bag!=ActiveTower.Backpack)return;
+        var bag=ActiveTower.Backpack;
+        var linked=new HashSet<PlacedItem>();
+        foreach(var item in bag.Items)
+        {
+            if(item.Data.synergyRecipes==null)continue;
+            foreach(var recipe in item.Data.synergyRecipes)
+            {
+                if(ItemSynergyCalculator.Activations(bag,item,recipe,ActiveTower.IsItemActive)==0)continue;
+                var candidates=new HashSet<PlacedItem>();
+                foreach(var cell in ItemSynergyCalculator.Cells(item.Data,recipe,item.Origin,item.Rotation))
+                {
+                    var source=bag.GetItemAt(cell);
+                    if(source!=null)candidates.Add(source);
+                }
+                if(recipe.AllowsAttachment)foreach(var source in item.Attachments)candidates.Add(source);
+                foreach(var source in candidates)
+                {
+                    if(source==item || !ActiveTower.IsItemActive(source.Data) || !recipe.Accepts(source.Data))continue;
+                    var other=item==dropped?source:source==dropped?item:null;
+                    if(other==null || !linked.Add(other) || !itemVisuals.TryGetValue(other,out var neighbor))continue;
+                    LegionUiMotion.Link(gridContainer,view.transform.position,neighbor.transform.position,LegionFx.Gold);
+                    LegionUiMotion.Pulse(neighbor.transform);
+                }
+            }
+        }
+    }
+
+    public void EvolutionMotion(PlacedItem first,PlacedItem second)
+    {
+        if(itemVisuals.TryGetValue(first,out var a) && itemVisuals.TryGetValue(second,out var b))
+            LegionUiMotion.Link(gridContainer,b.transform.position,a.transform.position,LegionFx.Gold);
+    }
+
+    public void HighlightEvolved(PlacedItem item)
+    {
+        if(itemVisuals.TryGetValue(item,out var visual)) LegionUiMotion.Pulse(visual.transform);
+        if(deliveryVisual && deliveryIndex>=0 && deliveryIndex<ActiveTower.Evolution.Deliveries.Count &&
+           ActiveTower.Evolution.Deliveries[deliveryIndex].Content==item)
+            LegionUiMotion.Pulse(deliveryVisual.transform);
+    }
+
     public void RefreshItemVisuals()
     {
         foreach (GameObject visual in itemVisuals.Values)

@@ -12,11 +12,13 @@ public class Unit : MonoBehaviour
     public ElementType elementType;
 
     internal float critChance;           // Kuleden gelir (base + item bonuslari)
-    internal float attackSpeed = 1f;  // Saniyedeki saldÄ±rÄ± sayÄ±sÄ±, kuleden gelir.
+    internal float attackSpeed = 1f;  // Saniyedeki saldýrý sayýsý, kuleden gelir.
     private int baseHealth;              // Prefab'daki ham can, item bonusu bunun uzerine uygulanir
     private int maxHealth;
 
     private Coroutine combatRoutine;
+    private LegionFigure figure;
+    private float contactTime, interval;
 
     public bool IsIdle => currentEnemy == null && !marching;
     private bool marching;
@@ -24,6 +26,9 @@ public class Unit : MonoBehaviour
     public float marchSpeed = 3f;
     private void Update()
     {
+        if (figure)
+            figure.Tick(marching, currentEnemy ? currentEnemy.transform.position-transform.position : guardPosition-transform.position,
+                marchSpeed,currentEnemy ? contactTime-Time.time : -1,interval);
         if (!marching) return;
         transform.position = Vector3.MoveTowards(transform.position, guardPosition, marchSpeed * Time.deltaTime);
         if ((transform.position - guardPosition).sqrMagnitude < .0025f) marching = false;
@@ -33,6 +38,7 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
+        figure=LegionFigure.Attach(transform,null,Resources.Load<GameObject>("BlackpineLegion/Sentinel"),.78f,false);
         baseHealth = health;
         maxHealth = health;
     }
@@ -50,7 +56,7 @@ public class Unit : MonoBehaviour
         maxHealth = newMaxHealth;
     }
 
-    // Kuleden doÄŸan birlik, yol Ã¼zerindeki nÃ¶bet noktasÄ±na yÃ¼rÃ¼r.
+    // Kuleden doðan birlik, yol üzerindeki nöbet noktasýna yürür.
     public void PlaceAt(Vector3 position)
     {
         guardPosition = position;
@@ -74,17 +80,24 @@ public class Unit : MonoBehaviour
     {
         while(currentEnemy != null)
         {
-            yield return new WaitForSeconds(1f / attackSpeed);
+            interval=1f/attackSpeed;
+            contactTime=Time.time+interval;
+            yield return new WaitForSeconds(interval);
             if (currentEnemy==null) break;
+            if(figure)figure.Contact();
             GameAudio.Play("SFX_02", .25f, true, .1f);
-            float finalDamage = Random.Range(0f, 1f) <= critChance ? damage * critMultiplier : damage;
-            currentEnemy.GetComponent<Enemy>().TakeDamage(finalDamage, elementType, myTower != null ? myTower.GetComponent<Tower>() : null);
+            bool critical=Random.Range(0f,1f)<=critChance;
+            if(critical)LegionFx.Slash(transform.position,currentEnemy.transform.position);
+            float finalDamage = critical ? damage * critMultiplier : damage;
+            currentEnemy.GetComponent<Enemy>().TakeDamage(finalDamage, elementType, myTower != null ? myTower.GetComponent<Tower>() : null, critical);
             if (currentEnemy==null) break;
         }
         combatRoutine = null;
     }
     public void TakeDamage(int damage)
     {
+        if(figure) figure.Hit();
+        LegionFx.Burst(figure?figure.Center:transform.position,ElementType.Normal);
         health -= damage;
         if (health <= 0)
         {
@@ -109,6 +122,7 @@ public class Unit : MonoBehaviour
             {
                 StopCoroutine(combatRoutine);
             }
+            if(figure) figure.Fall();
             myTower.GetComponent<UnitTower>().ReleaseUnit(unit);
             Destroy(unit);
         }

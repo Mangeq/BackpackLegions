@@ -74,19 +74,28 @@ public class TowerItemEvolution
     {
         if(activeWave!=wave)return;
         var work=pending;pending=new List<Pair>();activeWave=-1;
+        var evolved=new List<PlacedItem>();
+        var ui=BackpackUIManager.Instance;
         foreach(var pair in work)
         {
             if(!ContainsItem(pair.first)||!ContainsItem(pair.second)||!Adjacent(pair.first,pair.second)
                 || !owner.IsItemActive(pair.first.Data) || !owner.IsItemActive(pair.second.Data) || !owner.IsItemActive(pair.recipe.result))continue;
+            if(ui && ui.ActiveTower==owner)ui.EvolutionMotion(pair.first,pair.second);
+            LegionFx.Ring(owner.transform.position,.65f,LegionFx.Gold,.55f,true);
             ReleaseAttachments(pair.first);ReleaseAttachments(pair.second);
             owner.Backpack.Remove(pair.first);owner.Backpack.Remove(pair.second);
-            if(!TryPlace(owner.Backpack,pair.recipe.result,pair.first.Origin) &&
-                !TryPlace(owner.Storage,pair.recipe.result,Vector2Int.zero))
-                deliveries.Add(new Delivery(pair.recipe.result));
+            var item=TryPlace(owner.Backpack,pair.recipe.result,pair.first.Origin)
+                ?? TryPlace(owner.Storage,pair.recipe.result,Vector2Int.zero);
+            if(item==null)
+            {
+                var delivery=new Delivery(pair.recipe.result);
+                deliveries.Add(delivery);
+                item=delivery.Content;
+            }
+            evolved.Add(item);
         }
         owner.CalculateStats();
-        var ui=BackpackUIManager.Instance;
-        if(ui!=null && ui.ActiveTower==owner)ui.RefreshItemVisuals();
+        if(ui!=null && ui.ActiveTower==owner){ui.RefreshItemVisuals();foreach(var result in evolved)ui.HighlightEvolved(result);}
     }
     // Attachments are never consumed by a host sale, main-item replacement or evolution.
     public void ReleaseAttachments(PlacedItem host)
@@ -110,14 +119,14 @@ public class TowerItemEvolution
         foreach(var p in owner.Backpack.Items)if(p==item)return true;
         return false;
     }
-    private static bool TryPlace(Backpack bag, ItemData item, Vector2Int preferred)
+    private static PlacedItem TryPlace(Backpack bag, ItemData item, Vector2Int preferred)
     {
-        for(int r=0;r<4;r++)if(bag.CanPlace(item,preferred,r)){bag.Place(item,preferred,r);return true;}
+        for(int r=0;r<4;r++)if(bag.CanPlace(item,preferred,r))return bag.Place(item,preferred,r);
         for(int y=0;y<bag.Height;y++)for(int x=0;x<bag.Width;x++)for(int r=0;r<4;r++)
         {
             var pos=new Vector2Int(x,y);
-            if(bag.CanPlace(item,pos,r)){bag.Place(item,pos,r);return true;}
+            if(bag.CanPlace(item,pos,r))return bag.Place(item,pos,r);
         }
-        return false;
+        return null;
     }
 }

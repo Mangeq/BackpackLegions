@@ -36,6 +36,11 @@ public class ShopSlotDragStarter : MonoBehaviour, IBeginDragHandler, IDragHandle
             return;
         purchaseOwner=BackpackUIManager.Instance.ActiveTower;
         purchaseItem=shopSlot.currentItem;
+        if(EconomyManager.Gold<purchaseItem.cost){
+            var label=shopSlot.transform.Find("ReferenceCost");
+            LegionUiMotion.Pulse(label?label:shopSlot.itemCost?shopSlot.itemCost.transform:shopSlot.transform,true);
+            return;
+        }
         purchaseIndex=System.Array.IndexOf(FindObjectOfType<ShopUIManager>().shopSlots,shopSlot);
 
         GameObject ghost = Instantiate(BackpackUIManager.Instance.itemVisualPrefab, BackpackUIManager.Instance.transform.root);

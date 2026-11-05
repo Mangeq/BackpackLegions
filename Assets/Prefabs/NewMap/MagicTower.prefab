@@ -229,8 +229,8 @@ Transform:
   m_GameObject: {fileID: 2740651923956361663}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.000037914615, y: 0.017531248, z: -0.00052360375}
-  m_LocalScale: {x: 1.2327552, y: 1.2327552, z: 1.2327552}
+  m_LocalPosition: {x: -0.000029573399, y: 0.013674373, z: -0.0004084109}
+  m_LocalScale: {x: 0.961549, y: 0.961549, z: 0.961549}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7310014651985782890}
@@ -484,7 +484,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0.022750618}
-  m_LocalScale: {x: 0.17055124, y: 0.17055124, z: 0.32623208}
+  m_LocalScale: {x: 0.23536071, y: 0.23536071, z: 0.45020026}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6758961062527730230}
@@ -817,6 +817,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6874216929216722674}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b0f4b142ca121d345bbd4371a141f4e5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 371029550307200740}
   m_SourcePrefab: {fileID: 100100000, guid: b0f4b142ca121d345bbd4371a141f4e5, type: 3}
 --- !u!4 &8564152097954717991 stripped
 Transform:
@@ -905,3 +909,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &371029550307200740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048341166498626461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690554d79d8e1784c9ff20911c329886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bowPivot: {fileID: 0}
+  bolt: {fileID: 0}
+  bow: {fileID: 0}
+  boltTravel: {x: 0, y: 0, z: 0}
+  crystal: {fileID: 1890672952221224463}
