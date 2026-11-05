@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-05",
+  "timezone": "Europe/Istanbul",
+  "github": {
+    "commit": "5cd87e9532ecdcb06cffbaed1aee7040348d839d",
+    "verified_at": "2026-11-05T16:07:38.6961322Z",
+    "repository": "https://github.com/Mangeq/BackpackLegions",
+    "changed_files": 167,
+    "status": "pushed"
+  },
+  "validation": {
+    "notes": "Mevcut harita doğrulama notları incelendi. Dinamik TMP font önbelleği, yedekler, loglar ve geçici MCP çıktıları kapsam dışında.",
+    "tests_rerun": false,
+    "meta_and_file_size_checked": true,
+    "secret_pattern_scan": "passed"
+  },
+  "linkedin": {
+    "status": "not_scheduled"
+  },
+  "summary": "Legion karakter modelleri, savaş ve arayüz efektleri, silah çıkış noktaları ve V6 görsel ortam güncellemesi."
+}
