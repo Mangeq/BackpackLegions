@@ -1,0 +1,154 @@
+{
+  "inspection": "Read-only Edit Mode; no Play/build. Active scene GameScane dirty=true left unchanged; Console error/warning query empty.",
+  "overview": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"maps\":null,\"chapters\":[{\"chapterNumber\":1,\"sceneName\":\"GameScane\",\"startingGold\":850,\"preparationSeconds\":60.0,\"waves\":5,\"enemies\":180},{\"chapterNumber\":2,\"sceneName\":\"GameScane\",\"startingGold\":1000,\"preparationSeconds\":75.0,\"waves\":7,\"enemies\":260},{\"chapterNumber\":3,\"sceneName\":\"GameScane\",\"startingGold\":1150,\"preparationSeconds\":90.0,\"waves\":9,\"enemies\":340},{\"chapterNumber\":4,\"sceneName\":\"GameScane\",\"startingGold\":1300,\"preparationSeconds\":105.0,\"waves\":11,\"enemies\":420},{\"chapterNumber\":5,\"sceneName\":\"GameScane\",\"startingGold\":1450,\"preparationSeconds\":120.0,\"waves\":13,\"enemies\":532}],\"skills\":[{\"type\":\"ArrowTower\",\"total\":11,\"active\":11},{\"type\":\"MagicTower\",\"total\":12,\"active\":0},{\"type\":\"CannonTower\",\"total\":12,\"active\":0},{\"type\":\"UnitTower\",\"total\":12,\"active\":0}],\"missingScripts\":0},\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "maps": null,
+          "chapters": [
+            {
+              "chapterNumber": 1,
+              "sceneName": "GameScane",
+              "startingGold": 850,
+              "preparationSeconds": 60,
+              "waves": 5,
+              "enemies": 180
+            },
+            {
+              "chapterNumber": 2,
+              "sceneName": "GameScane",
+              "startingGold": 1000,
+              "preparationSeconds": 75,
+              "waves": 7,
+              "enemies": 260
+            },
+            {
+              "chapterNumber": 3,
+              "sceneName": "GameScane",
+              "startingGold": 1150,
+              "preparationSeconds": 90,
+              "waves": 9,
+              "enemies": 340
+            },
+            {
+              "chapterNumber": 4,
+              "sceneName": "GameScane",
+              "startingGold": 1300,
+              "preparationSeconds": 105,
+              "waves": 11,
+              "enemies": 420
+            },
+            {
+              "chapterNumber": 5,
+              "sceneName": "GameScane",
+              "startingGold": 1450,
+              "preparationSeconds": 120,
+              "waves": 13,
+              "enemies": 532
+            }
+          ],
+          "skills": [
+            {
+              "type": "ArrowTower",
+              "total": 11,
+              "active": 11
+            },
+            {
+              "type": "MagicTower",
+              "total": 12,
+              "active": 0
+            },
+            {
+              "type": "CannonTower",
+              "total": 12,
+              "active": 0
+            },
+            {
+              "type": "UnitTower",
+              "total": 12,
+              "active": 0
+            }
+          ],
+          "missingScripts": 0
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  },
+  "activeReferences": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Code executed successfully.\",\"data\":{\"result\":{\"chapters\":[{\"path\":\"Assets/Prefabs/NewMap/Chapters/Chapter01.asset\",\"chapterNumber\":1,\"startingGold\":850,\"waves\":5,\"enemies\":180,\"firstPrefab\":\"Assets/Prefabs/NewMap/Actors/Scout_3c736e2c.prefab\"},{\"path\":\"Assets/Prefabs/NewMap/Chapters/Chapter02.asset\",\"chapterNumber\":2,\"startingGold\":1000,\"waves\":7,\"enemies\":260,\"firstPrefab\":\"Assets/Prefabs/NewMap/Actors/Scout_271b8a88.prefab\"},{\"path\":\"Assets/Prefabs/NewMap/Chapters/Chapter03.asset\",\"chapterNumber\":3,\"startingGold\":1150,\"waves\":9,\"enemies\":340,\"firstPrefab\":\"Assets/Prefabs/NewMap/Actors/Scout_cc560f4c.prefab\"},{\"path\":\"Assets/Prefabs/NewMap/Chapters/Chapter04.asset\",\"chapterNumber\":4,\"startingGold\":1300,\"waves\":11,\"enemies\":420,\"firstPrefab\":\"Assets/Prefabs/NewMap/Actors/Scout_94c12b21.prefab\"},{\"path\":\"Assets/Prefabs/NewMap/Chapters/Chapter05.asset\",\"chapterNumber\":5,\"startingGold\":1450,\"waves\":13,\"enemies\":532,\"firstPrefab\":\"Assets/Prefabs/NewMap/Actors/Scout_0d023169.prefab\"}],\"maps\":[\"Assets/Prefabs/CampaignMaps/Chapter01.prefab\",\"Assets/Prefabs/CampaignMaps/Chapter02.prefab\",\"Assets/Prefabs/CampaignMaps/Chapter03.prefab\",\"Assets/Prefabs/CampaignMaps/Chapter04.prefab\",\"Assets/Prefabs/CampaignMaps/Chapter05.prefab\"]},\"compiler\":\"codedom\"}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Code executed successfully.",
+      "data": {
+        "result": {
+          "chapters": [
+            {
+              "path": "Assets/Prefabs/NewMap/Chapters/Chapter01.asset",
+              "chapterNumber": 1,
+              "startingGold": 850,
+              "waves": 5,
+              "enemies": 180,
+              "firstPrefab": "Assets/Prefabs/NewMap/Actors/Scout_3c736e2c.prefab"
+            },
+            {
+              "path": "Assets/Prefabs/NewMap/Chapters/Chapter02.asset",
+              "chapterNumber": 2,
+              "startingGold": 1000,
+              "waves": 7,
+              "enemies": 260,
+              "firstPrefab": "Assets/Prefabs/NewMap/Actors/Scout_271b8a88.prefab"
+            },
+            {
+              "path": "Assets/Prefabs/NewMap/Chapters/Chapter03.asset",
+              "chapterNumber": 3,
+              "startingGold": 1150,
+              "waves": 9,
+              "enemies": 340,
+              "firstPrefab": "Assets/Prefabs/NewMap/Actors/Scout_cc560f4c.prefab"
+            },
+            {
+              "path": "Assets/Prefabs/NewMap/Chapters/Chapter04.asset",
+              "chapterNumber": 4,
+              "startingGold": 1300,
+              "waves": 11,
+              "enemies": 420,
+              "firstPrefab": "Assets/Prefabs/NewMap/Actors/Scout_94c12b21.prefab"
+            },
+            {
+              "path": "Assets/Prefabs/NewMap/Chapters/Chapter05.asset",
+              "chapterNumber": 5,
+              "startingGold": 1450,
+              "waves": 13,
+              "enemies": 532,
+              "firstPrefab": "Assets/Prefabs/NewMap/Actors/Scout_0d023169.prefab"
+            }
+          ],
+          "maps": [
+            "Assets/Prefabs/CampaignMaps/Chapter01.prefab",
+            "Assets/Prefabs/CampaignMaps/Chapter02.prefab",
+            "Assets/Prefabs/CampaignMaps/Chapter03.prefab",
+            "Assets/Prefabs/CampaignMaps/Chapter04.prefab",
+            "Assets/Prefabs/CampaignMaps/Chapter05.prefab"
+          ]
+        },
+        "compiler": "codedom"
+      }
+    },
+    "isError": false
+  }
+}
